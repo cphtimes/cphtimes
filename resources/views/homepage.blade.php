@@ -80,8 +80,8 @@
           <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <strong>{!! $temp !!}°C</strong> <small class="text-black text-right">
-                  {!! $tempMax !!}° <span class="text-muted">{!! $tempMin !!}°</span>
+                <strong>{!! number_format($temp, 0) !!}°C</strong> <small class="text-black text-right">
+                  {!! number_format($tempMax, 0) !!}° <span class="text-muted">{!! number_format($tempMin, 0) !!}°</span>
                 </small>
               </li>
             </ul>
