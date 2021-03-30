@@ -28,7 +28,7 @@
           border-bottom: none;
         }
       </style>
-      <title>The Copenhagen Times</title>
+      <title>The Copenhagen Gates</title>
     </head>
     <body class="antialiased">
       <div class="container pt-4">
@@ -81,7 +81,7 @@
             </ul>
           </div>
           <div class="text-center">
-            <a style="font-family: 'UnifrakturMaguntia', cursive; font-size: 3.0rem;" class="navbar-brand" href="#">The Copenhagen Times</a>
+            <a style="font-family: 'UnifrakturMaguntia', cursive; font-size: 3.0rem;" class="navbar-brand" href="#">The Copenhagen Gates</a>
           </div>
           <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
@@ -265,7 +265,7 @@
     </main>
     <footer class="pt-4 my-md-5 pt-md-4 border-top border-2 container">
       <div class="mb-4">
-        <a style="font-family: 'UnifrakturMaguntia', cursive; font-size: 1.8rem;" class="navbar-brand" href="#">The Copenhagen Times</a>
+        <a style="font-family: 'UnifrakturMaguntia', cursive; font-size: 1.8rem;" class="navbar-brand" href="#">The Copenhagen Gates</a>
         <!-- <small class="d-block mb-3 text-muted">© 2021-2022</small> -->
       </div>
       <div class="row">
