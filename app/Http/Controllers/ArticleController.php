@@ -32,7 +32,7 @@ class ArticleController extends Controller
     /**
      * Show the Homepage
      * @return \Illuminate\View\View
-     */
+    */
     public function show($year, $month, $day, $topic, $title)
     {
       $now = date("Y-m-d h:i:sa");

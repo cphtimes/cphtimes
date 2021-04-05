@@ -15,5 +15,14 @@ use App\Http\Controllers\ArticleController;
 |
 */
 
+/*
+Route::get('/{locale}', function ($locale) {
+    // supportedLocaleSpec.isSatisfiedBy($locale);
+    if (! in_array($locale, ['en', 'da', 'ar'])) {
+        abort(400);
+    }
+    App::setLocale($locale);
+});
+*/
 Route::get('/', [HomepageController::class, 'show']);
 Route::get('/{year}/{month}/{day}/{topic}/{title}', [ArticleController::class, 'show']);

@@ -27,6 +27,9 @@
         .card-header {
           border-bottom: none;
         }
+        .serif {
+          font-family: 'Libre Baskerville', serif;
+        }
       </style>
       <title>The Copenhagen Gates</title>
     </head>
@@ -46,7 +49,7 @@
             </div>
             <div>
               <small class="text-uppercase m-3">
-                <a href="#">Danish</a>
+                <a href="#">Dansk</a>
               </small>
             </div>
             <div class="">
@@ -115,9 +118,154 @@
 
       <div class="container">
 
+        <div class="row pb-5">
+          <ul class="list-group list-group-flush col-lg-6 col-md-9 col-12 border-end pe-4">
+            <li class="list-group-item list-group-item-action pt-0 pb-4 px-0">
+              <article class="d-flex">
+                <div class="flex-grow-1 ms-0 pe-2">
+                  <p class="mb-2"><small class="text-uppercase"><b>World</b></small></p>
+                  <h2 class="fw-light">What we know so far: Wuhan virus (Covid-19)</h2>
+                  <p class="text-muted">I will attempt to encapsulate, search and seek out all the people, with the proper credentials to speak on the Wuhan virus (Covid-19).</p>
+                </div>
+                <div class="flex-shrink-0">
+                  <img style="object-fit: cover;" width="250px" height="250px" src="https://dsr.dk/sites/default/files/styles/full_standard_-_responsive/public/24/corona_21mb.jpg?itok=eeFKIJTS" alt="...">
+                </div>
+              </article>
+            </li>
+            <li class="list-group-item list-group-item-action pt-4 pb-4 px-0">
+              <article class="d-flex">
+                <div class="flex-grow-1 ms-0 pe-2">
+                  <small class="text-uppercase"><b>World</b></small>
+                  <h5 class="fw-light">What we know so far: Wuhan virus (Covid-19)</h5>
+                  <p class="text-muted">I will attempt to encapsulate, search and seek out all the people...</p>
+                </div>
+                <div class="flex-shrink-0">
+                  <img style="object-fit: cover;" width="125px" height="125px" src="http://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/04/earth/21970012-1-eng-GB/Earth_pillars.jpg" alt="...">
+                </div>
+              </article>
+            </li>
+            <li class="list-group-item list-group-item-action pt-4 pb-4 px-0">
+              <article class="d-flex">
+                <div class="flex-grow-1 ms-0 pe-2">
+                  <small class="text-uppercase"><b>World</b></small>
+                  <h5 class="fw-light">What we know so far: Wuhan virus (Covid-19)</h5>
+                  <p class="text-muted">I will attempt to encapsulate, search and seek out all the people...</p>
+                </div>
+                <div class="flex-shrink-0">
+                  <img style="object-fit: cover;" width="125px" height="125px" src="http://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/04/earth/21970012-1-eng-GB/Earth_pillars.jpg" alt="...">
+                </div>
+              </article>
+            </li>
+            <li class="list-group-item list-group-item-action pt-4 pb-4 px-0">
+              <article class="d-flex">
+                <div class="flex-grow-1 ms-0 pe-2">
+                  <small class="text-uppercase"><b>World</b></small>
+                  <h5 class="fw-light">What we know so far: Wuhan virus (Covid-19)</h5>
+                  <p class="text-muted">I will attempt to encapsulate, search and seek out all the people...</p>
+                </div>
+                <div class="flex-shrink-0">
+                  <img style="object-fit: cover;" width="125px" height="125px" src="http://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/04/earth/21970012-1-eng-GB/Earth_pillars.jpg" alt="...">
+                </div>
+              </article>
+            </li>
+          </ul>
+
+          <ul class="list-group list-group-flush col-lg-3 col-md-3 col-12 border-end">
+            <h5 class="px-4 serif"><i>Latest updates</i></h5>
+            @foreach ($latestUpdates as $update)
+              <li class="list-group-item list-group-item-action py-4 px-4">
+                <article class="d-flex">
+                  <div class="flex-grow-1 ms-0 pe-2">
+                    <div class="d-flex w-100 justify-content-between">
+                      <small class="text-uppercase"><b>{{$update['topic']}}</b></small>
+                      <small class="text-uppercase text-black-50">{{$update['date']}}</small>
+                    </div>
+                    <h5 class="fw-light">{{$update['title']}}</h5>
+                  </div>
+                </article>
+              </li>
+            @endforeach
+          </ul>
+
+          <ul class="list-group list-group-flush col-lg-3 col-md-3 col-12">
+            <h5 class="px-4 serif"><i>Noteworthy Individuals</i></h5>
+            <li class="list-group-item list-group-item-action py-4 px-4">
+              <div class="d-flex align-items-center">
+                <div class="flex-shrink-0">
+                  <img style="object-fit: cover;" width="65px" height="65px" class="rounded-circle" src="https://www.chelseagreen.com/wp-content/uploads/Sucharit-Bhakdi-300x443.jpeg" alt="...">
+                </div>
+                <div class="flex-grow-1 ms-3">
+                  <b>Sucharit Bhakdi</b>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item list-group-item-action py-4 px-4">
+              <div class="d-flex align-items-center">
+                <div class="flex-shrink-0">
+                  <img style="object-fit: cover;" width="65px" height="65px" class="rounded-circle" src="https://biotech-atelier.com/wp-content/uploads/2020/07/dcahill.jpg" alt="...">
+                </div>
+                <div class="flex-grow-1 ms-3">
+                  <b>Dolores Cahill</b>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3 col-lg-3 col-12 border-end">
+            <article class="card mb-4 border-0">
+              <header class="card-header bg-white">
+                <!-- <div class="card-meta">
+                  <a href="#"><time class="timeago" datetime="2021-04-01 00:00" timeago-id="1">Today</time></a> in <a href="page-category.html">World</a>
+                </div> -->
+                <p><small class="text-uppercase text-dark"><b>World</b></small></p>
+                <a href="/2021/04/01/world/what-we-know-so-far-wuhan-virus-covid-19">
+                  <h5 class="card-title serif font-weight-bold">What we know so far: Wuhan virus (Covid-19)</h5>
+                </a>
+              </header>
+              <!-- <a href="/2021/04/01/world/what-we-know-so-far-wuhan-virus-covid-19">
+                <img class="card-img rounded" src="https://www.odt.co.nz/sites/default/files/story/2021/03/doctor.jpg" alt="">
+              </a> -->
+              <div class="card-body">
+                <ul class="card-text text-dark serif">
+                  <li>I will attempt to encapsulate, search and seek out all the people, with the proper credentials to speak on the Wuhan virus (Covid-19).</li>
+                  <li>My motiviation is purely based on giving people a better foundation, better body of knowledge, for decisions made when it comes to the Wuhan virus (Covid-19).</li>
+                </ul>
+                <!-- <p class="card-text text-dark serif">I will attempt to encapsulate, search and seek out all the people, with the proper credentials to speak on the Wuhan virus (Covid-19).</p> -->
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-6 col-12">
+            <article class="card mb-4 border-0">
+              <img width="100%" src="https://kbharkiv.dk/wp-content/uploads/2020/05/geddes-kort.jpg" alt="Geddes Kort" class="card-img-top">
+              <div class="card-body">
+                <p><small class="text-uppercase text-dark"><b>About</b></small></p>
+                <h5 class="card-title serif">The Copehagen Gates</h5>
+                <p class="card-text serif">The Copenhagen Gates is a one person effort to create a more in depth and informative news organ based in the capital of Denmark, Copehagen.<br/>
+                  The website is currently very barebones, for instance some of the buttons don't work, it's not responsive to tablets and mobile etc., but I thought it was more important to publish the first article concerning the Wuhan Virus (Covid-19), flawed as it is.
+                </p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="card bg-dark text-white">
+              <img src="http://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/04/earth/21970012-1-eng-GB/Earth_pillars.jpg" class="card-img" alt="...">
+              <div class="card-img-overlay">
+                <h1 class="card-title serif">What we know so far: Wuhan virus (Covid-19)</h1>
+                <p class="card-text serif">I will attempt to encapsulate, search and seek out all the people, with the proper credentials to speak on the Wuhan virus (Covid-19).</p>
+                <p class="card-text">Last updated 3 mins ago</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="row">
           <div class="col-md-3 col-lg-3 col-12">
-
             <article class="card mb-4 border-0">
               <header class="card-header bg-white">
                 <div class="card-meta">
@@ -133,7 +281,7 @@
               <div class="card-body">
                 <p class="card-text">The World Economic Forum (WEF) and their role in covid-19.</p>
               </div>
-            </article><!-- /.card -->
+            </article>
 
             <article class="card mb-4 border-0">
               <header class="card-header bg-white">
@@ -150,7 +298,7 @@
               <div class="card-body">
                 <p class="card-text">Bjørn Lomborg sits at the UN climate comitee and is a leading figure in the climate change debate.</p>
               </div>
-            </article><!-- /.card -->
+            </article>
           </div>
           <div class="col-md-3 col-lg-3 col-12">
             <article class="card mb-4 border-0">
@@ -168,7 +316,7 @@
               <div class="card-body">
                 <p class="card-text">Thomas Sowell writes about intellectuals, defined as people whose end product is ideas, and the role they play in society.</p>
               </div>
-            </article><!-- /.card -->
+            </article>
 
             <article class="card mb-4 border-0">
               <header class="card-header bg-white">
@@ -185,7 +333,7 @@
               <div class="card-body">
                 <p class="card-text">Shoshana Zuboff is the author of 'The Age of Surveillance Capitalism - The Fight for a human future at the new frontier of power'.</p>
               </div>
-            </article><!-- /.card -->
+            </article>
           </div>
           <div class="col-md-3 col-lg-3 col-12">
             <article class="card mb-4 border-0">
@@ -203,7 +351,7 @@
               <div class="card-body">
                 <p class="card-text">Renowned microbiologist, Sucharit Bhakdi wrote the book 'Corona False Alarm?'.</p>
               </div>
-            </article><!-- /.card -->
+            </article>
 
             <article class="card mb-4 border-0">
               <header class="card-header bg-white">
@@ -220,7 +368,7 @@
               <div class="card-body">
                 <p class="card-text">Daniel Schmachtenberger is concerned with critical system thinking.</p>
               </div>
-            </article><!-- /.card -->
+            </article>
 
           </div>
           <div class="col-md-3 col-lg-3 col-12">
@@ -239,7 +387,7 @@
               <div class="card-body">
                 <p class="card-text">Bret Weinstein presents the lack leak hypothesis as it pertains to Covid-19.</p>
               </div>
-            </article><!-- /.card -->
+            </article>
 
             <article class="card mb-4 border-0">
               <header class="card-header bg-white">
@@ -256,19 +404,19 @@
               <div class="card-body">
                 <p class="card-text">Time Magazine wrote the article title 'The Secret History of the Shadow Campaign That Saved the 2020 Election' which made postulations that the US in 2020 was rigged in favor of the democratic party.</p>
               </div>
-            </article><!-- /.card -->
+            </article>
 
           </div>
         </div>
       </div>
-
+      </div>
     </main>
     <footer class="pt-4 my-md-5 pt-md-4 border-top border-2 container">
       <div class="mb-4">
         <a style="font-family: 'UnifrakturMaguntia', cursive; font-size: 1.8rem;" class="navbar-brand" href="#">The Copenhagen Gates</a>
         <!-- <small class="d-block mb-3 text-muted">© 2021-2022</small> -->
       </div>
-      <div class="row">
+       <!-- <div class="row">
         <div class="col-12 col-md-8">
           <div class="row">
             <div class="col-4 col-md-3">
@@ -313,7 +461,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </footer>
 
       <!-- Optional JavaScript; choose one of the two! -->

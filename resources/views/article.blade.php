@@ -27,37 +27,99 @@
           color: #000000;
           text-decoration: none;
         }
+        .full-width {
+          width: 100vw;
+          position: relative;
+          left: 50%;
+          right: 50%;
+          margin-left: -50vw;
+          margin-right: -50vw;
+        }
         .rounded {
           border-radius: 0.0rem !important;  // 1.25rem!important;
         }
         .card-header {
           border-bottom: none;
         }
-        .article-container {
-          max-width: 600px;
-          min-width: 600px;
+        @media (min-width: 768px) {
+          .article-container {
+            max-width: 600px;
+            min-width: 600px;
+          }
+        }
+        @media (max-width: 767px) {
+          .article-container {
+            max-width: 100%;
+            min-width: 100%;
+            padding: 1.5rem;
+          }
         }
       </style>
       <title>The Copenhagen Gates</title>
     </head>
     <body class="antialiased">
-      <main class="main pt-4">
+      <main class="main">
+        <nav class="d-none sticky-top navbar navbar-light bg-white shadow-sm">
+          <div class="d-flex justify-content-center container">
+            <div class="text-center">
+              <a class="navbar-brand" href="#">
+                <span class="serif">
+                  What we know thus far: Wuhan virus (Covid-19) |
+                </span>
+                <span style="font-family: 'UnifrakturMaguntia', cursive; font-size: 1.8rem;">The Copenhagen Gates</span>
+              </a>
+            </div>
+          </div>
+        </nav>
+
+        <nav class="navbar navbar-light bg-white shadow-sm">
+          <div class="d-flex justify-content-between container">
+            <div>
+              <a>
+                <div class="d-flex align-items-center justify-content-center" style="font-size: 1.2em">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                  </svg>
+                </div>
+              </a>
+            </div>
+            <div class="text-center">
+              <a class="navbar-brand d-lg-none" href="#">
+                <span style="font-family: 'UnifrakturMaguntia', cursive; font-size: 1.8rem;">C</span>
+              </a>
+              <a class="navbar-brand d-none d-lg-block" href="#">
+                <span style="font-family: 'UnifrakturMaguntia', cursive; font-size: 1.8rem;">The Copenhagen Gates</span>
+              </a>
+            </div>
+            <div>
+              <a>
+                <div class="d-flex align-items-center justify-content-center" style="font-size: 1.2em">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                  </svg>
+                </div>
+              </a>
+            </div>
+          </div>
+        </nav>
         <div class="d-flex justify-content-center">
-          <div class="article-container">
+          <div class="article-container pt-4">
             <p class="text-uppercase"><strong>World</strong></p> <!-- {!! $topic !!} -->
             <h1 class="serif">What we know thus far: Wuhan virus (Covid-19)</h1> <!-- {!! $title !!} -->
             <p>
               {!! $year !!}/{!! $month !!}/{!! $day !!}<br/>
               By: Daniel R. Lehmann
             </p>
+            <div class="mt-3 mb-3 border-top border-1"></div>
 
             <h3 class="serif">Abstract</h3>
-            <p class="serif">In this article, I will attempt to encapsulate, search and seek out all the people, with the proper credentials to speak on the Wuhan virus (Covid-19). To include interviews, thoughts and threads in one place so as to make it easily accessible to a broader populace, than this content is currently reaching.</p>
+            <p class="serif text-start">In this article, I will attempt to encapsulate, search and seek out all the people, with the proper credentials to speak on the Wuhan virus (Covid-19). To include interviews, thoughts and threads in one place so as to make it easily accessible to a broader populace, than this content is currently reaching.</p>
 
             <h3 class="serif">Motivation</h3>
             <!-- <figure class="w-100 figure">
               <img width="100%" src="https://media.npr.org/assets/img/2013/03/06/bluemarble3k-smaller-nasa_custom-644f0b7082d6d0f6814a9e82908569c07ea55ccb-s800-c85.jpg" class="figure-img img-fluid rounded" alt="...">
-              <figcaption class="figure-caption">A caption for the above image.</figcaption>
+              <figcaption class="figure-caption mt-2">A caption for the above image.</figcaption>
             </figure> -->
             <p class="serif">
               My motiviation is purely based on giving people a better foundation, better body of knowledge, for decisions made when it comes to the Wuhan virus (Covid-19).<br/>
@@ -91,11 +153,13 @@
               <li>What is the lockdown doing to our mental as well as physical health in the short and long term?</li>
               <li>Is there any scientific evidence to roll out immunity passports?</li>
             </ul>
+            <h3 class="serif">Lack of meaningful conversations</h3>
             <p class="serif">
               Just imagine. An hour long conversation with the top experts from all around europe and the rest of the world, that could answer our burning questions and set our minds at ease. Wouldn't that be something. Rather than the same old shows where people sing, dance and bake cakes (though there should also be room for such content, but not the center stage in the midst of a pandemic) we would get what's akin to information vegatables. But I suspect we would accomplish too much from giving us commoners this type of knowledge. We would become too enlightened. So enjoy your junk food entertainment. There's plenty more of that where it came from. And forgive me for perhabs planting the following infectious ideas in your head: Why are we not talking about this more in depth? Why are we not taking these people, with honest open questions, seriously? Why are we fed with junk food information, when now more than ever we need an informed, healthy, society?<br/>
-              I think the reader would be suprised to find just how few people, who actually know this subject area well, are actually speaking out against the general consesus, the in group oppinion. You can almost count them on your hands. These individuals should be celebrated. For daring to speak out. They deserve your time. I think these are the unspoken heroes of our day. The Gallileos who dare position themselves outside the mass consensus and who braze for the inevtiable ridicule by their peers. Here's a list of such people albeit not exhaustive:
+              I think the reader would be suprised to find just how few people, who know this subject area well, are actually speaking out against the general consesus, the in group oppinion. You can almost count them on your hands. These individuals should be celebrated. For daring to speak out. They deserve your time. I think these are the unspoken heroes of our day. The Galileos who dare position themselves outside the mass consensus and who braze for the inevtiable ridicule by their peers. Here's a list of such people albeit not exhaustive:
             </p>
             <ul class="serif">
+              <li>Dr. Jay Bhattacharya</li>
               <li>Sucharit Bhakdi MD</li>
               <li>Geert Vanden Bossche</li>
               <li>Dr. Simone Gold</li>
@@ -110,77 +174,97 @@
             </p>
             <h3 class="serif">The current narrative</h3> <!-- The dominating belief -->
             <p class="serif">
-              The current consesus seems to me to be that we need people to be mass vaccinated, issue immunity passports, which will grant you some benifits over those who don't have them, and regularly line up to take the PCR test. To go back to school or work. Then, in all due time, whatever that means, we can return "back to normal".<br/>
+              The current consesus seems to be that we need the mass vaccination of people, issue immunity passports, which will grant you some benifits over those who don't have them, and regularly line up to take the PCR test. To go back to school or work. Then, in all due time, whatever that means, we can return "back to normal".<br/>
               Right, if you agree thus far, where do we go from here? Shouldn't we be allowed to ask some questions, to dissect any concerns we might have carefully, bit by bit, and then when the time is right, after careful analysis, figure out what appropriate functions to execute in our different layers of decision making? The next many sections will cover individuals, with the proper credentials to speak on these matters, who will take this conversations in many different and important directions. You don't have to agree with any of them. As is the case with any (scientific) endavour, you may leave with more questions than answers. You're expected to think, reflect and make up your own mind. I urge you to listen to just one of them. Remember, a good conversation challenges the listener.
             </p>
 
-            <h3 class="serif">Dr. Simone Gold</h3>
-            <p class="serif">Dr. Simone Gold is a doctor and founder of American Frontline Doctors.</p>
+            <h3 class="serif">Great Barrington Declaration</h3>
+            <p class="serif">On <a href="https://gbdeclaration.org/why-was-the-declaration-written/">their website</a> it states: "As infectious disease epidemiologists and public health scientists we have grave concerns about the damaging physical and mental health impacts of the prevailing COVID-19 policies, and recommend an approach we call Focused Protection."</p>
+            <h5 class="serif">Dr. Jay Bhattacharya</h5>
+            <p class="serif">Jay Bhattacharya is a Professor of Medicine at Stanford University and a research associate at the National Bureau of Economics Research.</p>
+            <div class="alert alert-primary" role="alert">
+              This video may be subject for removal from the YouTube platform.
+            </div>
             <figure class="w-100 figure">
-              <iframe src="https://www.bitchute.com/embed/9bH46xQRqjFa/" width="100%" height="360"></iframe>
-              <figcaption class="figure-caption">
+              <div class="ratio ratio-16x9">
+                <iframe src="https://www.youtube.com/embed/-UO3Wd5urg0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              <figcaption class="figure-caption mt-2">
+                Source: <a href="https://www.youtube.com/watch?v=-UO3Wd5urg0&ab_channel=HooverInstitution">https://www.youtube.com/watch?v=-UO3Wd5urg0&ab_channel=HooverInstitution</a>
+              </figcaption>
+            </figure>
+
+            <h3 class="serif">Dr. Simone Gold</h3>
+            <p class="serif">Dr. Simone Gold is one of the <a href="https://www.americasfrontlinedoctors.com/">American Frontline Doctors</a>.</p>
+            <figure class="w-100 figure">
+              <div class="ratio ratio-16x9">
+                <iframe src="https://www.bitchute.com/embed/9bH46xQRqjFa/" allowfullscreen></iframe>
+              </div>
+              <figcaption class="figure-caption mt-2">
                 Source: <a href="https://www.bitchute.com/video/9bH46xQRqjFa/">https://www.bitchute.com/video/9bH46xQRqjFa/</a>
               </figcaption>
             </figure>
             <h3 class="serif">Geert Vanden Bossche</h3>
             <p class="serif">Geert Vanden Bossche is an international expert in vaccine research and development, with a proven track record in designing and developing vaccines. He is proficient in vaccine patent writing, laboratory research, immunology, epidemiology, microbiology and preclinical vaccine development.</p>
             <figure class="w-100 figure">
-              <iframe src="https://www.bitchute.com/embed/qQywpoKssIdX/" width="100%" height="360"></iframe>
-              <figcaption class="figure-caption">
-                Most cited microbiologist in German academic history.<br/>
+              <div class="ratio ratio-16x9">
+                <iframe src="https://www.bitchute.com/embed/qQywpoKssIdX/" allowfullscreen></iframe>
+              </div>
+              <figcaption class="figure-caption mt-2">
                 Source: <a href="https://www.bitchute.com/video/2bA8a3FsPxGQ/">https://www.bitchute.com/video/2bA8a3FsPxGQ/</a>
               </figcaption>
             </figure>
 
             <h3 class="serif">Planet lockdown</h3>
-            <p class="serif">On their website it states: "Planet lockdown - A documentary and interview series covering the information needed to understand where we are today. The full-length film is coming soon."</p>
+            <p class="serif">On <a href="https://planetlockdownfilm.com/">their website</a> it states: "Planet lockdown - A documentary and interview series covering the information needed to understand where we are today. The full-length film is coming soon."</p>
             <h5 class="serif">Sucharit Bhakdi MD</h5>
+            <p class="serif">Most cited microbiologist in German academic history.</p>
             <figure class="w-100 figure">
-              <iframe src="https://www.bitchute.com/embed/2bA8a3FsPxGQ/" width="100%" height="360"></iframe>
-              <figcaption class="figure-caption">
-                Most cited microbiologist in German academic history.<br/>
+              <div class="ratio ratio-16x9">
+                <iframe src="https://www.bitchute.com/embed/2bA8a3FsPxGQ/"></iframe>
+              </div>
+              <figcaption class="figure-caption mt-2">
                 Source: <a href="https://www.bitchute.com/video/2bA8a3FsPxGQ/">https://www.bitchute.com/video/2bA8a3FsPxGQ/</a>
               </figcaption>
             </figure>
+
             <h5 class="serif">Dr. Sherry Tenpenny</h5>
+            <p class="serif">Dr. Sherri Tenpenny is respected as one of the country's most knowledgeable and outspoken physicians regarding the negative impact vaccines can have on health.</p>
             <figure class="w-100 figure">
-              <iframe src="https://www.bitchute.com/embed/vlkk1TBuQVqi/" width="100%" height="360" allowfullscreen></iframe>
-              <figcaption class="figure-caption">Source: <a href="https://www.bitchute.com/video/vlkk1TBuQVqi/">https://www.bitchute.com/video/vlkk1TBuQVqi/</a></figcaption>
+              <div class="ratio ratio-16x9">
+                <iframe src="https://www.bitchute.com/embed/vlkk1TBuQVqi/" allowfullscreen></iframe>
+              </div>
+              <figcaption class="figure-caption mt-2">Source: <a href="https://www.bitchute.com/video/vlkk1TBuQVqi/">https://www.bitchute.com/video/vlkk1TBuQVqi/</a></figcaption>
             </figure>
+
             <h5 class="serif">Carrie Madej, MD</h5>
+            <p class="serif">Dr. Carrie Madej, DO is a Internal Medicine Specialist in McDonough, GA and has over 20 years of experience in the medical field.</p>
             <figure class="w-100 figure">
-              <iframe id="lbry-iframe" width="100%" height="360" src="https://odysee.com/$/embed/Carrie-Madej---Full-Interview---Planet-Lockdown/4f18755bdb0aa306b3032b28c8050d5399624b47?r=ab2hFYHimgNJm2m6MoSERE5zwvUCB2Jv" allowfullscreen></iframe>
-              <figcaption class="figure-caption">Source: <a href="https://odysee.com/@PlanetLockdown:6/Carrie-Madej---Full-Interview---Planet-Lockdown:4?src=open">https://odysee.com/@PlanetLockdown:6/Carrie-Madej---Full-Interview---Planet-Lockdown:4?src=open</a></figcaption>
+              <div class="ratio ratio-16x9">
+                <iframe id="lbry-iframe" src="https://odysee.com/$/embed/Carrie-Madej---Full-Interview---Planet-Lockdown/4f18755bdb0aa306b3032b28c8050d5399624b47?r=ab2hFYHimgNJm2m6MoSERE5zwvUCB2Jv" allowfullscreen></iframe>
+              </div>
+              <figcaption class="figure-caption mt-2">Source: <a href="https://odysee.com/@PlanetLockdown:6/Carrie-Madej---Full-Interview---Planet-Lockdown:4?src=open">https://odysee.com/@PlanetLockdown:6/Carrie-Madej---Full-Interview---Planet-Lockdown:4?src=open</a></figcaption>
             </figure>
+
             <h5 class="serif">Wolfgang Wodarg</h5>
+            <p class="serif">Doctor, former Publish Health officer, former German Parliament member and Council of Europe member.</p>
             <figure class="w-100 figure">
-              <iframe id="lbry-iframe" width="100%" height="360" src="https://odysee.com/$/embed/Wolfgang-Wodarg---Full-Interview-Inside---Planet-Lockdown-(5-mb-s)/0c18faeed21a56f7fe092ad894286b7333c8a188?r=ab2hFYHimgNJm2m6MoSERE5zwvUCB2Jv" allowfullscreen></iframe>
-              <figcaption class="figure-caption">
-                Doctor, former Publish Health officer, former German Parliament member and Council of Europe member.<br/>
+              <div class="ratio ratio-16x9">
+                <iframe id="lbry-iframe" src="https://odysee.com/$/embed/Wolfgang-Wodarg---Full-Interview-Inside---Planet-Lockdown-(5-mb-s)/0c18faeed21a56f7fe092ad894286b7333c8a188?r=ab2hFYHimgNJm2m6MoSERE5zwvUCB2Jv" allowfullscreen></iframe>
+              </div>
+              <figcaption class="figure-caption mt-2">
                 Source: <a href="https://odysee.com/@PlanetLockdown:6/Knut-Wittkowski---Central-Park-Interview---Planet-Lockdown:b?src=open">https://odysee.com/@PlanetLockdown:6/Knut-Wittkowski---Central-Park-Interview---Planet-Lockdown:b?src=open</a>
-              </figcaption>
-            </figure>
-            <figure class="w-100 figure">
-              <iframe id="lbry-iframe" width="100%" height="360" src="https://odysee.com/$/embed/Wolfgang-Wodarg---Full-Interview-Outside---Planet-Lockdown/0d1053dc8ccc2623f03032823d310d41c57c61fc?r=ab2hFYHimgNJm2m6MoSERE5zwvUCB2Jv" allowfullscreen></iframe>
-              <figcaption class="figure-caption">
-                Doctor, former Publish Health officer, former German Parliament member and Council of Europe member.<br/>
-                Source: <a href="https://odysee.com/@PlanetLockdown:6/Wolfgang-Wodarg---Full-Interview-Inside---Planet-Lockdown-(5-mb-s):0">https://odysee.com/@PlanetLockdown:6/Wolfgang-Wodarg---Full-Interview-Inside---Planet-Lockdown-(5-mb-s):0</a>
               </figcaption>
             </figure>
 
             <h5 class="serif">Knut Wittkowski</h5>
+            <p class="serif">World Class Epidemiologist, last worked at Rockefeller University in NY as Head, Biostatistics, Epidemiology, and Research Design, Center for Clinical & Translational Science.</p>
             <figure class="w-100 figure">
-              <iframe width="100%" height="360" src="https://www.bitchute.com/embed/JjyYvieFluU9/" allowfullscreen></iframe>
-              <figcaption class="figure-caption">
-                World Class Epidemiologist, last worked at Rockefeller University in NY as Head, Biostatistics, Epidemiology, and Research Design, Center for Clinical & Translational Science.<br/>
+              <div class="ratio ratio-16x9">
+                <iframe src="https://www.bitchute.com/embed/JjyYvieFluU9/" allowfullscreen></iframe>
+              </div>
+              <figcaption class="figure-caption mt-2">
                 Source: <a href="https://www.bitchute.com/video/JjyYvieFluU9/">https://www.bitchute.com/video/JjyYvieFluU9/</a>
-              </figcaption>
-            </figure>
-            <figure class="w-100 figure">
-              <iframe id="lbry-iframe" width="100%" height="360" src="https://odysee.com/$/embed/Knut-Wittkowski---Central-Park-Interview---Planet-Lockdown/b6eaac0dab345dfbe1178f0871a452abf2463bf2?r=ab2hFYHimgNJm2m6MoSERE5zwvUCB2Jv" allowfullscreen></iframe>
-              <figcaption class="figure-caption">
-                World Class Epidemiologist, last worked at Rockefeller University in NY as Head, Biostatistics, Epidemiology, and Research Design, Center for Clinical & Translational Science.<br/>
-                Source: <a href="https://odysee.com/@PlanetLockdown:6/Knut-Wittkowski---Central-Park-Interview---Planet-Lockdown:b?src=open">https://odysee.com/@PlanetLockdown:6/Knut-Wittkowski---Central-Park-Interview---Planet-Lockdown:b?src=open</a>
               </figcaption>
             </figure>
 
@@ -194,7 +278,7 @@
             </p>
 
             <h3 class="serif">Suggested Reading</h3>
-            <p class="serif">I have the odacity to leave you with homework. I hated homework myself. However, I love to learn, to discover and to create. So here's a list for anyone interested in going beyond this article:</p>
+            <p class="serif">I have the odacity to leave you with homework. I hated homework myself. However, I love to learn and to discover and I think you do too. So here's a list for anyone interested in going beyond this article:</p>
             <div class="row g-0 bg-white border rounded position-relative">
               <div class="col-md-6 mb-md-0 p-md-4">
                 <img src="https://static6.suedkurier.de/storage/image/8/4/8/5/12895848_shift-966x593_1vPW8G_OCg9VG.jpg" class="w-100" alt="...">
@@ -213,6 +297,7 @@
           </div>
         </div>
       </main>
+
 
       <!-- Optional JavaScript; choose one of the two! -->
 

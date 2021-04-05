@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 class HomepageController extends Controller
 {
 
-    private function getCurrentWeather($city) {
+    private function getTodaysForecast($city) {
       $appid = "f25a9e5c357bd30c2210cecbff7d24c9";
       $units = "metric";
       $curl = curl_init();
@@ -31,7 +31,7 @@ class HomepageController extends Controller
       $err = curl_error($curl);
       curl_close($curl);
       if ($err) {
-        return [];
+        return [0, 0, 0];
       } else {
         $json = json_decode($response);
         $temp = $json->main->temp;
@@ -41,6 +41,25 @@ class HomepageController extends Controller
       }
     }
 
+    private function getLatestUpdates() {
+      $sourceURL = "http://www.dr.dk/nyheder/service/feeds/allenyheder";
+      $content = file_get_contents($sourceURL);
+      $xmlFeed = new \SimpleXmlElement($content);
+      $latestUpdates = array();
+      foreach($xmlFeed->channel->item as $entry) {
+        $title = $entry->title;
+        $topic = $entry->{"DR:ChannelName"};
+        $date = $entry->pubDate;
+        echo $topic;
+        array_push($latestUpdates, [
+          'title' => $title,
+          'topic' => $topic,
+          'date' => $date
+        ]);
+      }
+      return $latestUpdates;
+    }
+
     /**
      * Show the Homepage
      * @return \Illuminate\View\View
@@ -48,12 +67,14 @@ class HomepageController extends Controller
     public function show()
     {
       $dateFormatted = "<strong>" . date("l,") . "</strong>" . "<br/>" . date("F d, Y");
-      $currentWeather = $this->getCurrentWeather("Copenhagen");
+      $currentWeather = $this->getTodaysForecast("Copenhagen");
+      $latestUpdates = $this->getLatestUpdates();
       return view('homepage', [
         'dateFormatted' => $dateFormatted,
         'temp' => $currentWeather[1],
         'tempMin' => $currentWeather[0],
-        'tempMax' => $currentWeather[2]
+        'tempMax' => $currentWeather[2],
+        'latestUpdates' => $latestUpdates
       ]);
     }
 }
