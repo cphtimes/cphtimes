@@ -24,7 +24,6 @@
       <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
       <style>
         .serif {
-          // font-family: 'Vollkorn', serif;
           font-family: 'Merriweather', serif;
         }
         a {
@@ -89,10 +88,10 @@
             </div>
             <div class="text-center">
               <a class="navbar-brand d-lg-none" href="#">
-                <span style="font-family: 'UnifrakturMaguntia', cursive; font-size: 1.8rem;">C</span>
+                <span style="font-family: 'UnifrakturMaguntia', cursive; font-size: 1.5rem;">C</span>
               </a>
               <a class="navbar-brand d-none d-lg-block" href="#">
-                <span style="font-family: 'UnifrakturMaguntia', cursive; font-size: 1.8rem;">The Copenhagen Gates</span>
+                <span style="font-family: 'UnifrakturMaguntia', cursive; font-size: 1.5rem;">The Copenhagen Gates</span>
               </a>
             </div>
             <div>
@@ -111,16 +110,13 @@
           <div class="article-container pt-4">
             <small class="text-uppercase mb-3"><strong>World</strong></small> <!-- {!! $topic !!} -->
             <h1 class="my-3 serif fw-bold fst-italic">The vision of the annointed and the creation of carricurates.</h1> <!-- {!! $title !!} -->
-            <p class="text-black-50 serif mb-4">In this article, I will attempt to encapsulate, search and seek out all the people, with the proper credentials to speak on the Wuhan virus (Covid-19).</p>
+            <p class="text-black-50 serif mb-4">In this article, I will attempt to encapsulate, search and seek out all the people, with the proper credentials to speak on the Wuhan virus (Covid-19). To include interviews, thoughts and threads in one place so as to make it easily accessible to a broader populace, than this content is currently reaching.</p>
             <img class="mb-4" style="object-fit: cover;" height="400px" width="100%" src="https://images.unsplash.com/photo-1601319759324-f311bd99ebb9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODl8fHRydW1wJTIwZG9sbHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"/>
             <p class="text-black-50">
               {!! $year !!}/{!! $month !!}/{!! $day !!}<br/>
               By: <a href="/daniel.r.lehmann" class="text-decoration-underline">Daniel Ran Lehmann</a>
             </p>
             <hr/>
-
-            <h5 class="serif fw-bold">Abstract</h5>
-            <p class="serif text-start">In this article, I will attempt to encapsulate, search and seek out all the people, with the proper credentials to speak on the Wuhan virus (Covid-19). To include interviews, thoughts and threads in one place so as to make it easily accessible to a broader populace, than this content is currently reaching.</p>
 
             <h5 class="serif fw-bold">Motivation</h5>
             <!-- <figure class="w-100 figure">

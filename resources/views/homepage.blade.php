@@ -16,6 +16,13 @@
 
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet">
+
+      <script src="/js/app.js" defer></script>
+
       <style>
         a {
           color: #000000;
@@ -28,7 +35,7 @@
           border-bottom: none;
         }
         .serif {
-          font-family: 'Vollkorn', serif;
+          font-family: 'Merriweather', serif;
         }
         .list-group-item {
           border-bottom: 1px dotted rgba(0,0,0,.125) !important;
@@ -108,8 +115,8 @@
           </div>
         </div>
       </nav>
-      <div class="nav-scroller py-2 mb-2 border-bottom border-dark border-2 container bg-white sticky-top">
-        <nav class="nav d-flex justify-content-between">
+      <div style="height: 39px; top: -1px;" class="nav-scroller py-2 mb-2 border-bottom border-dark border-2 container bg-white sticky-top">
+        <nav id="nav-scroller-sections" class="nav d-flex justify-content-between">
           <small><a class="p-2 link-secondary" href="#">World</a></small>
           <small><a class="p-2 link-secondary" href="#">U.S.</a></small>
           <small><a class="p-2 link-secondary" href="#">Technology</a></small>
