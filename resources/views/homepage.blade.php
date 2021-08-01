@@ -242,27 +242,29 @@
         <div class="row pb-5">
           <div class="col border-end">
             <article class="border-0 px-2">
-              <img style="object-fit: cover;" width="100%" height="225px" src="https://images.unsplash.com/photo-1599340695274-f8a2f344174d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGlzcmFlbHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="..." class="">
+              <img style="object-fit: cover;" width="190px" height="190px" src="https://images.unsplash.com/photo-1599340695274-f8a2f344174d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGlzcmFlbHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="..." class="">
               <div class="card-body px-0 pb-0">
                 <p><small class="text-uppercase text-dark"><b>World</b></small></p>
                 <h5 class="card-title fw-light">The story of Israel and the experimental vaccines</h5>
+                <p class="text-black-50">I will attempt to encapsulate, search and seek out all the people...</p>
               </div>
             </article>
           </div>
 
           <div class="col border-end">
             <article class="border-0 px-2">
-              <img style="object-fit: cover;" width="100%" height="225px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/WHO_flag.png/1920px-WHO_flag.png" alt="..." class="">
+              <img style="object-fit: cover;" width="190px" height="190px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/WHO_flag.png/1920px-WHO_flag.png" alt="..." class="">
               <div class="card-body px-0 pb-0">
                 <p><small class="text-uppercase text-dark"><b>World</b></small></p>
                 <h5 class="card-title fw-light">WHO - Making a case for institutional capture</h5>
+                <p class="text-black-50">I will attempt to encapsulate, search and seek out all the people...</p>
               </div>
             </article>
           </div>
 
           <div class="col border-end">
             <article class="border-0 px-2">
-              <img style="object-fit: cover;" width="450px" height="225px" src="https://images.unsplash.com/photo-1584359983106-ef9366f27454?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fG5ld3N8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="..." class="">
+              <img style="object-fit: cover;" width="600px" height="330px" src="https://images.unsplash.com/photo-1584359983106-ef9366f27454?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fG5ld3N8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="..." class="">
               <div class="card-body px-0 pb-0">
                 <p><small class="text-uppercase text-dark"><b>World</b></small></p>
                 <h5 class="card-title fw-light">Fearmongering. The mainstream media's favorite tactic.</h5>
@@ -272,10 +274,11 @@
 
           <div class="col pe-0">
             <article class="border-0 px-2">
-              <img style="object-fit: cover;" width="100%" height="225px" src="https://images.unsplash.com/photo-1589578527966-fdac0f44566c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmlnaHRzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="..." class="">
+              <img style="object-fit: cover;" width="100%" height="190px" src="https://images.unsplash.com/photo-1589578527966-fdac0f44566c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmlnaHRzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="..." class="">
               <div class="card-body px-0 pb-0">
                 <p><small class="text-uppercase text-dark"><b>World</b></small></p>
-                <h5 class="card-title fw-light">Universal Declaration of Human Rights</h5>
+                <h5 class="card-title fw-light">Reading up on your inalienable human rights</h5>
+                <p class="text-black-50">I will attempt to encapsulate, search and seek out all the people...</p>
               </div>
             </article>
           </div>
@@ -284,7 +287,7 @@
         <div class="row pb-5">
           <div class="col border-end">
             <article class="border-0 px-2">
-              <img style="object-fit: cover;" width="450px" height="225px" src="https://images.unsplash.com/photo-1601319759324-f311bd99ebb9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODl8fHRydW1wJTIwZG9sbHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="..." class="">
+              <img style="object-fit: cover;" width="600px" height="330px" src="https://images.unsplash.com/photo-1601319759324-f311bd99ebb9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODl8fHRydW1wJTIwZG9sbHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="..." class="">
               <div class="card-body px-0 pb-0">
                 <p><small class="text-uppercase text-dark"><b>Oppinion</b></small></p>
                 <h5 class="card-title fw-light">The vision of the annointed and the creation of carricurates.</h5>
@@ -294,30 +297,33 @@
 
           <div class="col border-end">
             <article class="border-0 px-2">
-              <img style="object-fit: cover;" width="100%" height="225px" src="https://images.unsplash.com/photo-1581358316909-6d4035624967?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bXVkfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="..." class="">
+              <img style="object-fit: cover;" width="190px" height="190px" src="https://images.unsplash.com/photo-1581358316909-6d4035624967?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bXVkfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="..." class="">
               <div class="card-body px-0 pb-0">
                 <p><small class="text-uppercase text-dark"><b>World</b></small></p>
                 <h5 class="card-title fw-light">Throwing mud and hoping that it sticks</h5>
+                <p class="text-black-50">I will attempt to encapsulate, search and seek out all the people...</p>
               </div>
             </article>
           </div>
 
           <div class="col border-end">
             <article class="border-0 px-2">
-              <img style="object-fit: cover;" width="100%" height="225px" src="https://images.unsplash.com/photo-1613388395752-a4f8730271e2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBhc3Nwb3J0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="..." class="">
+              <img style="object-fit: cover;" width="100%" height="190px" src="https://images.unsplash.com/photo-1613388395752-a4f8730271e2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBhc3Nwb3J0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="..." class="">
               <div class="card-body px-0 pb-0">
                 <p><small class="text-uppercase text-dark"><b>World</b></small></p>
                 <h5 class="card-title fw-light">'Standing at the gates of hell': State of the Covid-19 Passports</h5>
+                <p class="text-black-50">I will attempt to encapsulate, search and seek out all the people...</p>
               </div>
             </article>
           </div>
 
           <div class="col pe-0">
             <article class="border-0 px-2">
-              <img style="object-fit: cover;" width="100%" height="225px" src="https://images.unsplash.com/photo-1490349708435-19d432984978?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjIyfHx0YWxraW5nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="..." class="">
+              <img style="object-fit: cover;" width="190px" height="190px" src="https://images.unsplash.com/photo-1490349708435-19d432984978?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjIyfHx0YWxraW5nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="..." class="">
               <div class="card-body px-0 pb-0">
                 <p><small class="text-uppercase text-dark"><b>World</b></small></p>
                 <h5 class="card-title fw-light">Civil discourse collapse</h5>
+                <p class="text-black-50">I will attempt to encapsulate, search and seek out all the people...</p>
               </div>
             </article>
           </div>
