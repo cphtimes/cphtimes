@@ -105,13 +105,15 @@
         </nav>
         <div class="d-flex justify-content-center">
           <div class="article-container pt-4">
-            <p class="text-uppercase"><strong>World</strong></p> <!-- {!! $topic !!} -->
-            <h1 class="serif">What we know thus far: Wuhan virus (Covid-19)</h1> <!-- {!! $title !!} -->
-            <p>
+            <small class="text-uppercase mb-3"><strong>World</strong></small> <!-- {!! $topic !!} -->
+            <h1 class="my-3 serif fw-bold fst-italic">The vision of the annointed and the creation of carricurates.</h1> <!-- {!! $title !!} -->
+            <p class="text-black-50 serif mb-4">In this article, I will attempt to encapsulate, search and seek out all the people, with the proper credentials to speak on the Wuhan virus (Covid-19).</p>
+            <img class="mb-4" style="object-fit: cover;" height="400px" width="100%" src="https://images.unsplash.com/photo-1601319759324-f311bd99ebb9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODl8fHRydW1wJTIwZG9sbHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"/>
+            <p class="text-black-50">
               {!! $year !!}/{!! $month !!}/{!! $day !!}<br/>
-              By: Daniel R. Lehmann
+              By: <a href="/daniel.r.lehmann" class="text-decoration-underline">Daniel Ran Lehmann</a>
             </p>
-            <div class="mt-3 mb-3 border-top border-1"></div>
+            <hr/>
 
             <h3 class="serif">Abstract</h3>
             <p class="serif text-start">In this article, I will attempt to encapsulate, search and seek out all the people, with the proper credentials to speak on the Wuhan virus (Covid-19). To include interviews, thoughts and threads in one place so as to make it easily accessible to a broader populace, than this content is currently reaching.</p>
