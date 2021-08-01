@@ -75,16 +75,29 @@
           </div>
         </nav>
 
-        <nav class="navbar navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-light bg-white border-bottom"> <!-- shadow-sm -->
           <div class="d-flex justify-content-between container">
             <div>
-              <a>
-                <div class="d-flex align-items-center justify-content-center" style="font-size: 1.2em">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                  </svg>
-                </div>
-              </a>
+              <div class="dropdown">
+                <a class="" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <div class="d-flex align-items-center justify-content-center" style="font-size: 1.2em">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                  </div>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">Frontpage</a></li>
+                  <li><a class="dropdown-item" href="#">World</a></li>
+                  <li><a class="dropdown-item" href="#">U.S.</a></li>
+                  <li><a class="dropdown-item" href="#">Technology</a></li>
+                  <li><a class="dropdown-item" href="#">Design</a></li>
+                  <li><a class="dropdown-item" href="#">Culture</a></li>
+                  <li><a class="dropdown-item" href="#">Business</a></li>
+                  <li><a class="dropdown-item" href="#">Politics</a></li>
+                  <li><a class="dropdown-item" href="#">Opinion</a></li>
+                </ul>
+              </div>
             </div>
             <div class="text-center">
               <a class="navbar-brand d-lg-none" href="#">
@@ -112,13 +125,31 @@
             <h1 class="my-3 serif fw-bold fst-italic">The vision of the annointed and the creation of carricurates.</h1> <!-- {!! $title !!} -->
             <p class="text-black-50 serif mb-4">In this article, I will attempt to encapsulate, search and seek out all the people, with the proper credentials to speak on the Wuhan virus (Covid-19). To include interviews, thoughts and threads in one place so as to make it easily accessible to a broader populace, than this content is currently reaching.</p>
             <img class="mb-4" style="object-fit: cover;" height="400px" width="100%" src="https://images.unsplash.com/photo-1601319759324-f311bd99ebb9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODl8fHRydW1wJTIwZG9sbHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"/>
-            <p class="text-black-50">
-              {!! $year !!}/{!! $month !!}/{!! $day !!}<br/>
-              By: <a href="/daniel.r.lehmann" class="text-decoration-underline">Daniel Ran Lehmann</a>
-            </p>
+            <div class="d-flex w-100 justify-content-between align-items-end">
+              <p class="text-black-50 me-auto mb-0">
+                2021/07/31<br>
+                By: <a href="/daniel.r.lehmann" class="text-decoration-underline">Daniel Ran Lehmann</a>
+              </p>
+              <a href="#" class="align-text-top text-decoration-none text-uppercase px-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope align-text-top" viewBox="0 0 16 16">
+                  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"></path>
+                </svg> Email
+              </a>
+              <a href="#" class="align-text-top text-decoration-none text-uppercase px-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link align-text-top" viewBox="0 0 16 16">
+                  <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+                  <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+                </svg> Link
+              </a>
+              <a href="#" class="align-text-top text-decoration-none text-uppercase px-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots align-text-top" viewBox="0 0 16 16">
+                  <path d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                </svg> More
+              </a>
+
+            </div>
             <hr/>
 
-            <h5 class="serif fw-bold">Motivation</h5>
             <!-- <figure class="w-100 figure">
               <img width="100%" src="https://media.npr.org/assets/img/2013/03/06/bluemarble3k-smaller-nasa_custom-644f0b7082d6d0f6814a9e82908569c07ea55ccb-s800-c85.jpg" class="figure-img img-fluid rounded" alt="...">
               <figcaption class="figure-caption mt-2">A caption for the above image.</figcaption>
@@ -127,8 +158,6 @@
               My motiviation is purely based on giving people a better foundation, better body of knowledge, for decisions made when it comes to the Wuhan virus (Covid-19).<br/>
               I hope, in large part, the people introduced in this article, and the concerns they raise, are null and void. Dead on arrival. Either someone will step forward and host the discussions where the questions will be answered (in whatever appropriate manner that looks like) or good old time will tell. I think, however, that their arguments make a lot of sense and a driving motivating factor for me is that the traditional news outlets, either willingly or unwillingly, are not covering it. This leads me to think that maybe there are some important questions that are yet to be addressed. If a population really is only as good as it's body of knowledge, then maybe, at time of writing, we're walking around with blinders.
             </p>
-
-            <h5 class="serif fw-bold">Methodology</h5>
             <p class="serif">
               Why did I include a section on methodology? What can this possibly contribute to the conversation? I'm curious myself. How did I stumble upon these people.
               While being careful not to date myself (out of vanity), it's safe to say that the younger generations, those who grew up with technology, may as well be welded to their computers, tablets and smartphones, while algorithmic overlords determine through probabilistic means (also called machine learning) what to watch next. Based on what makes them money, appeases their investors and lines their pockets.<br/>
@@ -137,7 +166,6 @@
               After him, followed PlanetLockdown a documentary cooming soon, which has published a wide range of interviews with Bhakdi and many others. Then, lastly followed Dr. Simone Gold and the rest followed from knowing this graph of people. All there was left, then was just to surf the internet for more. A term by the way that has gone out of favor. Why?
             </p>
 
-            <h5 class="serif fw-bold">Introduction</h5>
             <p class="serif">
               Denmark went into lockdown approximately {!! $elapsedTimeSinceDKLockdown !!} ago. Straight away a disaster happened. Science got into the same room as politics. Science cannot exist in the same room as politics. It immidiately becomes corrupted and silenced whenever appropriate.<br/>
               Trust the science became a popular mantra. Part of conducting science is to listen to multiple points of view, so that's a good thing. One cannot cling to their viewpoint if that is contrary to evidence presented.<br/>
@@ -182,7 +210,6 @@
 
             <h5 class="serif fw-bold">Great Barrington Declaration</h5>
             <p class="serif">On <a href="https://gbdeclaration.org/why-was-the-declaration-written/">their website</a> it states: "As infectious disease epidemiologists and public health scientists we have grave concerns about the damaging physical and mental health impacts of the prevailing COVID-19 policies, and recommend an approach we call Focused Protection."</p>
-            <h5 class="serif">Dr. Jay Bhattacharya</h5>
             <p class="serif">Jay Bhattacharya is a Professor of Medicine at Stanford University and a research associate at the National Bureau of Economics Research.</p>
             <div class="alert alert-primary" role="alert">
               This video may be subject for removal from the YouTube platform.
@@ -196,7 +223,6 @@
               </figcaption>
             </figure>
 
-            <h5 class="serif fw-bold">Dr. Simone Gold</h5>
             <p class="serif">Dr. Simone Gold is one of the <a href="https://www.americasfrontlinedoctors.com/">American Frontline Doctors</a>.</p>
             <figure class="w-100 figure">
               <div class="ratio ratio-16x9">
@@ -206,7 +232,6 @@
                 Source: <a href="https://www.bitchute.com/video/9bH46xQRqjFa/">https://www.bitchute.com/video/9bH46xQRqjFa/</a>
               </figcaption>
             </figure>
-            <h5 class="serif fw-bold">Geert Vanden Bossche</h5>
             <p class="serif">Geert Vanden Bossche is an international expert in vaccine research and development, with a proven track record in designing and developing vaccines. He is proficient in vaccine patent writing, laboratory research, immunology, epidemiology, microbiology and preclinical vaccine development.</p>
             <figure class="w-100 figure">
               <div class="ratio ratio-16x9">
@@ -219,7 +244,6 @@
 
             <h5 class="serif fw-bold">Planet lockdown</h5>
             <p class="serif">On <a href="https://planetlockdownfilm.com/">their website</a> it states: "Planet lockdown - A documentary and interview series covering the information needed to understand where we are today. The full-length film is coming soon."</p>
-            <h5 class="serif">Sucharit Bhakdi MD</h5>
             <p class="serif">Most cited microbiologist in German academic history.</p>
             <figure class="w-100 figure">
               <div class="ratio ratio-16x9">
@@ -230,7 +254,6 @@
               </figcaption>
             </figure>
 
-            <h5 class="serif">Dr. Sherry Tenpenny</h5>
             <p class="serif">Dr. Sherri Tenpenny is respected as one of the country's most knowledgeable and outspoken physicians regarding the negative impact vaccines can have on health.</p>
             <figure class="w-100 figure">
               <div class="ratio ratio-16x9">
@@ -239,7 +262,6 @@
               <figcaption class="figure-caption mt-2">Source: <a href="https://www.bitchute.com/video/vlkk1TBuQVqi/">https://www.bitchute.com/video/vlkk1TBuQVqi/</a></figcaption>
             </figure>
 
-            <h5 class="serif">Carrie Madej, MD</h5>
             <p class="serif">Dr. Carrie Madej, DO is a Internal Medicine Specialist in McDonough, GA and has over 20 years of experience in the medical field.</p>
             <figure class="w-100 figure">
               <div class="ratio ratio-16x9">
@@ -248,7 +270,6 @@
               <figcaption class="figure-caption mt-2">Source: <a href="https://odysee.com/@PlanetLockdown:6/Carrie-Madej---Full-Interview---Planet-Lockdown:4?src=open">https://odysee.com/@PlanetLockdown:6/Carrie-Madej---Full-Interview---Planet-Lockdown:4?src=open</a></figcaption>
             </figure>
 
-            <h5 class="serif">Wolfgang Wodarg</h5>
             <p class="serif">Doctor, former Publish Health officer, former German Parliament member and Council of Europe member.</p>
             <figure class="w-100 figure">
               <div class="ratio ratio-16x9">
@@ -259,7 +280,6 @@
               </figcaption>
             </figure>
 
-            <h5 class="serif">Knut Wittkowski</h5>
             <p class="serif">World Class Epidemiologist, last worked at Rockefeller University in NY as Head, Biostatistics, Epidemiology, and Research Design, Center for Clinical & Translational Science.</p>
             <figure class="w-100 figure">
               <div class="ratio ratio-16x9">
@@ -270,7 +290,6 @@
               </figcaption>
             </figure>
 
-            <h5 class="serif fw-bold">Conclusion</h5>
             <p class="serif">
               Where does this leave us? Well, we're better off when we stand united. When forces encroach on our fundamental liberties and rights as human beings, we need to realize this has happened before throughout history. Take your time to educate yourself on matters such as revoluationary Russia, read some of George Orwell's work 1984 and Animal Farm, etc. such that you can spot tyranny and totalitarinism when it comes knocking on your frontdoor, disguised as a sweet, innocent and on face value very reasonable angel.<br/>
               Realize you're not alone. I hope, regardless of how gloomy the conversations laid out in this article may seem, that you nevertheless feel a sense of hope. A little note of hope, in an otherwise sea of despair, that there are really bright people out their fighting like hell (in a nonviolent way) to turn these seemingly disastrous decisions around.<br/>
