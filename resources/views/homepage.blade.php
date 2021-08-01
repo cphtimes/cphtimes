@@ -28,7 +28,10 @@
           border-bottom: none;
         }
         .serif {
-          font-family: 'Libre Baskerville', serif;
+          font-family: 'Vollkorn', serif;
+        }
+        .list-group-item {
+          border-bottom: 1px dotted rgba(0,0,0,.125) !important;
         }
       </style>
       <title>The Copenhagen Gates</title>
@@ -119,301 +122,284 @@
       <div class="container">
 
         <div class="row pb-5">
-          <ul class="list-group list-group-flush col-lg-6 col-md-9 col-12 border-end pe-4">
-            <li class="list-group-item list-group-item-action pt-0 pb-4 px-0">
+          <ul class="list-group list-group-flush col-lg-6 col-md-9 col-12 border-end pe-4 px-4">
+            <li class="list-group-item px-0 py-4">
               <article class="d-flex">
-                <div class="flex-grow-1 ms-0 pe-2">
+                <div class="flex-grow-1 ms-0 pe-3">
                   <p class="mb-2"><small class="text-uppercase"><b>World</b></small></p>
-                  <h2 class="fw-light">What we know so far: Wuhan virus (Covid-19)</h2>
-                  <p class="text-muted">I will attempt to encapsulate, search and seek out all the people, with the proper credentials to speak on the Wuhan virus (Covid-19).</p>
+                  <h2 class="fw-light">Covid-19 Symposium</h2>
+                  <p class="text-black-50">An hours long symposium was held yesterday, Friday, with some of the worlds leading doctors and more, discussing Covid-19.</p>
                 </div>
                 <div class="flex-shrink-0">
-                  <img style="object-fit: cover;" width="250px" height="250px" src="https://dsr.dk/sites/default/files/styles/full_standard_-_responsive/public/24/corona_21mb.jpg?itok=eeFKIJTS" alt="...">
+                  <img style="object-fit: cover;" width="250px" height="250px" src="https://images.unsplash.com/photo-1583324113626-70df0f4deaab?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGNvdmlkJTIwMTl8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="...">
                 </div>
               </article>
             </li>
-            <li class="list-group-item list-group-item-action pt-4 pb-4 px-0">
+            <li class="list-group-item px-0 py-4">
+              <article class="d-flex">
+                <div class="flex-grow-1 ms-0 pe-3">
+                  <p class="mb-2"><small class="text-uppercase"><b>Health</b></small></p>
+                  <h5 class="fw-light">Masks are toxic if worn in prolonged periods of time</h5>
+                  <p class="text-black-50">I will attempt to encapsulate, search and seek out all the people...</p>
+                </div>
+                <div class="flex-shrink-0">
+                  <img style="object-fit: cover;" width="125px" height="125px" src="https://images.unsplash.com/photo-1602542165989-999c53234fdd?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTV8fGNvdmlkJTIwMTl8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="...">
+                </div>
+              </article>
+            </li>
+            <li class="list-group-item px-0 py-4">
+              <article class="d-flex">
+                <div class="flex-grow-1 ms-0 pe-3">
+                  <p class="mb-2"><small class="text-uppercase"><b>World</b></small></p>
+                  <h5 class="fw-light">Covid-19 Vaccines are dangerous and potentially lethal</h5>
+                  <p class="text-black-50">I will attempt to encapsulate, search and seek out all the people...</p>
+                </div>
+                <div class="flex-shrink-0">
+                  <img style="object-fit: cover;" width="125px" height="125px" src="https://images.unsplash.com/photo-1605377347958-e8bd4c00ba1d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fGNvdmlkJTIwMTl8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="...">
+                </div>
+              </article>
+            </li>
+            <!-- <li class="list-group-item pt-4 pb-4 px-0">
               <article class="d-flex">
                 <div class="flex-grow-1 ms-0 pe-2">
                   <small class="text-uppercase"><b>World</b></small>
-                  <h5 class="fw-light">What we know so far: Wuhan virus (Covid-19)</h5>
+                  <h5 class="fw-light">Vaccine Passports and the perils of mass surveillance</h5>
                   <p class="text-muted">I will attempt to encapsulate, search and seek out all the people...</p>
                 </div>
                 <div class="flex-shrink-0">
-                  <img style="object-fit: cover;" width="125px" height="125px" src="http://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/04/earth/21970012-1-eng-GB/Earth_pillars.jpg" alt="...">
+                  <img style="object-fit: cover;" width="125px" height="125px" src="https://images.unsplash.com/photo-1613388395752-a4f8730271e2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8dmFjY2luZSUyMHBhc3Nwb3J0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="...">
                 </div>
               </article>
-            </li>
-            <li class="list-group-item list-group-item-action pt-4 pb-4 px-0">
-              <article class="d-flex">
-                <div class="flex-grow-1 ms-0 pe-2">
-                  <small class="text-uppercase"><b>World</b></small>
-                  <h5 class="fw-light">What we know so far: Wuhan virus (Covid-19)</h5>
-                  <p class="text-muted">I will attempt to encapsulate, search and seek out all the people...</p>
-                </div>
-                <div class="flex-shrink-0">
-                  <img style="object-fit: cover;" width="125px" height="125px" src="http://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/04/earth/21970012-1-eng-GB/Earth_pillars.jpg" alt="...">
-                </div>
-              </article>
-            </li>
-            <li class="list-group-item list-group-item-action pt-4 pb-4 px-0">
-              <article class="d-flex">
-                <div class="flex-grow-1 ms-0 pe-2">
-                  <small class="text-uppercase"><b>World</b></small>
-                  <h5 class="fw-light">What we know so far: Wuhan virus (Covid-19)</h5>
-                  <p class="text-muted">I will attempt to encapsulate, search and seek out all the people...</p>
-                </div>
-                <div class="flex-shrink-0">
-                  <img style="object-fit: cover;" width="125px" height="125px" src="http://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/04/earth/21970012-1-eng-GB/Earth_pillars.jpg" alt="...">
-                </div>
-              </article>
-            </li>
+            </li> -->
           </ul>
 
-          <ul class="list-group list-group-flush col-lg-3 col-md-3 col-12 border-end">
-            <h5 class="px-4 serif"><i>Latest updates</i></h5>
+          <ul style="overflow-y: scroll; height:677px;" class="list-group list-group-flush col-lg-3 col-md-3 col-12 border-end px-4">
+            <h5 class="serif"><i>Latest updates</i></h5>
             @foreach ($latestUpdates as $update)
-              <li class="list-group-item list-group-item-action py-4 px-4">
+              <li class="list-group-item px-0 py-4">
                 <article class="d-flex">
-                  <div class="flex-grow-1 ms-0 pe-2">
-                    <div class="d-flex w-100 justify-content-between">
+                  <div class="w-100 flex-grow-1 ms-0 pe-2">
+                    <div class="d-flex w-100 justify-content-start">
                       <small class="text-uppercase"><b>{{$update['topic']}}</b></small>
                       <small class="text-uppercase text-black-50">{{$update['date']}}</small>
                     </div>
-                    <h5 class="fw-light">{{$update['title']}}</h5>
+                    <h5 class="w-100 fw-light d-inline-block text-truncate">{{$update['title']}}</h5>
                   </div>
                 </article>
               </li>
             @endforeach
           </ul>
 
-          <ul class="list-group list-group-flush col-lg-3 col-md-3 col-12">
-            <h5 class="px-4 serif"><i>Noteworthy Individuals</i></h5>
-            <li class="list-group-item list-group-item-action py-4 px-4">
+          <ul class="list-group list-group-flush col-lg-3 col-md-3 col-12 px-4">
+            <h5 class="serif"><i>Noteworthy Individuals</i></h5>
+            <li class="list-group-item py-4 px-0">
               <div class="d-flex align-items-center">
                 <div class="flex-shrink-0">
                   <img style="object-fit: cover;" width="65px" height="65px" class="rounded-circle" src="https://www.chelseagreen.com/wp-content/uploads/Sucharit-Bhakdi-300x443.jpeg" alt="...">
                 </div>
                 <div class="flex-grow-1 ms-3">
-                  <b>Sucharit Bhakdi</b>
+                  <b>Sucharit Bhakdi</b><br/>
+                  <span>Germany's most cited microbiologist</span>
                 </div>
               </div>
             </li>
-            <li class="list-group-item list-group-item-action py-4 px-4">
+            <li class="list-group-item py-4 px-0">
               <div class="d-flex align-items-center">
                 <div class="flex-shrink-0">
                   <img style="object-fit: cover;" width="65px" height="65px" class="rounded-circle" src="https://biotech-atelier.com/wp-content/uploads/2020/07/dcahill.jpg" alt="...">
                 </div>
                 <div class="flex-grow-1 ms-3">
-                  <b>Dolores Cahill</b>
+                  <b>Dolores Cahill</b><br/>
+                  <span>A professor at University College Dublin</span>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item py-4 px-0">
+              <div class="d-flex align-items-center">
+                <div class="flex-shrink-0">
+                  <img style="object-fit: cover;" width="65px" height="65px" class="rounded-circle" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpcrclaims.co.uk%2Fimg%2Fpeople%2FDr-Mike-Yeadon.jpg&f=1&nofb=1" alt="...">
+                </div>
+                <div class="flex-grow-1 ms-3">
+                  <b>Dr. Mike Yeadon</b><br/>
+                  <span>Former VP of Pfizer Pharmaceuticals</span>
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item py-4 px-0">
+              <div class="d-flex align-items-center">
+                <div class="flex-shrink-0">
+                  <img style="object-fit: cover;" width="65px" height="65px" class="rounded-circle" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.spd-geschichtswerkstatt.de%2Fimages%2Fthumb%2F2%2F27%2FWolfgang_Wodarg.jpg%2F952px-Wolfgang_Wodarg.jpg&f=1&nofb=1" alt="...">
+                </div>
+                <div class="flex-grow-1 ms-3">
+                  <b>Wolfgang Wodarg</b><br/>
+                  <span>A German physician and politician</span>
                 </div>
               </div>
             </li>
           </ul>
         </div>
 
-        <div class="row">
-          <div class="col-md-3 col-lg-3 col-12 border-end">
-            <article class="card mb-4 border-0">
-              <header class="card-header bg-white">
-                <!-- <div class="card-meta">
-                  <a href="#"><time class="timeago" datetime="2021-04-01 00:00" timeago-id="1">Today</time></a> in <a href="page-category.html">World</a>
-                </div> -->
+        <div class="row pb-5">
+          <div class="col border-end">
+            <article class="border-0 px-2">
+              <img style="object-fit: cover;" width="100%" height="225px" src="https://images.unsplash.com/photo-1599340695274-f8a2f344174d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGlzcmFlbHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="..." class="">
+              <div class="card-body px-0 pb-0">
                 <p><small class="text-uppercase text-dark"><b>World</b></small></p>
-                <a href="/2021/04/01/world/what-we-know-so-far-wuhan-virus-covid-19">
-                  <h5 class="card-title serif font-weight-bold">What we know so far: Wuhan virus (Covid-19)</h5>
-                </a>
-              </header>
-              <!-- <a href="/2021/04/01/world/what-we-know-so-far-wuhan-virus-covid-19">
-                <img class="card-img rounded" src="https://www.odt.co.nz/sites/default/files/story/2021/03/doctor.jpg" alt="">
-              </a> -->
-              <div class="card-body">
-                <ul class="card-text text-dark serif">
-                  <li>I will attempt to encapsulate, search and seek out all the people, with the proper credentials to speak on the Wuhan virus (Covid-19).</li>
-                  <li>My motiviation is purely based on giving people a better foundation, better body of knowledge, for decisions made when it comes to the Wuhan virus (Covid-19).</li>
-                </ul>
-                <!-- <p class="card-text text-dark serif">I will attempt to encapsulate, search and seek out all the people, with the proper credentials to speak on the Wuhan virus (Covid-19).</p> -->
+                <h5 class="card-title fw-light">The story of Israel and the experimental vaccines</h5>
               </div>
             </article>
           </div>
-          <div class="col-md-6 col-lg-6 col-12">
-            <article class="card mb-4 border-0">
-              <img width="100%" src="https://kbharkiv.dk/wp-content/uploads/2020/05/geddes-kort.jpg" alt="Geddes Kort" class="card-img-top">
-              <div class="card-body">
-                <p><small class="text-uppercase text-dark"><b>About</b></small></p>
-                <h5 class="card-title serif">The Copehagen Gates</h5>
-                <p class="card-text serif">The Copenhagen Gates is a one person effort to create a more in depth and informative news organ based in the capital of Denmark, Copehagen.<br/>
-                  The website is currently very barebones, for instance some of the buttons don't work, it's not responsive to tablets and mobile etc., but I thought it was more important to publish the first article concerning the Wuhan Virus (Covid-19), flawed as it is.
-                </p>
+
+          <div class="col border-end">
+            <article class="border-0 px-2">
+              <img style="object-fit: cover;" width="100%" height="225px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/WHO_flag.png/1920px-WHO_flag.png" alt="..." class="">
+              <div class="card-body px-0 pb-0">
+                <p><small class="text-uppercase text-dark"><b>World</b></small></p>
+                <h5 class="card-title fw-light">WHO - Making a case for institutional capture</h5>
               </div>
             </article>
+          </div>
 
+          <div class="col border-end">
+            <article class="border-0 px-2">
+              <img style="object-fit: cover;" width="450px" height="225px" src="https://images.unsplash.com/photo-1584359983106-ef9366f27454?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fG5ld3N8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="..." class="">
+              <div class="card-body px-0 pb-0">
+                <p><small class="text-uppercase text-dark"><b>World</b></small></p>
+                <h5 class="card-title fw-light">Fearmongering. The mainstream media's favorite tactic.</h5>
+              </div>
+            </article>
+          </div>
+
+          <div class="col pe-0">
+            <article class="border-0 px-2">
+              <img style="object-fit: cover;" width="100%" height="225px" src="https://images.unsplash.com/photo-1589578527966-fdac0f44566c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmlnaHRzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="..." class="">
+              <div class="card-body px-0 pb-0">
+                <p><small class="text-uppercase text-dark"><b>World</b></small></p>
+                <h5 class="card-title fw-light">Universal Declaration of Human Rights</h5>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="row pb-5">
+          <div class="col border-end">
+            <article class="border-0 px-2">
+              <img style="object-fit: cover;" width="450px" height="225px" src="https://images.unsplash.com/photo-1601319759324-f311bd99ebb9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODl8fHRydW1wJTIwZG9sbHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="..." class="">
+              <div class="card-body px-0 pb-0">
+                <p><small class="text-uppercase text-dark"><b>Oppinion</b></small></p>
+                <h5 class="card-title fw-light">The vision of the annointed and the creation of carricurates.</h5>
+              </div>
+            </article>
+          </div>
+
+          <div class="col border-end">
+            <article class="border-0 px-2">
+              <img style="object-fit: cover;" width="100%" height="225px" src="https://images.unsplash.com/photo-1581358316909-6d4035624967?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bXVkfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="..." class="">
+              <div class="card-body px-0 pb-0">
+                <p><small class="text-uppercase text-dark"><b>World</b></small></p>
+                <h5 class="card-title fw-light">Throwing mud and hoping that it sticks</h5>
+              </div>
+            </article>
+          </div>
+
+          <div class="col border-end">
+            <article class="border-0 px-2">
+              <img style="object-fit: cover;" width="100%" height="225px" src="https://images.unsplash.com/photo-1613388395752-a4f8730271e2?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBhc3Nwb3J0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="..." class="">
+              <div class="card-body px-0 pb-0">
+                <p><small class="text-uppercase text-dark"><b>World</b></small></p>
+                <h5 class="card-title fw-light">'Standing at the gates of hell': State of the Covid-19 Passports</h5>
+              </div>
+            </article>
+          </div>
+
+          <div class="col pe-0">
+            <article class="border-0 px-2">
+              <img style="object-fit: cover;" width="100%" height="225px" src="https://images.unsplash.com/photo-1490349708435-19d432984978?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjIyfHx0YWxraW5nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="..." class="">
+              <div class="card-body px-0 pb-0">
+                <p><small class="text-uppercase text-dark"><b>World</b></small></p>
+                <h5 class="card-title fw-light">Civil discourse collapse</h5>
+              </div>
+            </article>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-12">
-            <div class="card bg-dark text-white">
-              <img src="http://www.esa.int/var/esa/storage/images/esa_multimedia/images/2020/04/earth/21970012-1-eng-GB/Earth_pillars.jpg" class="card-img" alt="...">
-              <div class="card-img-overlay">
-                <h1 class="card-title serif">What we know so far: Wuhan virus (Covid-19)</h1>
-                <p class="card-text serif">I will attempt to encapsulate, search and seek out all the people, with the proper credentials to speak on the Wuhan virus (Covid-19).</p>
-                <p class="card-text">Last updated 3 mins ago</p>
-              </div>
-            </div>
-          </div>
+          <ul style="overflow-y: scroll; height:677px;" class="list-group list-group-flush col-lg-3 col-md-3 col-12 border-end px-4">
+            <h5 class="serif"><i>World</i></h5>
+            @foreach ($latestUpdates as $update)
+              <li class="list-group-item px-0 py-4">
+                <article class="d-flex">
+                  <div class="w-100 flex-grow-1 ms-0 pe-2">
+                    <div class="d-flex w-100 justify-content-start">
+                      <small class="text-uppercase"><b>{{$update['topic']}}</b></small>
+                      <small class="text-uppercase text-black-50">{{$update['date']}}</small>
+                    </div>
+                    <h5 class="w-100 fw-light d-inline-block text-truncate">{{$update['title']}}</h5>
+                  </div>
+                </article>
+              </li>
+            @endforeach
+          </ul>
+          <ul style="overflow-y: scroll; height:677px;" class="list-group list-group-flush col-lg-3 col-md-3 col-12 border-end px-4">
+            <h5 class="serif"><i>Health</i></h5>
+            @foreach ($latestUpdates as $update)
+              <li class="list-group-item px-0 py-4">
+                <article class="d-flex">
+                  <div class="w-100 flex-grow-1 ms-0 pe-2">
+                    <div class="d-flex w-100 justify-content-start">
+                      <small class="text-uppercase"><b>{{$update['topic']}}</b></small>
+                      <small class="text-uppercase text-black-50">{{$update['date']}}</small>
+                    </div>
+                    <h5 class="w-100 fw-light d-inline-block text-truncate">{{$update['title']}}</h5>
+                  </div>
+                </article>
+              </li>
+            @endforeach
+          </ul>
+          <ul style="overflow-y: scroll; height:677px;" class="list-group list-group-flush col-lg-3 col-md-3 col-12 border-end px-4">
+            <h5 class="serif"><i>Technology</i></h5>
+            @foreach ($latestUpdates as $update)
+              <li class="list-group-item px-0 py-4">
+                <article class="d-flex">
+                  <div class="w-100 flex-grow-1 ms-0 pe-2">
+                    <div class="d-flex w-100 justify-content-start">
+                      <small class="text-uppercase"><b>{{$update['topic']}}</b></small>
+                      <small class="text-uppercase text-black-50">{{$update['date']}}</small>
+                    </div>
+                    <h5 class="w-100 fw-light d-inline-block text-truncate">{{$update['title']}}</h5>
+                  </div>
+                </article>
+              </li>
+            @endforeach
+          </ul>
+          <ul style="overflow-y: scroll; height:677px;" class="list-group list-group-flush col-lg-3 col-md-3 col-12 border-end px-4">
+            <h5 class="serif"><i>Design</i></h5>
+            @foreach ($latestUpdates as $update)
+              <li class="list-group-item px-0 py-4">
+                <article class="d-flex">
+                  <div class="w-100 flex-grow-1 ms-0 pe-2">
+                    <div class="d-flex w-100 justify-content-start">
+                      <small class="text-uppercase"><b>{{$update['topic']}}</b></small>
+                      <small class="text-uppercase text-black-50">{{$update['date']}}</small>
+                    </div>
+                    <h5 class="w-100 fw-light d-inline-block text-truncate">{{$update['title']}}</h5>
+                  </div>
+                </article>
+              </li>
+            @endforeach
+          </ul>
         </div>
 
-        <div class="row">
-          <div class="col-md-3 col-lg-3 col-12">
-            <article class="card mb-4 border-0">
-              <header class="card-header bg-white">
-                <div class="card-meta">
-                  <a href="#"><time class="timeago" datetime="2019-10-26 20:00" timeago-id="1">1 year ago</time></a> in <a href="page-category.html">World</a>
-                </div>
-                <a href="post-image.html">
-                  <h5 class="card-title">The Great Reset</h5>
-                </a>
-              </header>
-              <a href="post-image.html">
-                <img class="card-img rounded" src="https://assets.weforum.org/editor/large_axT9b6hlR7JO_aOObTKpVETUBy_dhO4ycdTO8yedo8o.JPG" alt="">
-              </a>
-              <div class="card-body">
-                <p class="card-text">The World Economic Forum (WEF) and their role in covid-19.</p>
-              </div>
-            </article>
-
-            <article class="card mb-4 border-0">
-              <header class="card-header bg-white">
-                <div class="card-meta">
-                  <a href="#"><time class="timeago" datetime="2019-10-03 20:00" timeago-id="2">1 year ago</time></a> in <a href="page-category.html">Climate</a>
-                </div>
-                <a href="post-image.html">
-                  <h5 class="card-title">Bjørn Lomborg</h5>
-                </a>
-              </header>
-              <a href="post-image.html">
-                <img class="card-img rounded" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Bj%C3%B8rn_Lomborg_1.jpg/800px-Bj%C3%B8rn_Lomborg_1.jpg" alt="">
-              </a>
-              <div class="card-body">
-                <p class="card-text">Bjørn Lomborg sits at the UN climate comitee and is a leading figure in the climate change debate.</p>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-3 col-lg-3 col-12">
-            <article class="card mb-4 border-0">
-              <header class="card-header bg-white">
-                <div class="card-meta">
-                  <a href="#"><time class="timeago" datetime="2019-07-16 20:00" timeago-id="3">1 year ago</time></a> in <a href="page-category.html">Works</a>
-                </div>
-                <a href="post-image.html">
-                  <h5 class="card-title">Thomas Sowell</h5>
-                </a>
-              </header>
-              <a href="post-image.html">
-                <img class="card-img rounded" src="https://world.wng.org/sites/default/files/styles/article_hero/public/field/image/Thomas-Sowell.jpg?itok=rhPe48k_" alt="">
-              </a>
-              <div class="card-body">
-                <p class="card-text">Thomas Sowell writes about intellectuals, defined as people whose end product is ideas, and the role they play in society.</p>
-              </div>
-            </article>
-
-            <article class="card mb-4 border-0">
-              <header class="card-header bg-white">
-                <div class="card-meta">
-                  <a href="#"><time class="timeago" datetime="2019-10-15 20:00" timeago-id="4">1 year ago</time></a> in <a href="page-category.html">Works</a>
-                </div>
-                <a href="post-image.html">
-                  <h5 class="card-title">Soshana Zuboff</h5>
-                </a>
-              </header>
-              <a href="post-image.html">
-                <img class="card-img rounded" src="https://d1okx4gh513q4s.cloudfront.net/files/614045292286805741-speaker-shoshana-zuboff-profile.two-thirds.jpg" alt="">
-              </a>
-              <div class="card-body">
-                <p class="card-text">Shoshana Zuboff is the author of 'The Age of Surveillance Capitalism - The Fight for a human future at the new frontier of power'.</p>
-              </div>
-            </article>
-          </div>
-          <div class="col-md-3 col-lg-3 col-12">
-            <article class="card mb-4 border-0">
-              <header class="card-header bg-white">
-                <div class="card-meta">
-                  <a href="#"><time class="timeago" datetime="2019-08-24 20:00" timeago-id="5">1 year ago</time></a> in <a href="page-category.html">Health</a>
-                </div>
-                <a href="post-image.html">
-                  <h5 class="card-title">Sucharit Bhakdi</h5>
-                </a>
-              </header>
-              <a href="post-image.html">
-                <img class="card-img rounded" src="https://static6.suedkurier.de/storage/image/8/4/8/5/12895848_shift-966x593_1vPW8G_OCg9VG.jpg" alt="">
-              </a>
-              <div class="card-body">
-                <p class="card-text">Renowned microbiologist, Sucharit Bhakdi wrote the book 'Corona False Alarm?'.</p>
-              </div>
-            </article>
-
-            <article class="card mb-4 border-0">
-              <header class="card-header bg-white">
-                <div class="card-meta">
-                  <a href="#"><time class="timeago" datetime="2019-05-08 20:00" timeago-id="6">1 year ago</time></a> in <a href="page-category.html">Journey</a>
-                </div>
-                <a href="post-image.html">
-                  <h5 class="card-title">Daniel Schmachtenberger</h5>
-                </a>
-              </header>
-              <a href="post-image.html">
-                <img class="card-img rounded" src="https://civilizationemerging.com/wp-content/uploads/2019/10/Daniel-Schmachtenberger.jpg" alt="">
-              </a>
-              <div class="card-body">
-                <p class="card-text">Daniel Schmachtenberger is concerned with critical system thinking.</p>
-              </div>
-            </article>
-
-          </div>
-          <div class="col-md-3 col-lg-3 col-12">
-            <article class="card mb-4 border-0">
-              <header class="card-header bg-white">
-                <div class="card-meta">
-                  <a href="#"><time class="timeago" datetime="2019-08-24 20:00" timeago-id="5">1 year ago</time></a> in <a href="page-category.html">Health</a>
-                </div>
-                <a href="post-image.html">
-                  <h5 class="card-title">Bret Weinstein</h5>
-                </a>
-              </header>
-              <a href="post-image.html">
-                <img class="card-img rounded" src="https://media1.fdncms.com/stranger/imager/u/original/26476915/image_one_small.jpg" alt="">
-              </a>
-              <div class="card-body">
-                <p class="card-text">Bret Weinstein presents the lack leak hypothesis as it pertains to Covid-19.</p>
-              </div>
-            </article>
-
-            <article class="card mb-4 border-0">
-              <header class="card-header bg-white">
-                <div class="card-meta">
-                  <a href="#"><time class="timeago" datetime="2019-05-08 20:00" timeago-id="6">1 year ago</time></a> in <a href="page-category.html">USA</a>
-                </div>
-                <a href="post-image.html">
-                  <h5 class="card-title">The 2020 Election</h5>
-                </a>
-              </header>
-              <a href="post-image.html">
-                <img class="card-img rounded" src="https://api.time.com/wp-content/uploads/2021/02/donald-trump-joe-biden-election.jpg?w=800&quality=85" alt="">
-              </a>
-              <div class="card-body">
-                <p class="card-text">Time Magazine wrote the article title 'The Secret History of the Shadow Campaign That Saved the 2020 Election' which made postulations that the US in 2020 was rigged in favor of the democratic party.</p>
-              </div>
-            </article>
-
-          </div>
-        </div>
       </div>
       </div>
     </main>
     <footer class="pt-4 my-md-5 pt-md-4 border-top border-2 container">
-      <div class="mb-4">
+      <div class="mb-4" style="max-width: 300px">
         <a style="font-family: 'UnifrakturMaguntia', cursive; font-size: 1.8rem;" class="navbar-brand" href="#">The Copenhagen Gates</a>
+        <br/>
+        <p class="mt-3">
+          The Copenhagen Gates was founded the year 2021. The world was in the midst of a pandemic and our media (in Denmark and the western world) had become corrupted to a point where it no longer reported to make sense in the interest of it's people. A new sensemaking aparatus was thought to be needed and that is the beginning and the end of this short story.
+        </p>
         <!-- <small class="d-block mb-3 text-muted">© 2021-2022</small> -->
       </div>
        <!-- <div class="row">
