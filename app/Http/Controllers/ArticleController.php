@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 // use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
@@ -33,8 +34,16 @@ class ArticleController extends Controller
      * Show the Homepage
      * @return \Illuminate\View\View
     */
-    public function show($year, $month, $day, $topic, $title)
+    public function show($year, $month, $day, $section, $headline)
     {
+      $article = DB::table('article')
+                        ->whereDate('date_published', sprintf("%s-%s-%s", $year, $month, $day))
+                        ->where('article_section', strtolower($section))
+                        ->where('headline_dashed', strtolower($headline))
+                        ->first();
+
+      // check if article exists (boolean) -> otherwise redirect to 404() or ?home?
+
       $now = date("Y-m-d h:i:sa");
       $dkLockdownDate = date("Y-m-d h:i:sa", mktime(20, 30, 0, 3, 11, 2020));
       $dateFormat = "%y year %m months %d days %h hours %i minutes %s seconds";
@@ -45,9 +54,10 @@ class ArticleController extends Controller
         'year' => $year,
         'month' => $month,
         'day' => $day,
-        'topic' => $topic,
-        'title' => $title,
-        'elapsedTimeSinceDKLockdown' => $elapsedTimeSinceDKLockdown
+        'section' => $section,
+        'headline' => $headline,
+        'elapsedTimeSinceDKLockdown' => $elapsedTimeSinceDKLockdown,
+        'article' => $article
       ]);
     }
 }

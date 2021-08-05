@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\SectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,5 @@ Route::get('/{locale}', function ($locale) {
 });
 */
 Route::get('/', [HomepageController::class, 'show']);
-Route::get('/{year}/{month}/{day}/{topic}/{title}', [ArticleController::class, 'show']);
+Route::get('/{section}', [SectionController::class, 'show']);
+Route::get('/{year}/{month}/{day}/{section}/{headline}', [ArticleController::class, 'show']);

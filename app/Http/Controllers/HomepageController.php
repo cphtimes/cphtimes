@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 // use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class HomepageController extends Controller
 {
@@ -35,9 +36,11 @@ class HomepageController extends Controller
       } else {
         $json = json_decode($response);
         $temp = $json->main->temp;
+        $weather = $json->weather[0];
+        $icon = $weather->icon;
         $tempMin = $json->main->temp_min;
         $tempMax = $json->main->temp_max;
-        return [$tempMin, $temp, $tempMax];
+        return [$tempMin, $temp, $tempMax, $icon];
       }
     }
 
@@ -68,13 +71,74 @@ class HomepageController extends Controller
     {
       $dateFormatted = "<strong>" . date("l,") . "</strong>" . "<br/>" . date("F d, Y");
       $currentWeather = $this->getTodaysForecast("Copenhagen");
-      $latestUpdates = $this->getLatestUpdates();
+      // $latestUpdates = $this->getLatestUpdates();
+      $topArticles = DB::table('article')
+                            ->orderBy('date_published', 'desc')
+                            ->offset(0)
+                            ->limit(3)
+                            ->get();
+
+      $latestUpdates = DB::table('article')
+                              ->orderBy('date_published', 'desc')
+                              ->offset(0)
+                              ->limit(20)
+                              ->get();
+
+      $articles = DB::table('article')
+                          ->orderBy('date_published', 'desc')
+                          ->offset(3)
+                          ->limit(12)
+                          ->get();
+
+      $world = DB::table('article')
+                      ->where('article_section', 'world')
+                      ->orderBy('date_published', 'desc')
+                      ->offset(0)
+                      ->limit(20)
+                      ->get();
+
+      $health = DB::table('article')
+                      ->where('article_section', 'health')
+                      ->orderBy('date_published', 'desc')
+                      ->offset(0)
+                      ->limit(20)
+                      ->get();
+
+      $technology = DB::table('article')
+                      ->where('article_section', 'technology')
+                      ->orderBy('date_published', 'desc')
+                      ->offset(0)
+                      ->limit(20)
+                      ->get();
+
+      $media = DB::table('article')
+                      ->where('article_section', 'media')
+                      ->orderBy('date_published', 'desc')
+                      ->offset(0)
+                      ->limit(20)
+                      ->get();
+
+      $individuals = DB::table('individual')
+                      ->orderBy('id', 'asc')
+                      ->offset(0)
+                      ->limit(20)
+                      ->get();
+
       return view('homepage', [
         'dateFormatted' => $dateFormatted,
         'temp' => $currentWeather[1],
         'tempMin' => $currentWeather[0],
         'tempMax' => $currentWeather[2],
-        'latestUpdates' => $latestUpdates
+        'icon' => $currentWeather[3],
+        'latestUpdates' => $latestUpdates,
+        'topArticles' => $topArticles,
+        'latestUpdates' => json_decode($latestUpdates, true),
+        'articles' => $articles,
+        'world' => json_decode($world, true),
+        'health' => json_decode($health, true),
+        'technology' => json_decode($technology, true),
+        'media' => json_decode($media, true),
+        'individuals' => json_decode($individuals, true)
       ]);
     }
 }
