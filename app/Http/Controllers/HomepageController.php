@@ -5,6 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 // use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Kreait\Firebase\Auth;
+use Kreait\Firebase\Auth\CreateSessionCookie\FailedToCreateSessionCookie;
+use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Cookie;
+
+use Session;
+use Stripe;
 
 class HomepageController extends Controller
 {
@@ -44,6 +53,7 @@ class HomepageController extends Controller
       }
     }
 
+    /*
     private function getLatestUpdates() {
       $sourceURL = "http://www.dr.dk/nyheder/service/feeds/allenyheder";
       $content = file_get_contents($sourceURL);
@@ -62,13 +72,157 @@ class HomepageController extends Controller
       }
       return $latestUpdates;
     }
+    */
+
+    public function signIn(Request $request) {
+      $auth = app('firebase.auth');
+      $email = $request->email;
+      $clearTextPassword = $request->password;
+      $signInResult = $auth->signInWithEmailAndPassword($email, $clearTextPassword);
+      $idToken = $signInResult->idToken();
+      $aWeekInMinutes = 10080;
+      Cookie::queue('session', $idToken, $aWeekInMinutes);
+      return back()->withInput();
+    }
+
+    public function signOut() {
+      Cookie::queue(Cookie::forget('session'));
+      return back()->withInput();
+    }
+
+
+    public function getUserWithIdToken($idToken) {
+      if ($idToken == null) {
+        return null;
+      }
+      $auth = app('firebase.auth');
+      try {
+          $verifiedIdToken = $auth->verifyIdToken($idToken, true);
+          $uid = $verifiedIdToken->claims()->get('sub');
+          $user = $auth->getUser($uid);
+          return $user;
+      } catch (InvalidToken $e) {
+          echo 'The token is invalid: '.$e->getMessage();
+      } catch (\InvalidArgumentException $e) {
+          echo 'The token could not be parsed: '.$e->getMessage();
+      }
+      return null;
+    }
+
+    public function upgradeToPremium() {
+      // \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+      \Stripe\Stripe::setApiKey('sk_test_51K6ZDsJPW4uCQWrw8q0pRpYTeNT6voahaftVWZWXgCYlWrt2OUH33TNrWy8wgsCcsfeoKikgRTHpZW1VngjjIUqe00DAVOHKII');
+      $priceId = 'price_1K6ZwYJPW4uCQWrwcsiGu5i0';
+
+      $session = \Stripe\Checkout\Session::create([
+        'success_url' => 'http://127.0.0.1:8000?session_id={CHECKOUT_SESSION_ID}', // success url.
+        'cancel_url' => 'http://127.0.0.1:8000/', // cancel url.
+        'mode' => 'subscription',
+        'line_items' => [[
+          'price' => $priceId,
+          'quantity' => 1,
+        ]],
+      ]);
+      return redirect($session->url);
+    }
+
+    public function webhook() {
+      // This is your test secret API key.
+      \Stripe\Stripe::setApiKey('sk_test_51K6ZDsJPW4uCQWrw8q0pRpYTeNT6voahaftVWZWXgCYlWrt2OUH33TNrWy8wgsCcsfeoKikgRTHpZW1VngjjIUqe00DAVOHKII');
+      // Replace this endpoint secret with your endpoint's unique secret
+      // If you are testing with the CLI, find the secret by running 'stripe listen'
+      // If you are using an endpoint defined with the API or dashboard, look in your webhook settings
+      // at https://dashboard.stripe.com/webhooks
+      $endpoint_secret = env('STRIPE_WEBHOOK_SECRET');
+
+      $payload = @file_get_contents('php://input');
+      $event = null;
+
+      try {
+        $event = \Stripe\Event::constructFrom(
+          json_decode($payload, true)
+        );
+      } catch(\UnexpectedValueException $e) {
+        echo '⚠️  Webhook error while parsing basic request.';
+        http_response_code(400);
+        exit();
+      }
+      if ($endpoint_secret) {
+        $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
+        try {
+          $event = \Stripe\Webhook::constructEvent(
+            $payload, $sig_header, $endpoint_secret
+          );
+        } catch(\Stripe\Exception\SignatureVerificationException $e) {
+          // Invalid signature
+          echo '⚠️  Webhook error while validating signature.';
+          http_response_code(400);
+          exit();
+        }
+      }
+      switch ($event->type) {
+        case 'customer.subscription.created':
+          $subscription = $event->data->object;
+          $this->customerSubscriptionCreated($subscription);
+          break;
+        case 'payment_method.attached':
+          $subscription = $event->data->object;
+          $this->customerSubscriptionDeleted($subscription);
+          break;
+        default:
+          // Unexpected event type
+          error_log('Received unknown event type');
+      }
+
+      http_response_code(200);
+    }
+
+    public function customerSubscriptionCreated($subscription) {
+
+    }
+
+    public function customerSubscriptionDeleted($subscription) {
+
+    }
+
+    public function manageSubscription() {
+      \Stripe\Stripe::setApiKey('sk_test_51K6ZDsJPW4uCQWrw8q0pRpYTeNT6voahaftVWZWXgCYlWrt2OUH33TNrWy8wgsCcsfeoKikgRTHpZW1VngjjIUqe00DAVOHKII');
+      $returnURL = 'http://127.0.0.1:8000/';
+      $idToken = Cookie::get('session');
+      $claims = $this->getUserWithIdToken($idToken)->customClaims;
+      echo $claims["stripeCustomerId"];
+      $stripeCustomerId = $claims["stripeCustomerId"];
+      $session = \Stripe\BillingPortal\Session::create([
+        'customer' => $stripeCustomerId,
+        'return_url' => $returnURL,
+      ]);
+      return redirect($session->url);
+    }
 
     /**
      * Show the Homepage
      * @return \Illuminate\View\View
      */
-    public function show()
+    public function show(Request $request)
     {
+
+      $idToken = Cookie::get('session');
+      $user = $this->getUserWithIdToken($idToken);
+
+      if($request->has('session_id')) {
+        \Stripe\Stripe::setApiKey('sk_test_51K6ZDsJPW4uCQWrw8q0pRpYTeNT6voahaftVWZWXgCYlWrt2OUH33TNrWy8wgsCcsfeoKikgRTHpZW1VngjjIUqe00DAVOHKII');
+        $sessionId = $request->query('session_id');
+        $checkoutSession = \Stripe\Checkout\Session::retrieve($sessionId);
+        $stripeCustomerId = $checkoutSession->customer;
+        $uid = $user->uid;
+        $auth = app('firebase.auth');
+        $auth->setCustomUserClaims($uid, [
+          'premiumSubscription' => true,
+          'stripeCustomerId' => $stripeCustomerId,
+        ]);
+        $user = $auth->getUser($uid);
+      }
+
       $dateFormatted = "<strong>" . date("l,") . "</strong>" . "<br/>" . date("F d, Y");
       $currentWeather = $this->getTodaysForecast("Copenhagen");
       // $latestUpdates = $this->getLatestUpdates();
@@ -138,7 +292,8 @@ class HomepageController extends Controller
         'health' => json_decode($health, true),
         'technology' => json_decode($technology, true),
         'media' => json_decode($media, true),
-        'individuals' => json_decode($individuals, true)
+        'individuals' => json_decode($individuals, true),
+        'user' => $user,
       ]);
     }
 }

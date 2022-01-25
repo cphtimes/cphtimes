@@ -110,7 +110,7 @@
 
           <div class="col-4 d-flex justify-content-end">
             <div class="px-2">
-              <button type="button" class="btn btn-primary btn-sm">Subscribe</button>
+              <a type="button" role="button" href="subscription" class="btn btn-primary btn-sm">Subscribe</a>
             </div>
             <div>
               <button type="button" class="btn btn-primary btn-sm">Log in</button>
@@ -149,18 +149,18 @@
       </nav>
       <div style="height: 39px; top: -1px;" class="nav-scroller py-2 mb-2 border-bottom border-dark border-2 container bg-white sticky-top">
         <nav id="nav-scroller-sections" class="nav d-flex justify-content-between">
-          <small><a class="p-2 link-secondary" href="/world">World</a></small>
-          <small><a class="p-2 link-secondary" href="/health">Health</a></small>
-          <small><a class="p-2 link-secondary" href="/media">Media</a></small>
-          <small><a class="p-2 link-secondary" href="/technology">Technology</a></small>
-          <small><a class="p-2 link-secondary" href="/culture">Culture</a></small>
-          <small><a class="p-2 link-secondary" href="/business">Business</a></small>
-          <small><a class="p-2 link-secondary" href="/politics">Politics</a></small>
-          <small><a class="p-2 link-secondary" href="/opinion">Opinion</a></small>
-          <small><a class="p-2 link-secondary" href="/science">Science</a></small>
-          <small><a class="p-2 link-secondary" href="/national">National</a></small>
-          <small><a class="p-2 link-secondary" href="/style">Style</a></small>
-          <small><a class="p-2 link-secondary" href="/travel">Travel</a></small>
+          <small><a class="p-2 link-secondary" href="/section/world">World</a></small>
+          <small><a class="p-2 link-secondary" href="/section/health">Health</a></small>
+          <small><a class="p-2 link-secondary" href="/section/media">Media</a></small>
+          <small><a class="p-2 link-secondary" href="/section/technology">Technology</a></small>
+          <small><a class="p-2 link-secondary" href="/section/culture">Culture</a></small>
+          <small><a class="p-2 link-secondary" href="/section/business">Business</a></small>
+          <small><a class="p-2 link-secondary" href="/section/politics">Politics</a></small>
+          <small><a class="p-2 link-secondary" href="/section/opinion">Opinion</a></small>
+          <small><a class="p-2 link-secondary" href="/section/science">Science</a></small>
+          <small><a class="p-2 link-secondary" href="/section/national">National</a></small>
+          <small><a class="p-2 link-secondary" href="/section/style">Style</a></small>
+          <small><a class="p-2 link-secondary" href="/section/travel">Travel</a></small>
         </nav>
       </div>
 
