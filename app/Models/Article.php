@@ -33,6 +33,7 @@ class Article extends Model
         'publisher',
         'text',
         'thumbnail_url',
+        'thumbnail_caption',
         'time_required',
         // 'video',
         // 'image',
