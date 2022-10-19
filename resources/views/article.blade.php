@@ -281,14 +281,11 @@
                 </div>
               </div>
             </div>
-            <figure class="figure">
-              <img class="figure-img" style="object-fit: cover;" height="400px" width="100%" src="{!! $article->thumbnail_url !!}"/>
+
+            <figure class="figure w-100">
+              <img class="figure-img" style="object-fit: cover;" height="100%" width="100%" src="{!! $article->thumbnail_url !!}"/>
               <figcaption class="figure-caption">A caption for the above image.</figcaption>
             </figure>
-
-            <!-- <figure class="wp-block-audio">
-              <audio class="w-100" controls="" src="Thu-Jan-13-2022.mp3"></audio>
-            </figure> -->
 
             {!! $article->article_body !!}
 
