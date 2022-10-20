@@ -42,6 +42,13 @@ class ArticleController extends Controller
                         ->where('headline_dashed', strtolower($headline))
                         ->first();
 
+      $world = DB::table('article')
+                      ->where('article_section', 'world')
+                      ->orderBy('date_published', 'desc')
+                      ->offset(0)
+                      ->limit(20)
+                      ->get();
+
       // check if article exists (boolean) -> otherwise redirect to 404() or ?home?
 
       $now = date("Y-m-d h:i:sa");
@@ -57,7 +64,8 @@ class ArticleController extends Controller
         'section' => $section,
         'headline' => $headline,
         'elapsedTimeSinceDKLockdown' => $elapsedTimeSinceDKLockdown,
-        'article' => $article
+        'article' => $article,
+        'world' => json_decode($world, true),
       ]);
     }
 }
