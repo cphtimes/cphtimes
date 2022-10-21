@@ -23,6 +23,9 @@
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet">
+
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+
       <style>
         .serif {
           font-family: 'Merriweather', serif;
@@ -369,7 +372,7 @@
 
               <!-- Check if article should be readable out loud? bool -->
               <div class="py-5 d-flex justify-content-start align-items-center">
-                <div class="me-3">
+                <div class="me-2">
                   <button id="article-listen-toggle-btn" style="width: 48px; height: 48px" class="btn rounded-circle btn-dark me-1">
                     <svg style="vertical-align: text-bottom" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
                       <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
@@ -380,7 +383,7 @@
                   <p class="mb-0">Listen to the article</p>
                 </div>
                 <div>
-                  <button id="article-listen-stop-btn" style="width: 48px; height: 48px" class="btn rounded-circle btn-outline-dark">
+                  <button id="article-listen-stop-btn" style="width: 48px; height: 48px" class="d-none btn rounded-circle btn-outline-dark">
                     <svg style="vertical-align: text-bottom" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                       <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                     </svg>
@@ -445,7 +448,7 @@
             <aside class="col-lg-3 offset-xl-1 pt-4 pt-lg-0" style="margin-top: -7rem;">
             <div class="position-sticky top-0 mt-2 mt-md-3 mt-lg-0" style="padding-top: 7rem;">
               <!-- Sharing-->
-              <h5 class="mb-4 serif fst-italic">Share this article:</h5>
+              <h5 class="mb-2 serif fst-italic">Share this article:</h5>
               <div class="mt-n3 ms-n3 mb-lg-5 mb-4 pb-3 pb-lg-0">
                 <a style="width: 34px; height: 34px" class="btn btn-outline-secondary btn-icon btn-sm btn-instagram rounded-circle mt-3" href="#">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
@@ -462,17 +465,17 @@
                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/>
                   </svg>
                 </a>
-                <a class="btn btn-outline-secondary btn-icon btn-sm btn-twitter rounded-circle mt-3 ms-3" href="#">
+                <a style="width: 34px; height: 34px" class="btn btn-outline-secondary btn-icon btn-sm btn-twitter rounded-circle mt-3 ms-3" href="#">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
                     <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
                   </svg>
                 </a>
               </div>
               <!-- Relevant topics-->
-              <h5 class="pt-xl-1 mb-4 serif fst-italic">Relevant topics:</h5>
+              <h5 class="pt-xl-1 mb-2 serif fst-italic">Relevant topics:</h5>
               <div class="d-flex flex-wrap mt-n3 ms-n3 mb-lg-5 mb-4 pb-3 pb-lg-0"><a class="btn btn-outline-secondary rounded-pill mt-3 ms-0" href="#">Nature</a><a class="btn btn-outline-secondary rounded-pill mt-3 ms-3" href="#">Inspiration</a><a class="btn btn-outline-secondary rounded-pill mt-3 ms-3" href="#">Travel</a><a class="btn btn-outline-secondary rounded-pill mt-3 ms-0" href="#">Psychology</a></div>
               <!-- Trending articles-->
-              <h5 class="pt-xl-1 mb-4 serif fst-italic">Trending articles:</h5>
+              <h5 class="pt-xl-1 mb-2 serif fst-italic">Trending articles:</h5>
               <ul class="list-unstyled mb-0">
                 @foreach (array_slice($world,0,5) as $update)
                   <li class="list-group-item py-3 px-4 px-md-0 border-0">
@@ -551,6 +554,36 @@
             </div>
           </div>
         </section>
+
+        <!-- Related Articles -->
+        <section class="container pt-2 pt-sm-3 pb-5 mb-md-3 mb-lg-4 mb-xl-5">
+          <div class="d-flex align-items-center pb-3 mb-3 mb-lg-4">
+            <h1 class="mb-0 me-4 serif fw-bold fst-italic">Related articles</h1>
+            <div class="d-flex ms-auto">
+              <button class="btn btn-prev btn-icon btn-sm btn-outline-primary rounded-circle me-3" type="button" id="prev-post" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-ef03bba4ed6c9674"><i class="ai-arrow-left"></i></button>
+              <button class="btn btn-next btn-icon btn-sm btn-outline-primary rounded-circle" type="button" id="next-post" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-ef03bba4ed6c9674"><i class="ai-arrow-right"></i></button>
+            </div>
+          </div>
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              @foreach (array_slice($world,0,5) as $update)
+                <div class="swiper-slide">
+                  <a href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                    <article style="">
+                      <img style="object-fit: cover;" width="100%" height="199px" src="{!! $update['thumbnail_url'] !!}" alt="..." class="">
+                      <div class="article-body card-body px-0 pb-0">
+                        <p><small class="text-uppercase text-dark"><b>{{$update['article_section']}}</b></small></p>
+                        <h5 class="article-title card-title fw-light crop-text-2">{{$update['headline']}}</h5>
+                        <p class="text-black-50 crop-text-4">{{$update['abstract']}}</p>
+                      </div>
+                    </article>
+                  </a>
+                </div>
+              @endforeach
+            </div>
+          </div>
+          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+        </section>
       </main>
 
       <!-- Subscription -->
@@ -614,7 +647,29 @@
 
 
       <!-- Optional JavaScript; choose one of the two! -->
+      <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
       <script>
+        const swiper = new Swiper('.swiper', {
+          // Optional parameters
+          direction: 'horizontal',
+          /*
+          scrollbar: {
+            el: '.swiper-scrollbar',
+          },
+          */
+          spaceBetween: 24,
+          loop: true,
+          autoHeight: true,
+          navigation: {
+            "prevEl": "#prev-post",
+            "nextEl": "#next-post"
+          },
+          breakpoints: {
+            "576": { "slidesPerView": 2 },
+            "1000": { "slidesPerView": 4 }
+          }
+        });
         let speech = new SpeechSynthesisUtterance();
         speech.lang = "en";
         speech.volume = 1.0;
