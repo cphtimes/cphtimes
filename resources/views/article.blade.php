@@ -25,6 +25,7 @@
       <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet">
 
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic"/>
 
       <style>
         .serif {
@@ -193,6 +194,18 @@
         @media (min-width: 1400px) {
 
         }
+
+        .aa-DetachedSearchButton {
+          border: 0 !important;
+        }
+
+        .aa-DetachedSearchButtonIcon {
+          color: rgba(0,0,0,1.0) !important;
+        }
+
+        .aa-DetachedSearchButtonPlaceholder {
+          display: none !important;
+        }
       </style>
       <link rel="stylesheet" href="/css/app.css">
       <title>{!! $article->headline !!} - The Copenhagen Gates</title>
@@ -215,6 +228,7 @@
         <div class="d-none alert alert-primary rounded-0 border-0" role="alert">
           Live online, today at 9 AM CEST.
         </div>
+
         <nav class="sticky-top navbar navbar-light bg-white shadow-sm">
           <div class="d-flex justify-content-between container-fluid">
             <div class="d-block d-lg-none">
@@ -287,13 +301,7 @@
               </a>
             </div>
             <div>
-              <a role="button" class="btn btn-link text-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <div class="d-flex align-items-center justify-content-center" style="font-size: 1.2em">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                  </svg>
-                </div>
-              </a>
+              <div id="autocomplete"></div>
             </div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -348,26 +356,6 @@
             </div>
           </div>
         </nav>
-
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-              <div class="modal-header rounded-bottom">
-                <div class="input-group p-0">
-                  <span class="input-group-text border-0 bg-white" id="basic-addon1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                    </svg>
-                  </span>
-                  <input type="text" class="form-control border-0" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
-                </div>
-              </div>
-              <div class="modal-body d-none">
-                ...
-              </div>
-            </div>
-          </div>
-        </div>
 
         <div class="container pb-5 my-md-2 my-lg-3 my-xl-4">
           <div class="row">
@@ -677,6 +665,9 @@
 
       <!-- Optional JavaScript; choose one of the two! -->
       <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
+
+      <script src="/js/autocomplete.js" defer></script>
 
       <script>
         const swiper = new Swiper('.swiper', {

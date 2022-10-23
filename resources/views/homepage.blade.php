@@ -24,6 +24,7 @@
 
       <script src="/js/app.js" defer></script>
       <link rel="stylesheet" href="/css/app.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic"/>
 
       <style>
         a {
@@ -144,15 +145,21 @@
 
         }
 
+        .aa-DetachedSearchButton {
+          border: 0 !important;
+        }
+
+        .aa-DetachedSearchButtonIcon {
+          color: rgba(0,0,0,1.0) !important;
+        }
+
+        .aa-DetachedSearchButtonPlaceholder {
+          display: none !important;
+        }
       </style>
       <title>The Copenhagen Gates - Counter propaganda for the life movement</title>
     </head>
     <body class="antialiased">
-      <!--
-      <div class="alert alert-primary" role="alert">
-        Watch the most important trial in human history: Crimes against humanity and the covid-19 pandemic.
-      </div>
-      -->
       <nav class="sticky-top d-block d-lg-none navbar navbar-light bg-white shadow-sm"> <!-- border-bottom -->
         <div class="d-flex justify-content-between container-fluid">
           <button class="btn btn-link text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -172,13 +179,7 @@
             </a>
           </div>
           <div>
-            <a role="button" class="btn btn-link text-dark" href="/search">
-              <div class="d-flex align-items-center justify-content-center" style="font-size: 1.2em">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                </svg>
-              </div>
-            </a>
+            <div id="autocomplete-mobile"></div>
           </div>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -235,32 +236,10 @@
       </nav>
       <div class="d-none d-lg-block container pt-4">
         <div class="row">
-          <div class="col-4">
-            <!-- Intentionally left empty. -->
-            <a role="button" href="/search" class="btn btn-link text-black p-0">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-              </svg>
-            </a>
+          <div class="col-4 ps-0">
+              <div style="width: 47px; height: 44px;" id="autocomplete"></div>
           </div>
           <div class="col-4 d-flex justify-content-center mb-2 px-0">
-            <!-- <div>
-              <small class="font-weight-bold text-uppercase m-3">
-                <strong>
-                  <a href="#">English</a>
-                </strong>
-              </small>
-            </div>
-            <div>
-              <small class="text-uppercase m-3">
-                <a href="#">Dansk</a>
-              </small>
-            </div>
-            <div class="">
-              <small class="text-uppercase m-3">
-                <a href="#">Arabic</a>
-              </small>
-            </div> -->
             <small class="text-center">Counter propaganda for the life movement</small>
           </div>
 
@@ -1185,6 +1164,9 @@
         </div>
       </footer>
     </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
+      <script src="/js/autocomplete.js" defer></script>
 
       <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
       <script src="/js/auth.js"></script> -->

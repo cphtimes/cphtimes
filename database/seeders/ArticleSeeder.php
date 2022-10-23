@@ -565,6 +565,31 @@ class ArticleSeeder extends Seeder
       ]);
 
       \App\Models\Article::factory()->create([
+        'dateline' => 'Copenhagen, Denmark. October 23th 2022',
+        'article_body' => '<p class="serif lh-lg start">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>',
+        'article_section' => 'FUNNY',
+        'word_count' => 42,
+        'about' => '',
+        'abstract' => "Recently I was looking through some video clips I was set to scrab, when I noticed something interesting appearing from the right corner of screen.",
+        'accountable_person' => 'Benevolent Beings',
+        'alternative_headline' => '',
+        'audience' => 'Everyone',
+        'author' => 'Daniel Lehmann',
+        'creative_work_status' => 'published',
+        'creator' => 'Benevolent Beings',
+        'credit_text' => 'Credit goes to the automatic writer George Green and his efforts.',
+        'date_published' => now(),
+        'headline' => 'Can you spot the flying orb?',
+        'headline_dashed' => 'can-you-spot-flying-orb',
+        'in_language' => 'en-US',
+        'location_created' => 'Copenhagen, Denmark',
+        'maintainer' => 'Daniel Ran Lehmann',
+        'text' => '...',
+        'thumbnail_url' => '<iframe width="1920" height="808" src="https://www.youtube.com/embed/4qecL0KyNYo" title="Lorem ipsum dolor set amet" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+        'time_required' => 1,
+      ]);
+
+      \App\Models\Article::factory()->create([
         'dateline' => 'Copenhagen, Denmark. October 18th 2022',
         'article_body' => '<p class="serif lh-lg start">Currents of thoughts in our collective consciousness dictate and requires a new way of approaching the information landscape which can often be quite overwhelming to take in at times.</p><p class="serif lh-lg">In a new age of censorship cleverly disguised, as good intentions always are, as gripping mis/dis/mal information by the root, like pestilent wheat in the garden and ridding this landscape of information with once flowering beauty and flowing hills with scenes of greenery everywhere, now reduced to a desert with only one type of information growing, that which has been put out by the main authorities.</p>',
         'article_section' => 'about',
