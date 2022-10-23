@@ -235,7 +235,7 @@ class HomepageController extends Controller
       $latestUpdates = DB::table('article')
                               ->orderBy('date_published', 'desc')
                               ->offset(0)
-                              ->limit(20)
+                              ->limit(60)
                               ->get();
 
       $articles = DB::table('article')
