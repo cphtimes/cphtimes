@@ -1290,6 +1290,32 @@ class ArticleSeeder extends Seeder
       ]);
 
       \App\Models\Article::factory()->create([
+        'dateline' => 'Copenhagen, Denmark. October 30th 2022',
+        'article_body' => '<p class="serif lh-lg start">Psykiatrien er blevet et bevågnet området i vores kollektive bevidsthed her i Danmark. Men noget mangler netop feedback, eller en form for anmeldelse kan man godt kalde det, af den primære behandlingsform der bliver tilbudt og som mennesker bliver mødt med når dørene slår op ind til psykiatrien. Flere penge er næppe problemet, eller det eneste problem, der er at skue ude i horisonten, hvis ikke vi lytter til mennesker som kan bevidne at den nuværende "hjælp" er som Hannah siger: "medicin, medicin og mere medicin". Hvis man således har den opfattelse på livet, som mange har, at piller ikke kan fikse mentale sundhedsproblemer, dvs. det at lide i livet er et vilkår for mange der kræver en helt anden virkelighedsbilled en det der møder en når man åbner sit pilleskab om morgen, netop det at kunne tage ansvar for sig selv, sine handlinger og afhandlinger såvel som lidelse og se sig selv i spejlet. Med rynker og et fjæs som kun din mor kunne være glad for. Ej, det passer ikke. At grine er at skyde med skarpt. At denne form for fokus der består i at hanke op i sig selv og tage ansvar er blevet lavet om til at få en ulydelig ummenskelig hyletone i medierne af uibamhjertig, kunne faktisk være det som kan redde mange fra at blivet slukket for i mange mange år, som en bivirkning der ej står på pilleglasset eller bliver talt højt om i medierne. Et skridt tilbage og obseverer det nuværende portræt af psykiatrien fra tidligere patienter ville give os, efter manges mening, det uvuderlige indblik der gjorde at det ikke kunne komme på tale at poste flere penge i den samme behandlingsform, men nu rettet mod de danske børn. Under det nogle ville kalde de bedste intentioner muligt, for hvem ville være imod at hjælpe børn? En hær af hænder fra tidligere patienter ville hurtigt ryge op, nærmest flyve ud af lokalet som en af Elon Musks forældede rum rakatter. Aldrig har vi givet en generation så tidligt så sederende medicin og aldrig kommer vi til det! Hvordan overlevede vores forfædre dog uden medicin, men verden er blevet mere kompliceret er det bedste forsvar for en stor medicinal industri der tjener penge, for at sige det ligeud sort på hvidt, på folks lidelse. En fantastisk penge maskine der da kun kan fortsætte i al evighed hvis de dog startede med at lave kunder fra starten (her tale vi om den næste generation mellem linjerne). Er dette en kynisk måde at se verden på tænke du, er det nok i bedste fald fordi du er et godt menneske der aldrig selv kunne finde på at gøre sådan forfærdligheder og sove godt om natten. Men vores værn mod folk som disse med oprigtig mentale sundheds problemer, der burde med den første universelle lov om attraktion bogstaveligt talt smage deres eget medicin, er at samarbejde om den data vi nu har (selv hvis modstridende efter vores overbevisninger) i form af tidligere patienters erfaringer. Tidligere patienters erfaringer er guld værd. Og desværre, hvis man ikke tager i lære så har livet det med at gentage oplevelser vi alle skal, eller burde ved fri vilje principet, tage ved lære. Alting, her i livet under ejet ansvar, som det burde være. Dette ikke for at sige at der ikke er mennesker som vil stå klar til at hjælpe dig når du falder, men hjælpen vil bestå i at styrke dig i at hjælpe dig selv, en form for selv hjælp. Har jeg svært ved at sætte punktumer og stoppe en sætning ordentligt? Det kan du bande på! Men det er ikke ens betydenede med at vi skal have en hornugle med briller til at bladrer løs i den lidt buttede DSM håndbog efterhånden (kan vi godt sige uden at fornærme nogen ikke?), efter den rigtige lidelse til mig. Jeg havde ansvar for at sætte punktumer og det lærte jeg ikke denne gang, men måske næste gang. I det mindste læste du dette til slut.</p><p class="serif lh-lg">Hvis du har en historie fra psykiatrien du gerne vil dele med andre, så skriv til email: <a href="mailto:daniel.lehmann@cphgates.com">daniel.lehmann@cphgates.com</a></p>',
+        'article_section' => 'health',
+        'word_count' => 42,
+        'about' => '',
+        'abstract' => 'I denne første episode af serien "Hygge på recept", fortæller Hannah om sit møde med psykiatrien og hvilken behandlingsform hun blev tilbudt.',
+        'accountable_person' => 'Hannah Lehmann',
+        'alternative_headline' => '',
+        'audience' => 'Everyone',
+        'author' => 'Hannah Lehmann',
+        'creative_work_status' => 'draft',
+        'creator' => 'Hannah Lehmann',
+        'credit_text' => 'Credit goes to Hannah Lehmann.',
+        'date_published' => now(),
+        'headline' => 'Mød Hannah - Hygge på Recept - (S1 E1)',
+        'headline_dashed' => 'mod-hannah-hygge-paa-recept-s1-e1',
+        'in_language' => 'da-DK',
+        'location_created' => 'Copenhagen, Denmark',
+        'maintainer' => 'Daniel Ran Lehmann',
+        'text' => '...',
+        'thumbnail_url' => 'https://lh3.googleusercontent.com/IHwGMRSY7zOGkduCMGXZDztOvSkmXx-kjpZi0RzbP4e-8AJdFdISlOhbHwUQ6qZWpUHBmd1bZD62kO14Iv9Na_9HRDYhuiDD-Ap-fIPhfB0MnuuXzse4S8iIRNFSxJXnHlzHNXtgmY2FUBONqYzhxt_lGDru1vdngnx-58pbh8az4AJO9HVsN6pNT-qvJl2CmrSLG7D3bXWsGEMC2IBqcwS1pncNTOVGjTVNm7lv0RdxvUPX2e6Gb9f1YKBCewLfLZdp3FTGJGohVMd-KCh9FNlO9_a231Bg7_4h0Ou1rz32YN-xemj6asAj1WjsxQ9gJYqezPv-3AazQveJfYATSOxZmCirrS0k_OYX3KrEBVsqRRFFpriMZVmFqsLmPWsyhwt5oqeszQQEnc1xv2gAOYh_Ze7KZy4ipr87RvZVaXPuSWnSRUb_Qlll7lu1so6EGaM8lRg98kgN-z9cISAj9Nd2nheFl6-VHFrZF3Zu8-5eLDw8wanF9WmzNvvDzYjRuRuOCXj5uFgnJig7jOjbUMzEBizwnqUGz2livYXHFNsgCGMps0uW8bWw1ogfQeJ8YrYxSzXJPHP_TmT9cW3Cr2ewEXDItPSB-wMRMbOq60hSVL1_8IPGeWx4F1YiE58rQbuZMFpudJEgFKfDW_DjRuGRelluTpPWzlcHu6rUx-5_UCz-j5mYJ4D3Dm62SYweU9Ean4yq9FkOUe-2C0zP_R2fyG3nDjWvgRjDV48oqkmIDK-NFcAzr1xwSEvjuhR-KL8IzUihKN87Xdi5Mju1h3vsY_xBu8bEe2Ls4N9icb3TzTyWHOuI-hl2yFJBAWLRrST2WAmfZ9dwOehSb9AfQUEXf5ik3wdYFH0SoVTT_x3LxpsQFVP5PESZ8Kddd5kgiY3XLOqjK95PMmGQxEPk7mSTt6ooM6a3300veYqw1QiaEMv6=s220-no?authuser=0', // 'http://i3.ytimg.com/vi/75A5_5Rk-dM/hqdefault.jpg',
+        'time_required' => 1,
+      ]);
+
+      /*
+      \App\Models\Article::factory()->create([
         'dateline' => 'Copenhagen, Denmark. October 23th 2022',
         'article_body' => '<p class="serif lh-lg start">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?</p>',
         'article_section' => 'FUNNY',
@@ -1313,6 +1339,7 @@ class ArticleSeeder extends Seeder
         'thumbnail_url' => '<iframe width="1920" height="808" src="https://www.youtube.com/embed/4qecL0KyNYo" title="Lorem ipsum dolor set amet" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
         'time_required' => 1,
       ]);
+      */
 
       \App\Models\Article::factory()->create([
         'dateline' => 'Copenhagen, Denmark. October 18th 2022',
