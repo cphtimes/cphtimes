@@ -18,9 +18,9 @@ class CreateIndividualTable extends Migration
             $table->timestamps();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('short_description');
-            $table->string('description');
-            $table->string('avatar_url');
+            $table->text('short_description');
+            $table->text('description');
+            $table->text('avatar_url');
         });
     }
 

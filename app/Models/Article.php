@@ -37,13 +37,16 @@ class Article extends Model
         'time_required',
         // 'video',
         // 'image',
+        'media_embed',
+        'media_provider',
+        'media_ratio'
     ];
 
     protected $attributes = [
         'is_accessible_for_free' => true,
         'is_family_friendly' => true,
-        'comment_count' => 0,
-        'copyright_holder' => 'Daniel Ran Lehmann',
+        // 'comment_count' => 0,
+        'copyright_holder' => 'The Copenhagen Gates',
         'copyright_notice' => 'This is a notice on the copyright.',
         'author' => 'Daniel Ran Lehmann',
         'creator' => 'Daniel Ran Lehmann',
@@ -59,7 +62,7 @@ class Article extends Model
     const UPDATED_AT = 'date_modified';
 
     protected $table = 'article';
-    protected $primaryKey = 'article_id';
+    protected $primaryKey = 'id';
     public $incrementing = true;
 
     protected $dates = ['date_created', 'date_modified', 'date_published'];

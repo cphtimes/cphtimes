@@ -2,5 +2,6 @@
     "/js/auth.js": "/js/auth.js",
     "/js/autocomplete.js": "/js/autocomplete.js",
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/css/style.css": "/css/style.css"
 }

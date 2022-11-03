@@ -16,6 +16,5 @@ mix.js('resources/js/auth.js', 'public/js');
 mix.js('resources/js/autocomplete.js', 'public/js');
 
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+    .postCss('resources/css/app.css', 'public/css')
+    .sass('resources/scss/style.scss', 'public/css/style.css')

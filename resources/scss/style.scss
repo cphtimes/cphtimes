@@ -1,0 +1,13 @@
+@import "./_variables.scss";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+@import "./_reboot.scss";
+@import "./_dark_mode.scss";
+
+@import "./components/_accordion.scss";
+@import "./components/_buttons.scss";
+@import "./components/_list_group.scss";
+@import "./components/_nav.scss";
+@import "./components/_navbar.scss";
+@import "./components/_card.scss";
+// include more components here as needed.

@@ -22,6 +22,6 @@ class Individual extends Model
     ];
 
     protected $table = 'individual';
-    protected $primaryKey = 'individual_id';
+    protected $primaryKey = 'id';
     public $incrementing = true;
 }
