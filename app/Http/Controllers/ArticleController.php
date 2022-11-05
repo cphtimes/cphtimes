@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 // use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cookie;
 
 class ArticleController extends Controller
 {
@@ -36,6 +37,7 @@ class ArticleController extends Controller
     */
     public function show($year, $month, $day, $section, $headline)
     {
+      $darkMode = Cookie::get('dark_mode') == 'true';
       $article = DB::table('article')
                         ->whereDate('date_published', sprintf("%s-%s-%s", $year, $month, $day))
                         ->where('article_section', strtolower($section))
@@ -66,6 +68,7 @@ class ArticleController extends Controller
         'elapsedTimeSinceDKLockdown' => $elapsedTimeSinceDKLockdown,
         'article' => $article,
         'world' => json_decode($world, true),
+        'darkMode' => $darkMode
       ]);
     }
 }

@@ -19381,34 +19381,6 @@ if (el !== null) {
   });
   observer.observe(el);
 }
-
-function setCookie(cName, cValue, expDays) {
-  var date = new Date();
-  date.setTime(date.getTime() + expDays * 24 * 60 * 60 * 1000);
-  var expires = "expires=" + date.toUTCString();
-  document.cookie = cName + "=" + cValue + "; " + expires + "; path=/";
-}
-
-function getCookie(cName) {
-  var name = cName + "=";
-  var cDecoded = decodeURIComponent(document.cookie); //to be careful
-
-  var cArr = cDecoded.split('; ');
-  var res;
-  cArr.forEach(function (val) {
-    if (val.indexOf(name) === 0) res = val.substring(name.length);
-  });
-  return res;
-}
-
-var dark_mode = getCookie('dark_mode');
-
-if (dark_mode !== undefined && dark_mode === 'true') {
-  document.documentElement.classList.add('dark-mode');
-  document.getElementById('header__sun').classList.add('d-none');
-  document.getElementById('header__moon').classList.remove('d-none');
-  setCookie('dark_mode', true, 30);
-}
 })();
 
 /******/ 	return __webpack_exports__;

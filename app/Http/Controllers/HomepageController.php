@@ -205,6 +205,7 @@ class HomepageController extends Controller
      */
     public function show(Request $request)
     {
+      $darkMode = Cookie::get('dark_mode') == 'true';
       $idToken = Cookie::get('session');
       $user = $this->getUserWithIdToken($idToken);
 
@@ -292,7 +293,8 @@ class HomepageController extends Controller
         'technology' => json_decode($technology, true),
         'media' => json_decode($media, true),
         'individuals' => json_decode($individuals, true),
-        'user' => $user
+        'user' => $user,
+        'darkMode' => $darkMode
       ]);
     }
 }
