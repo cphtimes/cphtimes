@@ -1,4 +1,14 @@
-/******/ (() => { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define("libraryName", [], factory);
+	else if(typeof exports === 'object')
+		exports["libraryName"] = factory();
+	else
+		root["libraryName"] = factory();
+})(this, function() {
+return /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./node_modules/algoliasearch/dist/algoliasearch.umd.js":
@@ -157,5 +167,7 @@ autocomplete({
 });
 })();
 
+/******/ 	return __webpack_exports__;
 /******/ })()
 ;
+});

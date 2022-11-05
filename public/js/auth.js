@@ -1,4 +1,14 @@
-/******/ (() => { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define("libraryName", [], factory);
+	else if(typeof exports === 'object')
+		exports["libraryName"] = factory();
+	else
+		root["libraryName"] = factory();
+})(this, function() {
+return /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./node_modules/@firebase/analytics/dist/esm/index.esm2017.js":
@@ -16115,7 +16125,7 @@ function __classPrivateFieldSet(receiver, state, value, kind, f) {
 /******/ 			return __webpack_require__.O(result);
 /******/ 		}
 /******/ 		
-/******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
+/******/ 		var chunkLoadingGlobal = this["webpackChunklibraryName"] = this["webpackChunklibraryName"] || [];
 /******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
@@ -16130,5 +16140,7 @@ function __classPrivateFieldSet(receiver, state, value, kind, f) {
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/style"], () => (__webpack_require__("./resources/css/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
+/******/ 	return __webpack_exports__;
 /******/ })()
 ;
+});

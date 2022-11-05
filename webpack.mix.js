@@ -11,10 +11,19 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/auth.js', 'public/js');
-
-mix.js('resources/js/autocomplete.js', 'public/js');
+mix.js('resources/js/auth.js', 'public/js')
+mix.js('resources/js/autocomplete.js', 'public/js')
+mix.js('resources/js/darkMode.js', 'public/js')
 
 mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css')
     .sass('resources/scss/style.scss', 'public/css/style.css')
+
+mix.webpackConfig({
+  output: {
+    library: 'libraryName',
+    libraryTarget: 'umd',
+    umdNamedDefine: true, // optional
+    globalObject: 'this' // optional
+  }
+})

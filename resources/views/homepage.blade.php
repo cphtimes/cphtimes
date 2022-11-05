@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark-mode">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,7 +19,7 @@
       <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 
-      <script src="/js/app.js" defer></script>
+      <script src="{{ asset('js/app.js') }}" defer></script>
       <link rel="stylesheet" href="/css/app.css">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic"/>
 
@@ -102,11 +102,11 @@
           width: 75px;
           height: 75px;
         }
-
+        /*
         .border-md-end {
             border-right: none !important;
         }
-
+        */
         @media (min-width: 768px) {
           #above-fold-list {
             border-right: none !important;
@@ -119,9 +119,11 @@
             width: 125px;
             height: 125px;
           }
+          /*
           .border-md-end {
               border-right: 1px solid #dee2e6 !important;
           }
+          */
         }
 
         @media (min-width: 992px) {
@@ -153,6 +155,26 @@
         .aa-DetachedSearchButtonPlaceholder {
           display: none !important;
         }
+        .cell-compact {
+          width: 100%;
+        }
+        .cell-flexible {
+          width: 100%;
+        }
+        @media (min-width: 768px) {
+          .cell-compact {
+            width: 33.33%;
+          }
+        }
+        @media (min-width: 992px) {
+          .cell-compact {
+            width: 16.66%;
+          }
+          .cell-flexible {
+            width: 50%;
+          }
+        }
+
       </style>
       <title>The Copenhagen Gates - Counter propaganda for the life movement</title>
     </head>
@@ -237,7 +259,7 @@
               <div style="width: 47px; height: 44px;" id="autocomplete"></div>
           </div>
           <div class="col-4 d-flex justify-content-center mb-2 px-0">
-            <small class="text-center">Counter propaganda for the life movement</small>
+            <small class="text-center">To life! To freedom through responsibility! Walk through the city gates becoming husbands and wifes.</small> <!-- Counter propaganda for the life movement -->
           </div>
 
           <div class="col-4 d-flex justify-content-end">
@@ -290,7 +312,18 @@
               </div>
             @else
             <div class="px-2">
-              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalSignin">Subscribe</button>
+              <button id="header__moon" onclick="window.toLightMode()" type="button" class="d-none btn btn-link text-dark btn-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon" viewBox="0 0 16 16">
+                  <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z"/>
+                </svg>
+              </button>
+
+              <button id="header__sun" onclick="window.toDarkMode()" type="button" class="btn btn-link text-dark btn-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brightness-high" viewBox="0 0 16 16">
+                  <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                </svg>
+              </button>
+              <!-- <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalSignin">Subscribe</button>-->
             </div>
             <div>
               <a type="button btn-primary" role="button" href="/subscribe" class="btn btn-primary btn-sm">Log in</a>
@@ -380,629 +413,457 @@
         </div>
       </nav>
 
-      <div style="height: 39px; top: -1px;" class="d-none d-lg-block nav-scroller py-2 mb-2 border-bottom border-dark border-2 container sticky-top">
-        <nav id="nav-scroller-sections" class="nav d-flex justify-content-between">
-          <small id="homepage-link"><a style="font-family: 'UnifrakturMaguntia', cursive; font-size: 1.2rem;" class="p-2" href="/">C</a></small>
-          <small><a class="p-2 link-secondary" href="/section/world">World</a></small>
-          <small><a class="p-2 link-secondary" href="/section/health">Health</a></small>
-          <small><a class="p-2 link-secondary" href="/section/media">Media</a></small>
-          <small><a class="p-2 link-secondary" href="/section/technology">Technology</a></small>
-          <small><a class="p-2 link-secondary" href="/section/culture">Culture</a></small>
-          <small><a class="p-2 link-secondary" href="/section/business">Business</a></small>
-          <small><a class="p-2 link-secondary" href="/section/politics">Politics</a></small>
-          <small><a class="p-2 link-secondary" href="/section/opinion">Opinion</a></small>
-          <small><a class="p-2 link-secondary" href="/section/science">Science</a></small>
-          <small><a class="p-2 link-secondary" href="/section/national">National</a></small>
-          <small><a class="p-2 link-secondary" href="/section/style">Style</a></small>
-          <small><a class="p-2 link-secondary" href="/section/travel">Travel</a></small>
-        </nav>
-      </div>
+      <main class="main">
+        <div style="height: 39px; top: -1px;" class="d-none d-lg-block nav-scroller py-2 mb-2 border-bottom border-dark border-2 container sticky-top bg-body">
+          <nav id="nav-scroller-sections" class="nav d-flex justify-content-between">
+            <small id="homepage-link">
+              <a style="font-family: 'UnifrakturMaguntia', cursive; font-size: 1.2rem;" class="p-2 text-dark" href="/">C</a>
+            </small>
+            @foreach (array("Messages", "Consciousness", "Health", "Theater", "Funny", "Snooze", "Deprogramming", "Univserse", "Science", "National", "More") as $section)
+              <small>
+                <a class="p-2 text-dark" href="/section/world">{{ $section }}</a>
+              </small>
+            @endforeach
+          </nav>
+        </div>
 
-      <main class="main pt-lg-4">
+        <div class="container pt-lg-4">
 
-      <div class="container">
+          <div class="row pb-3 pb-md-5 px-md-3 px-lg-0">
+            <ul class="col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-lg-4 border-end-0 border-end-lg">
+              <li class="list-group-item px-4 px-md-0 pb-md-4 pt-4 pt-lg-0 border-dashed">
+                  <div class="d-block d-md-none">
+                    <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($topArticles[0]->date_published)), date('m', strtotime($topArticles[0]->date_published)), date('d', strtotime($topArticles[0]->date_published)), $topArticles[0]->article_section, $topArticles[0]->headline_dashed)) }}">
+                      <article class="border-0">
+                        <img style="object-fit: cover;" width="100%" height="199px" src="{!! $topArticles[0]->thumbnail_url !!}" alt="..." class="">
+                        <div class="article-body card-body px-0 pb-0">
+                          <p><small class="text-uppercase text-dark"><b>{!! $topArticles[0]->article_section !!}</b></small></p>
+                          <h5 class="article-title card-title fw-light crop-text-2">{!! $topArticles[0]->headline !!}</h5>
+                          <p class="opacity-50 crop-text-4">{!! $topArticles[0]->abstract !!}</p>
+                        </div>
+                      </article>
+                    </a>
+                  </div>
 
-        <div class="row pb-3 pb-md-5 px-md-3 px-lg-0">
-          <ul id="above-fold-list" class="col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-lg-4">
-            <li class="list-group-item px-4 px-md-0 pb-md-4 pt-4 pt-lg-0">
-                <div class="d-block d-md-none">
-                  <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($topArticles[0]->date_published)), date('m', strtotime($topArticles[0]->date_published)), date('d', strtotime($topArticles[0]->date_published)), $topArticles[0]->article_section, $topArticles[0]->headline_dashed)) }}">
-                    <article class="border-0">
-                      <img style="object-fit: cover;" width="100%" height="199px" src="{!! $topArticles[0]->thumbnail_url !!}" alt="..." class="">
-                      <div class="article-body card-body px-0 pb-0">
-                        <p><small class="text-uppercase text-dark"><b>{!! $topArticles[0]->article_section !!}</b></small></p>
-                        <h5 class="article-title card-title fw-light crop-text-2">{!! $topArticles[0]->headline !!}</h5>
-                        <p class="opacity-50 crop-text-4">{!! $topArticles[0]->abstract !!}</p>
+                  <div class="d-none d-md-block">
+                    <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($topArticles[0]->date_published)), date('m', strtotime($topArticles[0]->date_published)), date('d', strtotime($topArticles[0]->date_published)), $topArticles[0]->article_section, $topArticles[0]->headline_dashed)) }}">
+                      <div class="article-body flex-grow-1 ms-0 pe-3">
+                        <p class="mb-2"><small class="text-uppercase"><b>{!! $topArticles[0]->article_section !!}</b></small></p>
+                        <h2 class="article-title fw-light crop-text-2">{!! $topArticles[0]->headline !!}</h2>
+                        <p class="opacity-50 crop-text-3">{!! $topArticles[0]->abstract !!}</p>
                       </div>
-                    </article>
-                  </a>
-                </div>
-
-                <div class="d-none d-md-block">
-                  <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($topArticles[0]->date_published)), date('m', strtotime($topArticles[0]->date_published)), date('d', strtotime($topArticles[0]->date_published)), $topArticles[0]->article_section, $topArticles[0]->headline_dashed)) }}">
-                    <div class="article-body flex-grow-1 ms-0 pe-3">
-                      <p class="mb-2"><small class="text-uppercase"><b>{!! $topArticles[0]->article_section !!}</b></small></p>
-                      <h2 class="article-title fw-light crop-text-2">{!! $topArticles[0]->headline !!}</h2>
-                      <p class="opacity-50 crop-text-3">{!! $topArticles[0]->abstract !!}</p>
-                    </div>
-                    <div class="flex-shrink-0">
-                      <img id="top-image" style="object-fit: cover;" width="250px" height="250px" src="{!! $topArticles[0]->thumbnail_url !!}" alt="...">
-                    </div>
-                  </a>
-                </div>
-            </li>
-            <li class="list-group-item px-4 px-md-0 py-4">
-              <a class="nav-link" class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($topArticles[1]->date_published)), date('m', strtotime($topArticles[1]->date_published)), date('d', strtotime($topArticles[1]->date_published)), $topArticles[1]->article_section, $topArticles[1]->headline_dashed)) }}">
-                <div class="article-body flex-grow-1 ms-0 pe-3">
-                  <p class="mb-2"><small class="text-uppercase"><b>{!! $topArticles[1]->article_section !!}</b></small></p>
-                  <div class="d-block d-md-none">
-                    <h6 class="article-title w-100 fw-light mb-0 crop-text-1">{!! $topArticles[1]->headline !!}</h6>
+                      <div class="flex-shrink-0">
+                        <img id="top-image" style="object-fit: cover;" width="250px" height="250px" src="{!! $topArticles[0]->thumbnail_url !!}" alt="...">
+                      </div>
+                    </a>
                   </div>
-                  <div class="d-none d-md-block">
-                    <h5 class="fw-light article-title crop-text-2">{!! $topArticles[1]->headline !!}</h5>
-                    <p class="opacity-50 crop-text-2">{!! $topArticles[1]->abstract !!}</p>
-                  </div>
-                </div>
-                <div class="flex-shrink-0">
-                  <img style="object-fit: cover;" id="latest-update-thumbnail" src="{!! $topArticles[1]->thumbnail_url !!}" alt="...">
-                </div>
-              </a>
-            </li>
-            <li class="list-group-item px-4 px-md-0 py-4">
-              <a class="nav-link" class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($topArticles[2]->date_published)), date('m', strtotime($topArticles[2]->date_published)), date('d', strtotime($topArticles[2]->date_published)), $topArticles[2]->article_section, $topArticles[2]->headline_dashed)) }}">
-                <div class="article-body flex-grow-1 ms-0 pe-3">
-                  <p class="mb-2"><small class="text-uppercase"><b>{!! $topArticles[2]->article_section !!}</b></small></p>
-                  <div class="d-block d-md-none">
-                    <h6 class="article-title w-100 fw-light mb-0 crop-text-2">{!! $topArticles[2]->headline !!}</h6>
-                  </div>
-                  <div class="d-none d-md-block">
-                    <h5 class="fw-light article-title crop-text-1">{!! $topArticles[2]->headline !!}</h5>
-                    <p class="opacity-50 crop-text-2">{!! $topArticles[2]->abstract !!}</p>
-                  </div>
-                </div>
-                <div class="flex-shrink-0">
-                  <img style="object-fit: cover;" id="latest-update-thumbnail" src="{!! $topArticles[2]->thumbnail_url !!}" alt="...">
-                </div>
-              </a>
-            </li>
-          </ul>
-
-          <!-- Mobile and Tablet -->
-          <ul style="overflow-y: hidden;" class="d-block d-lg-none py-3 col-12 px-lg-3 pe-0">
-            <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0">Latest updates</h5> <!-- border-top border-1 border-dark -->
-            @foreach (array_slice($latestUpdates,0,5) as $update)
-              <li class="list-group-item py-3 px-4 px-md-0">
-                <a class="nav-link" class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
-                  <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
-                    <div class="d-flex w-100 justify-content-between mb-2">
-                      <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
-                      <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes', 'seconds', 'days', 'weeks', 'months', 'years'], ['h', 'm', 's', 'd', 'w', 'm', 'y'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
-                    </div>
+              </li>
+              <li class="list-group-item px-4 px-md-0 py-4 border-dashed">
+                <a class="nav-link" class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($topArticles[1]->date_published)), date('m', strtotime($topArticles[1]->date_published)), date('d', strtotime($topArticles[1]->date_published)), $topArticles[1]->article_section, $topArticles[1]->headline_dashed)) }}">
+                  <div class="article-body flex-grow-1 ms-0 pe-3">
+                    <p class="mb-2"><small class="text-uppercase"><b>{!! $topArticles[1]->article_section !!}</b></small></p>
                     <div class="d-block d-md-none">
-                      <h6 class="article-title w-100 fw-light mb-0 crop-text-2">{{$update['headline']}}</h6>
+                      <h6 class="article-title w-100 fw-light mb-0 crop-text-1">{!! $topArticles[1]->headline !!}</h6>
                     </div>
                     <div class="d-none d-md-block">
-                      <h5 class="article-title w-100 fw-light crop-text-2">{{$update['headline']}}</h5>
-                      <p class="opacity-50 crop-text-2">{!! $update['abstract'] !!}</p>
+                      <h5 class="fw-light article-title crop-text-2">{!! $topArticles[1]->headline !!}</h5>
+                      <p class="opacity-50 crop-text-2">{!! $topArticles[1]->abstract !!}</p>
                     </div>
                   </div>
-                  <div class="flex-shrink-0 align-self-center">
-                    <img id="latest-update-thumbnail" style="object-fit: cover;" src="{!! $update['thumbnail_url'] !!}" alt="..."> <!-- width="75px" height="75px" -->
+                  <div class="flex-shrink-0">
+                    <img style="object-fit: cover;" id="latest-update-thumbnail" src="{!! $topArticles[1]->thumbnail_url !!}" alt="...">
                   </div>
                 </a>
               </li>
-            @endforeach
-            <li class="list-group-item px-0 py-3">
-              <div class="d-flex justify-content-center">
-                <a href="/latest" role="button" class="btn btn-link text-dark fw-bold">Read More</a>
-              </div>
-            </li>
-          </ul>
+              <li class="list-group-item px-4 px-md-0 py-4 border-dashed">
+                <a class="nav-link" class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($topArticles[2]->date_published)), date('m', strtotime($topArticles[2]->date_published)), date('d', strtotime($topArticles[2]->date_published)), $topArticles[2]->article_section, $topArticles[2]->headline_dashed)) }}">
+                  <div class="article-body flex-grow-1 ms-0 pe-3">
+                    <p class="mb-2"><small class="text-uppercase"><b>{!! $topArticles[2]->article_section !!}</b></small></p>
+                    <div class="d-block d-md-none">
+                      <h6 class="article-title w-100 fw-light mb-0 crop-text-2">{!! $topArticles[2]->headline !!}</h6>
+                    </div>
+                    <div class="d-none d-md-block">
+                      <h5 class="fw-light article-title crop-text-1">{!! $topArticles[2]->headline !!}</h5>
+                      <p class="opacity-50 crop-text-2">{!! $topArticles[2]->abstract !!}</p>
+                    </div>
+                  </div>
+                  <div class="flex-shrink-0">
+                    <img style="object-fit: cover;" id="latest-update-thumbnail" src="{!! $topArticles[2]->thumbnail_url !!}" alt="...">
+                  </div>
+                </a>
+              </li>
+            </ul>
+
+            <!-- Mobile and Tablet -->
+            <ul style="overflow-y: hidden;" class="d-block d-lg-none py-3 col-12 px-lg-3 pe-0">
+              <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0">Latest updates</h5> <!-- border-top border-1 border-dark -->
+              @foreach (array_slice($latestUpdates,0,5) as $update)
+                <li class="list-group-item py-3 px-4 px-md-0">
+                  <a class="nav-link" class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                    <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
+                      <div class="d-flex w-100 justify-content-between mb-2">
+                        <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
+                        <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes', 'seconds', 'days', 'weeks', 'months', 'years'], ['h', 'm', 's', 'd', 'w', 'm', 'y'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
+                      </div>
+                      <div class="d-block d-md-none">
+                        <h6 class="article-title w-100 fw-light mb-0 crop-text-2">{{$update['headline']}}</h6>
+                      </div>
+                      <div class="d-none d-md-block">
+                        <h5 class="article-title w-100 fw-light crop-text-2">{{$update['headline']}}</h5>
+                        <p class="opacity-50 crop-text-2">{!! $update['abstract'] !!}</p>
+                      </div>
+                    </div>
+                    <div class="flex-shrink-0 align-self-center">
+                      <img id="latest-update-thumbnail" style="object-fit: cover;" src="{!! $update['thumbnail_url'] !!}" alt="..."> <!-- width="75px" height="75px" -->
+                    </div>
+                  </a>
+                </li>
+              @endforeach
+              <li class="list-group-item px-0 py-3">
+                <div class="d-flex justify-content-center">
+                  <a href="/latest" role="button" class="btn btn-link text-dark fw-bold">Read More</a>
+                </div>
+              </li>
+            </ul>
+
+            <!-- Latest updates -->
+
+            <ul style="overflow-y: scroll; height:660px;" class="d-none d-lg-block  col-xl-3 col-lg-4 col-md-12 col-12 border-end px-4">
+              <h5 class="w-100 serif fst-italic">Latest updates</h5>
+              @foreach ($latestUpdates as $update)
+                <li class="list-group-item px-0 py-3 border-dashed">
+                  <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                    <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
+                      <div class="d-flex w-100 justify-content-between mb-2">
+                        <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
+                        <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes', 'seconds', 'days', 'weeks', 'months', 'years'], ['h', 'm', 's', 'd', 'w', 'm', 'y'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
+                      </div>
+                      <h6 class="article-title w-100 fw-light mb-0 crop-text-2">{{$update['headline']}}</h6>
+                    </div>
+                    <div class="flex-shrink-0 align-self-center">
+                      <img style="object-fit: cover;" width="75px" height="75px" src="{!! $update['thumbnail_url'] !!}" alt="...">
+                    </div>
+                  </a>
+                </li>
+              @endforeach
+            </ul>
+
+            <!-- Noteworthy individuals -->
+
+            <ul style="overflow-y: scroll; height:660px;" class="d-none d-lg-block  col-xl-3 col-lg-12 col-md-12 col-12 px-4">
+              <h5 class="w-100 serif fst-italic"><i>Noteworthy Individuals</i></h5>
+              @foreach ($individuals as $individual)
+              <li class="list-group-item py-4 px-0 border-dashed">
+                <article class="d-flex align-items-center">
+                  <div class="flex-shrink-0">
+                    <img style="object-fit: cover;" width="65px" height="65px" class="rounded-circle" src="{{ $individual['avatar_url'] }}" alt="...">
+                  </div>
+                  <div class="article-body flex-grow-1 ms-3">
+                    <h6 class="article-title mb-0">{!! $individual['first_name'] !!} {!! $individual['last_name'] !!}</h6>
+                    <small>{!! $individual['short_description'] !!}</small>
+                  </div>
+                </article>
+              </li>
+              @endforeach
+            </ul>
+          </div>
+
+          <!-- Grid of articles -->
+
+          @for ($i = 0; $i < floor(count($articles)/4); $i++)
+          <div>
+            <div class="d-flex flex-wrap pb-5">
+              @for ($j = 0; $j < 4; $j++)
+                @if (array(2, 0, 3, 1)[$i % 4] == $j)
+                    <div @class([
+                        'py-2 py-lg-0 px-2',
+                        sprintf('order-sm-%d', $j),
+                        sprintf('order-md-3', $j),
+                        sprintf('order-lg-%d', $j),
+                        'border-end-0 border-end-lg' => $j < 3,
+                        'cell-flexible'
+                    ])>
+                      <a class="" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[$j+($i*4)]->date_published)), date('m', strtotime($articles[$j+($i*4)]->date_published)), date('d', strtotime($articles[$j+($i*4)]->date_published)), $articles[$j+($i*4)]->article_section, $articles[$j+($i*4)]->headline_dashed)) }}">
+                        <article class="card border-0 px-2">
+                          <div class="d-block d-md-none ratio ratio-1x1">
+                            <img style="object-fit: cover;" src="{!! $articles[$j+($i*4)]->thumbnail_url !!}" alt="..." class="w-100">
+                          </div>
+                          <div class="d-none d-md-block ratio ratio-16x9">
+                            <img style="object-fit: cover;" src="{!! $articles[$j+($i*4)]->thumbnail_url !!}" alt="..." class="w-100">
+                          </div>
+                          <div class="article-body card-body px-0 pb-0">
+                            <p><small class="text-uppercase text-dark"><b>{!! $articles[$j+($i*4)]->article_section !!}</b></small></p>
+                            <h5 class="article-title card-title fw-light crop-text-2">{!! $articles[$j+($i*4)]->headline !!}</h5>
+                            <div class="d-block d-md-none">
+                              <p class="opacity-50 crop-text-4">{!! $articles[$j+($i*4)]->abstract !!}</p>
+                            </div>
+                          </div>
+                        </article>
+                      </a>
+                    </div>
+                  @else
+                    <div @class([
+                        'px-2',
+                        sprintf('order-sm-%d', $j),
+                        sprintf('order-md-%d', $j == 3 ? 2 : $j),
+                        sprintf('order-lg-%d', $j),
+                        'border-end-0 border-end-md' => $j < 3,
+                        'cell-compact'
+                    ])>
+                      <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[$j+($i*4)]->date_published)), date('m', strtotime($articles[$j+($i*4)]->date_published)), date('d', strtotime($articles[$j+($i*4)]->date_published)), $articles[$j+($i*4)]->article_section, $articles[$j+($i*4)]->headline_dashed)) }}">
+                        <article class="card border-0 px-2">
+                          <div class="ratio ratio-1x1">
+                            <img style="object-fit: cover;" src="{!! $articles[$j+($i*4)]->thumbnail_url !!}" alt="..." class="">
+                          </div>
+                          <div class="article-body card-body px-0 pb-0">
+                            <p><small class="text-uppercase text-dark"><b>{!! $articles[$j+($i*4)]->article_section !!}</b></small></p>
+                            <h5 class="article-title card-title fw-light crop-text-2">{!! $articles[$j+($i*4)]->headline !!}</h5>
+                            <p class="opacity-50 crop-text-4">{!! $articles[$j+($i*4)]->abstract !!}</p>
+                          </div>
+                        </article>
+                      </a>
+                    </div>
+                  @endif
+              @endfor
+            </div>
+          </div>
+          @endfor
+
+          <div class="row d-block d-lg-none px-0 px-md-3">
+            <ul style="overflow-y: hidden;" class=" py-3 col-12 pe-0">
+              <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0"><i>Noteworthy Individuals</i></h5>
+              @foreach (array_slice($individuals,0,5) as $individual)
+              <li class="list-group-item py-3 px-4 px-md-0">
+                <article class="d-flex align-items-center">
+                  <div class="flex-shrink-0">
+                    <img style="object-fit: cover;" width="65px" height="65px" class="rounded-circle" src="{{ $individual['avatar_url'] }}" alt="...">
+                  </div>
+                  <div class="article-body flex-grow-1 ms-3">
+                    <h6 class="article-title mb-0">{!! $individual['first_name'] !!} {!! $individual['last_name'] !!}</h6>
+                    <small>{!! $individual['short_description'] !!}</small>
+                  </div>
+                </article>
+              </li>
+              @endforeach
+              <li class="list-group-item py-3">
+                <div class="d-flex justify-content-center">
+                  <a href="/noteworthy" role="button" class="btn btn-link text-dark fw-bold">Read More</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Add one more mid row here. -->
+          <div class="row d-block d-lg-none px-0 px-md-3">
+            <ul style="overflow-y: hidden;" class="d-block d-lg-none  py-3 col-12 pe-0">
+              <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0">World</h5> <!-- border-top border-1 border-dark -->
+              @foreach (array_slice($world,0,5) as $update)
+                <li class="list-group-item py-3 px-4 px-md-0">
+                  <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                      <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
+                        <div class="d-flex w-100 justify-content-between mb-2">
+                          <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
+                          <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes', 'seconds', 'days', 'weeks', 'months', 'years'], ['h', 'm', 's', 'd', 'w', 'm', 'y'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
+                        </div>
+                        <div class="d-block d-md-none">
+                          <h6 class="article-title w-100 fw-light mb-0 crop-text-2">{{$update['headline']}}</h6>
+                        </div>
+                        <div class="d-none d-md-block">
+                          <h5 class="article-title w-100 fw-light crop-text-2">{{$update['headline']}}</h5>
+                          <p class="opacity-50 crop-text-2">{!! $update['abstract'] !!}</p>
+                        </div>
+                      </div>
+                      <div class="flex-shrink-0 align-self-center">
+                        <img id="latest-update-thumbnail" style="object-fit: cover;" src="{!! $update['thumbnail_url'] !!}" alt="..."> <!-- width="75px" height="75px" -->
+                      </div>
+                  </a>
+                </li>
+              @endforeach
+              <li class="list-group-item py-3">
+                <div class="d-flex justify-content-center">
+                  <a href="/latest" role="button" class="btn btn-link text-dark fw-bold">Read More</a>
+                </div>
+              </li>
+            </ul>
+
+            <ul style="overflow-y: hidden;" class="d-block d-lg-none  py-3 col-12 pe-0">
+              <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0">Health</h5> <!-- border-top border-1 border-dark -->
+              @foreach (array_slice($health,0,5) as $update)
+                <li class="list-group-item py-4 px-4 px-md-0">
+                  <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                      <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
+                        <div class="d-flex w-100 justify-content-between mb-2">
+                          <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
+                          <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes', 'seconds', 'days', 'weeks', 'months', 'years'], ['h', 'm', 's', 'd', 'w', 'm', 'y'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
+                        </div>
+                        <div class="d-block d-md-none">
+                          <h6 class="article-title w-100 fw-light mb-0 crop-text-2">{{$update['headline']}}</h6>
+                        </div>
+                        <div class="d-none d-md-block">
+                          <h5 class="article-title w-100 fw-light crop-text-2">{{$update['headline']}}</h5>
+                          <p class="opacity-50 crop-text-2">{!! $update['abstract'] !!}</p>
+                        </div>
+                      </div>
+                      <div class="flex-shrink-0 align-self-center">
+                        <img id="latest-update-thumbnail" style="object-fit: cover;" src="{!! $update['thumbnail_url'] !!}" alt="..."> <!-- width="75px" height="75px" -->
+                      </div>
+                  </a>
+                </li>
+              @endforeach
+              <li class="list-group-item py-3">
+                <div class="d-flex justify-content-center">
+                  <a href="/latest" role="button" class="btn btn-link text-dark fw-bold">Read More</a>
+                </div>
+              </li>
+            </ul>
+
+            <ul style="overflow-y: hidden;" class="d-block d-lg-none  py-3 col-12 pe-0">
+              <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0">Technology</h5> <!-- border-top border-1 border-dark -->
+              @foreach (array_slice($technology,0,5) as $update)
+                <li class="list-group-item py-3 px-4 px-md-0">
+                  <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                      <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
+                        <div class="d-flex w-100 justify-content-between mb-2">
+                          <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
+                          <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes', 'seconds', 'days', 'weeks', 'months', 'years'], ['h', 'm', 's', 'd', 'w', 'm', 'y'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
+                        </div>
+                        <div class="d-block d-md-none">
+                          <h6 class="article-title w-100 fw-light mb-0 crop-text-2">{{$update['headline']}}</h6>
+                        </div>
+                        <div class="d-none d-md-block">
+                          <h5 class="article-title w-100 fw-light crop-text-2">{{$update['headline']}}</h5>
+                          <p class="opacity-50 crop-text-2">{!! $update['abstract'] !!}</p>
+                        </div>
+                      </div>
+                      <div class="flex-shrink-0 align-self-center">
+                        <img id="latest-update-thumbnail" style="object-fit: cover;" src="{!! $update['thumbnail_url'] !!}" alt="..."> <!-- width="75px" height="75px" -->
+                      </div>
+                  </a>
+                </li>
+              @endforeach
+              <li class="list-group-item py-3">
+                <div class="d-flex justify-content-center">
+                  <a href="/latest" role="button" class="btn btn-link text-dark fw-bold">Read More</a>
+                </div>
+              </li>
+            </ul>
+
+            <ul style="overflow-y: hidden;" class="d-block d-lg-none  py-3 col-12 pe-0">
+              <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0">Media</h5> <!-- border-top border-1 border-dark -->
+              @foreach (array_slice($media,0,5) as $update)
+                <li class="list-group-item py-3 px-4 px-md-0">
+                  <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                    <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
+                      <div class="d-flex w-100 justify-content-between mb-2">
+                        <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
+                        <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes', 'seconds', 'days', 'weeks', 'months', 'years'], ['h', 'm', 's', 'd', 'w', 'm', 'y'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
+                      </div>
+                      <div class="d-block d-md-none">
+                        <h6 class="article-title w-100 fw-light mb-0 crop-text-2">{{$update['headline']}}</h6>
+                      </div>
+                      <div class="d-none d-md-block">
+                        <h5 class="article-title w-100 fw-light crop-text-2">{{$update['headline']}}</h5>
+                        <p class="opacity-50 crop-text-2">{!! $update['abstract'] !!}</p>
+                      </div>
+                    </div>
+                    <div class="flex-shrink-0 align-self-center">
+                      <img id="latest-update-thumbnail" style="object-fit: cover;" src="{!! $update['thumbnail_url'] !!}" alt="..."> <!-- width="75px" height="75px" -->
+                    </div>
+                  </a>
+                </li>
+              @endforeach
+              <li class="list-group-item py-3">
+                <div class="d-flex justify-content-center">
+                  <a href="/latest" role="button" class="btn btn-link text-dark fw-bold">Read More</a>
+                </div>
+              </li>
+            </ul>
+          </div>
 
           <!-- Desktop -->
-          <ul style="overflow-y: scroll; height:629px;" class="d-none d-lg-block  col-xl-3 col-lg-4 col-md-12 col-12 border-end px-4">
-            <h5 class="w-100 serif fst-italic">Latest updates</h5>
-            @foreach ($latestUpdates as $update)
-              <li class="list-group-item px-0 py-3">
-                <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
-                  <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
-                    <div class="d-flex w-100 justify-content-between mb-2">
-                      <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
-                      <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes', 'seconds', 'days', 'weeks', 'months', 'years'], ['h', 'm', 's', 'd', 'w', 'm', 'y'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
-                    </div>
-                    <h6 class="article-title w-100 fw-light mb-0 crop-text-2">{{$update['headline']}}</h6>
-                  </div>
-                  <div class="flex-shrink-0 align-self-center">
-                    <img style="object-fit: cover;" width="75px" height="75px" src="{!! $update['thumbnail_url'] !!}" alt="...">
-                  </div>
-                </a>
-              </li>
-            @endforeach
-          </ul>
-
-          <ul style="overflow-y: scroll; height:629px;" class="d-none d-lg-block  col-xl-3 col-lg-12 col-md-12 col-12 px-4">
-            <h5 class="w-100 serif fst-italic"><i>Noteworthy Individuals</i></h5>
-            @foreach ($individuals as $individual)
-            <li class="list-group-item py-4 px-0">
-              <article class="d-flex align-items-center">
-                <div class="flex-shrink-0">
-                  <img style="object-fit: cover;" width="65px" height="65px" class="rounded-circle" src="{{ $individual['avatar_url'] }}" alt="...">
-                </div>
-                <div class="article-body flex-grow-1 ms-3">
-                  <h6 class="article-title mb-0">{!! $individual['first_name'] !!} {!! $individual['last_name'] !!}</h6>
-                  <small>{!! $individual['short_description'] !!}</small>
-                </div>
-              </article>
-            </li>
-            @endforeach
-          </ul>
-        </div>
-
-        @if (count($articles) >= 4)
-        <!-- Tablet -->
-        <div class="d-block d-lg-none">
-          <div class="row pb-5"> <!-- d-block d-lg-none -->
-            <div class="col-12 col-md-4 border-md-end py-3 py-md-0 px-4 px-md-3">
-              <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[0]->date_published)), date('m', strtotime($articles[0]->date_published)), date('d', strtotime($articles[0]->date_published)), $articles[0]->article_section, $articles[0]->headline_dashed)) }}">
-                <article class="border-0">
-                  <img style="object-fit: cover;" width="100%" height="199px" src="{!! $articles[0]->thumbnail_url !!}" alt="..." class="">
-                  <div class="article-body card-body px-0 pb-0">
-                    <p><small class="text-uppercase text-dark"><b>{!! $articles[0]->article_section !!}</b></small></p>
-                    <h5 class="article-title card-title fw-light crop-text-2">{!! $articles[0]->headline !!}</h5>
-                    <p class="opacity-50 crop-text-4">{!! $articles[0]->abstract !!}</p>
-                  </div>
-                </article>
-              </a>
-            </div>
-
-            <div class="col-12 col-md-4 border-md-end py-3 py-md-0 px-4 px-md-3">
-              <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[1]->date_published)), date('m', strtotime($articles[1]->date_published)), date('d', strtotime($articles[1]->date_published)), $articles[1]->article_section, $articles[1]->headline_dashed)) }}">
-                <article class="border-0">
-                  <img style="object-fit: cover;" width="100%" height="199px" src="{!! $articles[1]->thumbnail_url !!}" alt="..." class="">
-                  <div class="article-body card-body px-0 pb-0">
-                    <p><small class="text-uppercase text-dark"><b>{!! $articles[1]->article_section !!}</b></small></p>
-                    <h5 class="article-title card-title fw-light crop-text-2">{!! $articles[1]->headline !!}</h5>
-                    <p class="opacity-50 crop-text-4">{!! $articles[1]->abstract !!}</p>
-                  </div>
-                </article>
-              </a>
-            </div>
-
-            <div class="col-12 col-md-4 py-3 py-md-0 px-4 px-md-3">
-              <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[2]->date_published)), date('m', strtotime($articles[2]->date_published)), date('d', strtotime($articles[2]->date_published)), $articles[2]->article_section, $articles[2]->headline_dashed)) }}">
-                <article class="border-0">
-                  <img style="object-fit: cover;" width="100%" height="199px" src="{!! $articles[2]->thumbnail_url !!}" alt="..." class="">
-                  <div class="article-body card-body px-0 pb-0">
-                    <p><small class="text-uppercase text-dark"><b>{!! $articles[2]->article_section !!}</b></small></p>
-                    <h5 class="article-title card-title fw-light crop-text-2">{!! $articles[2]->headline !!}</h5>
-                    <p class="opacity-50 crop-text-4">{!! $articles[2]->abstract !!}</p>
-                  </div>
-                </article>
-              </a>
-            </div>
-
-            <div class="col-12 col-md-12 mt-md-4 py-3 py-md-0 px-4 px-md-3">
-              <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[3]->date_published)), date('m', strtotime($articles[3]->date_published)), date('d', strtotime($articles[3]->date_published)), $articles[3]->article_section, $articles[3]->headline_dashed)) }}">
-                <article class="border-0">
-                  <img style="object-fit: cover;" width="100%" height="319px" src="{!! $articles[3]->thumbnail_url !!}" alt="..." class="">
-                  <div class="article-body card-body px-0 pb-0">
-                    <p><small class="text-uppercase text-dark"><b>{!! $articles[3]->article_section !!}</b></small></p>
-                    <h5 class="article-title card-title fw-light crop-text-2">{!! $articles[3]->headline !!}</h5>
-                    <p class="opacity-50 crop-text-3">{!! $articles[3]->abstract !!}</p>
-                  </div>
-                </article>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Desktop -->
-        <div class="d-none d-lg-block">
-          <div class="row pb-5">
-          <div class="col border-end">
-            <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[0]->date_published)), date('m', strtotime($articles[0]->date_published)), date('d', strtotime($articles[0]->date_published)), $articles[0]->article_section, $articles[0]->headline_dashed)) }}">
-              <article class="card border-0 px-2">
-                <img style="object-fit: cover;" width="190px" height="190px" src="{!! $articles[0]->thumbnail_url !!}" alt="..." class="">
-                <div class="article-body card-body px-0 pb-0">
-                  <p><small class="text-uppercase text-dark"><b>{!! $articles[0]->article_section !!}</b></small></p>
-                  <h5 class="article-title card-title fw-light crop-text-2">{!! $articles[0]->headline !!}</h5>
-                  <p class="opacity-50 crop-text-4">{!! $articles[0]->abstract !!}</p>
-                </div>
-              </article>
-            </a>
-          </div>
-
-          <div class="col border-end">
-            <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[1]->date_published)), date('m', strtotime($articles[1]->date_published)), date('d', strtotime($articles[1]->date_published)), $articles[1]->article_section, $articles[1]->headline_dashed)) }}">
-              <article class="card border-0 px-2">
-                <img style="object-fit: cover;" width="190px" height="190px" src="{!! $articles[1]->thumbnail_url !!}" alt="..." class="">
-                <div class="article-body card-body px-0 pb-0">
-                  <p><small class="text-uppercase text-dark"><b>{!! $articles[1]->article_section !!}</b></small></p>
-                  <h5 class="article-title card-title fw-light crop-text-2">{!! $articles[1]->headline !!}</h5>
-                  <p class="opacity-50 crop-text-4">{!! $articles[1]->abstract !!}</p>
-                </div>
-              </article>
-            </a>
-          </div>
-
-          <div class="col border-end">
-            <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[2]->date_published)), date('m', strtotime($articles[2]->date_published)), date('d', strtotime($articles[2]->date_published)), $articles[2]->article_section, $articles[2]->headline_dashed)) }}">
-              <article class="card border-0 px-2">
-                <img style="object-fit: cover;" width="600px" height="330px" src="{!! $articles[2]->thumbnail_url !!}" alt="..." class="">
-                <div class="article-body card-body px-0 pb-0">
-                  <p><small class="text-uppercase text-dark"><b>{!! $articles[2]->article_section !!}</b></small></p>
-                  <h5 class="article-title card-title fw-light crop-text-1">{!! $articles[2]->headline !!}</h5>
-                </div>
-              </article>
-            </a>
-          </div>
-
-          <div class="col pe-0">
-            <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[3]->date_published)), date('m', strtotime($articles[3]->date_published)), date('d', strtotime($articles[3]->date_published)), $articles[3]->article_section, $articles[3]->headline_dashed)) }}">
-              <article class="card border-0 px-2">
-                <img style="object-fit: cover;" width="100%" height="190px" src="{!! $articles[3]->thumbnail_url !!}" alt="..." class="">
-                <div class="article-body card-body px-0 pb-0">
-                  <p><small class="text-uppercase text-dark"><b>{!! $articles[3]->article_section !!}</b></small></p>
-                  <h5 class="article-title card-title fw-light crop-text-2">{!! $articles[3]->headline !!}</h5>
-                  <p class="opacity-50 crop-text-4">{!! $articles[3]->abstract !!}</p>
-                </div>
-              </article>
-            </a>
-          </div>
-        </div>
-        </div>
-        @endif
-
-        @if (count($articles) >= 8)
-        <!-- Tablet -->
-        <div class="d-block d-lg-none">
-          <div class="row pb-5">
-            <div class="col-12 col-md-4 border-md-end py-3 py-md-0 px-4 px-md-3">
-              <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[4]->date_published)), date('m', strtotime($articles[4]->date_published)), date('d', strtotime($articles[4]->date_published)), $articles[4]->article_section, $articles[4]->headline_dashed)) }}">
-                <article class="border-0">
-                  <img style="object-fit: cover;" width="100%" height="199px" src="{!! $articles[4]->thumbnail_url !!}" alt="..." class="">
-                  <div class="article-body card-body px-0 pb-0">
-                    <p><small class="text-uppercase text-dark"><b>{!! $articles[4]->article_section !!}</b></small></p>
-                    <h5 class="article-title card-title fw-light crop-text-2">{!! $articles[4]->headline !!}</h5>
-                    <p class="opacity-50 crop-text-4">{!! $articles[5]->abstract !!}</p>
-                  </div>
-                </article>
-              </a>
-            </div>
-
-            <div class="col-12 col-md-4 border-md-end py-3 py-md-0 px-4 px-md-3">
-              <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[5]->date_published)), date('m', strtotime($articles[5]->date_published)), date('d', strtotime($articles[5]->date_published)), $articles[5]->article_section, $articles[5]->headline_dashed)) }}">
-                <article class="border-0">
-                  <img style="object-fit: cover;" width="100%" height="199px" src="{!! $articles[5]->thumbnail_url !!}" alt="..." class="">
-                  <div class="article-body card-body px-0 pb-0">
-                    <p><small class="text-uppercase text-dark"><b>{!! $articles[5]->article_section !!}</b></small></p>
-                    <h5 class="article-title card-title fw-light crop-text-2">{!! $articles[5]->headline !!}</h5>
-                    <p class="opacity-50 crop-text-4">{!! $articles[5]->abstract !!}</p>
-                  </div>
-                </article>
-              </a>
-            </div>
-
-            <div class="col-12 col-md-4 py-3 py-md-0 px-4 px-md-3">
-              <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[6]->date_published)), date('m', strtotime($articles[6]->date_published)), date('d', strtotime($articles[6]->date_published)), $articles[6]->article_section, $articles[6]->headline_dashed)) }}">
-                <article class="border-0">
-                  <img style="object-fit: cover;" width="100%" height="199px" src="{!! $articles[6]->thumbnail_url !!}" alt="..." class="">
-                  <div class="article-body card-body px-0 pb-0">
-                    <p><small class="text-uppercase text-dark"><b>{!! $articles[6]->article_section !!}</b></small></p>
-                    <h5 class="article-title card-title fw-light crop-text-2">{!! $articles[6]->headline !!}</h5>
-                    <p class="opacity-50 crop-text-4">{!! $articles[6]->abstract !!}</p>
-                  </div>
-                </article>
-              </a>
-            </div>
-
-            <div class="col-12 col-md-12 mt-md-4 py-3 py-md-0 px-4 px-md-3">
-              <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[7]->date_published)), date('m', strtotime($articles[7]->date_published)), date('d', strtotime($articles[7]->date_published)), $articles[7]->article_section, $articles[7]->headline_dashed)) }}">
-                <article class="border-0">
-                  <img style="object-fit: cover;" width="100%" height="319px" src="{!! $articles[7]->thumbnail_url !!}" alt="..." class="">
-                  <div class="article-body card-body px-0 pb-0">
-                    <p><small class="text-uppercase text-dark"><b>{!! $articles[7]->article_section !!}</b></small></p>
-                    <h5 class="article-title card-title fw-light crop-text-2">{!! $articles[7]->headline !!}</h5>
-                    <p class="opacity-50 crop-text-4">{!! $articles[7]->abstract !!}</p>
-                  </div>
-                </article>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- deskop :: d-none d-lg-block -->
-        <div class="">
-          <div class="row pb-5">
-            <div class="col border-end">
-              <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[4]->date_published)), date('m', strtotime($articles[4]->date_published)), date('d', strtotime($articles[4]->date_published)), $articles[4]->article_section, $articles[4]->headline_dashed)) }}">
-                <article class="card border-0 px-2">
-                  <img style="object-fit: cover;" width="600px" height="330px" src="{!! $articles[4]->thumbnail_url !!}" alt="..." class="">
-                  <div class="article-body card-body px-0 pb-0">
-                    <p><small class="text-uppercase text-dark"><b>{!! $articles[4]->article_section !!}</b></small></p>
-                    <h5 class="article-title card-title fw-light crop-text-1">{!! $articles[4]->headline !!}</h5>
-                  </div>
-                </article>
-              </a>
-            </div>
-
-            <div class="col border-end">
-              <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[5]->date_published)), date('m', strtotime($articles[5]->date_published)), date('d', strtotime($articles[5]->date_published)), $articles[5]->article_section, $articles[5]->headline_dashed)) }}">
-                <article class="card border-0 px-2">
-                  <img style="object-fit: cover;" width="190px" height="190px" src="{!! $articles[5]->thumbnail_url !!}" alt="..." class="">
-                  <div class="article-body card-body px-0 pb-0">
-                    <p><small class="text-uppercase text-dark"><b>{!! $articles[5]->article_section !!}</b></small></p>
-                    <h5 class="article-title card-title fw-light crop-text-2">{!! $articles[5]->headline !!}</h5>
-                    <p class="opacity-50 crop-text-4">{!! $articles[5]->abstract !!}</p>
-                  </div>
-                </article>
-              </a>
-            </div>
-
-            <div class="col border-end">
-              <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[6]->date_published)), date('m', strtotime($articles[6]->date_published)), date('d', strtotime($articles[6]->date_published)), $articles[6]->article_section, $articles[6]->headline_dashed)) }}">
-                <article class="card border-0 px-2">
-                  <img style="object-fit: cover;" width="100%" height="190px" src="{!! $articles[6]->thumbnail_url !!}" alt="..." class="">
-                  <div class="article-body card-body px-0 pb-0">
-                    <p><small class="text-uppercase text-dark"><b>{!! $articles[6]->article_section !!}</b></small></p>
-                    <h5 class="article-title card-title fw-light crop-text-2">{!! $articles[6]->headline !!}</h5>
-                    <p class="opacity-50 crop-text-4">{!! $articles[6]->abstract !!}</p>
-                  </div>
-                </article>
-              </a>
-            </div>
-
-            <div class="col pe-0">
-              <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[7]->date_published)), date('m', strtotime($articles[7]->date_published)), date('d', strtotime($articles[7]->date_published)), $articles[7]->article_section, $articles[7]->headline_dashed)) }}">
-                <article class="card border-0 px-2">
-                  <img style="object-fit: cover;" width="190px" height="190px" src="{!! $articles[7]->thumbnail_url !!}" alt="..." class="">
-                  <div class="article-body card-body px-0 pb-0">
-                    <p><small class="text-uppercase text-dark"><b>{!! $articles[7]->article_section !!}</b></small></p>
-                    <h5 class="article-title card-title fw-light crop-text-2">{!! $articles[7]->headline !!}</h5>
-                    <p class="opacity-50 crop-text-4">{!! $articles[7]->abstract !!}</p>
-                  </div>
-                </article>
-              </a>
-            </div>
-          </div>
-        </div>
-        @endif
-
-        <div class="row d-block d-lg-none px-0 px-md-3">
-          <ul style="overflow-y: hidden;" class=" py-3 col-12 pe-0">
-            <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0"><i>Noteworthy Individuals</i></h5>
-            @foreach (array_slice($individuals,0,5) as $individual)
-            <li class="list-group-item py-3 px-4 px-md-0">
-              <article class="d-flex align-items-center">
-                <div class="flex-shrink-0">
-                  <img style="object-fit: cover;" width="65px" height="65px" class="rounded-circle" src="{{ $individual['avatar_url'] }}" alt="...">
-                </div>
-                <div class="article-body flex-grow-1 ms-3">
-                  <h6 class="article-title mb-0">{!! $individual['first_name'] !!} {!! $individual['last_name'] !!}</h6>
-                  <small>{!! $individual['short_description'] !!}</small>
-                </div>
-              </article>
-            </li>
-            @endforeach
-            <li class="list-group-item py-3">
-              <div class="d-flex justify-content-center">
-                <a href="/noteworthy" role="button" class="btn btn-link text-dark fw-bold">Read More</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Add one more mid row here. -->
-        <div class="row d-block d-lg-none px-0 px-md-3">
-          <ul style="overflow-y: hidden;" class="d-block d-lg-none  py-3 col-12 pe-0">
-            <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0">World</h5> <!-- border-top border-1 border-dark -->
-            @foreach (array_slice($world,0,5) as $update)
-              <li class="list-group-item py-3 px-4 px-md-0">
-                <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
-                    <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
-                      <div class="d-flex w-100 justify-content-between mb-2">
-                        <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
-                        <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes', 'seconds', 'days', 'weeks', 'months', 'years'], ['h', 'm', 's', 'd', 'w', 'm', 'y'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
-                      </div>
-                      <div class="d-block d-md-none">
+          <div class="d-none d-lg-block">
+            <div class="row">
+              <ul style="overflow-y: scroll; height:660px;" class=" col-xl-3 col-lg-4 col-md-12 col-12 border-end px-4">
+                <h5 class="serif fst-italic">World</h5>
+                @foreach ($world as $update)
+                  <li class="list-group-item px-0 py-3 border-dashed">
+                    <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                      <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
+                        <div class="d-flex w-100 justify-content-between mb-2">
+                          <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
+                          <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes'], ['h', 'mins'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
+                        </div>
                         <h6 class="article-title w-100 fw-light mb-0 crop-text-2">{{$update['headline']}}</h6>
                       </div>
-                      <div class="d-none d-md-block">
-                        <h5 class="article-title w-100 fw-light crop-text-2">{{$update['headline']}}</h5>
-                        <p class="opacity-50 crop-text-2">{!! $update['abstract'] !!}</p>
+                      <div class="flex-shrink-0 align-self-center">
+                        <img style="object-fit: cover;" width="75px" height="75px" src="{!! $update['thumbnail_url'] !!}" alt="...">
                       </div>
-                    </div>
-                    <div class="flex-shrink-0 align-self-center">
-                      <img id="latest-update-thumbnail" style="object-fit: cover;" src="{!! $update['thumbnail_url'] !!}" alt="..."> <!-- width="75px" height="75px" -->
-                    </div>
-                </a>
-              </li>
-            @endforeach
-            <li class="list-group-item py-3">
-              <div class="d-flex justify-content-center">
-                <a href="/latest" role="button" class="btn btn-link text-dark fw-bold">Read More</a>
-              </div>
-            </li>
-          </ul>
-
-          <ul style="overflow-y: hidden;" class="d-block d-lg-none  py-3 col-12 pe-0">
-            <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0">Health</h5> <!-- border-top border-1 border-dark -->
-            @foreach (array_slice($health,0,5) as $update)
-              <li class="list-group-item py-4 px-4 px-md-0">
-                <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
-                    <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
-                      <div class="d-flex w-100 justify-content-between mb-2">
-                        <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
-                        <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes', 'seconds', 'days', 'weeks', 'months', 'years'], ['h', 'm', 's', 'd', 'w', 'm', 'y'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
-                      </div>
-                      <div class="d-block d-md-none">
+                    </a>
+                  </li>
+                @endforeach
+              </ul>
+              <ul style="overflow-y: scroll; height:660px;" class=" col-xl-3 col-lg-4 col-md-12 col-12 border-end px-4">
+                <h5 class="serif fst-italic">Health</h5>
+                @foreach ($health as $update)
+                  <li class="list-group-item px-0 py-3 border-dashed">
+                    <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                      <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
+                        <div class="d-flex w-100 justify-content-between mb-2">
+                          <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
+                          <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes'], ['h', 'mins'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
+                        </div>
                         <h6 class="article-title w-100 fw-light mb-0 crop-text-2">{{$update['headline']}}</h6>
                       </div>
-                      <div class="d-none d-md-block">
-                        <h5 class="article-title w-100 fw-light crop-text-2">{{$update['headline']}}</h5>
-                        <p class="opacity-50 crop-text-2">{!! $update['abstract'] !!}</p>
+                      <div class="flex-shrink-0 align-self-center">
+                        <img style="object-fit: cover;" width="75px" height="75px" src="{!! $update['thumbnail_url'] !!}" alt="...">
                       </div>
-                    </div>
-                    <div class="flex-shrink-0 align-self-center">
-                      <img id="latest-update-thumbnail" style="object-fit: cover;" src="{!! $update['thumbnail_url'] !!}" alt="..."> <!-- width="75px" height="75px" -->
-                    </div>
-                </a>
-              </li>
-            @endforeach
-            <li class="list-group-item py-3">
-              <div class="d-flex justify-content-center">
-                <a href="/latest" role="button" class="btn btn-link text-dark fw-bold">Read More</a>
-              </div>
-            </li>
-          </ul>
-
-          <ul style="overflow-y: hidden;" class="d-block d-lg-none  py-3 col-12 pe-0">
-            <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0">Technology</h5> <!-- border-top border-1 border-dark -->
-            @foreach (array_slice($technology,0,5) as $update)
-              <li class="list-group-item py-3 px-4 px-md-0">
-                <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
-                    <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
-                      <div class="d-flex w-100 justify-content-between mb-2">
-                        <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
-                        <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes', 'seconds', 'days', 'weeks', 'months', 'years'], ['h', 'm', 's', 'd', 'w', 'm', 'y'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
-                      </div>
-                      <div class="d-block d-md-none">
+                    </a>
+                  </li>
+                @endforeach
+              </ul>
+              <ul style="overflow-y: scroll; height:660px;" class=" col-xl-3 col-lg-4 border-end px-4">
+                <h5 class="serif fst-italic">Technology</h5>
+                @foreach ($technology as $update)
+                  <li class="list-group-item px-0 py-3 border-dashed">
+                    <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                      <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
+                        <div class="d-flex w-100 justify-content-between mb-2">
+                          <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
+                          <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes'], ['h', 'mins'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
+                        </div>
                         <h6 class="article-title w-100 fw-light mb-0 crop-text-2">{{$update['headline']}}</h6>
                       </div>
-                      <div class="d-none d-md-block">
-                        <h5 class="article-title w-100 fw-light crop-text-2">{{$update['headline']}}</h5>
-                        <p class="opacity-50 crop-text-2">{!! $update['abstract'] !!}</p>
+                      <div class="flex-shrink-0 align-self-center">
+                        <img style="object-fit: cover;" width="75px" height="75px" src="{!! $update['thumbnail_url'] !!}" alt="...">
                       </div>
-                    </div>
-                    <div class="flex-shrink-0 align-self-center">
-                      <img id="latest-update-thumbnail" style="object-fit: cover;" src="{!! $update['thumbnail_url'] !!}" alt="..."> <!-- width="75px" height="75px" -->
-                    </div>
-                </a>
-              </li>
-            @endforeach
-            <li class="list-group-item py-3">
-              <div class="d-flex justify-content-center">
-                <a href="/latest" role="button" class="btn btn-link text-dark fw-bold">Read More</a>
-              </div>
-            </li>
-          </ul>
-
-          <ul style="overflow-y: hidden;" class="d-block d-lg-none  py-3 col-12 pe-0">
-            <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0">Media</h5> <!-- border-top border-1 border-dark -->
-            @foreach (array_slice($media,0,5) as $update)
-              <li class="list-group-item py-3 px-4 px-md-0">
-                <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
-                  <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
-                    <div class="d-flex w-100 justify-content-between mb-2">
-                      <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
-                      <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes', 'seconds', 'days', 'weeks', 'months', 'years'], ['h', 'm', 's', 'd', 'w', 'm', 'y'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
-                    </div>
-                    <div class="d-block d-md-none">
-                      <h6 class="article-title w-100 fw-light mb-0 crop-text-2">{{$update['headline']}}</h6>
-                    </div>
-                    <div class="d-none d-md-block">
-                      <h5 class="article-title w-100 fw-light crop-text-2">{{$update['headline']}}</h5>
-                      <p class="opacity-50 crop-text-2">{!! $update['abstract'] !!}</p>
-                    </div>
-                  </div>
-                  <div class="flex-shrink-0 align-self-center">
-                    <img id="latest-update-thumbnail" style="object-fit: cover;" src="{!! $update['thumbnail_url'] !!}" alt="..."> <!-- width="75px" height="75px" -->
-                  </div>
-                </a>
-              </li>
-            @endforeach
-            <li class="list-group-item py-3">
-              <div class="d-flex justify-content-center">
-                <a href="/latest" role="button" class="btn btn-link text-dark fw-bold">Read More</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Desktop -->
-        <div class="d-none d-lg-block">
-          <div class="row">
-            <ul style="overflow-y: scroll; height:629px;" class=" col-xl-3 col-lg-4 col-md-12 col-12 border-end px-4">
-              <h5 class="serif fst-italic">World</h5>
-              @foreach ($world as $update)
-                <li class="list-group-item px-0 py-3">
-                  <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
-                    <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
-                      <div class="d-flex w-100 justify-content-between mb-2">
-                        <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
-                        <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes'], ['h', 'mins'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
+                    </a>
+                  </li>
+                @endforeach
+              </ul>
+              <ul style="overflow-y: scroll; height:660px;" class=" col-xl-3 d-xl-block d-lg-none px-4">
+                <h5 class="serif fst-italic">Media</h5>
+                @foreach ($media as $update)
+                  <li class="list-group-item px-0 py-3 border-dashed">
+                    <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                      <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
+                        <div class="d-flex w-100 justify-content-between mb-2">
+                          <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
+                          <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes'], ['h', 'mins'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
+                        </div>
+                        <h6 class="article-title w-100 fw-light mb-0 crop-text-2">{{$update['headline']}}</h6>
                       </div>
-                      <h6 class="article-title w-100 fw-light mb-0 crop-text-2">{{$update['headline']}}</h6>
-                    </div>
-                    <div class="flex-shrink-0 align-self-center">
-                      <img style="object-fit: cover;" width="75px" height="75px" src="{!! $update['thumbnail_url'] !!}" alt="...">
-                    </div>
-                  </a>
-                </li>
-              @endforeach
-            </ul>
-            <ul style="overflow-y: scroll; height:629px;" class=" col-xl-3 col-lg-4 col-md-12 col-12 border-end px-4">
-              <h5 class="serif fst-italic">Health</h5>
-              @foreach ($health as $update)
-                <li class="list-group-item px-0 py-3">
-                  <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
-                    <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
-                      <div class="d-flex w-100 justify-content-between mb-2">
-                        <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
-                        <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes'], ['h', 'mins'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
+                      <div class="flex-shrink-0 align-self-center">
+                        <img style="object-fit: cover;" width="75px" height="75px" src="{!! $update['thumbnail_url'] !!}" alt="...">
                       </div>
-                      <h6 class="article-title w-100 fw-light mb-0 crop-text-2">{{$update['headline']}}</h6>
-                    </div>
-                    <div class="flex-shrink-0 align-self-center">
-                      <img style="object-fit: cover;" width="75px" height="75px" src="{!! $update['thumbnail_url'] !!}" alt="...">
-                    </div>
-                  </a>
-                </li>
-              @endforeach
-            </ul>
-            <ul style="overflow-y: scroll; height:629px;" class=" col-xl-3 col-lg-4 border-end px-4">
-              <h5 class="serif fst-italic">Technology</h5>
-              @foreach ($technology as $update)
-                <li class="list-group-item px-0 py-3">
-                  <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
-                    <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
-                      <div class="d-flex w-100 justify-content-between mb-2">
-                        <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
-                        <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes'], ['h', 'mins'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
-                      </div>
-                      <h6 class="article-title w-100 fw-light mb-0 crop-text-2">{{$update['headline']}}</h6>
-                    </div>
-                    <div class="flex-shrink-0 align-self-center">
-                      <img style="object-fit: cover;" width="75px" height="75px" src="{!! $update['thumbnail_url'] !!}" alt="...">
-                    </div>
-                  </a>
-                </li>
-              @endforeach
-            </ul>
-            <ul style="overflow-y: scroll; height:629px;" class=" col-xl-3 d-xl-block d-lg-none px-4">
-              <h5 class="serif fst-italic">Media</h5>
-              @foreach ($media as $update)
-                <li class="list-group-item px-0 py-3">
-                  <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
-                    <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
-                      <div class="d-flex w-100 justify-content-between mb-2">
-                        <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
-                        <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes'], ['h', 'mins'], \Carbon\Carbon::parse($update['date_published'])->diffForHumans(null, true))) }}</small>
-                      </div>
-                      <h6 class="article-title w-100 fw-light mb-0 crop-text-2">{{$update['headline']}}</h6>
-                    </div>
-                    <div class="flex-shrink-0 align-self-center">
-                      <img style="object-fit: cover;" width="75px" height="75px" src="{!! $update['thumbnail_url'] !!}" alt="...">
-                    </div>
-                  </a>
-                </li>
-              @endforeach
-            </ul>
+                    </a>
+                  </li>
+                @endforeach
+              </ul>
+            </div>
           </div>
-        </div>
 
-      </div>
-      </div>
+        </div>
+        </div>
     </main>
 
     <div class="pt-4 mt-md-5 pt-md-4 border-top border-2 container">
@@ -1138,23 +999,9 @@
         </div>
       </footer>
     </div>
-
       <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
       <script src="/js/autocomplete.js" defer></script>
-
-      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-      <script src="/js/auth.js"></script> -->
-      <!-- Optional JavaScript; choose one of the two! -->
-
-      <!-- Option 1: Bootstrap Bundle with Popper -->
-      <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script> -->
-      <!-- JavaScript Bundle with Popper -->
+      <script src="/js/darkMode.js" defer></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-      <!-- Option 2: Separate Popper and Bootstrap JS -->
-      <!--
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
-      -->
     </body>
 </html>

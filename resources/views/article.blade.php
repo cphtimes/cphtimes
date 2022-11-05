@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark-mode">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,6 +26,8 @@
 
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic"/>
+
+      <script src="{{ asset('js/app.js') }}"></script>
 
       <style>
         .serif {
@@ -489,7 +491,7 @@
               <h5 class="pt-xl-1 mb-2 serif fst-italic">Trending articles:</h5>
               <ul class="list-unstyled mb-0">
                 @foreach (array_slice($world,0,5) as $update)
-                  <li class="list-group-item py-3 px-4 px-md-0 border-0">
+                  <li class="list-group-item py-3 px-4 px-md-0 border-0 border-dashed">
                     <a class="nav-link w-100" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
                       <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
                         <div class="d-flex w-100 justify-content-between mb-2">
@@ -802,6 +804,7 @@
       <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
 
       <script src="/js/autocomplete.js" defer></script>
+      <script src="/js/darkMode.js" defer></script>
 
       <script>
         const swiper = new Swiper('.swiper', {

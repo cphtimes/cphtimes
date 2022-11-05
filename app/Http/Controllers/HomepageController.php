@@ -205,7 +205,6 @@ class HomepageController extends Controller
      */
     public function show(Request $request)
     {
-
       $idToken = Cookie::get('session');
       $user = $this->getUserWithIdToken($idToken);
 
@@ -241,7 +240,7 @@ class HomepageController extends Controller
       $articles = DB::table('article')
                           ->orderBy('date_published', 'desc')
                           ->offset(3)
-                          ->limit(12)
+                          ->limit(42)
                           ->get();
 
       $world = DB::table('article')
@@ -293,7 +292,7 @@ class HomepageController extends Controller
         'technology' => json_decode($technology, true),
         'media' => json_decode($media, true),
         'individuals' => json_decode($individuals, true),
-        'user' => $user,
+        'user' => $user
       ]);
     }
 }
