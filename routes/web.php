@@ -41,3 +41,9 @@ Route::get('/{year}/{month}/{day}/{section}/{headline}', [ArticleController::cla
 Route::get('/subscribe', [SubscriptionController::class, 'show']);
 
 Route::get('/sign-up', [SignUpController::class, 'show']);
+
+Route::get('/healthy', function (Request $request) {
+  return Response::json([
+    'status' => 'uptime'
+  ], 200);
+});
