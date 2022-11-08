@@ -143,7 +143,9 @@ autocomplete({
           var item = _ref3.item,
               components = _ref3.components,
               html = _ref3.html;
-          return html(_templateObject || (_templateObject = _taggedTemplateLiteral(["<div style=\"border-bottom: 1px dotted rgba(0,0,0,.125);\" class=\"d-flex justify-content-start align-items-center w-100 py-3\">\n              <div class=\"me-4\">\n                <p class=\"mb-1\">\n                  <small class=\"text-uppercase fw-bold\">\n                    ", "\n                  </small>\n                </p>\n                <small class=\"text-muted\">", "</small>\n              </div>\n              <div class=\"me-auto\">\n                <h5 class=\"aa-ItemContentTitle crop-text-1 mb-2\">\n                  ", "\n                </h5>\n                <p class=\"mb-0 text-muted crop-text-1\">\n                  ", "\n                </p>\n              </div>\n              <img\n                class=\"ms-4\"\n                src=\"", "\"\n                alt=\"", "\"\n                width=\"50\"\n                height=\"50\"\n              />\n            </div>"])), item.article_section, item.date_published, components.Highlight({
+          console.log('item:', item);
+          console.log('components:', item);
+          return html(_templateObject || (_templateObject = _taggedTemplateLiteral(["<div class=\"aa-ItemWrapper border-bottom border-dashed\">\n                <div class=\"aa-ItemContent d-flex justify-content-start align-items-center py-3 w-100\">\n                  <div class=\"flex-shrink-0 me-4\">\n                    <p class=\"mb-1\">\n                      <small class=\"text-uppercase fw-bold\">\n                        ", "\n                      </small>\n                    </p>\n                    <small class=\"text-muted\">\n                      ", "\n                    </small>\n                  </div>\n                  <div class=\"flex-shrink-1 me-auto text-overflow\">\n                    <h5 class=\"aa-ItemContentTitle crop-text-1 mb-2\">\n                      ", "\n                    </h5>\n                    <p class=\"mb-0 text-muted crop-text-1\">\n                      ", "\n                    </p>\n                  </div>\n                  <div class=\"flex-shrink-0\">\n                    <img\n                      class=\"ms-4\"\n                      src=\"", "\"\n                      alt=\"", "\"\n                      width=\"50\"\n                      height=\"50\"\n                    />\n                  </div>\n                </div>\n            </div>"])), item.article_section, new Date(item.date_published).toLocaleDateString(), components.Highlight({
             hit: item,
             attribute: 'headline'
           }), components.Snippet({
@@ -159,8 +161,18 @@ autocomplete({
             itemInputValue = _ref4.itemInputValue,
             itemUrl = _ref4.itemUrl,
             source = _ref4.source;
-        console.log('state, event, item, itemInputValue, itemUrl, source:', state, event, item, itemInputValue, itemUrl, source);
-        return item.thumbnail_url;
+        // console.log('state, event, item, itemInputValue, itemUrl, source:', state, event, item, itemInputValue, itemUrl, source);
+        var datePublished = new Date(item["date_published"]);
+        var year = datePublished.getFullYear();
+        var month = String(datePublished.getMonth() + 1).padStart(2, '0');
+        var day = String(datePublished.getDate()).padStart(2, '0');
+        var section = item["article_section"].toLowerCase();
+        var headline = item["headline_dashed"];
+        var href = "/".concat(year, "/").concat(month, "/").concat(day, "/").concat(section, "/").concat(headline);
+        window.location.href = href;
+      },
+      empty: function empty(options) {
+        return '<div class="p-4">No results found.</div>';
       }
     }];
   }

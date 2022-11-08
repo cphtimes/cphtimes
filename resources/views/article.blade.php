@@ -606,8 +606,8 @@
       </main>
 
       <!-- Subscription -->
-      <div class="text-white dark-mode container mb-2 mb-md-3 mb-xl-4 pb-2">
-      <div class="position-relative bg-dark rounded rounded-5 overflow-hidden p-md-5 p-4">
+      <div class="text-white container mb-2 mb-md-3 mb-xl-4 pb-2">
+      <div class="position-relative dark-mode bg-dark rounded rounded-5 overflow-hidden p-md-5 p-4">
         <div class="position-absolute top-0 start-0 w-100 h-100" style="background-color: rgba(255, 255, 255, .02);"></div>
         <div class="position-relative p-xl-5 p-md-4 py-4 px-sm-3">
           <h2 class="h1 pb-md-4 pb-3 mt-n2">Stay up to date with important news!</h2>
@@ -657,12 +657,13 @@
                 <input class="form-control" type="text" placeholder="Your email">
                 <button class="btn btn-primary" type="button">Subscribe</button>
               </div>
-              <div class="form-text mt-3 fs-sm">* Yes, I agree to the <a href="#">terms</a> and <a href="#">privacy policy</a></div>
+              <div class="form-text text-dark opacity-50 mt-3 fs-sm">* Yes, I agree to the <a href="#">terms</a> and <a href="#">privacy policy</a></div>
             </div>
           </div>
         </div>
       </div>
 
+      <!-- Footer -->
       <div class="pt-4 mt-md-5 pt-md-4 border-top border-2 container">
         <footer class="pt-3">
           <!-- <a style="font-family: 'UnifrakturMaguntia', cursive; font-size: 1.8rem;" class="navbar-brand" href="#">The Copenhagen Gates</a>-->
@@ -735,7 +736,7 @@
             <div class="d-none d-lg-block col-12 col-md-8 col-lg-4 offset-0 offset-lg-1"> <!-- border-start ps-4 -->
               <form action="https://cphgates.us20.list-manage.com/subscribe/post?u=e71c47511b5e02967960e85f4&amp;id=e1415b6230" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
                 <h5 class="serif fst-italic">Subscribe to our newsletter</h5>
-                <p>Monthly digest of whats new and exciting from us.</p>
+                <p class="text-dark">Monthly digest of whats new and exciting from us.</p>
                 <div class="d-flex w-100 gap-2">
                   <label for="newsletter1" class="visually-hidden">Email address</label>
                   <input type="email" value="" name="EMAIL" class="required email form-control" id="mce-EMAIL" placeholder="Email address" required="">
@@ -751,7 +752,7 @@
 
           <div class="row d-none d-md-block px-md-3">
             <div class="d-flex justify-content-between py-4 my-4 border-top px-0">
-              <p>© 2021 Copenhagen Gates. All rights reserved.</p>
+              <p class="text-dark">© 2021 Copenhagen Gates. All rights reserved.</p>
               <ul class="list-unstyled d-flex">
                 <li class="ms-3"><a class="nav-link" href="#">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
