@@ -35,13 +35,12 @@ class ArticleController extends Controller
      * Show the Homepage
      * @return \Illuminate\View\View
     */
-    public function show($year, $month, $day, $section, $headline)
+    public function show($section, $headlineURI)
     {
       $darkMode = Cookie::get('dark_mode') == 'true';
       $article = DB::table('article')
-                        ->whereDate('date_published', sprintf("%s-%s-%s", $year, $month, $day))
                         ->where('article_section', strtolower($section))
-                        ->where('headline_dashed', strtolower($headline))
+                        ->where('headline_dashed', strtolower($headlineURI))
                         ->first();
 
       $world = DB::table('article')
@@ -60,11 +59,8 @@ class ArticleController extends Controller
         $now, $dkLockdownDate, $dateFormat
       );
       return view('article', [
-        'year' => $year,
-        'month' => $month,
-        'day' => $day,
         'section' => $section,
-        'headline' => $headline,
+        'headline' => $headlineURI,
         'elapsedTimeSinceDKLockdown' => $elapsedTimeSinceDKLockdown,
         'article' => $article,
         'world' => json_decode($world, true),

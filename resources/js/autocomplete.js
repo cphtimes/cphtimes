@@ -6,7 +6,8 @@ const searchClient = algoliasearch(
   '6af332352f3f491234bc60eb739f2ef9'
 );
 
-autocomplete({
+const { setIsOpen } = autocomplete({
+  openOnFocus: true,
   container: '#autocomplete',
   placeholder: 'Search for articles',
   detachedMediaQuery: '',
@@ -35,9 +36,7 @@ autocomplete({
         },
         templates: {
           item({ item, components, html }) {
-            console.log('item:', item);
-            console.log('components:', item);
-            return html`<div class="aa-ItemWrapper border-bottom border-dashed">
+            return html`<div class="aa-ItemWrapper border-dashed">
                 <div class="aa-ItemContent d-flex justify-content-start align-items-center py-3 w-100">
                   <div class="flex-shrink-0 me-4">
                     <p class="mb-1">
@@ -65,12 +64,13 @@ autocomplete({
                   </div>
                   <div class="flex-shrink-0">
                     <img
+                      style="object-fit: cover;"
                       class="ms-4"
                       src="${item.thumbnail_url}"
                       alt="${item.headline}"
                       width="50"
                       height="50"
-                    />
+                      />
                   </div>
                 </div>
             </div>`;
@@ -78,13 +78,9 @@ autocomplete({
         },
         onSelect({ state, event, item, itemInputValue, itemUrl, source }) {
           // console.log('state, event, item, itemInputValue, itemUrl, source:', state, event, item, itemInputValue, itemUrl, source);
-          let datePublished = new Date(item["date_published"]);
-          let year = datePublished.getFullYear();
-          let month = String(datePublished.getMonth()+1).padStart(2, '0');
-          let day = String(datePublished.getDate()).padStart(2, '0');
           let section = item["article_section"].toLowerCase();
           let headline = item["headline_dashed"];
-          let href = `/${year}/${month}/${day}/${section}/${headline}`;
+          let href = `/${section}/${headline}`;
           window.location.href = href;
         },
         empty: function(options) {
@@ -94,3 +90,10 @@ autocomplete({
     ];
   },
 })
+
+console.log('this is called.');
+console.log(setIsOpen);
+
+window.openAutoComplete = function() {
+  setIsOpen(true);
+}

@@ -25,7 +25,6 @@
       <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet">
 
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic"/>
 
       <script src="{{ asset('js/app.js') }}"></script>
 
@@ -302,7 +301,17 @@
               </a>
             </div>
             <div>
-              <div id="autocomplete"></div>
+              <div class="d-none" id="autocomplete"></div>
+                <button onclick="window.openAutoComplete()" type="button" @class([
+                  'btn',
+                  'btn-link',
+                  'text-dark',
+                  'btn-sm'
+                  ])>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                  </svg>
+                </button>
             </div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -492,7 +501,7 @@
               <ul class="list-unstyled mb-0">
                 @foreach (array_slice($world,0,5) as $update)
                   <li class="list-group-item py-3 px-4 px-md-0 border-0 border-dashed">
-                    <a class="nav-link w-100" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                    <a class="nav-link w-100" href="{{ url(sprintf("/%s/%s", $update['article_section'], $update['headline_dashed'])) }}">
                       <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
                         <div class="d-flex w-100 justify-content-between mb-2">
                           <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
@@ -587,7 +596,7 @@
             <div class="swiper-wrapper">
               @foreach (array_slice($world,0,5) as $update)
                 <div class="swiper-slide">
-                  <a href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                  <a href="{{ url(sprintf("/%s/%s", $update['article_section'], $update['headline_dashed'])) }}">
                     <article class="card border-0">
                       <img style="object-fit: cover;" width="100%" height="199px" src="{!! $update['thumbnail_url'] !!}" alt="..." class="">
                       <div class="article-body card-body px-0 pb-0">

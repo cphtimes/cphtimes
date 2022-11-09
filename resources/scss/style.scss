@@ -37,4 +37,9 @@ $utilities: map-merge(
 @import "./components/_nav.scss";
 @import "./components/_navbar.scss";
 @import "./components/_card.scss";
+
+
+@import "../../node_modules/@algolia/autocomplete-theme-classic";
+@import "./components/_autocomplete.scss";
+
 // include more components here as needed.

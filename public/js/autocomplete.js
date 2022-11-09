@@ -111,7 +111,9 @@ var _window$AlgoliaAuto = window['@algolia/autocomplete-js'],
 
 
 var searchClient = algoliasearch__WEBPACK_IMPORTED_MODULE_0___default()('0ARITAM9OW', '6af332352f3f491234bc60eb739f2ef9');
-autocomplete({
+
+var _autocomplete = autocomplete({
+  openOnFocus: true,
   container: '#autocomplete',
   placeholder: 'Search for articles',
   detachedMediaQuery: '',
@@ -143,9 +145,7 @@ autocomplete({
           var item = _ref3.item,
               components = _ref3.components,
               html = _ref3.html;
-          console.log('item:', item);
-          console.log('components:', item);
-          return html(_templateObject || (_templateObject = _taggedTemplateLiteral(["<div class=\"aa-ItemWrapper border-bottom border-dashed\">\n                <div class=\"aa-ItemContent d-flex justify-content-start align-items-center py-3 w-100\">\n                  <div class=\"flex-shrink-0 me-4\">\n                    <p class=\"mb-1\">\n                      <small class=\"text-uppercase fw-bold\">\n                        ", "\n                      </small>\n                    </p>\n                    <small class=\"text-muted\">\n                      ", "\n                    </small>\n                  </div>\n                  <div class=\"flex-shrink-1 me-auto text-overflow\">\n                    <h5 class=\"aa-ItemContentTitle crop-text-1 mb-2\">\n                      ", "\n                    </h5>\n                    <p class=\"mb-0 text-muted crop-text-1\">\n                      ", "\n                    </p>\n                  </div>\n                  <div class=\"flex-shrink-0\">\n                    <img\n                      class=\"ms-4\"\n                      src=\"", "\"\n                      alt=\"", "\"\n                      width=\"50\"\n                      height=\"50\"\n                    />\n                  </div>\n                </div>\n            </div>"])), item.article_section, new Date(item.date_published).toLocaleDateString(), components.Highlight({
+          return html(_templateObject || (_templateObject = _taggedTemplateLiteral(["<div class=\"aa-ItemWrapper border-dashed\">\n                <div class=\"aa-ItemContent d-flex justify-content-start align-items-center py-3 w-100\">\n                  <div class=\"flex-shrink-0 me-4\">\n                    <p class=\"mb-1\">\n                      <small class=\"text-uppercase fw-bold\">\n                        ", "\n                      </small>\n                    </p>\n                    <small class=\"text-muted\">\n                      ", "\n                    </small>\n                  </div>\n                  <div class=\"flex-shrink-1 me-auto text-overflow\">\n                    <h5 class=\"aa-ItemContentTitle crop-text-1 mb-2\">\n                      ", "\n                    </h5>\n                    <p class=\"mb-0 text-muted crop-text-1\">\n                      ", "\n                    </p>\n                  </div>\n                  <div class=\"flex-shrink-0\">\n                    <img\n                      style=\"object-fit: cover;\"\n                      class=\"ms-4\"\n                      src=\"", "\"\n                      alt=\"", "\"\n                      width=\"50\"\n                      height=\"50\"\n                      />\n                  </div>\n                </div>\n            </div>"])), item.article_section, new Date(item.date_published).toLocaleDateString(), components.Highlight({
             hit: item,
             attribute: 'headline'
           }), components.Snippet({
@@ -162,13 +162,9 @@ autocomplete({
             itemUrl = _ref4.itemUrl,
             source = _ref4.source;
         // console.log('state, event, item, itemInputValue, itemUrl, source:', state, event, item, itemInputValue, itemUrl, source);
-        var datePublished = new Date(item["date_published"]);
-        var year = datePublished.getFullYear();
-        var month = String(datePublished.getMonth() + 1).padStart(2, '0');
-        var day = String(datePublished.getDate()).padStart(2, '0');
         var section = item["article_section"].toLowerCase();
         var headline = item["headline_dashed"];
-        var href = "/".concat(year, "/").concat(month, "/").concat(day, "/").concat(section, "/").concat(headline);
+        var href = "/".concat(section, "/").concat(headline);
         window.location.href = href;
       },
       empty: function empty(options) {
@@ -176,7 +172,15 @@ autocomplete({
       }
     }];
   }
-});
+}),
+    setIsOpen = _autocomplete.setIsOpen;
+
+console.log('this is called.');
+console.log(setIsOpen);
+
+window.openAutoComplete = function () {
+  setIsOpen(true);
+};
 })();
 
 /******/ 	return __webpack_exports__;

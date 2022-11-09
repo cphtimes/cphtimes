@@ -21,7 +21,8 @@
 
       <script src="{{ asset('js/app.js') }}" defer></script>
       <link rel="stylesheet" href="/css/app.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic"/>
+      
+      <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic"/> -->
 
       <style>
         a {
@@ -143,7 +144,7 @@
         @media (min-width: 1400px) {
 
         }
-
+        /*
         .aa-DetachedSearchButton {
           border: 0 !important;
         }
@@ -155,6 +156,8 @@
         .aa-DetachedSearchButtonPlaceholder {
           display: none !important;
         }
+        */
+
         .cell-compact {
           width: 100%;
         }
@@ -256,7 +259,17 @@
       <div class="d-none d-lg-block container pt-4">
         <div class="row">
           <div class="col-4 ps-0">
-              <div style="width: 47px; height: 44px;" id="autocomplete"></div>
+              <div class="d-none" id="autocomplete"></div>
+              <button onclick="window.openAutoComplete()" type="button" @class([
+                'btn',
+                'btn-link',
+                'text-dark',
+                'btn-sm'
+                ])>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+              </button>
           </div>
           <div class="col-4 d-flex justify-content-center mb-2 px-0">
             <small class="text-center">To life! To freedom through responsibility!</small> <!-- Counter propaganda for the life movement -->
@@ -445,7 +458,7 @@
             <ul class="col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-lg-4 border-end-0 border-end-lg">
               <li class="list-group-item px-4 px-md-0 pb-md-4 pt-4 pt-lg-0 border-dashed">
                   <div class="d-block d-md-none">
-                    <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($topArticles[0]->date_published)), date('m', strtotime($topArticles[0]->date_published)), date('d', strtotime($topArticles[0]->date_published)), $topArticles[0]->article_section, $topArticles[0]->headline_dashed)) }}">
+                    <a class="nav-link" href="{{ url(sprintf("/%s/%s", $topArticles[0]->article_section, $topArticles[0]->headline_dashed)) }}">
                       <article class="border-0">
                         <img style="object-fit: cover;" width="100%" height="199px" src="{!! $topArticles[0]->thumbnail_url !!}" alt="..." class="">
                         <div class="article-body card-body px-0 pb-0">
@@ -458,7 +471,7 @@
                   </div>
 
                   <div class="d-none d-md-block">
-                    <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($topArticles[0]->date_published)), date('m', strtotime($topArticles[0]->date_published)), date('d', strtotime($topArticles[0]->date_published)), $topArticles[0]->article_section, $topArticles[0]->headline_dashed)) }}">
+                    <a class="nav-link" href="{{ url(sprintf("/%s/%s", $topArticles[0]->article_section, $topArticles[0]->headline_dashed)) }}">
                       <div class="article-body flex-grow-1 ms-0 pe-3">
                         <p class="mb-2"><small class="text-uppercase"><b>{!! $topArticles[0]->article_section !!}</b></small></p>
                         <h2 class="article-title fw-light crop-text-2">{!! $topArticles[0]->headline !!}</h2>
@@ -471,7 +484,7 @@
                   </div>
               </li>
               <li class="list-group-item px-4 px-md-0 py-4 border-dashed">
-                <a class="nav-link" class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($topArticles[1]->date_published)), date('m', strtotime($topArticles[1]->date_published)), date('d', strtotime($topArticles[1]->date_published)), $topArticles[1]->article_section, $topArticles[1]->headline_dashed)) }}">
+                <a class="nav-link" class="nav-link" href="{{ url(sprintf("/%s/%s", $topArticles[1]->article_section, $topArticles[1]->headline_dashed)) }}">
                   <div class="article-body flex-grow-1 ms-0 pe-3">
                     <p class="mb-2"><small class="text-uppercase"><b>{!! $topArticles[1]->article_section !!}</b></small></p>
                     <div class="d-block d-md-none">
@@ -488,7 +501,7 @@
                 </a>
               </li>
               <li class="list-group-item px-4 px-md-0 py-4 border-dashed">
-                <a class="nav-link" class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($topArticles[2]->date_published)), date('m', strtotime($topArticles[2]->date_published)), date('d', strtotime($topArticles[2]->date_published)), $topArticles[2]->article_section, $topArticles[2]->headline_dashed)) }}">
+                <a class="nav-link" class="nav-link" href="{{ url(sprintf("/%s/%s", $topArticles[2]->article_section, $topArticles[2]->headline_dashed)) }}">
                   <div class="article-body flex-grow-1 ms-0 pe-3">
                     <p class="mb-2"><small class="text-uppercase"><b>{!! $topArticles[2]->article_section !!}</b></small></p>
                     <div class="d-block d-md-none">
@@ -511,7 +524,7 @@
               <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0">Latest updates</h5> <!-- border-top border-1 border-dark -->
               @foreach (array_slice($latestUpdates,0,5) as $update)
                 <li class="list-group-item py-3 px-4 px-md-0">
-                  <a class="nav-link" class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                  <a class="nav-link" class="nav-link" href="{{ url(sprintf("/%s/%s", $update['article_section'], $update['headline_dashed'])) }}">
                     <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
                       <div class="d-flex w-100 justify-content-between mb-2">
                         <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
@@ -544,7 +557,7 @@
               <h5 class="w-100 serif fst-italic">Latest updates</h5>
               @foreach ($latestUpdates as $update)
                 <li class="list-group-item px-0 py-3 border-dashed">
-                  <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                  <a class="nav-link" href="{{ url(sprintf("/%s/%s", $update['article_section'], $update['headline_dashed'])) }}">
                     <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
                       <div class="d-flex w-100 justify-content-between mb-2">
                         <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
@@ -595,7 +608,7 @@
                         'border-end-0 border-end-lg' => $j < 3,
                         'cell-flexible'
                     ])>
-                      <a class="" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[$j+($i*4)]->date_published)), date('m', strtotime($articles[$j+($i*4)]->date_published)), date('d', strtotime($articles[$j+($i*4)]->date_published)), $articles[$j+($i*4)]->article_section, $articles[$j+($i*4)]->headline_dashed)) }}">
+                      <a class="" href="{{ url(sprintf("/%s/%s", $articles[$j+($i*4)]->article_section, $articles[$j+($i*4)]->headline_dashed)) }}">
                         <article class="card border-0 px-2">
                           <div class="d-block d-md-none ratio ratio-1x1">
                             <img style="object-fit: cover;" src="{!! $articles[$j+($i*4)]->thumbnail_url !!}" alt="..." class="w-100">
@@ -622,7 +635,7 @@
                         'border-end-0 border-end-md' => $j < 3,
                         'cell-compact'
                     ])>
-                      <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($articles[$j+($i*4)]->date_published)), date('m', strtotime($articles[$j+($i*4)]->date_published)), date('d', strtotime($articles[$j+($i*4)]->date_published)), $articles[$j+($i*4)]->article_section, $articles[$j+($i*4)]->headline_dashed)) }}">
+                      <a class="nav-link" href="{{ url(sprintf("/%s/%s", $articles[$j+($i*4)]->article_section, $articles[$j+($i*4)]->headline_dashed)) }}">
                         <article class="card border-0 px-2">
                           <div class="ratio ratio-1x1">
                             <img style="object-fit: cover;" src="{!! $articles[$j+($i*4)]->thumbnail_url !!}" alt="..." class="">
@@ -671,7 +684,7 @@
               <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0">World</h5> <!-- border-top border-1 border-dark -->
               @foreach (array_slice($world,0,5) as $update)
                 <li class="list-group-item py-3 px-4 px-md-0">
-                  <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                  <a class="nav-link" href="{{ url(sprintf("/%s/%s", $update['article_section'], $update['headline_dashed'])) }}">
                       <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
                         <div class="d-flex w-100 justify-content-between mb-2">
                           <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
@@ -702,7 +715,7 @@
               <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0">Health</h5> <!-- border-top border-1 border-dark -->
               @foreach (array_slice($health,0,5) as $update)
                 <li class="list-group-item py-4 px-4 px-md-0">
-                  <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                  <a class="nav-link" href="{{ url(sprintf("/%s/%s", $update['article_section'], $update['headline_dashed'])) }}">
                       <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
                         <div class="d-flex w-100 justify-content-between mb-2">
                           <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
@@ -733,7 +746,7 @@
               <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0">Technology</h5> <!-- border-top border-1 border-dark -->
               @foreach (array_slice($technology,0,5) as $update)
                 <li class="list-group-item py-3 px-4 px-md-0">
-                  <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                  <a class="nav-link" href="{{ url(sprintf("/%s/%s", $update['article_section'], $update['headline_dashed'])) }}">
                       <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
                         <div class="d-flex w-100 justify-content-between mb-2">
                           <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
@@ -764,7 +777,7 @@
               <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0">Media</h5> <!-- border-top border-1 border-dark -->
               @foreach (array_slice($media,0,5) as $update)
                 <li class="list-group-item py-3 px-4 px-md-0">
-                  <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                  <a class="nav-link" href="{{ url(sprintf("/%s/%s", $update['article_section'], $update['headline_dashed'])) }}">
                     <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
                       <div class="d-flex w-100 justify-content-between mb-2">
                         <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
@@ -799,7 +812,7 @@
                 <h5 class="serif fst-italic">World</h5>
                 @foreach ($world as $update)
                   <li class="list-group-item px-0 py-3 border-dashed">
-                    <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                    <a class="nav-link" href="{{ url(sprintf("/%s/%s", $update['article_section'], $update['headline_dashed'])) }}">
                       <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
                         <div class="d-flex w-100 justify-content-between mb-2">
                           <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
@@ -818,7 +831,7 @@
                 <h5 class="serif fst-italic">Health</h5>
                 @foreach ($health as $update)
                   <li class="list-group-item px-0 py-3 border-dashed">
-                    <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                    <a class="nav-link" href="{{ url(sprintf("/%s/%s", $update['article_section'], $update['headline_dashed'])) }}">
                       <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
                         <div class="d-flex w-100 justify-content-between mb-2">
                           <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
@@ -837,7 +850,7 @@
                 <h5 class="serif fst-italic">Technology</h5>
                 @foreach ($technology as $update)
                   <li class="list-group-item px-0 py-3 border-dashed">
-                    <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                    <a class="nav-link" href="{{ url(sprintf("/%s/%s", $update['article_section'], $update['headline_dashed'])) }}">
                       <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
                         <div class="d-flex w-100 justify-content-between mb-2">
                           <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
@@ -856,7 +869,7 @@
                 <h5 class="serif fst-italic">Media</h5>
                 @foreach ($media as $update)
                   <li class="list-group-item px-0 py-3 border-dashed">
-                    <a class="nav-link" href="{{ url(sprintf("/%s/%s/%s/%s/%s", date('Y', strtotime($update['date_published'])), date('m', strtotime($update['date_published'])), date('d', strtotime($update['date_published'])), $update['article_section'], $update['headline_dashed'])) }}">
+                    <a class="nav-link" href="{{ url(sprintf("/%s/%s", $update['article_section'], $update['headline_dashed'])) }}">
                       <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
                         <div class="d-flex w-100 justify-content-between mb-2">
                           <small class="text-uppercase"><b>{{$update['article_section']}}</b></small>
@@ -1011,9 +1024,9 @@
         </div>
       </footer>
     </div>
-      <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
-      <script src="/js/autocomplete.js" defer></script>
-      <script src="/js/darkMode.js" defer></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
+    <script src="/js/autocomplete.js" defer></script>
+    <script src="/js/darkMode.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>

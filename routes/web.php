@@ -37,12 +37,17 @@ Route::get('/manage-subscription', [HomepageController::class, 'manageSubscripti
 Route::post('/webhook', [HomepageController::class, 'webhook']);
 
 Route::get('/section/{section}', [SectionController::class, 'show']);
-Route::get('/{year}/{month}/{day}/{section}/{headline}', [ArticleController::class, 'show']);
-Route::get('/subscribe', [SubscriptionController::class, 'show']);
 
+
+Route::get('/{section}/{article}', [ArticleController::class, 'show']);
+
+Route::get('/{year}/{month}/{day}/{section}/{headline}', [ArticleController::class, 'show']);
+
+
+Route::get('/subscribe', [SubscriptionController::class, 'show']);
 Route::get('/sign-up', [SignUpController::class, 'show']);
 
-Route::get('/healthy', function (Request $request) {
+Route::get('/healthy', function(Request $request) {
   return Response::json([
     'status' => 'uptime'
   ], 200);
