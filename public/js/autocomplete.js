@@ -101,7 +101,7 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var algoliasearch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! algoliasearch */ "./node_modules/algoliasearch/dist/algoliasearch.umd.js");
 /* harmony import */ var algoliasearch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(algoliasearch__WEBPACK_IMPORTED_MODULE_0__);
-var _templateObject;
+var _templateObject, _templateObject2, _templateObject3;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -117,13 +117,8 @@ var _autocomplete = autocomplete({
   container: '#autocomplete',
   placeholder: 'Search for articles',
   detachedMediaQuery: '',
-  renderNoResults: function renderNoResults(_ref, root) {
-    var state = _ref.state,
-        render = _ref.render;
-    render("No results for \"".concat(state.query, "\"."), root);
-  },
-  getSources: function getSources(_ref2) {
-    var query = _ref2.query;
+  getSources: function getSources(_ref) {
+    var query = _ref.query;
     return [{
       sourceId: 'dev_articles',
       getItems: function getItems() {
@@ -141,11 +136,11 @@ var _autocomplete = autocomplete({
         });
       },
       templates: {
-        item: function item(_ref3) {
-          var item = _ref3.item,
-              components = _ref3.components,
-              html = _ref3.html;
-          return html(_templateObject || (_templateObject = _taggedTemplateLiteral(["<div class=\"aa-ItemWrapper border-dashed\">\n                <div class=\"aa-ItemContent d-flex justify-content-start align-items-center py-3 w-100\">\n                  <div class=\"flex-shrink-0 me-4\">\n                    <p class=\"mb-1\">\n                      <small class=\"text-uppercase fw-bold\">\n                        ", "\n                      </small>\n                    </p>\n                    <small class=\"text-muted\">\n                      ", "\n                    </small>\n                  </div>\n                  <div class=\"flex-shrink-1 me-auto text-overflow\">\n                    <h5 class=\"aa-ItemContentTitle crop-text-1 mb-2\">\n                      ", "\n                    </h5>\n                    <p class=\"mb-0 text-muted crop-text-1\">\n                      ", "\n                    </p>\n                  </div>\n                  <div class=\"flex-shrink-0\">\n                    <img\n                      style=\"object-fit: cover;\"\n                      class=\"ms-4\"\n                      src=\"", "\"\n                      alt=\"", "\"\n                      width=\"50\"\n                      height=\"50\"\n                      />\n                  </div>\n                </div>\n            </div>"])), item.article_section, new Date(item.date_published).toLocaleDateString(), components.Highlight({
+        item: function item(_ref2) {
+          var item = _ref2.item,
+              components = _ref2.components,
+              html = _ref2.html;
+          return html(_templateObject || (_templateObject = _taggedTemplateLiteral(["<div class=\"aa-ItemWrapper list-group-item border-dashed\">\n                <div class=\"aa-ItemContent d-flex justify-content-start align-items-center py-3 w-100\">\n                  <div class=\"flex-shrink-0 me-4\">\n                    <p class=\"mb-1\">\n                      <small class=\"text-uppercase fw-bold\">\n                        ", "\n                      </small>\n                    </p>\n                    <small class=\"text-muted\">\n                      ", "\n                    </small>\n                  </div>\n                  <div class=\"flex-shrink-1 me-auto text-overflow\">\n                    <h5 class=\"aa-ItemContentTitle crop-text-1 mb-2\">\n                      ", "\n                    </h5>\n                    <p class=\"mb-0 text-muted crop-text-1\">\n                      ", "\n                    </p>\n                  </div>\n                  <div class=\"flex-shrink-0\">\n                    <img\n                      style=\"object-fit: cover;\"\n                      class=\"ms-4\"\n                      src=\"", "\"\n                      alt=\"", "\"\n                      width=\"50\"\n                      height=\"50\"\n                      />\n                  </div>\n                </div>\n            </div>"])), item.article_section, new Date(item.date_published).toLocaleDateString(), components.Highlight({
             hit: item,
             attribute: 'headline'
           }), components.Snippet({
@@ -154,23 +149,32 @@ var _autocomplete = autocomplete({
           }), item.thumbnail_url, item.headline);
         }
       },
-      onSelect: function onSelect(_ref4) {
-        var state = _ref4.state,
-            event = _ref4.event,
-            item = _ref4.item,
-            itemInputValue = _ref4.itemInputValue,
-            itemUrl = _ref4.itemUrl,
-            source = _ref4.source;
+      onSelect: function onSelect(_ref3) {
+        var state = _ref3.state,
+            event = _ref3.event,
+            item = _ref3.item,
+            itemInputValue = _ref3.itemInputValue,
+            itemUrl = _ref3.itemUrl,
+            source = _ref3.source;
         // console.log('state, event, item, itemInputValue, itemUrl, source:', state, event, item, itemInputValue, itemUrl, source);
         var section = item["article_section"].toLowerCase();
         var headline = item["headline_dashed"];
         var href = "/".concat(section, "/").concat(headline);
         window.location.href = href;
-      },
-      empty: function empty(options) {
-        return '<div class="p-4">No results found.</div>';
       }
     }];
+  },
+  render: function render(_ref4, root) {
+    var children = _ref4.children,
+        render = _ref4.render,
+        html = _ref4.html;
+    render(html(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["<div class=\"aa-SomeResults\">", "</div>"])), children), root);
+  },
+  renderNoResults: function renderNoResults(_ref5, root) {
+    var state = _ref5.state,
+        render = _ref5.render,
+        html = _ref5.html;
+    render(html(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["<div class=\"aa-NoResults d-flex justify-content-center align-items-center p-5\">No results for \"", "\".</div>"])), state.query), root);
   }
 }),
     setIsOpen = _autocomplete.setIsOpen;

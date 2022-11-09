@@ -11,9 +11,6 @@ const { setIsOpen } = autocomplete({
   container: '#autocomplete',
   placeholder: 'Search for articles',
   detachedMediaQuery: '',
-  renderNoResults({ state, render }, root) {
-    render(`No results for "${state.query}".`, root);
-  },
   getSources({ query }) {
     return [
       {
@@ -36,7 +33,7 @@ const { setIsOpen } = autocomplete({
         },
         templates: {
           item({ item, components, html }) {
-            return html`<div class="aa-ItemWrapper border-dashed">
+            return html`<div class="aa-ItemWrapper list-group-item border-dashed">
                 <div class="aa-ItemContent d-flex justify-content-start align-items-center py-3 w-100">
                   <div class="flex-shrink-0 me-4">
                     <p class="mb-1">
@@ -83,12 +80,15 @@ const { setIsOpen } = autocomplete({
           let href = `/${section}/${headline}`;
           window.location.href = href;
         },
-        empty: function(options) {
-          return '<div class="p-4">No results found.</div>';
-        }
       },
     ];
   },
+  render({ children, render, html }, root) {
+    render(html`<div class="aa-SomeResults">${children}</div>`, root);
+  },
+  renderNoResults({ state, render, html }, root) {
+    render(html`<div class="aa-NoResults d-flex justify-content-center align-items-center p-5">No results for "${state.query}".</div>`, root);
+  }
 })
 
 console.log('this is called.');
