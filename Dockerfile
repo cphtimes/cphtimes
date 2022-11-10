@@ -1,4 +1,11 @@
-FROM php:8.0-fpm
+FROM php:8.1-fpm
+
+# Allow composer to run as root
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
+ENV APP_ENV production
+ENV APP_DEBUG true
+ENV LOG_CHANNEL stderr
 
 # Set working directory
 WORKDIR /var/www
@@ -26,6 +33,11 @@ RUN apt-get update && apt-get install -y \
     libmemcached-dev \
     nginx
 
+# Install Postgre PDO
+RUN apt-get install -y libpq-dev \
+    && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
+    && docker-php-ext-install pdo pdo_pgsql pgsql
+    
 # Install supervisor
 RUN apt-get install -y supervisor
 
@@ -55,7 +67,7 @@ RUN mkdir /var/log/php
 RUN touch /var/log/php/errors.log && chmod 777 /var/log/php/errors.log
 
 # Deployment steps
-RUN composer install --optimize-autoloader --no-dev
+RUN composer install --optimize-autoloader --no-dev --ignore-platform-reqs
 RUN chmod +x /var/www/docker/run.sh
 
 EXPOSE 80
