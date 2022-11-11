@@ -20,9 +20,7 @@
       <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 
       <script src="{{ asset('js/app.js') }}" defer></script>
-      <link rel="stylesheet" href="/css/app.css">
-      
-      <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic"/> -->
+      <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
       <style>
         a {
@@ -144,19 +142,6 @@
         @media (min-width: 1400px) {
 
         }
-        /*
-        .aa-DetachedSearchButton {
-          border: 0 !important;
-        }
-
-        .aa-DetachedSearchButtonIcon {
-          color: rgba(0,0,0,1.0) !important;
-        }
-
-        .aa-DetachedSearchButtonPlaceholder {
-          display: none !important;
-        }
-        */
 
         .cell-compact {
           width: 100%;
@@ -970,10 +955,6 @@
                 <button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-primary" type="button">Subscribe</button>
               </div>
             </form>
-
-            <!-- <div>
-              <iframe src="https://t.me/s/folkepartiet?embed=1"></iframe>
-            </div> -->
           </div>
         </div>
 
@@ -1025,8 +1006,8 @@
       </footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
-    <script src="/js/autocomplete.js" defer></script>
-    <script src="/js/darkMode.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/autocomplete.js') }}" defer></script>
+    <script src="{{ asset('js/darkMode.js') }}" defer></script>
     </body>
 </html>

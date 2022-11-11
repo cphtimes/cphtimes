@@ -1,5 +1,4 @@
 const { autocomplete, getAlgoliaResults } = window['@algolia/autocomplete-js'];
-/// import { autocomplete, getAlgoliaResults } from '@algolia/autocomplete-js';
 import algoliasearch from 'algoliasearch';
 const searchClient = algoliasearch(
   '0ARITAM9OW',
@@ -74,7 +73,6 @@ const { setIsOpen } = autocomplete({
           },
         },
         onSelect({ state, event, item, itemInputValue, itemUrl, source }) {
-          // console.log('state, event, item, itemInputValue, itemUrl, source:', state, event, item, itemInputValue, itemUrl, source);
           let section = item["article_section"].toLowerCase();
           let headline = item["headline_dashed"];
           let href = `/${section}/${headline}`;
@@ -90,9 +88,6 @@ const { setIsOpen } = autocomplete({
     render(html`<div class="aa-NoResults d-flex justify-content-center align-items-center p-5">No results for "${state.query}".</div>`, root);
   }
 })
-
-console.log('this is called.');
-console.log(setIsOpen);
 
 window.openAutoComplete = function() {
   setIsOpen(true);

@@ -107,8 +107,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 var _window$AlgoliaAuto = window['@algolia/autocomplete-js'],
     autocomplete = _window$AlgoliaAuto.autocomplete,
-    getAlgoliaResults = _window$AlgoliaAuto.getAlgoliaResults; /// import { autocomplete, getAlgoliaResults } from '@algolia/autocomplete-js';
-
+    getAlgoliaResults = _window$AlgoliaAuto.getAlgoliaResults;
 
 var searchClient = algoliasearch__WEBPACK_IMPORTED_MODULE_0___default()('0ARITAM9OW', '6af332352f3f491234bc60eb739f2ef9');
 
@@ -156,7 +155,6 @@ var _autocomplete = autocomplete({
             itemInputValue = _ref3.itemInputValue,
             itemUrl = _ref3.itemUrl,
             source = _ref3.source;
-        // console.log('state, event, item, itemInputValue, itemUrl, source:', state, event, item, itemInputValue, itemUrl, source);
         var section = item["article_section"].toLowerCase();
         var headline = item["headline_dashed"];
         var href = "/".concat(section, "/").concat(headline);
@@ -178,9 +176,6 @@ var _autocomplete = autocomplete({
   }
 }),
     setIsOpen = _autocomplete.setIsOpen;
-
-console.log('this is called.');
-console.log(setIsOpen);
 
 window.openAutoComplete = function () {
   setIsOpen(true);
