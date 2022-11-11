@@ -814,7 +814,7 @@
       <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
 
       <script src="/js/autocomplete.js" defer></script>
-      <script src="/js/darkMode.js" defer></script>
+      <script src="/js/darkmode.js" defer></script>
 
       <script>
         const swiper = new Swiper('.swiper', {

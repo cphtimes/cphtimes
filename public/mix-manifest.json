@@ -1,7 +1,7 @@
 {
     "/js/auth.js": "/js/auth.js",
     "/js/autocomplete.js": "/js/autocomplete.js",
-    "/js/darkMode.js": "/js/darkMode.js",
+    "/js/darkmode.js": "/js/darkmode.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/style.css": "/css/style.css"
