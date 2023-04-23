@@ -1,0 +1,47 @@
+@import "./_variables.scss";
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+@import "../../node_modules/bootstrap/scss/mixins/utilities";
+$utilities: map-merge(
+  $utilities,
+  (
+    "border": map-merge(
+      map-get($utilities, "border"),
+      ( responsive: true ),
+    ),
+    "border-top": map-merge(
+      map-get($utilities, "border-top"),
+      ( responsive: true ),
+    ),
+    "border-end": map-merge(
+      map-get($utilities, "border-end"),
+      ( responsive: true ),
+    ),
+    "border-bottom": map-merge(
+      map-get($utilities, "border-bottom"),
+      ( responsive: true ),
+    ),
+    "border-start": map-merge(
+      map-get($utilities, "border-start"),
+      ( responsive: true ),
+    ),
+  )
+);
+
+@import "../../node_modules/bootstrap/scss/utilities/api";
+
+@import "./_reboot.scss";
+@import "./_dark_mode.scss";
+
+@import "./components/_accordion.scss";
+@import "./components/_buttons.scss";
+@import "./components/_list_group.scss";
+@import "./components/_nav.scss";
+@import "./components/_navbar.scss";
+@import "./components/_card.scss";
+
+
+@import "../../node_modules/@algolia/autocomplete-theme-classic";
+@import "./components/_autocomplete.scss";
+
+// include more components here as needed.
