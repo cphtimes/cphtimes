@@ -28,6 +28,16 @@
 
       <script src="{{ asset('js/app.js') }}" defer></script>
 
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-W155VBDMQH"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-W155VBDMQH');
+      </script>
+
       <style>
         .serif {
           font-family: 'Merriweather', serif;

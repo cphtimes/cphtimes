@@ -237,9 +237,9 @@ class HomepageController extends Controller
                           ->limit(42)
                           ->get();
 
-      $world = DB::table('article')
-                      ->where('section_uri', 'world')
-                      ->orderBy('published_at', 'desc')
+      $catalog = DB::table('article')
+                      ->where('section_uri', 'catalog')
+                      ->orderBy('created_at', 'desc')
                       ->offset(0)
                       ->limit(20)
                       ->get();
@@ -251,9 +251,9 @@ class HomepageController extends Controller
                       ->limit(20)
                       ->get();
 
-      $technology = DB::table('article')
-                      ->where('section_uri', 'technology')
-                      ->orderBy('published_at', 'desc')
+      $messages = DB::table('article')
+                      ->where('section_uri', 'messages')
+                      ->orderBy('created_at', 'desc')
                       ->offset(0)
                       ->limit(20)
                       ->get();
@@ -289,9 +289,9 @@ class HomepageController extends Controller
         'topArticles' => $topArticles,
         'latestUpdates' => json_decode($latestUpdates, true),
         'articles' => $articles,
-        'world' => json_decode($world, true),
+        'catalog' => json_decode($catalog, true),
         'health' => json_decode($health, true),
-        'technology' => json_decode($technology, true),
+        'messages' => json_decode($messages, true),
         'media' => json_decode($media, true),
         'individuals' => json_decode($individuals, true),
         'user' => $user,

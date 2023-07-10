@@ -28,6 +28,16 @@
 
       <script src="{{ asset('js/app.js') }}" defer></script>
 
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-W155VBDMQH"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-W155VBDMQH');
+      </script>
+
       <style>
         .serif {
           font-family: 'Merriweather', serif;
@@ -471,6 +481,9 @@
               </button>
             </div>
           </div>
+          @if (count($relatedArticles) === 0)
+            <p>No related articles.</p>
+          @else
           <div class="swiper">
             <div class="swiper-wrapper">
               @foreach ($relatedArticles as $relatedArticle)
@@ -485,9 +498,8 @@
             </div>
           </div>
           <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+          @endif
         </section>
-        <!-- Subscription -->
-        @include('components.subscription-card')
       </main>
       <!-- Footer -->
       @include('components.footer', array(

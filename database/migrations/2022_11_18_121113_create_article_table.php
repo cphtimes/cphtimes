@@ -30,7 +30,7 @@ class CreateArticleTable extends Migration
             $table->longText('video_embed')->nullable();
             $table->text('video_provider')->nullable();
             $table->string('video_ratio')->nullable();
-            $table->enum('work_status', ['published', 'draft', 'archived'])->default('public');
+            $table->enum('work_status', ['published', 'draft', 'archived'])->default('published');
             $table->integer('author_id');
             $table->longText('abstract');
             $table->longText('about')->nullable();

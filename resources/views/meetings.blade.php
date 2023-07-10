@@ -215,6 +215,17 @@
           padding: 0;
         }
       </style>
+
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-W155VBDMQH"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-W155VBDMQH');
+      </script>
+
       <link rel="stylesheet" href="/css/app.css">
       <title>Now - The Copenhagen Gates</title>
     </head>

@@ -173,6 +173,17 @@
         }
 
       </style>
+
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-W155VBDMQH"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-W155VBDMQH');
+      </script>
+
       <title>{{ env('APP_NAME') }} - {{ __('messages.slogan') }}</title>
     </head>
     <body class="antialiased">
@@ -322,9 +333,9 @@
 
           <div class="row d-block d-lg-none px-0 px-md-3">
             @foreach (array(
-              'world' => $world,
+              'Messages' => $messages,
+              'Catalog' => $catalog,
               'health' => $health,
-              'technology' => $technology,
               'media' => $media
             ) as $section_uri => $section)
               <div>
@@ -357,9 +368,9 @@
           <div class="d-none d-lg-block">
             <div class="row">
               @foreach (array(
-                'world' => $world,
-                'health' => $health,
-                'technology' => $technology,
+                'Messages' => $messages,
+                'Catalog' => $catalog,
+                'Health' => $health,
                 'media' => $media
               ) as $section_uri => $section)
                 <ul style="overflow-y: scroll; height:566px;" class="list-group list-group-flush col-xl-3 col-lg-4 col-md-12 col-12 border-end px-4">
