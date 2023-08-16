@@ -17,7 +17,6 @@
             </div>
             <div class="col-4 d-flex justify-content-center mb-2 px-0">
                 <small class="text-center">{{__('messages.slogan')}}</small>
-                <img class="d-none" style="overflow: cover; object-fit: contain;" width="300" height="90" src="/kroy-small.gif"/>
             </div>
 
             <div class="col-4 d-flex justify-content-end">
@@ -92,7 +91,7 @@
                 </ul>
             </div>
             <div class="text-center">
-                <a style="font-family: 'UnifrakturMaguntia', cursive; font-size: 3.0rem;" class="text-dark fw-bold" href="/">{{env('APP_NAME')}}</a>
+                <a style="font-size: 4.0rem;" class="text-dark fw-bold chomsky" href="/">{{__('messages.brand_name')}}</a>
             </div>
             <div>
                 <ul class="navbar-nav">

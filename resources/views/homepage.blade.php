@@ -17,7 +17,16 @@
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+      <style>
+      @font-face {
+          font-family: "Chomsky";
+          src: url("{{url('Chomsky.otf')}}");
+      }
+
+      .chomsky {
+          font-family: "Chomsky";
+      }
+      </style>
       <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"

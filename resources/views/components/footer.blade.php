@@ -60,7 +60,7 @@
 
         <div class="row d-none d-md-block px-md-3">
           <div class="d-flex justify-content-between py-4 my-4 border-top px-0">
-            <p class="text-dark">{{__('messages.all_rights_reserved', ['year' => now()->year, 'app' => env('APP_NAME')])}}</p>
+            <p class="text-dark">{{__('messages.all_rights_reserved', ['year' => now()->year, 'app' => __('messages.brand_name')])}}</p>
             <ul class="list-unstyled d-flex">
               <li class="ms-3"><a class="nav-link" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
@@ -83,7 +83,7 @@
 
         <div class="row d-block d-md-none">
           <div class="d-flex flex-column align-items-center justify-content-center py-4 mt-4 border-top px-4">
-            <p class="text-center text-dark">{{__('messages.all_rights_reserved', ['year' => now()->year, 'app' => env('APP_NAME')])}}</p>
+            <p class="text-center text-dark">{{__('messages.all_rights_reserved', ['year' => now()->year, 'app' => __('messages.brand_name')])}}</p>
             <ul class="list-unstyled d-flex">
               <li class="ms-3"><a class="link-dark" href="#">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">

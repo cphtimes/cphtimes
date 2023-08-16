@@ -51,9 +51,9 @@
 
         <!-- Logo -->
         <div class="text-center">
-            <a class="navbar-brand" href="/">
-            <span class="d-md-none" style="font-family: 'UnifrakturMaguntia', cursive; font-size: 1.5rem;">C</span>
-            <span class="d-none d-md-block" style="font-family: 'UnifrakturMaguntia', cursive; font-size: 1.5rem;"> The Copenhagen Gates</span>
+            <a class="navbar-brand chomsky" href="/">
+                <span class="d-md-none" style="font-size: 1.5rem;">{{__('messages.brand_name_letter')}}</span>
+                <span class="d-none d-md-block" style="font-size: 1.5rem;">{{__('messages.brand_name')}}</span>
             </a>
         </div>
 

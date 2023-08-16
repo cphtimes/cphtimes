@@ -20,8 +20,16 @@
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,900&display=swap" rel="stylesheet">
 
-      <link rel="preconnect" href="https://fonts.gstatic.com">
-      <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+      <style>
+      @font-face {
+          font-family: "Chomsky";
+          src: url("{{url('Chomsky.otf')}}");
+      }
+
+      .chomsky {
+          font-family: "Chomsky";
+      }
+      </style>
       <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet">
 
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
@@ -237,16 +245,6 @@
       <meta property="twitter:title" content="{{$article->headline}}">
       <meta property="twitter:description" content="{{$article->abstract}}">
       <meta property="twitter:image" content="{{$article->image_url}}">
-
-      <!--
-      <style>
-        .GFG {
-          color: #111; 
-          background: rgb(11, 11, 21); 
-          box-shadow: 0 0 80px rgb(11, 11, 21); 
-        }
-      </style>
-      -->
     </head>
     <body class="antialiased">
       <main class="main">

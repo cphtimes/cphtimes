@@ -12,7 +12,8 @@ return [
     | you want to customize your views to better match your application.
     |
     */
-
+    'brand_name' => 'De Københavnske Porte',
+    'brand_name_letter' => 'K',
     'log_in' => 'Log ind',
     'your_account' => 'Din konto',
     'settings' => 'Indstillinger',
@@ -59,7 +60,7 @@ return [
     'related_articles_header' => 'Relaterede artikler',
     'share_this_article' => 'Del denne artikel',
     'relevant_topics' => 'Relevante emner',
-    'trending_articles' => 'Trending Artikler',
+    'trending_articles' => 'Trending artikler',
     'no_description_bio' => 'Ingen beskrivelse i bio.',
     'account' => 'Konto',
     'articles' => 'Artikler',

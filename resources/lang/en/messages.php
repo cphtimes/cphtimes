@@ -12,7 +12,8 @@ return [
     | you want to customize your views to better match your application.
     |
     */
-
+    'brand_name' => 'The Copenhagen Gates',
+    'brand_name_letter' => 'C',
     'log_in' => 'Log in',
     'your_account' => 'Your account',
     'settings' => 'Settings',
@@ -56,10 +57,10 @@ return [
     'replies_format' => '{0} :n replies |{1} :n reply|[2,*] :n replies',
     'sign_in_to_comment' => 'You need to be signed in to comment.',
     'sign_in_here' => 'Sign in here.',
-    'related_articles_header' => 'Related Articles',
+    'related_articles_header' => 'Related articles',
     'share_this_article' => 'Share this article',
     'relevant_topics' => 'Relevant topics',
-    'trending_articles' => 'Trending Articles',
+    'trending_articles' => 'Trending articles',
     'no_description_bio' => 'No description in bio.',
     'account' => 'Account',
     'articles' => 'Articles',
