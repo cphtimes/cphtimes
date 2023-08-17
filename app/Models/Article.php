@@ -32,6 +32,7 @@ class Article extends Model
     protected $table = 'article';
 
     protected $fillable = [
+        'body_url',
         'published_at',
         'expires_at',
         'word_count',

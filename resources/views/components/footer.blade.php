@@ -19,17 +19,12 @@
               <li class="nav-item mb-2"><a target="_blank" href="https://marinajacobi.com" class="nav-link p-0 text-muted">Marina Jacobi</a></li>
               <li class="nav-item mb-2"><a target="_blank" href="https://www.bitchute.com/channel/fk3aw7qbnyUs/" class="nav-link p-0 text-muted">AboveIsBelow</a></li>
               <li class="nav-item mb-2"><a target="_blank" href="https://www.youtube.com/@lightatthecentre2691" class="nav-link p-0 text-muted">Light at the Center</a></li>
-              <li class="nav-item mb-2"><a target="_blank" href="https://www.youtube.com/@indresandhed5614" class="nav-link p-0 text-muted">Indre Sandhed</a></li>
               <li class="nav-item mb-2"><a target="_blank" href="https://www.youtube.com/@ElenaDanaan" class="nav-link p-0 text-muted">Elena Danaan</a></li>
               <li class="nav-item mb-2"><a target="_blank" href="https://doctors4covidethics.org/" class="nav-link p-0 text-muted">Doctors for Covid Ethics</a></li>
               <li class="nav-item mb-2"><a target="_blank" href="https://www.youtube.com/@AlexCollierOfficial" class="nav-link p-0 text-muted">Alex Collier</a></li>
-              <li class="nav-item mb-2"><a target="_blank" href="https://www.youtube.com/@gabbichoong5076" class="nav-link p-0 text-muted">Gabbi Choong</a></li>
-              <li class="nav-item mb-2"><a target="_blank" href="https://www.youtube.com/@rebeccarose-siriusblue" class="nav-link p-0 text-muted">Rebecca Rose</a></li>
-              <li class="nav-item mb-2"><a target="_blank" href="https://www.youtube.com/@journeytotruthpodcast" class="nav-link p-0 text-muted">Journey to Truth Podcast</a></li>
               <li class="nav-item mb-2"><a target="_blank" href="https://www.youtube.com/@kathrinekroghhoffmann" class="nav-link p-0 text-muted">Kathrine Krogh Hoffmann</a></li>
               <li class="nav-item mb-2"><a target="_blank" href="https://vigilantcitizen.com" class="nav-link p-0 text-muted">Vigilant Citizen</a></li>
               <li class="nav-item mb-2"><a target="_blank" href="https://vigilantlinks.com" class="nav-link p-0 text-muted">Vigilant Links</a></li>
-              <li class="nav-item mb-2"><a target="_blank" href="https://www.youtube.com/@JCKay" class="nav-link p-0 text-muted">Quantum Truths JC Kay</a></li>
             </ul>
           </div>
 

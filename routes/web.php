@@ -16,6 +16,10 @@ use App\Http\Controllers\Account\Auth\LoginController;
 use App\Http\Controllers\Account\Auth\RegisterController;
 use App\Http\Controllers\Account\Auth\PasswordController;
 
+use App\Http\Controllers\Account\ManageController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,7 +43,7 @@ Route::get('/{locale}', function ($locale) {
 
 Route::get('/', [HomepageController::class, 'show']);
 Route::get('/section/{section}', [SectionController::class, 'show']);
-Route::get('/section/{section}/{article}', [ArticleController::class, 'show']);
+Route::get('/section/{section}/{article}', [ArticleController::class, 'show'])->name('article');
 Route::post('/section/{section}/{article}/comments/{comment?}', [ArticleController::class, 'storeComment']);
 
 Route::match(['get', 'post'], '/by/{username}', [AuthorController::class, 'show']);
@@ -64,5 +68,8 @@ Route::get('/forgot', [PasswordController::class, 'showForgot']);
 Route::post('/forgot', [PasswordController::class, 'sendResetLink']);
 Route::get('/reset-password/{token}', [PasswordController::class, 'showResetPassword']);
 Route::post('/reset-password', [PasswordController::class, 'resetPassword']);
+
+Route::get('/new', [ManageController::class, 'showCreateArticle']);
+Route::post('/manage/new-article', [ManageController::class, 'createArticle']);
 
 // /policy, /terms, /support
