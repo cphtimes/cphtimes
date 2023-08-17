@@ -2,9 +2,14 @@
 // Variables
 // --------------------------------------------------
 
+
+// Import Bootstrap functions to use inside variables values
+@import 'bootstrap/scss/functions';
+
+
 // Prefix for :root CSS variables
 
-$prefix:                      bs- !default;
+$prefix:                      ar- !default;
 
 
 //== Colors
@@ -12,7 +17,7 @@ $prefix:                      bs- !default;
 // Gray and brand colors to use across the Theme.
 
 // Grayscale
-$white:                       #ffffff !default;
+$white:                       #fff !default;
 $gray-100:                    #f6f9fc !default;
 $gray-200:                    #edf1f5 !default;
 $gray-300:                    #e3e9ef !default;
@@ -25,7 +30,7 @@ $gray-900:                    #121519 !default;
 $black:                       #000 !default;
 
 // Theme colors
-$primary:                     #6610f2 !default;
+$primary:                     #ed5050 !default;
 $secondary:                   $gray-200 !default;
 $info:		                    #3f7fca !default;
 $success:                     #3fca90 !default;
@@ -77,9 +82,9 @@ $container-max-widths: (
 
 // Body
 
-$body-color:                                $gray-900 !default; // $gray-700 !default;
+$body-color:                                $gray-700 !default;
 $body-bg:                                   $white !default;
-$body-dark-mode-bg:                         $dark !default;
+$body-dark-mode-bg:                         $gray-900 !default;
 $text-muted:                                var(--#{$prefix}gray-600) !default;
 
 
@@ -102,7 +107,7 @@ $border-width:                              1px !default;
 $border-color:                              $gray-300 !default;
 $border-light-color:                        rgba($white, .13) !default;
 
-$border-radius:                             0.375em !default;
+$border-radius:                             1rem !default;
 $border-radius-sm:                          calc(var(--#{$prefix}border-radius) * .75) !default;
 $border-radius-lg:                          calc(var(--#{$prefix}border-radius) * 1.125) !default;
 $border-radius-xl:                          calc(var(--#{$prefix}border-radius) * 1.5) !default;
@@ -120,8 +125,11 @@ $box-shadow-lg:                             0 .5rem 1.75rem -.125rem rgba(208,20
 // Fonts
 //
 // Font, line-height, and color for body text, headings, and more.
-
-//$font-family-sans-serif:                    'Inter', sans-serif !default;
+$font-family-sans-serif:                    'Inter', sans-serif !default;
+.use-serif {
+  font-family: 'Spectral', serif !important;
+}
+// $font-family-sans-serif:                    'Spectral', serif !important;
 
 $font-size-root:                            1rem !default;
 $font-size-base:                            $font-size-root !default;
@@ -134,10 +142,11 @@ $font-weight-normal:                        400 !default;
 $font-weight-medium:                        500 !default;
 $font-weight-semibold:                      600 !default;
 $font-weight-bold:                          700 !default;
+$font-weight-bolder:                        800 !default;
 
-$line-height-base:                          1.9 !default;
-$line-height-sm:                            1.8 !default;
-$line-height-lg:                            2.0 !default;
+$line-height-base:                          1.5 !default;
+$line-height-sm:                            1.4 !default;
+$line-height-lg:                            1.6 !default;
 
 $h1-font-size:                              $font-size-base * 2.5 !default;
 $h2-font-size:                              $font-size-base * 2 !default;
@@ -207,7 +216,7 @@ $hr-opacity:                                1 !default;
 
 // Icons
 
-$icons-font-path:                           '../fonts' !default;
+$icons-font-path:                           'https://around.createx.studio/assets/fonts' !default;
 $icons-font-family:                         'around-icons' !default;
 
 
@@ -238,18 +247,18 @@ $table-variants: (
 
 // Buttons + Forms
 
-$input-btn-padding-y:                       0.375rem !default;
-$input-btn-padding-x:                       0.75rem !default;
+$input-btn-padding-y:                       .825rem !default;
+$input-btn-padding-x:                       1.75rem !default;
 $input-btn-font-size:                       $font-size-sm !default;
 $input-btn-line-height:                     $line-height-sm !default;
 $input-btn-focus-width:                     0 !default;
 
-$input-btn-padding-y-sm:                    0.25rem !default;
-$input-btn-padding-x-sm:                    0.5rem !default;
+$input-btn-padding-y-sm:                    .575rem !default;
+$input-btn-padding-x-sm:                    1.25rem !default;
 $input-btn-font-size-sm:                    $font-size-xs !default;
 
-$input-btn-padding-y-lg:                    0.5rem !default;
-$input-btn-padding-x-lg:                    1rem !default;
+$input-btn-padding-y-lg:                    1rem !default;
+$input-btn-padding-x-lg:                    2rem !default;
 $input-btn-font-size-lg:                    $font-size-base !default;
 
 
@@ -523,8 +532,8 @@ $navbar-light-disabled-color:               $nav-link-disabled-color !default;
 $navbar-light-toggler-border-color:         transparent !default;
 $navbar-light-toggler-icon-bg:              initial !default;
 $navbar-light-toggler-bar-color:            $nav-link-color !default;
-$navbar-light-brand-color:                  var(--#{$prefix}gray-900) !default;
-$navbar-light-brand-hover-color:            var(--#{$prefix}gray-900) !default;
+$navbar-light-brand-color:                  var(--#{$prefix}gray-800) !default;
+$navbar-light-brand-hover-color:            var(--#{$prefix}gray-800) !default;
 
 
 // Navbar dark
@@ -818,7 +827,7 @@ $breadcrumb-active-color:                   var(--#{$prefix}primary) !default;
 $breadcrumb-divider-color:                  var(--#{$prefix}gray-600) !default;
 $breadcrumb-divider-font-size:              1.2em !default;
 $breadcrumb-divider:                        quote("\e939") !default;
-$breadcrumb-divider-flipped:                quote("\e938") !default;
+$breadcrumb-divider-flipped:                quote("\e939") !default;
 
 
 // Spinners
@@ -903,17 +912,15 @@ $carousel-progressbar-height:               .1875rem !default;
 $carousel-progressbar-bg:                   var(--#{$prefix}border-color) !default;
 $carousel-progressbar-fill-bg:              var(--#{$prefix}primary) !default;
 
-
-// Charts
-
-// Line
-$chart-line-stroke-width:                   .125rem !default;
-$chart-line-point-size:                     .625rem !default;
-$chart-line-color:                          var(--#{$prefix}primary) !default;
-
-// Bar
-$chart-bar-width:                           .625rem !default;
-$chart-bar-color:                           var(--#{$prefix}primary) !default;
+$carousel-thumbnail-width:                  5.875rem !default;
+$carousel-thumbnail-border-width:           var(--#{$prefix}border-width) !default;
+$carousel-thumbnail-border-radius:          var(--#{$prefix}border-radius-xl) !default;
+$carousel-thumbnail-border-color:           var(--#{$prefix}border-color) !default;
+$carousel-thumbnail-opacity:                .45 !default;
+$carousel-thumbnail-hover-opacity:          .8 !default;
+$carousel-thumbnail-active-border-color:    var(--#{$prefix}primary) !default;
+$carousel-thumbnail-active-opacity:         1 !default;
+$carousel-thumbnail-spacer:                 $spacer !default;
 
 
 // Steps
@@ -962,10 +969,3 @@ $hotspots-alt-hover-inner-bg:               var(--#{$prefix}primary) !default;
 
 $comparison-slider-divider-width:           .1875rem !default;
 $comparison-slider-divider-color:           var(--#{$prefix}primary) !default;
-
-/*
-@import "../../node_modules/bootstrap/scss/variables";
-@import "../../node_modules/bootstrap/scss/maps";
-@import "../../node_modules/bootstrap/scss/mixins";
-@import "../../node_modules/bootstrap/scss/root";
-*/

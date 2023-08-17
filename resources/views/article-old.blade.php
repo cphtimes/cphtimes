@@ -247,67 +247,130 @@
       <meta property="twitter:image" content="{{$article->image_url}}">
     </head>
     <body class="antialiased">
-        <main class="page-wrapper">
+      <main class="main">
         @include('components.navbar', array(
           'sections' => $sections,
           'user' => $currentUser
         ))
-        <!-- Page content-->
-        <!-- Container-->
-        <section class="container pt-3 mt-2">
-          <!-- Breadcrumb-->
-          <nav aria-label="breadcrumb">
-            <ol class="pt-lg-3 pb-lg-4 pb-2 breadcrumb">
-              <li class="breadcrumb-item"><a href="/">Frontpage</a></li>
-              <li class="breadcrumb-item"><a href="/section/{{$section->uri}}">{{$section->name}}</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Article</li>
-            </ol>
-          </nav>
+        <div class="container pb-5 my-md-2 my-lg-3 my-xl-4">
           <div class="row">
             <div class="col-lg-9 col-xl-8 pe-lg-4 pe-xl-0">
-              <!-- Post title + post meta-->
-              <h1 class="pb-2 pb-lg-3 serif fw-bold fst-italic">{{$article->headline}}</h1>
+              <small class="text-uppercase mb-3">
+                <strong>{{$section->name}}</strong>
+              </small>
+              <h1 class="my-3 serif fw-bold fst-italic">{{$article->headline}}</h1>
+              <p class="fw-bold serif lh-lg mb-4">{{$article->abstract}}</p>
               <div class="d-flex flex-wrap align-items-center justify-content-between border-bottom mb-4">
                 <div class="d-flex align-items-center mb-4 me-4">
-                  <span class="fs-sm me-2">By:</span>
-                  <a class="nav-link position-relative fw-semibold p-0" href="#author" data-scroll="" data-scroll-offset="80">{{$article->author->display_name}}
+                  <span class="fs-sm me-2">{{__('messages.by')}}:</span>
+                  <a class="nav-link position-relative fw-semibold p-0" href="/by/{{$article->author->username}}" data-scroll="" data-scroll-offset="80">
+                    {{$article->author->display_name}}
                     <span class="d-block position-absolute start-0 bottom-0 w-100" style="background-color: currentColor; height: 1px;"></span>
-                  </a>
-                </div>
-                <div class="d-flex align-items-center mb-4"><span class="fs-sm me-2">Share article:</span>
-                  <div class="d-flex"><a class="nav-link p-2 me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Instagram" data-bs-original-title="Instagram"><i class="ai-instagram"></i></a><a class="nav-link p-2 me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Facebook" data-bs-original-title="Facebook"><i class="ai-facebook"></i></a><a class="nav-link p-2 me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Telegram" data-bs-original-title="Telegram"><i class="ai-telegram fs-sm"></i></a><a class="nav-link p-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Twitter" data-bs-original-title="Twitter"><i class="ai-twitter"></i></a></div>
+                  </a> <span class="d-none"> at {{$article->published_at}}</span>
                 </div>
               </div>
-              <!-- Post content-->
-              @if ($article->video_embed)
               <figure class="figure w-100">
-                <div class="ratio ratio-{{$article->video_ratio}}">
-                  {!! $article->video_embed !!}
-                </div>
+                @if ($article->video_embed)
+                  <div class="ratio ratio-{{$article->video_ratio}}">
+                    {!! $article->video_embed !!}
+                  </div>
+                @else
+                  <img class="GFG figure-img" style="object-fit: cover;" height="100%" width="100%" src="{{$article->image_url}}"/>
+                  @if ($article->image_caption != null)
+                    <figcaption class="figure-caption">{{$article->image_caption}}</figcaption>
+                  @endif
+                @endif
               </figure>
-              @endif
+
+              <!-- Check if article should be readable out loud? bool -->
+              <div class="py-5 d-flex justify-content-start align-items-center">
+                <div class="me-2">
+                  <button id="article-listen-toggle-btn" style="width: 48px; height: 48px" class="btn rounded-circle btn-dark me-1">
+                    <svg style="vertical-align: text-bottom" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+                      <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+                    </svg>
+                  </button>
+                </div>
+                <div class="me-auto">
+                  <p class="mb-0">{{__('messages.listen_to_article')}}</p>
+                </div>
+                <div>
+                  <button id="article-listen-stop-btn" style="width: 48px; height: 48px" class="d-none btn rounded-circle btn-outline-dark">
+                    <svg style="vertical-align: text-bottom" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                      <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
 
               <div id="article-body" class="serif">
                 {!! $body !!}
               </div>
-              <!-- Author widget-->
-              <div class="border-top border-bottom py-4" id="author">
-                <div class="d-flex align-items-start py-2">
-                  <img style="object-fit: cover; width: 56px; height: 56px;" class="d-block rounded-circle mb-3" src="{{$article->author->photo_url}}" width="56" alt="Author image">
-                  <div class="d-md-flex w-100 ps-4">
-                    <div style="max-width: 26rem;">
-                      <h3 class="h5 mb-2">{{$article->author->display_name}}</h3>
-                      <p class="fs-sm mb-0">{{$article->author->bio ?? 'No bio.'}}</p>
-                    </div>
-                    <div class="pt-4 pt-md-0 ps-md-4 ms-md-auto">
-                      <h3 class="h5">Share article:</h3>
-                      <div class="d-flex"><a class="nav-link p-2 me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Instagram" data-bs-original-title="Instagram"><i class="ai-instagram"></i></a><a class="nav-link p-2 me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Facebook" data-bs-original-title="Facebook"><i class="ai-facebook"></i></a><a class="nav-link p-2 me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Telegram" data-bs-original-title="Telegram"><i class="ai-telegram fs-sm"></i></a><a class="nav-link p-2" href="#" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Twitter" data-bs-original-title="Twitter"><i class="ai-twitter"></i></a></div>
-                    </div>
-                  </div>
-                </div>
+
+              <div class="d-flex flex-wrap pt-3 pt-md-4 pt-xl-5 mt-xl-n2">
+                <h3 class="h6 py-1 mb-0 me-4">Relevant tags:</h3><a class="nav-link fs-sm py-1 px-0 me-3" href="#"><span class="text-primary">#</span>Nature</a><a class="nav-link fs-sm py-1 px-0 me-3" href="#"><span class="text-primary">#</span>Books</a><a class="nav-link fs-sm py-1 px-0 me-3" href="#"><span class="text-primary">#</span>Travel</a>
               </div>
-              <!-- Comments-->
-              <div class="pt-4 pt-xl-5 mt-4" id="comments">
+
+            </div>
+            <aside class="col-lg-3 offset-xl-1 pt-4 pt-lg-0" style="margin-top: -7rem;">
+            <div class="position-sticky top-0 mt-2 mt-md-3 mt-lg-0" style="padding-top: 7rem;">
+              <!-- Sharing-->
+              <h5 class="mb-2 serif fst-italic">{{__('messages.share_this_article')}}:</h5>
+              <div class="mb-lg-5 mb-4 pb-3 pb-lg-0">
+                <a onclick="window.copyCurrentURLToClipboard()" style="pointer: cursor; width: 34px; height: 34px" class="btn btn-outline-secondary btn-icon btn-sm btn-clipboard rounded-circle mt-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M10 1.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1Zm-5 0A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5v1A1.5 1.5 0 0 1 9.5 4h-3A1.5 1.5 0 0 1 5 2.5v-1Zm-2 0h1v1A2.5 2.5 0 0 0 6.5 5h3A2.5 2.5 0 0 0 12 2.5v-1h1a2 2 0 0 1 2 2V14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3.5a2 2 0 0 1 2-2Z"/>
+                  </svg>
+                </a>
+                <a style="width: 34px; height: 34px" class="btn btn-outline-secondary btn-icon btn-sm btn-email rounded-circle mt-3 ms-3" target="_blank" href="mailto:?body={{url()->current()}}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                    <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+                  </svg>
+                </a>
+                <a style="width: 34px; height: 34px" class="btn btn-outline-secondary btn-icon btn-sm btn-telegram rounded-circle mt-3 ms-3" target="_blank" href="https://t.me/share/url?url={{url()->current()}}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/>
+                  </svg>
+                </a>
+                <a style="width: 34px; height: 34px" class="btn btn-outline-secondary btn-icon btn-sm btn-twitter rounded-circle mt-3 ms-3" target="_blank" href="https://twitter.com/intent/tweet?&url={{url()->current()}}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+                  </svg>
+                </a>
+              </div>
+
+              <!-- Relevant topics-->
+              <h5 class="pt-xl-1 mb-2 serif fst-italic">{{__('messages.relevant_topics')}}:</h5>
+              <div class="d-flex flex-wrap mb-lg-5 mb-4 pb-3 pb-lg-0">
+                @foreach(explode(",", $article->keywords) as $index => $keyword)
+                  <a @class([
+                    'btn btn-outline-secondary rounded-pill mt-3',
+                    'ms-3' => $index > 0
+                  ]) href="/topic/{{$keyword}}">
+                    {{$keyword}}
+                  </a>
+                @endforeach
+              </div>
+
+              <!-- Trending articles-->
+              <h5 class="pt-xl-1 mb-2 serif fst-italic">{{__('messages.trending_articles')}}:</h5>
+              <ul class="list-group list-group-flush mb-0">
+                @foreach ($trendingArticles as $trendingArticle)
+                  @include('components.article-list-item', array(
+                    'section' => $sections->where('uri', $trendingArticle->section_uri)->first(),
+                    'article' => $trendingArticle,
+                    'style' => 'compact'
+                  ))
+                @endforeach
+              </ul>
+            </div>
+          </aside>
+          </div>
+        </div>
+        
+        <div class="container pb-5 my-md-2 my-lg-3 my-xl-4">
+          <div class="col-lg-9 col-xl-8 pe-lg-4 pe-xl-0">
+            <div class="pt-4 pt-xl-5 mt-4" id="comments">
               @if ($article->comment_count >= 0)
                 <h2 class="fst-italic serif h1 py-lg-1 py-xl-3">{{trans_choice('messages.comments_format', $article->comment_count, ['n' => $article->comment_count])}}</h2>
               @endif
@@ -396,95 +459,45 @@
                 @endif
               </div>
             </div>
-            </div>
-            <!-- Sidebar (offcanvas on sreens < 992px)-->
-            <aside class="col-lg-3 offset-xl-1">
-              <div class="offcanvas-lg offcanvas-end" id="sidebar">
-                <div class="offcanvas-header">
-                  <h4 class="offcanvas-title">Sidebar</h4>
-                  <button class="btn-close ms-auto" type="button" data-bs-dismiss="offcanvas" data-bs-target="#sidebar"></button>
-                </div>
-                <div class="offcanvas-body">
-                  <!-- Popular posts-->
-                  <h4 class="pt-1 pt-lg-0 mt-lg-n2 serif fst-italic">Most popular:</h4>
-                  <div class="mb-lg-5 mb-4">
-                    @foreach($trendingArticles->slice(0,2) as $trendingArticle)
-                    <article class="position-relative pb-2 mb-3 mb-lg-4">
-                      <div class="ratio ratio-16x9">
-                        <img style="object-fit: cover;" class="rounded-5" src="{{$trendingArticle->image_url}}" alt="{{$trendingArticle->image_url}}">
-                      </div>
-                      <h5 class="h6 mt-3 mb-0">
-                        <a class="stretched-link" href="{{route('article', [$trendingArticle->section_uri, $trendingArticle->headline_uri])}}">{{$trendingArticle->headline}}</a>
-                      </h5>
-                    </article>
-                    @endforeach
-                  </div>
-                  <!-- Recent posts-->
-                  <h4 class="pt-3 pt-lg-1 mb-4 serif fst-italic">Recent articles:</h4>
-                  <ul class="list-group list-group-flush list-unstyled mb-lg-5 mb-4">
-                    @foreach ($recentArticles as $recentArticle)
-                      @include('components.article-list-item', array(
-                        'section' => $sections->where('uri', $recentArticle->section_uri)->first(),
-                        'article' => $recentArticle,
-                        'style' => 'compact'
-                      ))
-                    @endforeach
-                  </ul>
-                  <!-- Relevant topics-->
-                  <h4 class="pt-3 pt-lg-1 mb-4 serif fst-italic">Relevant topics:</h4>
-                  <div class="d-flex flex-wrap mt-n3 ms-n3 mb-lg-5 mb-4 pb-3 pb-lg-0">
-                      @foreach(explode(",", $article->keywords) as $index => $keyword)
-                        <a @class([
-                          'btn btn-outline-secondary rounded-pill mt-3',
-                          'ms-3' => $index > 0
-                        ]) href="/topic/{{$keyword}}">
-                          {{$keyword}}
-                        </a>
-                      @endforeach
-                  </div>
-                </div>
-              </div>
-            </aside>
           </div>
-        </section>
-        <!-- Related articles (carousel) -->
-        <section class="container py-5 mt-sm-2 my-md-4 my-xl-5">
+        </div>
+
+        <!-- Related Articles -->
+        <section class="container pt-2 pt-sm-3 pb-5 mb-md-3 mb-lg-4 mb-xl-5">
           <div class="d-flex align-items-center pb-3 mb-3 mb-lg-4">
-              <h1 class="serif fst-italic mb-0 me-4 fw-bold">{{__('messages.related_articles_header')}}</h1>
-              <div class="d-flex ms-auto">
-                <button class="btn btn-prev btn-icon btn-sm btn-outline-primary rounded-circle me-3" type="button" id="prev-post" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-ef03bba4ed6c9674">
-                  <svg style="vertical-align: text-bottom" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                  </svg>
-                </button>
-                <button class="btn btn-next btn-icon btn-sm btn-outline-primary rounded-circle" type="button" id="next-post" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-ef03bba4ed6c9674">
-                  <svg style="vertical-align: text-bottom" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                  </svg>
-                </button>
-              </div>
+            <h1 class="serif fst-italic mb-0 me-4 fw-bold">{{__('messages.related_articles_header')}}</h1>
+            <div class="d-flex ms-auto">
+              <button class="btn btn-prev btn-icon btn-sm btn-outline-primary rounded-circle me-3" type="button" id="prev-post" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-ef03bba4ed6c9674">
+                <svg style="vertical-align: text-bottom" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                </svg>
+              </button>
+              <button class="btn btn-next btn-icon btn-sm btn-outline-primary rounded-circle" type="button" id="next-post" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-ef03bba4ed6c9674">
+                <svg style="vertical-align: text-bottom" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                </svg>
+              </button>
             </div>
-            @if (count($relatedArticles) === 0)
-              <p>No related articles.</p>
-            @else
-            <div class="swiper">
-              <div class="swiper-wrapper">
-                @foreach ($relatedArticles as $relatedArticle)
-                  <div class="swiper-slide">
-                    @include('components.article-card', array(
-                      'section' => $sections->where('uri', $relatedArticle->section_uri)->first(),
-                      'article' => $relatedArticle,
-                      'style' => 'compact'
-                    ))
-                  </div>
-                @endforeach
-              </div>
+          </div>
+          @if (count($relatedArticles) === 0)
+            <p>No related articles.</p>
+          @else
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              @foreach ($relatedArticles as $relatedArticle)
+                <div class="swiper-slide">
+                  @include('components.article-card', array(
+                    'section' => $sections->where('uri', $relatedArticle->section_uri)->first(),
+                    'article' => $relatedArticle,
+                    'style' => 'compact'
+                  ))
+                </div>
+              @endforeach
             </div>
-            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
-            @endif
+          </div>
+          <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+          @endif
         </section>
-        <!-- Sidebar toggle button-->
-        <button class="d-lg-none btn btn-sm fs-sm btn-primary w-100 rounded-0 fixed-bottom" data-bs-toggle="offcanvas" data-bs-target="#sidebar"><i class="ai-layout-column me-2"></i>Sidebar</button>
       </main>
       <!-- Footer -->
       @include('components.footer', array(
@@ -534,8 +547,8 @@
         const articleListenToggleBtn = document.getElementById('article-listen-toggle-btn');
         const articleListenStopBtn = document.getElementById('article-listen-stop-btn');
 
-        const playIcon = '<svg style="vertical-align: text-bottom" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="ai-play-fill" viewBox="0 0 16 16"><path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/></svg>';
-        const pauseIcon = '<svg style="vertical-align: text-bottom" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="ai-pause-fill" viewBox="0 0 16 16"><path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/></svg>';
+        const playIcon = '<svg style="vertical-align: text-bottom" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16"><path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/></svg>';
+        const pauseIcon = '<svg style="vertical-align: text-bottom" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pause-fill" viewBox="0 0 16 16"><path d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z"/></svg>';
 
         articleListenToggleBtn.addEventListener("click", () => {
           if (window.speechSynthesis.speaking == false) {

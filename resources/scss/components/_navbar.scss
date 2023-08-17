@@ -2,6 +2,7 @@
 // Navbar
 // --------------------------------------------------
 
+
 // Brand
 
 .navbar-brand {
@@ -268,7 +269,7 @@
   --#{$prefix}navbar-collapse-border-color: var(--#{$prefix}border-color);
 
   transition: $navbar-transition;
-
+  
   &.navbar-stuck {
     background-color: var(--#{$prefix}navbar-stuck-bg);
   }

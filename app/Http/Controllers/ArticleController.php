@@ -91,8 +91,12 @@ class ArticleController extends Controller
                           ->first();
 
       $trendingArticles = Article::orderBy('comment_count', 'desc')
-                                  ->limit(5)
+                                  ->limit(2)
                                   ->get();
+
+      $recentArticles = Article::orderBy('published_at', 'desc')
+      ->limit(4)
+      ->get();
 
       $comments = $article->comments()->where('reply_article_id', $article->id)
                                       ->where('reply_comment_id', null)
@@ -102,6 +106,7 @@ class ArticleController extends Controller
       return view('article', [
         'section' => $section,
         'trendingArticles' => $trendingArticles,
+        'recentArticles' => $recentArticles,
         'article' => $article,
         'body' => $body,
         'darkMode' => $darkMode,

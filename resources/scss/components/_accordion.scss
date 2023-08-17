@@ -2,6 +2,7 @@
 // Accordion
 // --------------------------------------------------
 
+
 // Default style
 
 .accordion {
@@ -44,7 +45,7 @@
       @include media-breakpoint-up(sm) {
         margin-bottom: calc(var(--#{$prefix}accordion-spacer) * .25);
       }
-    }
+    }  
   }
   .accordion-button {
     padding: {

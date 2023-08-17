@@ -2,7 +2,7 @@
     <article class="w-100 card border-0 px-2">
         <div class="d-block d-md-none">
             <div class="ratio ratio-4x3">
-                <img style="object-fit: cover;" src="{{$article->image_url}}" alt="..." class="">
+                <img class="rounded-0" style="object-fit: cover;" src="{{$article->image_url}}" alt="{{$article->image_caption}}">
             </div>
         </div>
         <div class="d-none d-md-block">
@@ -10,7 +10,7 @@
                 'ratio ratio-1x1' => $style == 'compact',
                 'ratio ratio-16x9' => $style == 'expanded',
             ])>
-                <img style="object-fit: cover;" src="{{$article->image_url}}" alt="..." class="">
+                <img style="object-fit: cover;" src="{{$article->image_url}}" alt="{{$article->image_caption}}" class="rounded-0">
             </div>
         </div>
         <div class="article-body card-body px-0 pb-0">
