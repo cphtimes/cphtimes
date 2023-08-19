@@ -23,8 +23,12 @@ class Layout extends Model
      */
     protected $fillable = [
         'section_uri',
-        'headline_uri',
+        'article_id',
         'position',
     ];
+
+    public function article() {
+        return $this->hasOne(Article::class, 'id', 'article_id');
+    }
 
 }

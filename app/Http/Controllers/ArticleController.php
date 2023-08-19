@@ -91,7 +91,7 @@ class ArticleController extends Controller
                           ->first();
 
       $trendingArticles = Article::orderBy('comment_count', 'desc')
-                                  ->limit(2)
+                                  ->limit(3)
                                   ->get();
 
       $recentArticles = Article::orderBy('published_at', 'desc')

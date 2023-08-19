@@ -265,11 +265,11 @@
             ))
             <!-- Page content-->
             <div class="col-lg-9 pt-4 pb-2 pb-sm-4">
-                <h1 class="serif fst-italic h2 mb-4">New Article</h1>
+                <h1 class="serif fst-italic h2 mb-4">Edit Article</h1>
                 <!-- Basic info-->
                 <section class="card border py-1 p-md-2 p-xl-3 p-xxl-4 mb-4">
                 <div class="card-body">
-                    <form class="needs-validation" method="POST" action="/manage/new-article" enctype="multipart/form-data">
+                    <form class="needs-validation" method="POST" action="/manage/edit-article?section_uri={{$article->section_uri}}&headline_uri={{$article->headline_uri}}" enctype="multipart/form-data">
                         @csrf
                         @if ($errors->any())
                         <div class="alert alert-danger">
@@ -284,14 +284,18 @@
                         <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
                           <div class="col-sm-6">
                               <label class="form-label" for="headline">Headline</label>
-                              <input name="headline" class="form-control" type="text" value="" id="headline" required>
+                              <input name="headline" class="form-control" type="text" value="{{$article->headline}}" id="headline" required>
                           </div>
                           <div class="col-sm-6">
                             <label class="form-label" for="fn">Section</label>
                             <select name="section_uri" class="form-select" id="section" required>
                                 <option value="" disabled="">Choose...</option>
                                 @foreach ($sections as $section)
-                                  <option value="{{$section->uri}}">{{$section->name}}</option>
+                                  @if ($article->section_uri == $section->uri)
+                                    <option selected value="{{$section->uri}}">{{$section->name}}</option>
+                                  @else
+                                    <option value="{{$section->uri}}">{{$section->name}}</option>
+                                  @endif
                                 @endforeach
                             </select>
                           </div>
@@ -300,62 +304,62 @@
                               <label class="form-label" for="fn">In Language</label>
                               <select name="in_language" class="form-select" id="language" required>
                                   <option value="" disabled="">Choose...</option>
-                                  <option value="en" selected="{{$currentUser->language_code == 'en' ? 'selected' : ''}}">English</option>
-                                  <option value="da" selected="{{$currentUser->language_code == 'da' ? 'selected' : ''}}">Dansk (Danish)</option>
+                                  <option @if ($article->language_code == 'en') selected="selected" @endif value="en">English</option>
+                                  <option @if ($article->language_code == 'da') selected="selected" @endif value="da">Dansk (Danish)</option>
                               </select>
                           </div>
                           <div class="col-sm-6">
                             <label class="form-label" for="fn">Work Status</label>
                             <select name="work_status" class="form-select" id="work_status" required>
                                 <option value="" disabled="">Choose...</option>
-                                <option value="published">Published</option>
-                                <option value="draft">Draft</option>
-                                <option value="Archived">Archived</option>
+                                <option @if ($article->work_status == 'published') selected="selected" @endif value="published">Published</option>
+                                <option @if ($article->work_status == 'draft') selected="selected" @endif value="draft">Draft</option>
+                                <option @if ($article->work_status == 'archived') selected="selected" @endif value="archived">Archived</option>
                             </select>
                           </div>
 
                           <div class="col-12">
                               <label for="image" class="form-label">Image</label>
-                              <input name="image" class="form-control" type="file" id="image" accept="image/*" required>
+                              <input name="image" class="form-control" type="file" id="image" accept="image/*">
                           </div>
 
                           <div class="col-12">
                               <label class="form-label" for="image_caption">Image Caption (optional)</label>
-                              <input placeholder="" name="image_caption" class="form-control" type="text" value="" id="image_caption">
+                              <input placeholder="" name="image_caption" class="form-control" type="text" value="{{$article->image_caption}}" id="image_caption">
                           </div>
 
                           <div class="col-12">
                               <label class="form-label" for="video_embed">Video Embed (optional)</label>
-                              <textarea name="video_embed" class="form-control" rows="5" placeholder="" id="video_embed"></textarea>
+                              <textarea name="video_embed" class="form-control" rows="5" placeholder="" id="video_embed">{{$article->video_embed}}</textarea>
                           </div>
 
                           <div class="col-sm-6">
                               <label class="form-label" for="video_provider">Video Provider (optional)</label>
-                              <input placeholder="" name="video_provider" class="form-control" type="text" value="" id="video_provider">
+                              <input placeholder="" name="video_provider" class="form-control" type="text" value="{{$article->video_provider}}" id="video_provider">
                           </div>
 
                           <div class="col-sm-6">
                               <label class="form-label" for="image_caption">Video Ratio (optional)</label>
                               <select name="video_ratio" class="form-select" id="video_ratio">
                                 <option value="" disabled="">Choose...</option>
-                                <option value="16x9">16x9</option>
-                                <option value="4x3">4x3</option>
-                                <option value="1x1">1x1</option>
+                                <option @if ($article->video_ratio == '16x9') selected="selected" @endif value="16x9">16x9</option>
+                                <option @if ($article->video_ratio == '4x3') selected="selected" @endif value="4x3">4x3</option>
+                                <option @if ($article->video_ratio == '1x1') selected="selected" @endif value="1x1">1x1</option>
                             </select>
                           </div>
 
                           <div class="col-12">
                               <label class="form-label" for="bio">Abstract</label>
-                              <textarea name="abstract" class="form-control" rows="5" placeholder="" id="abstract"></textarea>
+                              <textarea name="abstract" class="form-control" rows="5" placeholder="" id="abstract">{{$article->abstract}}</textarea>
                           </div>
 
                           <div class="col-12">
                             <label class="form-label" for="body_html">Body</label>
                             <div class="p-3 rounded-3 border" id="editorjs"></div>
-                            <textarea readonly name="body_html" class="d-none form-control" rows="5" placeholder="" id="body_html"></textarea>
-                            <textarea readonly name="body_blocks" class="d-none form-control" rows="5" placeholder="" id="body_blocks"></textarea>
+                            <textarea readonly name="body_html" class="d-none form-control" rows="5" placeholder="" id="body_html">{{$body_html}}</textarea>
+                            <textarea readonly name="body_blocks" class="d-none form-control" rows="5" placeholder="" id="body_blocks">{{$blocks}}</textarea>
                           </div>
-                        
+
                           <div class="d-flex justify-content-end pt-3">
                             <button class="btn btn-secondary" type="button">{{__('messages.cancel')}}</button>
                             <button type="submit" class="btn btn-primary ms-3">{{__('messages.save_changes')}}</button>
@@ -404,6 +408,8 @@
          * To initialize the Editor, create a new instance with configuration object
          * @see docs/installation.md for mode details
          */
+        var blocks = JSON.parse(document.getElementById('body_blocks').value);
+
         var editor = new EditorJS({
           /**
            * Enable/Disable the read only mode
@@ -505,103 +511,7 @@
            * Initial Editor data
            */
           data: {
-            blocks: [
-              {
-                type: "header",
-                data: {
-                  text: "Editor.js",
-                  level: 2
-                }
-              },
-              {
-                type : 'paragraph',
-                data : {
-                  text : 'Hey. Meet the new Editor. On this page you can see it in action — try to edit this text. Source code of the page contains the example of connection and configuration.'
-                }
-              },
-              {
-                type: "header",
-                data: {
-                  text: "Key features",
-                  level: 3
-                }
-              },
-              {
-                type : 'list',
-                data : {
-                  items : [
-                    'It is a block-styled editor',
-                    'It returns clean data output in JSON',
-                    'Designed to be extendable and pluggable with a simple API',
-                  ],
-                  style: 'unordered'
-                }
-              },
-              {
-                type: "header",
-                data: {
-                  text: "What does it mean «block-styled editor»",
-                  level: 3
-                }
-              },
-              {
-                type : 'paragraph',
-                data : {
-                  text : 'Workspace in classic editors is made of a single contenteditable element, used to create different HTML markups. Editor.js <mark class=\"cdx-marker\">workspace consists of separate Blocks: paragraphs, headings, images, lists, quotes, etc</mark>. Each of them is an independent contenteditable element (or more complex structure) provided by Plugin and united by Editor\'s Core.'
-                }
-              },
-              {
-                type : 'paragraph',
-                data : {
-                  text : `There are dozens of <a href="https://github.com/editor-js">ready-to-use Blocks</a> and the <a href="https://editorjs.io/creating-a-block-tool">simple API</a> for creation any Block you need. For example, you can implement Blocks for Tweets, Instagram posts, surveys and polls, CTA-buttons and even games.`
-                }
-              },
-              {
-                type: "header",
-                data: {
-                  text: "What does it mean clean data output",
-                  level: 3
-                }
-              },
-              {
-                type : 'paragraph',
-                data : {
-                  text : 'Classic WYSIWYG-editors produce raw HTML-markup with both content data and content appearance. On the contrary, Editor.js outputs JSON object with data of each Block. You can see an example below'
-                }
-              },
-              {
-                type : 'paragraph',
-                data : {
-                  text : `Given data can be used as you want: render with HTML for <code class="inline-code">Web clients</code>, render natively for <code class="inline-code">mobile apps</code>, create markup for <code class="inline-code">Facebook Instant Articles</code> or <code class="inline-code">Google AMP</code>, generate an <code class="inline-code">audio version</code> and so on.`
-                }
-              },
-              {
-                type : 'paragraph',
-                data : {
-                  text : 'Clean data is useful to sanitize, validate and process on the backend.'
-                }
-              },
-              {
-                type : 'delimiter',
-                data : {}
-              },
-              {
-                type : 'paragraph',
-                data : {
-                  text : 'We have been working on this project more than three years. Several large media projects help us to test and debug the Editor, to make its core more stable. At the same time we significantly improved the API. Now, it can be used to create any plugin for any task. Hope you enjoy. 😏'
-                }
-              },
-              {
-                type: 'image',
-                data: {
-                  url: 'https://i3.ytimg.com/vi/Is1YUQVYkvY/maxresdefault.jpg',
-                  caption: '',
-                  stretched: false,
-                  withBorder: true,
-                  withBackground: false,
-                }
-              },
-            ]
+            blocks: blocks
           },
           onChange: function(api, event) {
             console.log('something changed', event);

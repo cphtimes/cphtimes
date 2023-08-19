@@ -69,7 +69,16 @@ Route::post('/forgot', [PasswordController::class, 'sendResetLink']);
 Route::get('/reset-password/{token}', [PasswordController::class, 'showResetPassword']);
 Route::post('/reset-password', [PasswordController::class, 'resetPassword']);
 
-Route::get('/new', [ManageController::class, 'showCreateArticle']);
+Route::get('/write', [ManageController::class, 'showCreateArticle']);
 Route::post('/manage/new-article', [ManageController::class, 'createArticle']);
+
+Route::get('/edit', [ManageController::class, 'showEditArticle']);
+Route::post('/manage/edit-article', [ManageController::class, 'editArticle']);
+
+Route::get('/manage/layout', [ManageController::class, 'showManageLayout']);
+Route::post('/manage/layout', [ManageController::class, 'createLayout']);
+
+Route::get('/manage/sections', [ManageController::class, 'showManageSections']);
+Route::post('/manage/sections', [ManageController::class, 'createSection']);
 
 // /policy, /terms, /support

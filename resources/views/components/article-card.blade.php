@@ -20,7 +20,7 @@
                 'd-block',
                 'd-md-none' => $style == 'expanded'
             ])>
-                <p class="opacity-50 crop-text-4">{{ $article->abstract }}</p>
+            <p class="opacity-50 crop-text-4">{{ $article->abstract }}</p>
             </div>
         </div>
     </article>

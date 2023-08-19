@@ -408,15 +408,12 @@
                   <!-- Popular posts-->
                   <h4 class="pt-1 pt-lg-0 mt-lg-n2 serif fst-italic">Most popular:</h4>
                   <div class="mb-lg-5 mb-4">
-                    @foreach($trendingArticles->slice(0,2) as $trendingArticle)
-                    <article class="position-relative pb-2 mb-3 mb-lg-4">
-                      <div class="ratio ratio-16x9">
-                        <img style="object-fit: cover;" class="rounded-5" src="{{$trendingArticle->image_url}}" alt="{{$trendingArticle->image_url}}">
-                      </div>
-                      <h5 class="h6 mt-3 mb-0">
-                        <a class="stretched-link" href="{{route('article', [$trendingArticle->section_uri, $trendingArticle->headline_uri])}}">{{$trendingArticle->headline}}</a>
-                      </h5>
-                    </article>
+                    @foreach($trendingArticles->slice(0,3) as $trendingArticle)
+                      @include('components.article-list-item', array(
+                        'section' => $sections->where('uri', $trendingArticle->section_uri)->first(),
+                        'article' => $trendingArticle,
+                        'style' => 'compact'
+                      ))
                     @endforeach
                   </div>
                   <!-- Recent posts-->

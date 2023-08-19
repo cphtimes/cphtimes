@@ -15,7 +15,9 @@
                     <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">{{__('messages.account')}}</h4>
                     <a class="nav-link fw-semibold py-2 px-0" href="/account/settings">{{__('messages.settings')}}</a>
                     <a class="nav-link fw-semibold py-2 px-0" href="/by/{{$currentUser->username}}">{{__('messages.articles')}}</a>
-                    <a class="nav-link fw-semibold py-2 px-0" href="/by/{{$currentUser->username}}/comments">{{__('messages.comments')}}</a>
+                    <!-- <a class="nav-link fw-semibold py-2 px-0" href="/by/{{$currentUser->username}}/comments">{{__('messages.comments')}}</a> -->
+                    <a class="nav-link fw-semibold py-2 px-0" href="/manage/layout">Layout</a>
+                    <a class="nav-link fw-semibold py-2 px-0" href="/manage/sections">Sections</a>
                     <a class="nav-link fw-semibold py-2 px-0" href="/logout">{{__('messages.sign_out')}}</a>
                 </nav>
             @endif

@@ -265,103 +265,90 @@
             ))
             <!-- Page content-->
             <div class="col-lg-9 pt-4 pb-2 pb-sm-4">
-                <h1 class="serif fst-italic h2 mb-4">New Article</h1>
+                <h1 class="serif fst-italic h2 mb-4">Layout</h1>
                 <!-- Basic info-->
                 <section class="card border py-1 p-md-2 p-xl-3 p-xxl-4 mb-4">
-                <div class="card-body">
-                    <form class="needs-validation" method="POST" action="/manage/new-article" enctype="multipart/form-data">
-                        @csrf
-                        @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
+                  <div class="card-body">
+                      <!-- Nav tabs -->
+                      <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                          <a href="#frontpage" class="nav-link active" data-bs-toggle="tab" role="tab">
+                            <i class="fi-home me-2"></i>
+                            Frontpage
+                          </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">Sections</a>
+                          <div class="dropdown-menu">
+                            @foreach ($sections as $section)
+                              <a href="#{{$section->uri}}" class="dropdown-item" data-bs-toggle="tab" role="tab">{{$section->name}}</a>
                             @endforeach
-                            </ul>
+                          </div>
+                        </li>
+                      </ul>
+
+                      <!-- Tabs content -->
+                      <div class="tab-content">
+                        <div class="tab-pane fade show active" id="frontpage" role="tabpanel">
+                            <form class="needs-validation" method="POST" action="/manage/layout" enctype="multipart/form-data">
+                                @csrf
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                    </ul>
+                                </div>
+                                @endif
+
+                                <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
+                                  @for ($i = 0; $i < 3; $i++)
+                                    <div class="col-sm-12">
+                                        <label class="form-label" for="article_{{$i+1}}">Article {{$i + 1}}</label>
+                                        <input placeholder="https://cphgates.com" name="article_{{$i+1}}" class="form-control" type="text" value="{{$layouts['frontpage']->get($i) != null ? route('article', [$layouts['frontpage']->get($i)->article->section_uri, $layouts['frontpage']->get($i)->article->headline_uri]) : ''}}" id="article_{{$i+1}}">
+                                    </div>
+                                  @endfor
+                                </div>
+                                
+                                <div class="d-flex justify-content-end pt-3">
+                                  <button class="btn btn-secondary" type="button">{{__('messages.cancel')}}</button>
+                                  <button type="submit" class="btn btn-primary ms-3">{{__('messages.save_changes')}}</button>
+                                </div>
+                            </form>    
                         </div>
-                        @endif
-                        
-                        <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
-                          <div class="col-sm-6">
-                              <label class="form-label" for="headline">Headline</label>
-                              <input name="headline" class="form-control" type="text" value="" id="headline" required>
-                          </div>
-                          <div class="col-sm-6">
-                            <label class="form-label" for="fn">Section</label>
-                            <select name="section_uri" class="form-select" id="section" required>
-                                <option value="" disabled="">Choose...</option>
-                                @foreach ($sections as $section)
-                                  <option value="{{$section->uri}}">{{$section->name}}</option>
-                                @endforeach
-                            </select>
-                          </div>
+                        @foreach ($sections as $section)
+                          <div class="tab-pane fade" id="{{$section->uri}}" role="tabpanel">
+                            <form class="needs-validation" method="POST" action="/manage/layout?section={{$section->uri}}" enctype="multipart/form-data">
+                                @csrf
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                    </ul>
+                                </div>
+                                @endif
 
-                          <div class="col-sm-6">
-                              <label class="form-label" for="fn">In Language</label>
-                              <select name="in_language" class="form-select" id="language" required>
-                                  <option value="" disabled="">Choose...</option>
-                                  <option value="en" selected="{{$currentUser->language_code == 'en' ? 'selected' : ''}}">English</option>
-                                  <option value="da" selected="{{$currentUser->language_code == 'da' ? 'selected' : ''}}">Dansk (Danish)</option>
-                              </select>
-                          </div>
-                          <div class="col-sm-6">
-                            <label class="form-label" for="fn">Work Status</label>
-                            <select name="work_status" class="form-select" id="work_status" required>
-                                <option value="" disabled="">Choose...</option>
-                                <option value="published">Published</option>
-                                <option value="draft">Draft</option>
-                                <option value="Archived">Archived</option>
-                            </select>
-                          </div>
+                                <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
+                                  @for ($i = 0; $i < 5; $i++)
+                                    <div class="col-sm-12">
+                                        <label class="form-label" for="article_{{$i+1}}">Article {{$i + 1}}</label>
+                                        <input placeholder="https://cphgates.com" name="article_{{$i+1}}" class="form-control" type="text" value="{{$layouts[$section->uri]->get($i) != null ? route('article', [$layouts[$section->uri]->get($i)->article->section_uri, $layouts[$section->uri]->get($i)->article->headline_uri]) : ''}}" id="article_{{$i+1}}">
+                                    </div>
+                                  @endfor
+                                </div>
 
-                          <div class="col-12">
-                              <label for="image" class="form-label">Image</label>
-                              <input name="image" class="form-control" type="file" id="image" accept="image/*" required>
+                                <div class="d-flex justify-content-end pt-3">
+                                  <button class="btn btn-secondary" type="button">{{__('messages.cancel')}}</button>
+                                  <button type="submit" class="btn btn-primary ms-3">{{__('messages.save_changes')}}</button>
+                                </div>
+                            </form>
                           </div>
-
-                          <div class="col-12">
-                              <label class="form-label" for="image_caption">Image Caption (optional)</label>
-                              <input placeholder="" name="image_caption" class="form-control" type="text" value="" id="image_caption">
-                          </div>
-
-                          <div class="col-12">
-                              <label class="form-label" for="video_embed">Video Embed (optional)</label>
-                              <textarea name="video_embed" class="form-control" rows="5" placeholder="" id="video_embed"></textarea>
-                          </div>
-
-                          <div class="col-sm-6">
-                              <label class="form-label" for="video_provider">Video Provider (optional)</label>
-                              <input placeholder="" name="video_provider" class="form-control" type="text" value="" id="video_provider">
-                          </div>
-
-                          <div class="col-sm-6">
-                              <label class="form-label" for="image_caption">Video Ratio (optional)</label>
-                              <select name="video_ratio" class="form-select" id="video_ratio">
-                                <option value="" disabled="">Choose...</option>
-                                <option value="16x9">16x9</option>
-                                <option value="4x3">4x3</option>
-                                <option value="1x1">1x1</option>
-                            </select>
-                          </div>
-
-                          <div class="col-12">
-                              <label class="form-label" for="bio">Abstract</label>
-                              <textarea name="abstract" class="form-control" rows="5" placeholder="" id="abstract"></textarea>
-                          </div>
-
-                          <div class="col-12">
-                            <label class="form-label" for="body_html">Body</label>
-                            <div class="p-3 rounded-3 border" id="editorjs"></div>
-                            <textarea readonly name="body_html" class="d-none form-control" rows="5" placeholder="" id="body_html"></textarea>
-                            <textarea readonly name="body_blocks" class="d-none form-control" rows="5" placeholder="" id="body_blocks"></textarea>
-                          </div>
-                        
-                          <div class="d-flex justify-content-end pt-3">
-                            <button class="btn btn-secondary" type="button">{{__('messages.cancel')}}</button>
-                            <button type="submit" class="btn btn-primary ms-3">{{__('messages.save_changes')}}</button>
-                          </div>
-                    </form>
-                </div>
+                        @endforeach
+                      </div>
+                  </div>
                 </section>
             </div>
           </div>
@@ -609,10 +596,7 @@
             .then((savedData) => {
               const edjsParser = edjsHTML({image: imageParser});
               let html = edjsParser.parse(savedData);
-              
               document.getElementById("body_html").value = html.join('')
-              document.getElementById("body_blocks").value = JSON.stringify(savedData.blocks);
-
             })
             .catch((error) => {
               console.error('Saving error', error);
