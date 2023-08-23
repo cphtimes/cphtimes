@@ -22,15 +22,15 @@
 
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <style>
-@font-face {
-    font-family: "Chomsky";
-    src: url("{{url('Chomsky.otf')}}");
-}
+      @font-face {
+          font-family: "Chomsky";
+          src: url("{{url('Chomsky.otf')}}");
+      }
 
-.chomsky {
-    font-family: "Chomsky";
-}
-</style>
+      .chomsky {
+          font-family: "Chomsky";
+      }
+      </style>
       <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet">
 
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
@@ -229,7 +229,7 @@
       <div class="d-flex flex-column align-items-center position-relative h-100 px-3 pt-5">
         <!-- Home button-->
         <a class="text-nav btn btn-icon bg-light border rounded-circle position-absolute top-0 end-0 zindex-2 p-0 mt-3 me-3 mt-sm-4 me-sm-4" href="/" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="Back to home">
-          <span class="text-dark align-self-end" style="font-family: 'UnifrakturMaguntia', cursive; font-size: 1.5rem;">C</span>
+          <span class="chomsky text-dark align-self-center fw-normal" style="font-size: 1.5rem;">C</span>
         </a>
         <!-- Content-->
         <div class="mt-auto" style="max-width: 700px;">

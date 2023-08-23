@@ -13,12 +13,20 @@
             @if ($author->is($currentUser))
                 <nav class="nav flex-column pb-2 pb-lg-4 mb-3">
                     <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">{{__('messages.account')}}</h4>
-                    <a class="nav-link fw-semibold py-2 px-0" href="/account/settings">{{__('messages.settings')}}</a>
-                    <a class="nav-link fw-semibold py-2 px-0" href="/by/{{$currentUser->username}}">{{__('messages.articles')}}</a>
+                    <a class="nav-link fw-semibold py-2 px-0" href="/by/{{$currentUser->username}}"><i class="bi bi-person fs-5 opacity-60 me-2"></i>Overview</a>
+                    <a class="nav-link fw-semibold py-2 px-0" href="/account/settings"><i class="ai-settings fs-5 opacity-60 me-2"></i>{{__('messages.settings')}}</a> <!-- active -->
                     <!-- <a class="nav-link fw-semibold py-2 px-0" href="/by/{{$currentUser->username}}/comments">{{__('messages.comments')}}</a> -->
-                    <a class="nav-link fw-semibold py-2 px-0" href="/manage/layout">Layout</a>
-                    <a class="nav-link fw-semibold py-2 px-0" href="/manage/sections">Sections</a>
-                    <a class="nav-link fw-semibold py-2 px-0" href="/logout">{{__('messages.sign_out')}}</a>
+                </nav>
+
+                <nav class="nav flex-column pb-2 pb-lg-4 mb-1">
+                    <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">Manage</h4>
+                    <a class="nav-link fw-semibold py-2 px-0" href="/write"><i class="ai-pencil fs-5 opacity-60 me-2"></i>Write</a>
+                    <a class="nav-link fw-semibold py-2 px-0" href="/manage/sections"><i class="ai-list fs-5 opacity-60 me-2"></i>Sections</a>
+                    <a class="nav-link fw-semibold py-2 px-0" href="/manage/layout"><i class="ai-grid fs-5 opacity-60 me-2"></i>Layout</a>
+                </nav>
+
+                <nav class="nav flex-column">
+                    <a class="nav-link fw-semibold py-2 px-0" href="/logout"><i class="ai-logout fs-5 opacity-60 me-2"></i>{{__('messages.sign_out')}}</a>
                 </nav>
             @endif
             </div>

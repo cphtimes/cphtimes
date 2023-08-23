@@ -31,12 +31,12 @@
           <div class="col-6 col-md-4 col-lg-2 px-4 px-md-0">
             <h5 class="serif fst-italic">{{ucfirst(__('messages.more'))}}</h5>
             <ul class="nav flex-column">
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Tips</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Censorship</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Manage my account</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Funding</a></li>
-              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+              <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-muted">About</a></li>
+              <li class="nav-item mb-2"><a href="https://app.aria5.co" class="nav-link p-0 text-muted">Aria5.co</a></li>
+              <li class="nav-item mb-2"><a href="https://resonantlinks.com" class="nav-link p-0 text-muted">Resonantlinks.com</a></li>
+              <li class="nav-item mb-2"><a href="/donate" class="nav-link p-0 text-muted">Donate</a></li>
+              <li class="nav-item mb-2"><a href="/privacy" class="nav-link p-0 text-muted">Privacy</a></li>
+              <li class="nav-item mb-2"><a href="/policy" class="nav-link p-0 text-muted">Policy</a></li>
             </ul>
           </div>
 

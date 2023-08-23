@@ -51,7 +51,7 @@
 
         <!-- Logo -->
         <div class="text-center">
-            <a class="navbar-brand chomsky" href="/">
+            <a class="navbar-brand fw-normal chomsky" href="/">
                 <span class="d-md-none" style="font-size: 1.5rem;">{{__('messages.brand_name_letter')}}</span>
                 <span class="d-none d-md-block" style="font-size: 1.5rem;">{{__('messages.brand_name')}}</span>
             </a>

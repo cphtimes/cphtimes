@@ -25,9 +25,10 @@
                     'btn',
                     'btn-link',
                     'text-dark',
-                    'btn-sm'
+                    'btn-sm',
+                    'd-none'
                     ])>
-                        <i class="bi bi-plus-circle fs-lg"></i>
+                        <i class="bi bi-plus-circle"></i>
                     </a>
                     <button id="header__moon" onclick="window.darkmode.toLightMode()" type="button" @class([
                     'd-none' => $darkMode == false,
@@ -88,7 +89,7 @@
                 </ul>
             </div>
             <div class="text-center">
-                <a style="font-size: 4.0rem;" class="text-dark fw-bold chomsky" href="/">{{__('messages.brand_name')}}</a>
+                <a style="font-size: 4.0rem;" class="text-dark chomsky" href="/">{{__('messages.brand_name')}}</a>
             </div>
             <div>
                 <ul class="navbar-nav">

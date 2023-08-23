@@ -22,15 +22,15 @@
 
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <style>
-@font-face {
-    font-family: "Chomsky";
-    src: url("{{url('Chomsky.otf')}}");
-}
+      @font-face {
+          font-family: "Chomsky";
+          src: url("{{url('Chomsky.otf')}}");
+      }
 
-.chomsky {
-    font-family: "Chomsky";
-}
-</style>
+      .chomsky {
+          font-family: "Chomsky";
+      }
+      </style>
       <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet">
 
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
@@ -243,7 +243,7 @@
         <div class="d-lg-flex position-relative h-100">
           <!-- Home button-->
           <a class="text-nav btn btn-icon bg-light border rounded-circle position-absolute top-0 end-0 p-0 mt-3 me-3 mt-sm-4 me-sm-4" href="/" data-bs-toggle="tooltip" data-bs-placement="left" aria-label="Back to home">
-            <span class="text-dark align-self-end" style="font-family: 'UnifrakturMaguntia', cursive; font-size: 1.5rem;">C</span>
+            <span class="chomsky text-dark align-self-center fw-normal" style="font-size: 1.5rem;">C</span>
           </a>
           <!-- Sign in form-->
           <div class="d-flex flex-column align-items-center w-lg-50 h-100 px-3 px-lg-5 pt-5">
@@ -291,7 +291,7 @@
           <p class="w-100 fs-sm pt-5 mt-auto mb-5" style="max-width: 526px;"><span class="text-muted">{{__('messages.all_rights_reserved', ['year' => now()->year, 'app' => env('APP_NAME')])}}</span></p>
         </div>
           <!-- Cover image-->
-          <div class="w-50 bg-size-cover bg-repeat-0 bg-position-center" style="background-image: url('https://kbhbilleder.dk/kbh-museum/8885/thumbnail/2000/bottom-right');"></div>
+          <div class="w-50 bg-size-cover bg-repeat-0 bg-position-center" style="background-image: url('http://www.hovedstadshistorie.dk/wp-content/uploads/2016/03/Nørreport-Raewerts-maleri-1823-1024x766.jpg');"></div>
         </div>
       </main>
     </div>
