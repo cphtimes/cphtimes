@@ -1,48 +1,48 @@
 :root {
     // Font
-    --aa-font-size: var(--bs-root-font-size);
-    --aa-font-family: var(--bs-body-font-family);
+    --aa-font-size: var(--ar-root-font-size);
+    --aa-font-family: var(--ar-body-font-family);
     // --aa-font-weight-medium
     // --aa-font-weight-semibold
     // --aa-font-weight-bold
 
     // Icons
     --aa-icon-size: 16;
-    --aa-icon-color-rgb: var(--bs-light-rgb);
+    --aa-icon-color-rgb: var(--ar-light-rgb);
     --aa-icon-color-alpha: 1.0;
     --aa-action-icon-size: 16;
 
     // Text Colors
-    --aa-text-color-rgb: var(--bs-body-color);
+    --aa-text-color-rgb: var(--ar-body-color);
     --aa-text-color-alpha: 1.0;
-    --aa-primary-color-rgb: var(--bs-primary-rgb);
+    --aa-primary-color-rgb: var(--ar-primary-rgb);
     --aa-primary-color-alpha: 1.0;
-    --aa-muted-color-rgb: var(--bs-gray-600);
+    --aa-muted-color-rgb: var(--ar-gray-600);
     --aa-muted-color-alpha: 1.0;
 
     // Background Colors
-    --aa-background-color-rgb:  var(--bs-body-bg-rgb);
+    --aa-background-color-rgb:  var(--ar-body-bg-rgb);
     --aa-background-color-alpha: 1.0;
 
     --aa-input-background-color-rgb: 0,0,0;
     --aa-input-background-color-alpha: 0.0;
 
-    --aa-selected-color-rgb: var(--bs-primary-rgb);
+    --aa-selected-color-rgb: var(--ar-primary-rgb);
     --aa-selected-color-alpha: 0.07;
 
-    --aa-description-highlight-background-color-rgb: var(--bs-warning-rgb);
+    --aa-description-highlight-background-color-rgb: var(--ar-warning-rgb);
     --aa-description-highlight-background-color-alpha: 0.22;
     
     // Detached mode
     // --aa-detached-media-query
     // --aa-detached-modal-media-query
-    // --aa-detached-modal-max-width: var(--bs-modal-width);
+    // --aa-detached-modal-max-width: var(--ar-modal-width);
     // --aa-detached-modal-max-height
     --aa-overlay-color-rgb: 0,0,0;
-    --aa-overlay-color-alpha: 0.65; // var(--bs-backdrop-opacity);
+    --aa-overlay-color-alpha: 0.65; // var(--ar-backdrop-opacity);
 
     // Shadows
-    --aa-panel-shadow: var(--bs-modal-box-shadow);
+    --aa-panel-shadow: var(--ar-modal-box-shadow);
 
 
 }

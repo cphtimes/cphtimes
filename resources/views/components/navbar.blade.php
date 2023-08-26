@@ -61,17 +61,6 @@
         <div class="d-flex justify-content-end align-items-center">
             <div class="px-2">
                 <div class="d-none d-lg-block">
-                    <a href="/meetings" @class([
-                        'btn',
-                        'btn-link',
-                        'text-dark',
-                        'btn-sm'
-                    ])>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
-                            <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
-                            <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-                        </svg>
-                    </a>
                     <button id="header__moon" onclick="window.darkmode.toLightMode()" type="button" @class([
                         'd-none' => $darkMode == false,
                         'btn',
@@ -101,7 +90,7 @@
                 <!-- Desktop -->
                 <div class="d-none d-lg-block">
                     @auth
-                        <div class="dropdown">
+                        <div class="dropdown d-none">
                             <a style="width: 35px; height: 35px; cursor: pointer" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 <img class="rounded-circle" src="{{$user->photo_url}}" width="35" height="35" style="object-fit: cover;" alt="{{$user->display_name}}">
                             </a>
@@ -111,6 +100,27 @@
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item dropdown-item-danger" href="/logout">{{__('messages.sign_out')}}</a></li>
                             </ul>
+                        </div>
+
+                        <div class="dropdown nav d-none d-sm-block order-lg-3"><a class="nav-link d-flex align-items-center p-0" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img style="object-fit: cover;" class="border rounded-circle" src="{{$user->photo_url}}" width="36" height="36" alt="{{$user->display_name}}">
+                            <div class="ps-2">
+                                <div class="fs-xs lh-1 opacity-60">Hello,</div>
+                                <div class="fs-sm dropdown-toggle">{{explode(" ", $user->display_name)[0]}}</div>
+                            </div></a>
+                            <div class="dropdown-menu dropdown-menu-end my-1">
+                            <h6 class="dropdown-header fs-xs fw-medium text-muted text-uppercase pb-1">Account</h6>
+                                <a class="dropdown-item" href="/by/{{$user->username}}"><i class="ai-user-check fs-lg opacity-70 me-2"></i>Overview</a>
+                                <a class="dropdown-item" href="/account/settings"><i class="ai-settings fs-lg opacity-70 me-2"></i>Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="dropdown-header fs-xs fw-medium text-muted text-uppercase pb-1">Manage</h6>
+                                <a class="dropdown-item" href="/write"><i class="ai-cart fs-lg opacity-70 me-2"></i>Orders</a>
+                                <a class="dropdown-item" href="account-earnings.html"><i class="ai-activity fs-lg opacity-70 me-2"></i>Earnings</a>
+                                <a class="dropdown-item d-flex align-items-center" href="account-chat.html"><i class="ai-messages fs-lg opacity-70 me-2"></i>Chat<span class="badge bg-danger ms-auto">4</span></a>
+                                <a class="dropdown-item" href="account-favorites.html"><i class="ai-heart fs-lg opacity-70 me-2"></i>Favorites</a>
+                            <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/logout"><i class="ai-logout fs-lg opacity-70 me-2"></i>{{__('messages.sign_out')}}</a>
+                            </div>
                         </div>
                     @endauth
                     @guest
