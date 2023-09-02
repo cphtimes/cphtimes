@@ -22,7 +22,6 @@
               <li class="nav-item mb-2"><a target="_blank" href="https://www.youtube.com/@ElenaDanaan" class="nav-link p-0 text-muted">Elena Danaan</a></li>
               <li class="nav-item mb-2"><a target="_blank" href="https://doctors4covidethics.org/" class="nav-link p-0 text-muted">Doctors for Covid Ethics</a></li>
               <li class="nav-item mb-2"><a target="_blank" href="https://www.youtube.com/@AlexCollierOfficial" class="nav-link p-0 text-muted">Alex Collier</a></li>
-              <li class="nav-item mb-2"><a target="_blank" href="https://www.youtube.com/@kathrinekroghhoffmann" class="nav-link p-0 text-muted">Kathrine Krogh Hoffmann</a></li>
               <li class="nav-item mb-2"><a target="_blank" href="https://vigilantcitizen.com" class="nav-link p-0 text-muted">Vigilant Citizen</a></li>
               <li class="nav-item mb-2"><a target="_blank" href="https://vigilantlinks.com" class="nav-link p-0 text-muted">Vigilant Links</a></li>
             </ul>
