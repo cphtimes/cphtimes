@@ -70,7 +70,7 @@
                     <div class="dropdown nav d-none d-sm-block order-lg-3"><a class="nav-link d-flex align-items-center p-0" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         <img style="object-fit: cover;" class="border rounded-circle" src="{{$user->photo_url}}" width="36" height="36" alt="{{$user->display_name}}">
                         <div class="ps-2">
-                            <div class="fs-xs lh-1 opacity-60">Hello,</div>
+                            <div class="fs-xs lh-1 opacity-60">Hej,</div>
                             <div class="fs-sm dropdown-toggle">{{explode(" ", $user->display_name)[0]}}</div>
                         </div></a>
                         <div class="dropdown-menu dropdown-menu-end my-1">
