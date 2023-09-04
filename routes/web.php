@@ -43,13 +43,13 @@ Route::get('/{locale}', function ($locale) {
 
 Route::get('/', [HomepageController::class, 'show']);
 
-if (config('app.env') == 'production' && Request::root() == 'https://cphgates.com')
+if (config('app.env') == 'production' && Request::getHost() == 'cphgates.com')
 {
     Route::get('/section/{section}', [SectionController::class, 'show'])->name('section');
     Route::get('/section/{section}/{article}', [ArticleController::class, 'show'])->name('article');
     Route::match(['get', 'post'], '/by/{username}', [AuthorController::class, 'show'])->name('author'); 
 
-} else if (config('app.env') == 'production' && Request::root() == 'https://kbhporte.dk') {
+} else if (config('app.env') == 'production' && Request::root() == 'kbhporte.dk') {
     
     Route::get('/sektion/{section}', [SectionController::class, 'show'])->name('section');
     Route::get('/sektion/{section}/{article}', [ArticleController::class, 'show'])->name('article');

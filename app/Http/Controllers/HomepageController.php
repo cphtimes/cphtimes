@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 // use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Kreait\Firebase\Auth\CreateSessionCookie\FailedToCreateSessionCookie;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\User;
@@ -17,6 +17,8 @@ use Session;
 use Stripe;
 use App;
 use App\Models\Article;
+
+use Illuminate\Support\Facades\Request;
 
 class HomepageController extends Controller
 {
