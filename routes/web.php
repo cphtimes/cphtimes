@@ -17,7 +17,7 @@ use App\Http\Controllers\Account\Auth\RegisterController;
 use App\Http\Controllers\Account\Auth\PasswordController;
 
 use App\Http\Controllers\Account\ManageController;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 
 
 /*
