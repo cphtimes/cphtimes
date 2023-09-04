@@ -17,7 +17,7 @@ use App\Http\Controllers\Account\Auth\RegisterController;
 use App\Http\Controllers\Account\Auth\PasswordController;
 
 use App\Http\Controllers\Account\ManageController;
-
+use Illuminate\Http\Request;
 
 
 /*
@@ -43,19 +43,20 @@ Route::get('/{locale}', function ($locale) {
 
 Route::get('/', [HomepageController::class, 'show']);
 
-if (config('app.env') === 'production') {
-    Route::domain('cphgates.com')->group(function () {
-        Route::get('/section/{section}', [SectionController::class, 'show'])->name('section');
-        Route::get('/section/{section}/{article}', [ArticleController::class, 'show'])->name('article');
-        Route::match(['get', 'post'], '/by/{username}', [AuthorController::class, 'show'])->name('author'); 
-    });
+if (config('app.env') == 'production' && Request::root() == 'https://cphgates.com')
+{
+    Route::get('/section/{section}', [SectionController::class, 'show'])->name('section');
+    Route::get('/section/{section}/{article}', [ArticleController::class, 'show'])->name('article');
+    Route::match(['get', 'post'], '/by/{username}', [AuthorController::class, 'show'])->name('author'); 
+
+} else if (config('app.env') == 'production' && Request::root() == 'https://kbhporte.dk') {
     
-    Route::domain('kbhporte.dk')->group(function () {
-        Route::get('/sektion/{section}', [SectionController::class, 'show'])->name('section');
-        Route::get('/sektion/{section}/{article}', [ArticleController::class, 'show'])->name('article');
-        Route::match(['get', 'post'], '/af/{username}', [AuthorController::class, 'show'])->name('author'); 
-    });
+    Route::get('/sektion/{section}', [SectionController::class, 'show'])->name('section');
+    Route::get('/sektion/{section}/{article}', [ArticleController::class, 'show'])->name('article');
+    Route::match(['get', 'post'], '/af/{username}', [AuthorController::class, 'show'])->name('author'); 
+
 } else {
+
     Route::get('/section/{section}', [SectionController::class, 'show'])->name('section');
     Route::get('/section/{section}/{article}', [ArticleController::class, 'show'])->name('article');
     Route::match(['get', 'post'], '/by/{username}', [AuthorController::class, 'show'])->name('author'); 
