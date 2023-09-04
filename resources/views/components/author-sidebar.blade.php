@@ -13,7 +13,7 @@
             @if ($author->is($currentUser))
                 <nav class="nav flex-column pb-2 pb-lg-4 mb-3">
                     <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">{{__('messages.account')}}</h4>
-                    <a class="nav-link fw-semibold py-2 px-0" href="/by/{{$currentUser->username}}"><i class="bi bi-person fs-5 opacity-60 me-2"></i>Overview</a>
+                    <a class="nav-link fw-semibold py-2 px-0" href="{{ route('author', ['username' => $currentUser->username]) }}"><i class="bi bi-person fs-5 opacity-60 me-2"></i>Overview</a>
                     <a class="nav-link fw-semibold py-2 px-0" href="/account/settings"><i class="ai-settings fs-5 opacity-60 me-2"></i>{{__('messages.settings')}}</a> <!-- active -->
                     <!-- <a class="nav-link fw-semibold py-2 px-0" href="/by/{{$currentUser->username}}/comments">{{__('messages.comments')}}</a> -->
                 </nav>

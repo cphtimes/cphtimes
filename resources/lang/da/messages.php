@@ -60,7 +60,7 @@ return [
     'related_articles_header' => 'Relaterede artikler',
     'share_this_article' => 'Del denne artikel',
     'relevant_topics' => 'Relevante emner',
-    'trending_articles' => 'Trending artikler',
+    'popular_articles' => 'Populære artikler',
     'no_description_bio' => 'Ingen beskrivelse i bio.',
     'account' => 'Konto',
     'articles' => 'Artikler',

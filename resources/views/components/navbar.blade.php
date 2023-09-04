@@ -30,7 +30,7 @@
                         </li>
                         @foreach($sections as $section)
                             <li>
-                                <a class="dropdown-item" aria-current="page" href="/section/{{$section->uri}}">{{$section->name}}</a>
+                                <a class="dropdown-item" aria-current="page" href="{{ route('section', ['section' => $section->uri]) }}">{{$section->name}}</a>
                             </li>
                         @endforeach
                     </ul>
@@ -95,7 +95,7 @@
                                 <img class="rounded-circle" src="{{$user->photo_url}}" width="35" height="35" style="object-fit: cover;" alt="{{$user->display_name}}">
                             </a>
                             <ul style="width: 220px; z-index: 100000;" class="dropdown-menu dropdown-menu-macos mx-0 shadow" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="/by/{{$user->username}}">{{__('messages.your_account')}}</a></li>
+                                <li><a class="dropdown-item" href="{{ route('author', ['username' => $user->username]) }}">{{__('messages.your_account')}}</a></li>
                                 <li><a class="dropdown-item" href="/account/settings">{{__('messages.settings')}}</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item dropdown-item-danger" href="/logout">{{__('messages.sign_out')}}</a></li>
@@ -110,7 +110,7 @@
                             </div></a>
                             <div class="dropdown-menu dropdown-menu-end my-1">
                             <h6 class="dropdown-header fs-xs fw-medium text-muted text-uppercase pb-1">Account</h6>
-                                <a class="dropdown-item" href="/by/{{$user->username}}"><i class="ai-user-check fs-lg opacity-70 me-2"></i>Overview</a>
+                                <a class="dropdown-item" href="{{ route('author', ['username' => $user->username]) }}"><i class="ai-user-check fs-lg opacity-70 me-2"></i>Overview</a>
                                 <a class="dropdown-item" href="/account/settings"><i class="ai-settings fs-lg opacity-70 me-2"></i>Settings</a>
                             <div class="dropdown-divider"></div>
                             <h6 class="dropdown-header fs-xs fw-medium text-muted text-uppercase pb-1">Manage</h6>
@@ -151,7 +151,7 @@
                 </li>
                 @foreach($sections as $section)
                     <li class="nav-item">
-                        <a class="dropdown-item" aria-current="page" href="/section/{{$section->uri}}">{{$section->name}}</a>
+                        <a class="dropdown-item" aria-current="page" href="{{ route('section', ['section' => $section->uri]) }}">{{$section->name}}</a>
                     </li>
                 @endforeach
             </ul>

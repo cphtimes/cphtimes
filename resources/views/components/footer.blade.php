@@ -7,7 +7,7 @@
             <ul class="nav flex-column">
               @foreach ($sections as $section)
                 <li class="nav-item mb-2">
-                  <a href="/section/{{$section->uri}}" class="nav-link p-0 text-muted">{{$section->name}}</a>
+                  <a href="{{ route('section', ['section' => $section->uri]) }}" class="nav-link p-0 text-muted">{{$section->name}}</a>
                 </li>
               @endforeach
             </ul>

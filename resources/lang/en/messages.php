@@ -60,7 +60,7 @@ return [
     'related_articles_header' => 'Related articles',
     'share_this_article' => 'Share this article',
     'relevant_topics' => 'Relevant topics',
-    'trending_articles' => 'Trending articles',
+    'popular_articles' => 'Trending articles',
     'no_description_bio' => 'No description in bio.',
     'account' => 'Account',
     'articles' => 'Articles',

@@ -279,7 +279,7 @@
             </ul>
             
             <ul style="overflow-y: scroll; height:566px;" class="d-none d-lg-block list-group list-group-flush col-xl-3 col-lg-12 col-md-12 col-12 px-4">
-              <h5 class="w-100 serif fst-italic">{{__('messages.trending_articles')}}</h5>
+              <h5 class="w-100 serif fst-italic">{{__('messages.popular_articles')}}</h5>
               @foreach ($trending as $article)
                 @include('components.article-list-item', array(
                   'article' => (object)$article,

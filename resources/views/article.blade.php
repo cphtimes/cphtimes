@@ -259,7 +259,7 @@
           <nav aria-label="breadcrumb">
             <ol class="pt-lg-3 pb-lg-4 pb-2 breadcrumb">
               <li class="breadcrumb-item"><a href="/">Frontpage</a></li>
-              <li class="breadcrumb-item"><a href="/section/{{$section->uri}}">{{$section->name}}</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('section', ['section' => $section->uri]) }}">{{$section->name}}</a></li>
               <li class="breadcrumb-item active" aria-current="page">Article</li>
             </ol>
           </nav>
@@ -363,7 +363,7 @@
                             <h6 class="mb-0">{{$reply->user->display_name}}</h6><span class="fs-sm text-muted">{{$reply->user->created_at}}</span>
                           </div>
                         </div>
-                        <p class="mb-0"><a class="fw-bold text-decoration-none" href="/by/{{$reply->user->username}}">@ {{$comment->user->username}}</a> {{$reply->text}}</p>
+                        <p class="mb-0"><a class="fw-bold text-decoration-none" href="{{ route('author', ['username' => $reply->user->username]) }}">@ {{$comment->user->username}}</a> {{$reply->text}}</p>
                       </div>
                     @endforeach
                   </div>

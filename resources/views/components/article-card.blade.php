@@ -1,4 +1,4 @@
-<a class="nav-link" href="{{ url(sprintf("/section/%s/%s", $article->section_uri, $article->headline_uri)) }}">
+<a class="nav-link" href="{{ route('article', ['section' => $article->section_uri, 'article' => $article->headline_uri]) }}">
     <article class="w-100 card border-0 px-2">
         <div class="d-block d-md-none">
             <div class="ratio ratio-4x3">

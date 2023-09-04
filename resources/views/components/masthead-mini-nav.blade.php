@@ -7,7 +7,7 @@
             <a style="font-size: 1.3em;" class="p-2 text-dark chomsky" href="/">{{__('messages.brand_name_letter')}}</a>
         </small>
         @foreach ($sections as $section)
-            <small><a class="p-2 text-dark" href="/section/{{$section->uri}}">{{$section->name}}</a></small>
+            <small><a class="p-2 text-dark" href="{{ route('section', ['section' => $section->uri]) }}">{{$section->name}}</a></small>
         @endforeach
     </nav>
 </div>

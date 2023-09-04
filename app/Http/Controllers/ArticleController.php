@@ -56,7 +56,7 @@ class ArticleController extends Controller
         $comment->user->notify(new ReplyComment($article, $comment, $repliedToComment));
       }
 
-      return redirect()->to(sprintf('/section/%s/%s#comments', $section_uri, $headline_uri));
+      return  redirect()->route('section', ['section' => $section->uri, 'article' => $headline_uri]);
     }
 
     /**
