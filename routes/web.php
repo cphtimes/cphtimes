@@ -44,17 +44,18 @@ Route::get('/{locale}', function ($locale) {
 Route::get('/', [HomepageController::class, 'show']);
 
 if (config('app.env') === 'production') {
-    Route::domain('cphgates.com')->group(function () {
-        Route::get('/section/{section}', [SectionController::class, 'show'])->name('section');
-        Route::get('/section/{section}/{article}', [ArticleController::class, 'show'])->name('article');
-        Route::match(['get', 'post'], '/by/{username}', [AuthorController::class, 'show'])->name('author'); 
-    });
-
-    Route::domain('kbhporte.dk')->group(function () {
+    Route::group(['domain' => env('DOMAIN_DANISH', 'kbhporte.dk')], function() {
         Route::get('/sektion/{section}', [SectionController::class, 'show'])->name('section');
         Route::get('/sektion/{section}/{article}', [ArticleController::class, 'show'])->name('article');
-        Route::match(['get', 'post'], '/af/{username}', [AuthorController::class, 'show'])->name('author'); 
+        Route::match(['get', 'post'], '/af/{username}', [AuthorController::class, 'show'])->name('author');
     });
+    
+    Route::group(['domain' => env('DOMAIN_ENGLISH', 'cphgates.com')], function() {
+        Route::get('/section/{section}', [SectionController::class, 'show'])->name('section');
+        Route::get('/section/{section}/{article}', [ArticleController::class, 'show'])->name('article');
+        Route::match(['get', 'post'], '/by/{username}', [AuthorController::class, 'show'])->name('author');
+    });
+
 } else {
     Route::get('/section/{section}', [SectionController::class, 'show'])->name('section');
     Route::get('/section/{section}/{article}', [ArticleController::class, 'show'])->name('article');
