@@ -1,6 +1,6 @@
 <li class="{{ !empty($class) ? $class : 'list-group-item px-0 py-3 border-dashed' }}">
     <article>
-        <a class="nav-link" href="{{ url(sprintf("/section/%s/%s", $article->section_uri, $article->headline_uri)) }}">
+        <a class="nav-link" href="{{ route('article', ['section' => $article->section_uri, 'article' => $article->headline_uri]) }}">
             <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
                 <div class="d-flex justify-content-between w-100 mb-2">
                     <small class="text-uppercase"><b>{{$article->section_uri}}</b></small>
