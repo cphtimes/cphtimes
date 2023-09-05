@@ -18,6 +18,7 @@ use App\Http\Controllers\Account\Auth\PasswordController;
 
 use App\Http\Controllers\Account\ManageController;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Lang;
 
 
 /*
@@ -44,26 +45,6 @@ Route::get('/{locale}', function ($locale) {
 Route::get('/', [HomepageController::class, 'show']);
 
 /*
-if (config('app.env') === 'production') {
-    Route::group(['domain' => env('DOMAIN_DANISH', 'kbhporte.dk')], function() {
-        Route::get('/sektion/{section}', [SectionController::class, 'show'])->name('section');
-        Route::get('/sektion/{section}/{article}', [ArticleController::class, 'show'])->name('article');
-        Route::match(['get', 'post'], '/af/{username}', [AuthorController::class, 'show'])->name('author');
-    });
-    
-    Route::group(['domain' => env('DOMAIN_ENGLISH', 'cphgates.com')], function() {
-        Route::get('/section/{section}', [SectionController::class, 'show'])->name('section');
-        Route::get('/section/{section}/{article}', [ArticleController::class, 'show'])->name('article');
-        Route::match(['get', 'post'], '/by/{username}', [AuthorController::class, 'show'])->name('author');
-    });
-
-} else {
-    Route::get('/section/{section}', [SectionController::class, 'show'])->name('section');
-    Route::get('/section/{section}/{article}', [ArticleController::class, 'show'])->name('article');
-    Route::match(['get', 'post'], '/by/{username}', [AuthorController::class, 'show'])->name('author'); 
-}
-*/
-
 Route::group(['domain' => env('DOMAIN_DANISH', 'kbhporte.dk')], function() {
     Route::get('/sektion/{section}', [SectionController::class, 'show'])->name('section');
     Route::get('/sektion/{section}/{article}', [ArticleController::class, 'show'])->name('article');
@@ -75,14 +56,15 @@ Route::group(['domain' => env('DOMAIN_ENGLISH', 'cphgates.com')], function() {
     Route::get('/section/{section}/{article}', [ArticleController::class, 'show'])->name('article');
     Route::match(['get', 'post'], '/by/{username}', [AuthorController::class, 'show'])->name('author');
 });
-
-/*
-Route::group(['domain' => env('local')], function() {
-    Route::get('/section/{section}', [SectionController::class, 'show'])->name('section');
-    Route::get('/section/{section}/{article}', [ArticleController::class, 'show'])->name('article');
-    Route::match(['get', 'post'], '/by/{username}', [AuthorController::class, 'show'])->name('author'); 
-});
 */
+
+Route::localized(function () {
+    Route::get(Lang::uri('section/{section}'), [SectionController::class, 'show'])->name('section');
+    Route::get(Lang::uri('/section/{section}/{article}'), [ArticleController::class, 'show'])->name('article');
+    Route::match(['get', 'post'], Lang::uri('/by/{username}'), [AuthorController::class, 'show'])->name('author');
+}, [
+    'supported_locales' => ['en', 'da']
+]);
 
 Route::post('/section/{section}/{article}/comments/{comment?}', [ArticleController::class, 'storeComment']);
 
