@@ -47,7 +47,13 @@ Route::get('/{locale}', function ($locale) {
 // Config::set('localized-routes.omit_url_prefix_for_locale', 'da');
 
 Route::get('/', function (Request $request) {
-    return redirect()->route('home');
+    if (Request::getHost() == 'kbhporte.dk') {
+        App::setLocale('da');
+        return redirect()->to('/da');
+    } else {
+        App::setLocale('en');
+        return redirect()->to('/en');
+    }
 });
 
 Route::localized(function () {
