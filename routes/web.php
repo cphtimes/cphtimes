@@ -42,7 +42,7 @@ Route::get('/{locale}', function ($locale) {
 });
 */
 
-Route::get('/', [HomepageController::class, 'show']);
+Route::get('/', [HomepageController::class, 'show'])->middleware(\CodeZero\LocalizedRoutes\Middleware\SetLocale::class);
 
 Route::localized(function () {
     Route::get(Lang::uri('section/{section}'), [SectionController::class, 'show'])->name('section');
