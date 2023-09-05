@@ -19,6 +19,7 @@ use App\Http\Controllers\Account\Auth\PasswordController;
 use App\Http\Controllers\Account\ManageController;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Config;
 
 
 /*
@@ -41,6 +42,9 @@ Route::get('/{locale}', function ($locale) {
     App::setLocale($locale);
 });
 */
+
+Config::set('localized-routes.omit_url_prefix_for_locale', 'en');
+Config::set('localized-routes.omit_url_prefix_for_locale', 'da');
 
 Route::localized(function () {
     Route::get('/', [HomepageController::class, 'show'])->name('home');
