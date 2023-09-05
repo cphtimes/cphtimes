@@ -43,8 +43,14 @@ Route::get('/{locale}', function ($locale) {
 });
 */
 
-Config::set('localized-routes.omit_url_prefix_for_locale', 'en');
-Config::set('localized-routes.omit_url_prefix_for_locale', 'da');
+// Config::set('localized-routes.omit_url_prefix_for_locale', 'en');
+// Config::set('localized-routes.omit_url_prefix_for_locale', 'da');
+
+/*
+Route::get('/', function (Request $request) {
+    return redirect()->to('/en');
+});
+*/
 
 Route::localized(function () {
     Route::get('/', [HomepageController::class, 'show'])->name('home');
@@ -54,6 +60,8 @@ Route::localized(function () {
 }, [
     'supported_locales' => ['en', 'da']
 ]);
+
+Route::fallback(\CodeZero\LocalizedRoutes\Controllers\FallbackController::class);
 
 Route::post('/section/{section}/{article}/comments/{comment?}', [ArticleController::class, 'storeComment']);
 
