@@ -46,11 +46,9 @@ Route::get('/{locale}', function ($locale) {
 // Config::set('localized-routes.omit_url_prefix_for_locale', 'en');
 // Config::set('localized-routes.omit_url_prefix_for_locale', 'da');
 
-/*
 Route::get('/', function (Request $request) {
-    return redirect()->to('/en');
+    return redirect()->route('home');
 });
-*/
 
 Route::localized(function () {
     Route::get('/', [HomepageController::class, 'show'])->name('home');
