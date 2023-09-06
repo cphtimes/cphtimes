@@ -223,14 +223,16 @@
                 @if (count($topArticles) > 0)
                 <li class="list-group-item border-dashed">
                   @include('components.article-card', array(
-                    'article' => (object) $topArticles[0],
+                    'article' => $topArticles->first(),
+                    'localizedSection' => $sections->where('uri', $topArticles->first()->first()->section_uri)->where('language_code', App::currentLocale())->first()->name ?? $topArticles->first()->section_uri,
                     'style' => 'compact'
                   ))
                 </li>
                 @endif
                 @for ($i = 1; $i < min(count($topArticles), 3); $i++)
                   @include('components.article-list-item', array(
-                    'article' => (object) $topArticles[$i],
+                    'article' => $topArticles[$i],
+                    'localizedSection' => $sections->where('uri', $topArticles[$i]->section_uri)->where('language_code', App::currentLocale())->first()->name ?? $topArticles[$i]->section_uri,
                     'style' => 'compact'
                   ))
                 @endfor
@@ -238,7 +240,8 @@
             <ul class="d-none d-md-block list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-lg-4 border-end-0 border-end-lg">
                 @for ($i = 0; $i < min(count($topArticles), 3); $i++)
                   @include('components.article-list-item', array(
-                    'article' => (object) $topArticles[$i],
+                    'article' => $topArticles[$i],
+                    'localizedSection' => $sections->where('uri', $topArticles[$i]->section_uri)->where('language_code', App::currentLocale())->first()->name ?? $topArticles[$i]->section_uri,
                     'style' => $i == 0 ? 'large' : 'expanded',
                     'class' => $i == 0 ? 'list-group-item py-3 pt-lg-0 pb-lg-3 border-dashed' : 'list-group-item py-3 border-dashed'
                   ))
@@ -250,12 +253,13 @@
               <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0">{{__('messages.latest_updates')}}</h5>
               <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                  @for ($i = 0; $i < ceil(count($latestUpdates)/4); $i++)
+                  @for ($i = 0; $i < ceil($latestUpdates->count() / 4); $i++)
                     <div class="swiper-slide">
                       <ul style="overflow-y: hidden;" class="list-group list-group-flush py-3 col-12 px-lg-3 pe-0">
-                        @foreach (array_slice($latestUpdates,$i*4,4) as $article)
+                        @foreach ($latestUpdates->slice($i*4, 4) as $article)
                           @include('components.article-list-item', array(
-                            'article' => (object)$article,
+                            'article' => $article,
+                            'localizedSection' => $sections->where('uri', $article->section_uri)->where('language_code', App::currentLocale())->first()->name ?? $article->section_uri,
                             'style' => 'expanded'
                           ))
                         @endforeach
@@ -272,6 +276,7 @@
               @foreach ($latestUpdates as $update)
                 @include('components.article-list-item', array(
                   'article' => (object)$update,
+                  'localizedSection' => $sections->where('uri', $update->section_uri)->where('language_code', App::currentLocale())->first()->name ?? $article->section_uri,
                   'style' => 'compact'
                 ))
               @endforeach
@@ -279,9 +284,10 @@
             
             <ul style="overflow-y: scroll; height:566px;" class="d-none d-lg-block list-group list-group-flush col-xl-3 col-lg-12 col-md-12 col-12 px-4">
               <h5 class="w-100 serif fst-italic">{{__('messages.popular_articles')}}</h5>
-              @foreach ($trending as $article)
+              @foreach ($popular as $article)
                 @include('components.article-list-item', array(
-                  'article' => (object)$article,
+                  'article' => $article,
+                  'localizedSection' => $sections->where('uri', $article->section_uri)->where('language_code', App::currentLocale())->first()->name ?? $article->section_uri,
                   'style' => 'compact'
                 ))
               @endforeach
@@ -303,7 +309,8 @@
                         'cell-flexible'
                     ])>
                       @include('components.article-card', array(
-                        'article' => (object) $articles[$j+($i*4)],
+                        'article' => $articles[$j+($i*4)],
+                        'localizedSection' => $sections->where('uri', $articles[$j+($i*4)]->section_uri)->first()->name ?? $article->section_uri,
                         'style' => 'expanded'
                       ))
                     </div>
@@ -317,7 +324,8 @@
                         'cell-compact'
                     ])>
                       @include('components.article-card', array(
-                        'article' => (object) $articles[$j+($i*4)],
+                        'article' => $articles[$j+($i*4)],
+                        'localizedSection' => $sections->where('uri', $articles[$j+($i*4)]->section_uri)->first()->name ?? $article->section_uri,
                         'style' => 'compact'
                       ))
                     </div>
@@ -327,38 +335,22 @@
           </div>
           @endfor
           
-          <!-- Preview sections -->
           <div class="row d-block d-lg-none px-0 px-md-3">
-            <ul style="overflow-y: hidden;" class="list-group list-group-flush py-3 col-12 pe-0">
-              <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0"><i>Noteworthy Individuals</i></h5>
-              @foreach (array_slice($individuals,0,5) as $individual)
-                @include('components.individual-list-item', array(
-                  'individual' => $individual
-                ))
-              @endforeach
-            </ul>
-          </div>
-
-          <div class="row d-block d-lg-none px-0 px-md-3">
-            @foreach (array(
-              'Messages' => $messages,
-              'Catalog' => $catalog,
-              'health' => $health,
-              'media' => $media
-            ) as $section_uri => $section)
+            @foreach ($highlightedSections as $section_uri => $section)
               <div>
                 <h5 class="w-100 pt-3 serif fst-italic px-4 px-md-0">{{ $section_uri }}</h5>
-                @if (count($section) == 0)
+                @if ($section->count() == 0)
                   <p>No articles here yet.</p>
                 @else
                   <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
-                      @for ($i = 0; $i < ceil(count($section)/4); $i++)
+                      @for ($i = 0; $i < ceil($section->count()/4); $i++)
                         <div class="swiper-slide">
                           <ul style="overflow-y: hidden;" class="list-group list-group-flush py-3 col-12 px-lg-3 pe-0">
-                            @foreach (array_slice($section,$i*4,4) as $section_uri => $article)
+                            @foreach ($section->slice($i*4, 4) as $article)
                               @include('components.article-list-item', array(
                                 'article' => (object) $article,
+                                'localizedSection' => $sections->where('uri', $article->section_uri)->where('language_code', App::currentLocale())->first()->name ?? $article->section_uri,
                                 'style' => 'expanded'
                               ))
                             @endforeach
@@ -375,20 +367,16 @@
 
           <div class="d-none d-lg-block">
             <div class="row">
-              @foreach (array(
-                'Messages' => $messages,
-                'Catalog' => $catalog,
-                'Health' => $health,
-                'media' => $media
-              ) as $section_uri => $section)
+              @foreach ($highlightedSections as $section_uri => $section)
                 <ul style="overflow-y: scroll; height:566px;" class="list-group list-group-flush col-xl-3 col-lg-4 col-md-12 col-12 border-end px-4">
-                  <h5 class="serif fst-italic">{{ $section_uri }}</h5>
+                  <h5 class="serif fst-italic">{{ $sections->where('uri', $section_uri)->where('language_code', App::currentLocale())->first()->name }}</h5>
                   @if (count($section) == 0)
                     <p>No articles here yet.</p>
                   @else
                     @foreach ($section as $article)
                       @include('components.article-list-item', array(
                         'article' => (object) $article,
+                        'localizedSection' => $sections->where('uri', $article->section_uri)->where('language_code', App::currentLocale())->first()->name ?? $article->section_uri,
                         'style' => 'compact'
                       ))
                     @endforeach

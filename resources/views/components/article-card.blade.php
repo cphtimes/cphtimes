@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="article-body card-body px-0 pb-0">
-            <p><small class="text-uppercase text-dark"><b>{{ $article->section_uri }}</b></small></p>
+            <p><small class="text-uppercase text-dark"><b>{{ $localizedSection ?? $article->section_uri }}</b></small></p>
             <h5 class="article-title card-title fw-light crop-text-2">{{ $article->headline }}</h5>
             <div @class([
                 'd-block',

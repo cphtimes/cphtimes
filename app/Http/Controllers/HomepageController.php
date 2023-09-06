@@ -214,70 +214,48 @@ class HomepageController extends Controller
 
       $currentWeather = $this->getTodaysForecast("Copenhagen");
       // $latestUpdates = $this->getLatestUpdates();
-      $topArticles = DB::table('article')
-                            ->orderBy('published_at', 'desc')
+      
+      // start with empty collection.
+      // find layout specified.
+      // fill in missing articles if collection xs -> count () < 3
+      $topArticles =Article::orderBy('published_at', 'desc')
                             ->offset(0)
                             ->limit(3)
                             ->get();
 
-      $latestUpdates = DB::table('article')
-                              ->orderBy('published_at', 'desc')
+      $latestUpdates = Article::orderBy('published_at', 'desc')
                               ->offset(0)
                               ->limit(60)
                               ->get();
 
-      $trending = Article::where('work_status', 'published')
+      $popular = Article::where('work_status', 'published')
                           ->orderBy('comment_count', 'desc')
                           ->offset(0)
                           ->limit(20)
                           ->get();
 
-      $articles = DB::table('article')
-                          ->orderBy('published_at', 'desc')
+      $articles = Article::orderBy('published_at', 'desc')
                           ->offset(3)
                           ->limit(42)
                           ->get();
 
-      $catalog = DB::table('article')
-                      ->where('section_uri', 'catalog')
-                      ->orderBy('created_at', 'desc')
-                      ->offset(0)
-                      ->limit(20)
-                      ->get();
-
-      $health = DB::table('article')
-                      ->where('section_uri', 'health')
-                      ->orderBy('published_at', 'desc')
-                      ->offset(0)
-                      ->limit(20)
-                      ->get();
-
-      $messages = DB::table('article')
-                      ->where('section_uri', 'messages')
-                      ->orderBy('created_at', 'desc')
-                      ->offset(0)
-                      ->limit(20)
-                      ->get();
-
-      $media = DB::table('article')
-                      ->where('section_uri', 'media')
-                      ->orderBy('published_at', 'desc')
-                      ->offset(0)
-                      ->limit(20)
-                      ->get();
-
-      $individuals = DB::table('individual')
-                      ->orderBy('id', 'asc')
-                      ->offset(0)
-                      ->limit(20)
-                      ->get();
-
       $user = Auth::user();
       $locale = App::currentLocale();
+
       $sections = Section::where('is_active', true)
                         ->where('language_code', $locale)
                         ->orderBy('position', 'asc')
                         ->get();
+
+      $highligtedSections = [];
+      foreach($sections->slice(0, 4) as $section) {
+        $sectionArticles = Article::where('section_uri', $section->uri)
+                                  ->orderBy('created_at', 'desc')
+                                  ->offset(0)
+                                  ->limit(20)
+                                  ->get();
+        $highligtedSections[$section->uri] = $sectionArticles;
+      }
 
       return view('homepage', [
         'temp' => $currentWeather[1],
@@ -285,15 +263,11 @@ class HomepageController extends Controller
         'tempMax' => $currentWeather[2],
         'icon' => $currentWeather[3],
         'latestUpdates' => $latestUpdates,
-        'trending' => $trending,
+        'popular' => $popular,
         'topArticles' => $topArticles,
-        'latestUpdates' => json_decode($latestUpdates, true),
+        // 'latestUpdates' => json_decode($latestUpdates, true),
         'articles' => $articles,
-        'catalog' => json_decode($catalog, true),
-        'health' => json_decode($health, true),
-        'messages' => json_decode($messages, true),
-        'media' => json_decode($media, true),
-        'individuals' => json_decode($individuals, true),
+        'highlightedSections' => $highligtedSections,
         'user' => $user,
         'darkMode' => $darkMode,
         'sections' => $sections

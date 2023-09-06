@@ -24,7 +24,7 @@
                             </svg>
                         </div>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-macos mx-0 shadow" aria-labelledby="dropdownShareMenu">
+                    <ul class="dropdown-menu mx-0 shadow" aria-labelledby="dropdownShareMenu">
                         <li>
                             <a class="dropdown-item" aria-current="page" href="/">{{__('messages.frontpage')}}</a>
                         </li>
