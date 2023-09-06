@@ -112,5 +112,6 @@ return [
     'latest_updates' => 'Seneste',
     'noteworthy_individuals' => 'Nævneværdige individer',
     'most_popular' => 'Mest populære:',
-    'recent_articles' => 'Nyeste artikler:'
+    'recent_articles' => 'Nyeste artikler:',
+    'greeting' => 'Hej'
 ];

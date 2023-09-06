@@ -112,5 +112,6 @@ return [
     'latest_updates' => 'Latest updates',
     'noteworthy_individuals' => 'Noteworthy Individuals',
     'most_popular' => 'Most popular:',
-    'recent_articles' => 'Recent articles:'
+    'recent_articles' => 'Recent articles:',
+    'greeting' => 'Hello'
 ];

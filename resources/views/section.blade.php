@@ -206,7 +206,6 @@
           'temp' => $temp,
           'tempMin' => $tempMin,
           'tempMax' => $tempMax,
-          'dateFormatted' => $dateFormatted,
           'sections' => $sections
       ))
       <main class="main">

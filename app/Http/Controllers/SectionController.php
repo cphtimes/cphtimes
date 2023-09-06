@@ -55,7 +55,6 @@ class SectionController extends Controller
   public function show($section)
   {
     $darkMode = Cookie::get('dark_mode') == 'true';
-    $dateFormatted = "<strong>" . date("l,") . "</strong>" . "<br/>" . date("F d, Y");
     $currentWeather = $this->getTodaysForecast("Copenhagen");
     $topArticles = DB::table('article')
                           ->where('section_uri', $section)
@@ -86,7 +85,6 @@ class SectionController extends Controller
 
     return view('section', [
       'darkMode' => $darkMode,
-      'dateFormatted' => $dateFormatted,
       'temp' => $currentWeather[1],
       'tempMin' => $currentWeather[0],
       'tempMax' => $currentWeather[2],

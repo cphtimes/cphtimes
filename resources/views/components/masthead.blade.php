@@ -70,7 +70,7 @@
                     <div class="dropdown nav d-none d-sm-block order-lg-3"><a class="nav-link d-flex align-items-center p-0" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                         <img style="object-fit: cover;" class="border rounded-circle" src="{{$user->photo_url}}" width="36" height="36" alt="{{$user->display_name}}">
                         <div class="ps-2">
-                            <div class="fs-xs lh-1 opacity-60">Hej,</div>
+                            <div class="fs-xs lh-1 opacity-60">{{__('messages.greeting')}},</div>
                             <div class="fs-sm dropdown-toggle">{{explode(" ", $user->display_name)[0]}}</div>
                         </div></a>
                         <div class="dropdown-menu dropdown-menu-end my-1">
@@ -103,7 +103,8 @@
                 <ul class="navbar-nav">
                     <li class="nav-item">
                     <small class="text-left">
-                        {!! $dateFormatted !!}
+                        <strong>{{ \Carbon\Carbon::now()->locale(App::currentLocale())->translatedFormat("l,") }}</strong><br/>
+                        <span> {{ \Carbon\Carbon::now()->locale(App::currentLocale())->translatedFormat('d F Y') }} </span>
                     </small>
                     </li>
                 </ul>

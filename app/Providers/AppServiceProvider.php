@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {      
+    {
         // Note: Uncomment this for local docker container use.
         if(config('app.env') === 'production') {
             \URL::forceScheme('https');
