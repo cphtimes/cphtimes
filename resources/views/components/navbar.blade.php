@@ -16,7 +16,7 @@
         <!-- Desktop left hand side -->
         <div class="d-none d-lg-block">
             <div class="d-flex justify-content-start">
-                <div class="dropdown pe-2">
+                <div class="nav-item dropdown pe-2">
                     <button type="button" class="btn btn-link text-dark" id="dropdownShareMenu" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="d-flex align-items-center justify-content-center" style="font-size: 1.2em">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
@@ -28,11 +28,21 @@
                         <li>
                             <a class="dropdown-item" aria-current="page" href="/">{{__('messages.frontpage')}}</a>
                         </li>
-                        @foreach($sections as $section)
+                        @foreach($sections->slice(0,9) as $section)
                             <li>
                                 <a class="dropdown-item" aria-current="page" href="{{ route('section', ['section' => $section->uri]) }}">{{$section->name}}</a>
                             </li>
                         @endforeach
+                        
+                        @if ($sections->slice(9)->count() > 0)
+                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">{{ ucfirst(__('messages.more')) }}</a>
+                            <ul class="dropdown-menu">
+                            @foreach ($sections->slice(9) as $section)
+                                <li><a class="dropdown-item" href="{{ route('section', ['section' => $section->uri]) }}">{{$section->name}}</a></li>
+                            @endforeach
+                            </ul>
+                        </li>
+                        @endif
                     </ul>
                 </div>
                 <div class="d-none" id="autocomplete"></div>

@@ -110,5 +110,7 @@ return [
     'listen_to_article' => 'Lyt til artiklen',
     'slogan' => 'Frihed er et verbum',
     'latest_updates' => 'Seneste',
-    'noteworthy_individuals' => 'Nævneværdige individer'
+    'noteworthy_individuals' => 'Nævneværdige individer',
+    'most_popular' => 'Mest populære:',
+    'recent_articles' => 'Nyeste artikler:'
 ];

@@ -269,7 +269,7 @@
                 <!-- Basic info-->
                 <section class="card border py-1 p-md-2 p-xl-3 p-xxl-4 mb-4">
                   <div class="card-body">
-                    <form class="needs-validation" method="POST" action="{{ route('manage_update_sections) }}" enctype="multipart/form-data">
+                    <form class="needs-validation" method="POST" action="{{ route('manage_update_sections') }}" enctype="multipart/form-data">
                         @csrf
                         @if ($errors->any())
                         <div class="alert alert-danger">
@@ -295,9 +295,9 @@
                               </div>
                               <div class="col-sm-4">
                                 <div class="h-100 d-flex justify-content-between align-items-end">
-                                  <a href="/manage/sections?action=up&uri={{$section->uri}}" class="btn btn-icon btn-secondary me-2"><i class="bi bi-arrow-up"></i></a>
-                                  <a href="/manage/sections?action=down&uri={{$section->uri}}" class="btn btn-icon btn-secondary me-2"><i class="bi bi-arrow-down"></i></a>
-                                  <a href="/manage/sections?action=delete&uri={{$section->uri}}" class="btn btn-icon btn-secondary"><i class="bi bi-trash"></i></a>
+                                  <a href="{{ route('manage_sections') }}?action=up&uri={{$section->uri}}" class="btn btn-icon btn-secondary me-2"><i class="bi bi-arrow-up"></i></a>
+                                  <a href="{{ route('manage_sections') }}?action=down&uri={{$section->uri}}" class="btn btn-icon btn-secondary me-2"><i class="bi bi-arrow-down"></i></a>
+                                  <a href="{{ route('manage_sections') }}?action=delete&uri={{$section->uri}}" class="btn btn-icon btn-danger"><i class="bi bi-trash"></i></a>
                                 </div>
                               </div>
                             @endforeach

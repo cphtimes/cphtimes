@@ -60,7 +60,7 @@ return [
     'related_articles_header' => 'Related articles',
     'share_this_article' => 'Share this article',
     'relevant_topics' => 'Relevant topics',
-    'popular_articles' => 'Trending articles',
+    'popular_articles' => 'Popular articles',
     'no_description_bio' => 'No description in bio.',
     'account' => 'Account',
     'articles' => 'Articles',
@@ -110,5 +110,7 @@ return [
     'listen_to_article' => 'Listen to the article',
     'slogan' => 'Truth is stranger than fiction.',
     'latest_updates' => 'Latest updates',
-    'noteworthy_individuals' => 'Noteworthy Individuals'
+    'noteworthy_individuals' => 'Noteworthy Individuals',
+    'most_popular' => 'Most popular:',
+    'recent_articles' => 'Recent articles:'
 ];

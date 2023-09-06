@@ -406,7 +406,7 @@
                 </div>
                 <div class="offcanvas-body">
                   <!-- Popular posts-->
-                  <h4 class="pt-1 pt-lg-0 mt-lg-n2 serif fst-italic">Most popular:</h4>
+                  <h4 class="pt-1 pt-lg-0 mt-lg-n2 serif fst-italic">{{__('messages.most_popular')}}</h4>
                   <div class="mb-lg-5 mb-4">
                     @foreach($trendingArticles->slice(0,3) as $trendingArticle)
                       @include('components.article-list-item', array(
@@ -417,7 +417,7 @@
                     @endforeach
                   </div>
                   <!-- Recent posts-->
-                  <h4 class="pt-3 pt-lg-1 mb-4 serif fst-italic">Recent articles:</h4>
+                  <h4 class="pt-3 pt-lg-1 mb-4 serif fst-italic">{{__('messages.recent_articles')}}</h4>
                   <ul class="list-group list-group-flush list-unstyled mb-lg-5 mb-4">
                     @foreach ($recentArticles as $recentArticle)
                       @include('components.article-list-item', array(
@@ -428,7 +428,7 @@
                     @endforeach
                   </ul>
                   <!-- Relevant topics-->
-                  <h4 class="pt-3 pt-lg-1 mb-4 serif fst-italic">Relevant topics:</h4>
+                  <h4 class="pt-3 pt-lg-1 mb-4 serif fst-italic">{{__('messages.relevant_topics')}}</h4>
                   <div class="d-flex flex-wrap mt-n3 ms-n3 mb-lg-5 mb-4 pb-3 pb-lg-0">
                       @foreach(explode(",", $article->keywords) as $index => $keyword)
                         <a @class([

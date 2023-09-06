@@ -5,11 +5,24 @@
           <div class="col-6 col-md-4 col-lg-2 px-4 px-md-0">
             <h5 class="serif fst-italic">{{ucfirst(trans_choice('messages.sections', 2))}}</h5>
             <ul class="nav flex-column">
-              @foreach ($sections as $section)
+              @foreach ($sections->slice(0, 12) as $section)
                 <li class="nav-item mb-2">
                   <a href="{{ route('section', ['section' => $section->uri]) }}" class="nav-link p-0 text-muted">{{$section->name}}</a>
                 </li>
               @endforeach
+
+              @if ($sections->slice(12)->count() > 0)
+                <li class="dropdown nav-item">
+                    <a class="nav-link p-0 text-muted d-flex align-items-center" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="dropdown-toggle">{{ ucfirst(__('messages.more')) }}</div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end my-1">
+                    @foreach ($sections->slice(12) as $section)
+                        <a class="dropdown-item" href="{{ route('section', ['section' => $section->uri]) }}">{{$section->name}}</a>
+                    @endforeach
+                    </div>
+                </li>
+              @endif
             </ul>
           </div>
 
@@ -24,11 +37,12 @@
               <li class="nav-item mb-2"><a target="_blank" href="https://www.youtube.com/@AlexCollierOfficial" class="nav-link p-0 text-muted">Alex Collier</a></li>
               <li class="nav-item mb-2"><a target="_blank" href="https://vigilantcitizen.com" class="nav-link p-0 text-muted">Vigilant Citizen</a></li>
               <li class="nav-item mb-2"><a target="_blank" href="https://vigilantlinks.com" class="nav-link p-0 text-muted">Vigilant Links</a></li>
+              <li class="nav-item mb-2"><a target="_blank" href="https://kidsrescue.dk" class="nav-link p-0 text-muted">Kids Rescue</a></li>
             </ul>
           </div>
 
           <div class="col-6 col-md-4 col-lg-2 px-4 px-md-0">
-            <h5 class="serif fst-italic">{{ucfirst(__('messages.more'))}}</h5>
+            <h5 class="serif fst-italic">{{ ucfirst(__('messages.more')) }}</h5>
             <ul class="nav flex-column">
               <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-muted">About</a></li>
               <li class="nav-item mb-2"><a href="https://app.aria5.co" class="nav-link p-0 text-muted">Aria5.co</a></li>
