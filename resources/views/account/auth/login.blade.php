@@ -250,8 +250,8 @@
           <div class="d-flex flex-column align-items-center w-lg-50 h-100 px-3 px-lg-5 pt-5">
             <div class="w-100 mt-auto" style="max-width: 526px;">
               <h1 class="serif fst-italic">{{__('messages.sign_in_header')}}</h1>
-              <p class="pb-3 mb-3 mb-lg-4">{{__('messages.sign_in_text')}}&nbsp;&nbsp;<a href="/register">{{__('messages.register_here')}}</a></p>
-              <form class="needs-validation" method="POST" action="/login">
+              <p class="pb-3 mb-3 mb-lg-4">{{__('messages.sign_in_text')}}&nbsp;&nbsp;<a href="{{ route('register') }}">{{__('messages.register_here')}}</a></p>
+              <form class="needs-validation" method="POST" action="{{ route('login_authenticate') }}">
                 @csrf
                 @if ($errors->any())
                   <div class="alert alert-danger">
@@ -288,7 +288,7 @@
                     <input name="remember" class="form-check-input" type="checkbox" id="keep-signedin">
                     <label class="form-check-label ms-1" for="keep-signedin">{{__('messages.remember_me')}}</label>
                   </form-check>
-                  <a class="fs-sm fw-semibold text-decoration-none my-1" href="/forgot">{{__('messages.forgot_password')}}</a>
+                  <a class="fs-sm fw-semibold text-decoration-none my-1" href="{{ route('forgot') }}">{{__('messages.forgot_password')}}</a>
                 </div>
                 <button class="btn btn-lg btn-primary w-100 mb-4" type="submit">{{__('messages.sign_in_btn')}}</button>
               </form>

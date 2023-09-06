@@ -242,7 +242,7 @@
             
             @if (count($topArticles) > 0)
               <div class="d-none d-md-block col-xl-6 border-end-0 border-end-lg">
-                <a class="nav-link" href="{{ url(sprintf("/section/%s/%s", $topArticles[0]->section_uri, $topArticles[0]->headline_uri)) }}">
+                <a class="nav-link" href="{{ route('article', ['section' => $topArticles[0]->section_uri, 'article' => $topArticles[0]->headline_uri]) }}">
                   <article class="card border-0 px-3">
                       <div class="row d-flex align-items-center">
                           <div class="col-6 article-body card-body px-3">

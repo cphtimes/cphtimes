@@ -8,7 +8,6 @@ use App\Http\Controllers\Account\Auth;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\MeetingsController;
 use App\Http\Controllers\AuthorController;
 
 use App\Http\Controllers\Account\SettingsController;
@@ -33,16 +32,6 @@ use Illuminate\Support\Facades\Config;
 |
 */
 
-/*
-Route::get('/{locale}', function ($locale) {
-    // supportedLocaleSpec.isSatisfiedBy($locale);
-    if (! in_array($locale, ['en', 'da', 'ar'])) {
-        abort(400);
-    }
-    App::setLocale($locale);
-});
-*/
-
 // Config::set('localized-routes.omit_url_prefix_for_locale', 'en');
 // Config::set('localized-routes.omit_url_prefix_for_locale', 'da');
 
@@ -59,47 +48,46 @@ Route::get('/', function (Request $request) {
 Route::localized(function () {
     Route::get('/', [HomepageController::class, 'show'])->name('home');
     Route::get(Lang::uri('section/{section}'), [SectionController::class, 'show'])->name('section');
-    Route::get(Lang::uri('/section/{section}/{article}'), [ArticleController::class, 'show'])->name('article');
-    Route::match(['get', 'post'], Lang::uri('/by/{username}'), [AuthorController::class, 'show'])->name('author');
+    Route::get(Lang::uri('section/{section}/{article}'), [ArticleController::class, 'show'])->name('article');
+    Route::match(['get', 'post'], Lang::uri('by/{username}'), [AuthorController::class, 'show'])->name('author');
+
+    Route::post(Lang::uri('section/{section}/{article}/comments/{comment?}'), [ArticleController::class, 'storeComment'])->name('store_comment');
+
+    Route::get(Lang::uri('account/settings'), [SettingsController::class, 'show'])->name('account_settings');
+    Route::post(Lang::uri('account/settings/basic-info'), [SettingsController::class, 'show'])->name('account_settings_basic_info');
+    Route::post(Lang::uri('account/settings/password-change'), [SettingsController::class, 'show'])->name('account_settings_password_change');
+    Route::post(Lang::uri('account/settings/notifications'), [SettingsController::class, 'show'])->name('account_settings_notifications');
+    Route::post(Lang::uri('account/settings/delete'), [SettingsController::class, 'show'])->name('account_settings_delete');
+    Route::post(Lang::uri('account/settings/articles/{article}/delete'), [SettingsController::class, 'show'])->name('account_settings_articles_delete');
+
+    Route::post(Lang::uri('login'), [LoginController::class, 'authenticate'])->name('login_authenticate');
+    Route::get(Lang::uri('login'), [LoginController::class, 'show'])->name('login');
+    Route::get(Lang::uri('logout'), [LoginController::class, 'logout'])->name('logout');
+
+    Route::post(Lang::uri('register'), [RegisterController::class, 'store'])->name('register_store');
+    Route::get(Lang::uri('register'), [RegisterController::class, 'show'])->name('register');
+
+    Route::get(Lang::uri('forgot'), [PasswordController::class, 'showForgot'])->name('forgot');
+    Route::post(Lang::uri('forgot'), [PasswordController::class, 'sendResetLink'])->name('forgot_send');
+    Route::get(Lang::uri('reset-password/{token}'), [PasswordController::class, 'showResetPassword'])->name('reset_password_token');
+    Route::post(Lang::uri('reset-password'), [PasswordController::class, 'resetPassword'])->name('reset_password');
+
+    Route::get(Lang::uri('write'), [ManageController::class, 'showCreateArticle'])->name('write');
+    Route::post(Lang::uri('manage/new-article'), [ManageController::class, 'createArticle'])->name('manage_create_article');
+
+    Route::get(Lang::uri('edit'), [ManageController::class, 'showEditArticle'])->name('edit');
+    Route::post(Lang::uri('manage/edit-article'), [ManageController::class, 'editArticle'])->name('manage_edit_article');
+
+    Route::get(Lang::uri('manage/layout'), [ManageController::class, 'showManageLayout'])->name('manage_layout');
+    Route::post(Lang::uri('manage/layout'), [ManageController::class, 'createLayout'])->name('manage_create_layout');
+
+    Route::get(Lang::uri('manage/sections'), [ManageController::class, 'showManageSections'])->name('manage_sections');
+    Route::post(Lang::uri('manage/sections'), [ManageController::class, 'createSection'])->name('manage_update_sections');
+
 }, [
     'supported_locales' => ['en', 'da']
 ]);
 
 Route::fallback(\CodeZero\LocalizedRoutes\Controllers\FallbackController::class);
-
-Route::post('/section/{section}/{article}/comments/{comment?}', [ArticleController::class, 'storeComment']);
-
-Route::get('/account/settings', [SettingsController::class, 'show']);
-Route::post('/account/settings/basic-info', [SettingsController::class, 'saveBasicInfo']);
-Route::post('/account/settings/password-change', [SettingsController::class, 'savePasswordChange']);
-Route::post('/account/settings/notifications', [SettingsController::class, 'saveNotificationChange']);
-Route::post('/account/settings/delete', [SettingsController::class, 'deleteAccount']);
-Route::post('/account/settings/articles/{article}/delete', [SettingsController::class, 'deleteArticle']);
-
-Route::get('/meetings', [MeetingsController::class, 'show']);
-
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::get('/login', [LoginController::class, 'show']);
-Route::get('/logout', [LoginController::class, 'logout']);
-
-Route::post('/register', [RegisterController::class, 'store']);
-Route::get('/register', [RegisterController::class, 'show']);
-
-Route::get('/forgot', [PasswordController::class, 'showForgot']);
-Route::post('/forgot', [PasswordController::class, 'sendResetLink']);
-Route::get('/reset-password/{token}', [PasswordController::class, 'showResetPassword']);
-Route::post('/reset-password', [PasswordController::class, 'resetPassword']);
-
-Route::get('/write', [ManageController::class, 'showCreateArticle']);
-Route::post('/manage/new-article', [ManageController::class, 'createArticle']);
-
-Route::get('/edit', [ManageController::class, 'showEditArticle']);
-Route::post('/manage/edit-article', [ManageController::class, 'editArticle']);
-
-Route::get('/manage/layout', [ManageController::class, 'showManageLayout']);
-Route::post('/manage/layout', [ManageController::class, 'createLayout']);
-
-Route::get('/manage/sections', [ManageController::class, 'showManageSections']);
-Route::post('/manage/sections', [ManageController::class, 'createSection']);
 
 // /policy, /terms, /support

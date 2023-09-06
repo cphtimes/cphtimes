@@ -31,7 +31,7 @@ return [
     'sign_in_btn' => 'Log ind',
     'sign_in_header' => 'Log ind.',
     'sign_in_text' => 'Har du ikke en konto endnu?',
-    'register_here' => 'Registrer dig her.',
+    'register_here' => 'Opret dig her.',
     'remember_me' => 'Husk mig',
     'forgot_password' => 'Glemt adgangskode?',
     'register' => 'Registrer',

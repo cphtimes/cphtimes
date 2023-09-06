@@ -236,7 +236,7 @@
           <h1 class="serif fst-italic pt-3 pb-2 pb-lg-3">{{__('messages.reset_password_header')}}</h1>
           <p class="pb-2">{{__('messages.reset_password_text')}}</p>
           <div class="card dark-mode border-0 bg-primary">
-            <form class="needs-validation card-body" method="POST" action="/reset-password">
+            <form class="needs-validation card-body" method="POST" action="{{route('reset_password')}}">
                 @csrf
                 @if ($errors->any())
                     <div class="alert alert-danger">

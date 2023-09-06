@@ -290,7 +290,7 @@
                       <!-- Tabs content -->
                       <div class="tab-content">
                         <div class="tab-pane fade show active" id="frontpage" role="tabpanel">
-                            <form class="needs-validation" method="POST" action="/manage/layout" enctype="multipart/form-data">
+                            <form class="needs-validation" method="POST" action="{{route('manage_create_layout')}}" enctype="multipart/form-data">
                                 @csrf
                                 @if ($errors->any())
                                 <div class="alert alert-danger">
@@ -319,7 +319,7 @@
                         </div>
                         @foreach ($sections as $section)
                           <div class="tab-pane fade" id="{{$section->uri}}" role="tabpanel">
-                            <form class="needs-validation" method="POST" action="/manage/layout?section={{$section->uri}}" enctype="multipart/form-data">
+                            <form class="needs-validation" method="POST" action="{{route('manage_create_layout')}}?section={{$section->uri}}" enctype="multipart/form-data">
                                 @csrf
                                 @if ($errors->any())
                                 <div class="alert alert-danger">

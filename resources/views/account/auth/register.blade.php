@@ -249,8 +249,8 @@
           <div class="d-flex flex-column align-items-center w-lg-50 h-100 px-3 px-lg-5 pt-5">
           <div class="w-100 mt-auto" style="max-width: 526px;">
             <h1 class="serif fst-italic">{{__('messages.register_header')}}</h1>
-            <p class="pb-3 mb-3 mb-lg-4">{{__('messages.register_text')}}&nbsp;&nbsp;<a href="/login">{{__('messages.login_here')}}</a></p>
-            <form method="POST" action="/register" class="needs-validation">
+            <p class="pb-3 mb-3 mb-lg-4">{{__('messages.register_text')}}&nbsp;&nbsp;<a href="{{route('login')}}">{{__('messages.login_here')}}</a></p>
+            <form method="POST" action="{{ route('register_store') }}" class="needs-validation">
               @csrf
               @if ($errors->any())
                 <div class="alert alert-danger">

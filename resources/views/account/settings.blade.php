@@ -272,7 +272,7 @@
                     <div class="d-flex align-items-center mt-sm-n1 pb-4 mb-0 mb-lg-1 mb-xl-3"><i class="ai-user text-primary lead pe-1 me-2"></i>
                         <h2 class="h4 mb-0">{{__('messages.basic_info')}}</h2>
                     </div>
-                    <form class="needs-validation" method="POST" action="/account/settings/basic-info" enctype="multipart/form-data">
+                    <form class="needs-validation" method="POST" action="{{ route('account_settings_basic_info') }}" enctype="multipart/form-data">
                         @csrf
                         @if ($errors->any())
                         <div class="alert alert-danger">
@@ -365,7 +365,8 @@
                         <i class="ai-lock-closed text-primary lead pe-1 me-2"></i>
                         <h2 class="h4 mb-0">{{__('messages.password_change')}}</h2>
                       </div>
-                      <form class="needs-validation" method="POST" action="/account/settings/password-change">
+                      
+                      <form class="needs-validation" method="POST" action="{{ route('account_settings_password_change') }}">
                         @csrf
                         @if ($errors->any())
                           <div class="alert alert-danger">
@@ -382,7 +383,7 @@
                             <input name="current_password" class="form-control" type="password" id="current-pass" required>
                           </div>
                           <div class="col-sm-6">
-                            <a class="d-inline-block fs-sm fw-semibold text-decoration-none mt-sm-4" href="/forgot">{{__('messages.forgot_password')}}</a>
+                            <a class="d-inline-block fs-sm fw-semibold text-decoration-none mt-sm-4" href="{{ route('forgot') }}">{{__('messages.forgot_password')}}</a>
                           </div>
                           <div class="col-sm-6">
                             <label class="form-label" for="new-pass">{{__('messages.new_password')}}</label>
@@ -410,7 +411,7 @@
                         <h2 class="h4 mb-0">{{__('messages.notifications')}}</h2>
                         <button class="btn btn-sm btn-outline-secondary ms-auto" type="button" data-bs-toggle="checkbox" data-bs-target="#checkboxList">Toggle all</button>
                       </div>
-                      <form class="needs-validation" method="POST" action="/account/settings/notifications">
+                      <form class="needs-validation" method="POST" action="{{ route('account_settings_notifications') }}">
                         @csrf
                         <div id="checkboxList">
                           <div class="form-check form-switch d-flex pb-md-2 mb-4">
@@ -442,7 +443,7 @@
                     <div class="d-flex align-items-center pb-4 mt-sm-n1 mb-0 mb-lg-1 mb-xl-3"><i class="ai-trash text-primary lead pe-1 me-2"></i>
                       <h2 class="h4 mb-0">{{__('messages.delete_account')}}</h2>
                     </div>
-                    <form class="needs-validation" action="/account/settings/delete" method="POST">
+                    <form class="needs-validation" action="{{ route('account_settings_delete') }}" method="POST">
                       @csrf
                       <div class="alert alert-warning d-flex mb-4"><i class="ai-triangle-alert fs-xl me-2"></i>
                         <p class="mb-0">{{__('messages.delete_account_text')}} <a href="#" class="alert-link">{{__('messages.learn_more')}}</a></p>

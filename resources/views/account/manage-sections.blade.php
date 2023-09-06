@@ -269,7 +269,7 @@
                 <!-- Basic info-->
                 <section class="card border py-1 p-md-2 p-xl-3 p-xxl-4 mb-4">
                   <div class="card-body">
-                    <form class="needs-validation" method="POST" action="/manage/sections" enctype="multipart/form-data">
+                    <form class="needs-validation" method="POST" action="{{ route('manage_update_sections) }}" enctype="multipart/form-data">
                         @csrf
                         @if ($errors->any())
                         <div class="alert alert-danger">

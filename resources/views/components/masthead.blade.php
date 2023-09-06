@@ -62,9 +62,9 @@
                         </a>
                         <ul style="width: 220px; z-index: 100000;" class="dropdown-menu dropdown-menu-macos mx-0 shadow" aria-labelledby="dropdownMenuButton1">
                             <li><a class="dropdown-item" href="{{ route('author', ['username' => $user->username]) }}">{{__('messages.your_account')}}</a></li>
-                            <li><a class="dropdown-item" href="/account/settings">{{__('messages.settings')}}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('account_settings') }}">{{__('messages.settings')}}</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item dropdown-item-danger" href="/logout">{{__('messages.sign_out')}}</a></li>
+                            <li><a class="dropdown-item dropdown-item-danger" href="{{ route('logout') }}">{{__('messages.sign_out')}}</a></li>
                         </ul>
                     </div>
                     <div class="dropdown nav d-none d-sm-block order-lg-3"><a class="nav-link d-flex align-items-center p-0" href="#" data-bs-toggle="dropdown" aria-expanded="false">
@@ -76,7 +76,7 @@
                         <div class="dropdown-menu dropdown-menu-end my-1">
                         <h6 class="dropdown-header fs-xs fw-medium text-muted text-uppercase pb-1">Account</h6>
                             <a class="dropdown-item" href="{{ route('author', ['username' => $user->username]) }}"><i class="ai-user-check fs-lg opacity-70 me-2"></i>Overview</a>
-                            <a class="dropdown-item" href="/account/settings"><i class="ai-settings fs-lg opacity-70 me-2"></i>Settings</a>
+                            <a class="dropdown-item" href="{{route('account_settings')}}"><i class="ai-settings fs-lg opacity-70 me-2"></i>Settings</a>
                         <div class="dropdown-divider"></div>
                         <h6 class="dropdown-header fs-xs fw-medium text-muted text-uppercase pb-1">Manage</h6>
                             <a class="dropdown-item" href="/write"><i class="ai-cart fs-lg opacity-70 me-2"></i>Orders</a>
@@ -84,12 +84,12 @@
                             <a class="dropdown-item d-flex align-items-center" href="account-chat.html"><i class="ai-messages fs-lg opacity-70 me-2"></i>Chat<span class="badge bg-danger ms-auto">4</span></a>
                             <a class="dropdown-item" href="account-favorites.html"><i class="ai-heart fs-lg opacity-70 me-2"></i>Favorites</a>
                         <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/logout"><i class="ai-logout fs-lg opacity-70 me-2"></i>{{__('messages.sign_out')}}</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}"><i class="ai-logout fs-lg opacity-70 me-2"></i>{{__('messages.sign_out')}}</a>
                         </div>
                     </div>
                     @endauth
                     @guest
-                    <a type="button btn-primary" role="button" href="/login" class="btn btn-primary btn-sm">{{__('messages.log_in')}}</a>
+                    <a type="button btn-primary" role="button" href="{{route('login')}}" class="btn btn-primary btn-sm">{{__('messages.log_in')}}</a>
                     @endguest
                 </div>
             </div>

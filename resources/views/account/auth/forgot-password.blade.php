@@ -244,7 +244,7 @@
             @isset($status)
                 <p>$status</p>
             @endisset
-            <form class="needs-validation card-body" method="POST" action="/forgot">
+            <form class="needs-validation card-body" method="POST" action="{{ route('forgot_send') }}">
                 @csrf
                 @if ($errors->any())
                     <div class="alert alert-danger">

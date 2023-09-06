@@ -76,7 +76,7 @@ class SettingsController extends Controller
       }
 
       $currentUser->update($basicInfo);
-      return back();
+      return redirect()->back();
     }
 
     public function savePasswordChange(Request $request) {
@@ -97,7 +97,7 @@ class SettingsController extends Controller
 
       event(new PasswordReset($currentUser));
   
-      return back();
+      return redirect()->back();
     }
 
     public function saveNotificationChange(Request $request) {
@@ -106,7 +106,7 @@ class SettingsController extends Controller
       $notifications->article_comment_notifications = $request->input('article_comment_notifications', 0);
       $notifications->reply_comment_notifications = $request->input('reply_comment_notifications', 0);
       $notifications->save();
-      return back();
+      return redirect()->back();
     }
 
     public function deleteAccount(Request $request) {
@@ -198,6 +198,6 @@ class SettingsController extends Controller
                              ->where('headline_uri', $headline_uri)
                              ->firstOrFail();
       $article->delete();
-      return back();
+      return redirect()->back();
     }
 }

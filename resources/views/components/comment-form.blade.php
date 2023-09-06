@@ -1,8 +1,8 @@
 
 @if ($reply_comment_id == null)
-<form class="row needs-validation g-4" method="POST" action="/section/{{$article->section_uri}}/{{$article->headline_uri}}/comments">
+<form class="row needs-validation g-4" method="POST" action="{{ route('store_comment', ['section' => $article->section_uri, 'article' => $article->headline_uri]) }}">
 @else
-<form class="row needs-validation g-4" method="POST" action="/section/{{$article->section_uri}}/{{$article->headline_uri}}/comments/{{$reply_comment_id}}">
+<form class="row needs-validation g-4" method="POST" action="{{ route('store_comment', ['section' => $article->section_uri, 'article' => $article->headline_uri, 'comment' => $reply_comment_id]) }} ">
 @endif
     @csrf
     @if ($errors->any())
