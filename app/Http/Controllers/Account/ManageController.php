@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Validator;
 use App;
 use Illuminate\Support\Facades\Http;
 use App\Models\Layout;
+use App\Models\Author;
 
 class ManageController extends Controller
 {
@@ -54,7 +55,10 @@ class ManageController extends Controller
         'image_caption' => [],
         'video_embed' => [],
         'video_provider' => [],
-        'video_ratio' => []
+        'video_ratio' => [],
+        'author_is_anonymous' => [],
+        'author_display_name' => [],
+        'author_username' => []
       ]);
 
       $headline_uri = strtolower($data['headline']);
@@ -88,11 +92,30 @@ class ManageController extends Controller
 
       $emptyAbstract = $data["in_language"] == 'da' ? 'Ingen beskrivelse' : 'No description';
 
+      $is_anonymous = $data["author_is_anonymous"] ?? false;
+      $display_name = $data['author_display_name'];
+      $username = $data['author_username'];
+
+      $author = null;
+
+      if ($is_anonymous) {
+        $author = Author::firstOrCreate([
+          'is_anonymous' => true
+        ]);
+      } else {
+        $author = Author::firstOrCreate(['username' => $username]);
+        $author->user_id = $display_name == null ? $currentUser->id : null;
+        $author->display_name = $display_name;
+      }
+
+      $author->save();
+      
       $article = Article::create([
         'body_url' => $public_body_url,
         'section_uri' => $data["section_uri"],
         'abstract' => $data["abstract"] ?? emptyAbstract,
-        'author_id' => $currentUser->id,
+        'author_id' => $author->id,
+        'editor_id' => $currentUser->id,
         'work_status' => $data["work_status"],
         'published_at' => now(),
         'headline' => $data["headline"],
@@ -380,7 +403,10 @@ class ManageController extends Controller
         'image_caption' => [],
         'video_embed' => [],
         'video_provider' => [],
-        'video_ratio' => []
+        'video_ratio' => [],
+        'author_is_anonymous' => [],
+        'author_display_name' => [],
+        'author_username' => []
       ]);
 
       $new_headline_uri = strtolower($data['headline']);
@@ -415,6 +441,24 @@ class ManageController extends Controller
                         ->put($blocks_url);
       }
 
+      $is_anonymous = $data["author_is_anonymous"] ?? false;
+      $display_name = $data['author_display_name'];
+      $username = $data['author_username'];
+
+      $author = null;
+
+      if ($is_anonymous) {
+        $author = Author::firstOrCreate([
+          'is_anonymous' => true
+        ]);
+      } else {
+        $author = Author::firstOrCreate(['username' => $username]);
+        $author->user_id = $display_name == null ? $currentUser->id : null;
+        $author->display_name = $display_name;
+      }
+
+      $author->save();
+
       $article = Article::where('section_uri', $section_uri)
                         ->where('headline_uri', $headline_uri)
                         ->firstOrFail();
@@ -440,7 +484,8 @@ class ManageController extends Controller
         'body_url' => $public_body_url,
         'section_uri' => $data["section_uri"],
         'abstract' => $data["abstract"] ?? emptyAbstract,
-        'author_id' => $currentUser->id,
+        'author_id' => $author->id,
+        'editor_id' => $currentUser->id,
         'work_status' => $data["work_status"],
         'published_at' => now(),
         'headline' => $data["headline"],

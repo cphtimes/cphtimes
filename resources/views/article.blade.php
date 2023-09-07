@@ -270,7 +270,8 @@
               <div class="d-flex flex-wrap align-items-center justify-content-between border-bottom mb-4">
                 <div class="d-flex align-items-center mb-4 me-4">
                   <span class="fs-sm me-2">By:</span>
-                  <a class="nav-link position-relative fw-semibold p-0" href="#author" data-scroll="" data-scroll-offset="80">{{$article->author->display_name}}
+                  <a class="nav-link position-relative fw-semibold p-0" href="#author" data-scroll="" data-scroll-offset="80">
+                    {{$article->author->is_anonymous == false ? $article->author->user->display_name ?? $article->author->display_name : 'Anonymous'}}
                     <span class="d-block position-absolute start-0 bottom-0 w-100" style="background-color: currentColor; height: 1px;"></span>
                   </a>
                 </div>
@@ -293,11 +294,11 @@
               <!-- Author widget-->
               <div class="border-top border-bottom py-4" id="author">
                 <div class="d-flex align-items-start py-2">
-                  <img style="object-fit: cover; width: 56px; height: 56px;" class="d-block rounded-circle mb-3" src="{{$article->author->photo_url}}" width="56" alt="Author image">
+                  <img style="object-fit: cover; width: 56px; height: 56px;" class="d-block rounded-circle mb-3" src="{{$article->author->user->photo_url ?? ''}}" width="56" alt="{{ $article->author->user->display_name ?? $article->author->display_name }}">
                   <div class="d-md-flex w-100 ps-4">
                     <div style="max-width: 26rem;">
-                      <h3 class="h5 mb-2">{{$article->author->display_name}}</h3>
-                      <p class="fs-sm mb-0">{{$article->author->bio ?? 'No bio.'}}</p>
+                      <h3 class="h5 mb-2">{{$article->author->is_anonymous == false ? $article->author->user->display_name ?? $article->author->display_name : 'Anonymous'}}</h3>
+                      <p class="fs-sm mb-0">{{$article->author->is_anonymous == false ? $article->author->user->bio ?? 'No bio.' : 'No bio.'}}</p>
                     </div>
                     <div class="pt-4 pt-md-0 ps-md-4 ms-md-auto">
                       <h3 class="h5">Share article:</h3>
@@ -405,6 +406,13 @@
                   <button class="btn-close ms-auto" type="button" data-bs-dismiss="offcanvas" data-bs-target="#sidebar"></button>
                 </div>
                 <div class="offcanvas-body">
+
+                  @if ($currentUser != null && ($currentUser->id == $article->author->user_id || $currentUser->id == $article->editor_id))
+                    <div class="mb-2 text-end">
+                      <a href="{{route('edit') . '?section_uri=' . $article->section_uri . '&headline_uri=' . $article->headline_uri}}" class="btn btn-outline-secondary mb-3">Edit</a>
+                    </div>
+                  @endif
+
                   <!-- Popular posts-->
                   <h4 class="pt-1 pt-lg-0 mt-lg-n2 serif fst-italic">{{__('messages.most_popular')}}</h4>
                   <div class="mb-lg-5 mb-4">

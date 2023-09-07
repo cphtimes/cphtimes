@@ -269,7 +269,7 @@
                 <!-- Basic info-->
                 <section class="card border py-1 p-md-2 p-xl-3 p-xxl-4 mb-4">
                 <div class="card-body">
-                    <form class="needs-validation" method="POST" action="{{ route('manage_edit_article) }} ?section_uri={{$article->section_uri}}&headline_uri={{$article->headline_uri}}" enctype="multipart/form-data">
+                    <form class="needs-validation" method="POST" action="{{route('manage_edit_article')}}?section_uri={{$article->section_uri}}&headline_uri={{$article->headline_uri}}" enctype="multipart/form-data">
                         @csrf
                         @if ($errors->any())
                         <div class="alert alert-danger">
@@ -358,6 +358,23 @@
                             <div class="p-3 rounded-3 border" id="editorjs"></div>
                             <textarea readonly name="body_html" class="d-none form-control" rows="5" placeholder="" id="body_html">{{$body_html}}</textarea>
                             <textarea readonly name="body_blocks" class="d-none form-control" rows="5" placeholder="" id="body_blocks">{{$blocks}}</textarea>
+                          </div>
+
+                          <div class="col-12">
+                            <div class="form-check form-switch">
+                              <input name="author_is_anonymous" type="checkbox" class="form-check-input" id="author_is_anonymous" @if ($article->author->is_anonymous) checked @endif>
+                              <label class="form-check-label" for="author_is_anonymous">Author is anonymous</label>
+                            </div>
+                          </div>
+
+                          <div class="col-sm-6">
+                              <label class="form-label" for="author_display_name">Alternative author</label>
+                              <input placeholder="Søren Kirkegaard" name="author_display_name" class="form-control" type="text" value="{{ $article->author->display_name ?? '' }}" id="author_display_name">
+                              <div class="form-text">If you're not the author of the article, then you can write the name of the person here.</div>
+                          </div>
+                          <div class="col-sm-6">
+                            <label class="form-label" for="author_username">Alternative username</label>
+                            <input placeholder="soren.kirkegaard" name="author_username" class="form-control" type="text" value="{{ $article->author->username ?? '' }}" id="author_username">
                           </div>
 
                           <div class="d-flex justify-content-end pt-3">

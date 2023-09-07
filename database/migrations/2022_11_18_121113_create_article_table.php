@@ -63,7 +63,7 @@ class CreateArticleTable extends Migration
             $table->integer('translator_id')->nullable();
             $table->boolean('is_accessible_for_free')->nullable();
 
-            $table->foreign('author_id')->references('id')->on('user'); // ->onDelete('cascade');
+            $table->foreign('author_id')->references('id')->on('author'); // ->onDelete('cascade');
             $table->foreign('editor_id')->references('id')->on('user');
             $table->foreign('contributor_id')->references('id')->on('user');
             $table->foreign('translator_id')->references('id')->on('user');

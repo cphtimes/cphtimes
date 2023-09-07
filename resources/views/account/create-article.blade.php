@@ -355,6 +355,23 @@
                             <textarea readonly name="body_html" class="d-none form-control" rows="5" placeholder="" id="body_html"></textarea>
                             <textarea readonly name="body_blocks" class="d-none form-control" rows="5" placeholder="" id="body_blocks"></textarea>
                           </div>
+
+                          <div class="col-12">
+                            <div class="form-check form-switch">
+                              <input name="author_is_anonymous" type="checkbox" class="form-check-input" id="author_is_anonymous">
+                              <label class="form-check-label" for="author_is_anonymous">Author is anonymous</label>
+                            </div>
+                          </div>
+
+                          <div class="col-sm-6">
+                              <label class="form-label" for="author_display_name">Alternative author</label>
+                              <input placeholder="Søren Kirkegaard" name="author_display_name" class="form-control" type="text" value="" id="author_display_name">
+                              <div class="form-text">If you're not the author of the article, then you can write the name of the person here.</div>
+                          </div>
+                          <div class="col-sm-6">
+                            <label class="form-label" for="author_username">Alternative username</label>
+                            <input placeholder="soren.kirkegaard" name="author_username" class="form-control" type="text" value="" id="author_username">
+                          </div>
                         
                           <div class="d-flex justify-content-end pt-3">
                             <button class="btn btn-secondary" type="button">{{__('messages.cancel')}}</button>
