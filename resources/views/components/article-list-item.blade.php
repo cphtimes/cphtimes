@@ -3,7 +3,7 @@
         <a class="nav-link" href="{{ route('article', ['section' => $article->section_uri, 'article' => $article->headline_uri]) }}">
             <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
                 <div class="d-flex justify-content-between w-100 mb-2">
-                    <small class="text-uppercase"><b>{{ $localizedSection ?? $article->section_uri }}</b></small>
+                    <small class="text-uppercase"><b>{{ $section ?? $article->section_uri }}</b></small>
                     @if ($style == 'compact')
                         <small class="text-uppercase opacity-50">{{ str_replace(' ', '', str_replace(['hours', 'minutes', 'seconds', 'days', 'weeks', 'months', 'years'], ['h', 'm', 's', 'd', 'w', 'm', 'y'], \Carbon\Carbon::parse($article->published_at)->diffForHumans(null, true))) }}</small>
                     @endif

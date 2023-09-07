@@ -226,14 +226,16 @@
                 @if (count($topArticles) > 0)
                   <li class="list-group-item border-dashed">
                     @include('components.article-card', array(
-                      'article' => (object) $topArticles[0],
+                      'article' => $topArticles->first(),
+                      'section' => $topArticles->first()->localizedSection($sections),
                       'style' => 'compact'
                     ))
                   </li>
                 @endif
                 @for ($i = 1; $i < min(count($topArticles), 3); $i++)
                   @include('components.article-list-item', array(
-                    'article' => (object) $topArticles[$i],
+                    'article' => $topArticles[$i],
+                    'section' => $topArticles[$i]->localizedSection($sections),
                     'style' => 'compact'
                   ))
                 @endfor
@@ -245,11 +247,11 @@
                   <article class="card border-0 px-3">
                       <div class="row d-flex align-items-center">
                           <div class="col-6 article-body card-body px-3">
-                            <p><small class="text-uppercase text-dark"><b>{{ $topArticles[0]->section_uri }}</b></small></p>
-                            <h3 class="article-title card-title fw-light crop-text-2">{{ $topArticles[0]->headline }}</h3>
+                            <p><small class="text-uppercase text-dark"><b>{{ $topArticles->first()->localizedSection($sections) }}</b></small></p>
+                            <h3 class="article-title card-title fw-light crop-text-2">{{ $topArticles->first()->headline }}</h3>
                           </div>
                           <div class="col-6">
-                            <p class="card-text crop-text-4 text-dark opacity-50">{{ $topArticles[0]->abstract }}</p>
+                            <p class="card-text crop-text-4 text-dark opacity-50">{{ $topArticles->first()->abstract }}</p>
                           </div>
                       </div>
                       <div class="ratio ratio-4x3">
@@ -263,7 +265,8 @@
             <ul class="d-none d-md-block list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-lg-4">
                 @for ($i = 1; $i < min(count($topArticles), 5); $i++)
                   @include('components.article-list-item', array(
-                    'article' => (object) $topArticles[$i],
+                    'article' => $topArticles[$i],
+                    'section' => $topArticles[$i]->localizedSection($sections),
                     'style' => 'expanded',
                     'class' => $i == 0 ? 'list-group-item py-3 pt-lg-0 pb-lg-3 border-dashed' : 'list-group-item py-3 border-dashed'
                   ))
@@ -285,7 +288,8 @@
                         'cell-flexible'
                     ])>
                       @include('components.article-card', array(
-                        'article' => (object) $articles[$j+($i*4)],
+                        'article' => $articles[$j+($i*4)],
+                        'section' => $articles[$j+($i*4)]->localizedSection($sections),
                         'style' => 'expanded'
                       ))
                     </div>
@@ -299,7 +303,8 @@
                         'cell-compact'
                     ])>
                       @include('components.article-card', array(
-                        'article' => (object) $articles[$j+($i*4)],
+                        'article' => $articles[$j+($i*4)],
+                        'section' => $articles[$j+($i*4)]->localizedSection($sections),
                         'style' => 'compact'
                       ))
                     </div>

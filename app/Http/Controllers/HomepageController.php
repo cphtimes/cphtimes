@@ -17,6 +17,7 @@ use Session;
 use Stripe;
 use App;
 use App\Models\Article;
+use App\Models\Layout;
 
 use Illuminate\Support\Facades\Request;
 
@@ -215,13 +216,30 @@ class HomepageController extends Controller
       $currentWeather = $this->getTodaysForecast("Copenhagen");
       // $latestUpdates = $this->getLatestUpdates();
       
-      // start with empty collection.
-      // find layout specified.
-      // fill in missing articles if collection xs -> count () < 3
-      $topArticles =Article::orderBy('published_at', 'desc')
+      $topArticles = collect();
+
+      $layout = Layout::orderBy('position', 'asc')
+                      ->where('section_uri', null)
+                      ->limit(3)
+                      ->get();
+      
+      foreach($layout as $item) {
+        $topArticles->push($item->article);
+      }
+
+      $n = $topArticles->count() < 3 ? 3 - $topArticles->count() : 0;
+
+      if ($topArticles->count() < 3) {
+        
+        $fillArticles =Article::orderBy('published_at', 'desc')
+                            ->whereNotIn('id', $topArticles->map(function (Article $article) {
+                              return $article->id;
+                            }))
                             ->offset(0)
-                            ->limit(3)
+                            ->limit($n)
                             ->get();
+        $topArticles = $topArticles->concat($fillArticles);
+      }
 
       $latestUpdates = Article::orderBy('published_at', 'desc')
                               ->offset(0)
@@ -235,7 +253,10 @@ class HomepageController extends Controller
                           ->get();
 
       $articles = Article::orderBy('published_at', 'desc')
-                          ->offset(3)
+                          ->whereNotIn('id', $topArticles->map(function (Article $article) {
+                            return $article->id;
+                          }))
+                          ->offset($n)
                           ->limit(42)
                           ->get();
 

@@ -100,6 +100,13 @@ class Article extends Model
         'is_accessible_for_free' => true,
     ];
 
+    public function localizedSection($sections) {
+        return $sections->where('uri', $this->section_uri)
+                        ->where('language_code', \App::currentLocale())
+                        ->first()->name ??
+                        $this->section_uri;
+    }
+
     public function related() {
         return $this->belongsToMany(Article::class, 'related_article', 'article_id', 'related_id');
     }

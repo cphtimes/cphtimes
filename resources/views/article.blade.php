@@ -408,10 +408,10 @@
                   <!-- Popular posts-->
                   <h4 class="pt-1 pt-lg-0 mt-lg-n2 serif fst-italic">{{__('messages.most_popular')}}</h4>
                   <div class="mb-lg-5 mb-4">
-                    @foreach($trendingArticles->slice(0,3) as $trendingArticle)
+                    @foreach($trendingArticles->slice(0,3) as $article)
                       @include('components.article-list-item', array(
-                        'section' => $sections->where('uri', $trendingArticle->section_uri)->first(),
-                        'article' => $trendingArticle,
+                        'article' => $article,
+                        'section' => $article->localizedSection($section),
                         'style' => 'compact'
                       ))
                     @endforeach
@@ -419,10 +419,10 @@
                   <!-- Recent posts-->
                   <h4 class="pt-3 pt-lg-1 mb-4 serif fst-italic">{{__('messages.recent_articles')}}</h4>
                   <ul class="list-group list-group-flush list-unstyled mb-lg-5 mb-4">
-                    @foreach ($recentArticles as $recentArticle)
+                    @foreach ($recentArticles as $article)
                       @include('components.article-list-item', array(
-                        'section' => $sections->where('uri', $recentArticle->section_uri)->first(),
-                        'article' => $recentArticle,
+                        'article' => $article,
+                        'section' => $article->localizedSection($section),
                         'style' => 'compact'
                       ))
                     @endforeach
@@ -466,11 +466,11 @@
             @else
             <div class="swiper">
               <div class="swiper-wrapper">
-                @foreach ($relatedArticles as $relatedArticle)
+                @foreach ($relatedArticles as $article)
                   <div class="swiper-slide">
                     @include('components.article-card', array(
-                      'section' => $sections->where('uri', $relatedArticle->section_uri)->first(),
-                      'article' => $relatedArticle,
+                      'article' => $article,
+                      'section' => $article->localizedSection($sections),
                       'style' => 'compact'
                     ))
                   </div>

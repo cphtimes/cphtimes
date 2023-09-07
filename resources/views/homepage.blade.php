@@ -224,7 +224,7 @@
                 <li class="list-group-item border-dashed">
                   @include('components.article-card', array(
                     'article' => $topArticles->first(),
-                    'localizedSection' => $sections->where('uri', $topArticles->first()->first()->section_uri)->where('language_code', App::currentLocale())->first()->name ?? $topArticles->first()->section_uri,
+                    'section' => $topArticles->first()->localizedSection($sections),
                     'style' => 'compact'
                   ))
                 </li>
@@ -232,7 +232,7 @@
                 @for ($i = 1; $i < min(count($topArticles), 3); $i++)
                   @include('components.article-list-item', array(
                     'article' => $topArticles[$i],
-                    'localizedSection' => $sections->where('uri', $topArticles[$i]->section_uri)->where('language_code', App::currentLocale())->first()->name ?? $topArticles[$i]->section_uri,
+                    'section' => $topArticles[$i]->localizedSection($sections),
                     'style' => 'compact'
                   ))
                 @endfor
@@ -241,7 +241,7 @@
                 @for ($i = 0; $i < min(count($topArticles), 3); $i++)
                   @include('components.article-list-item', array(
                     'article' => $topArticles[$i],
-                    'localizedSection' => $sections->where('uri', $topArticles[$i]->section_uri)->where('language_code', App::currentLocale())->first()->name ?? $topArticles[$i]->section_uri,
+                    'section' => $topArticles[$i]->localizedSection($sections),
                     'style' => $i == 0 ? 'large' : 'expanded',
                     'class' => $i == 0 ? 'list-group-item py-3 pt-lg-0 pb-lg-3 border-dashed' : 'list-group-item py-3 border-dashed'
                   ))
@@ -259,7 +259,7 @@
                         @foreach ($latestUpdates->slice($i*4, 4) as $article)
                           @include('components.article-list-item', array(
                             'article' => $article,
-                            'localizedSection' => $sections->where('uri', $article->section_uri)->where('language_code', App::currentLocale())->first()->name ?? $article->section_uri,
+                            'section' => $article->localizedSection($sections),
                             'style' => 'expanded'
                           ))
                         @endforeach
@@ -275,8 +275,8 @@
               <h5 class="w-100 serif fst-italic">{{__('messages.latest_updates')}}</h5>
               @foreach ($latestUpdates as $update)
                 @include('components.article-list-item', array(
-                  'article' => (object)$update,
-                  'localizedSection' => $sections->where('uri', $update->section_uri)->where('language_code', App::currentLocale())->first()->name ?? $article->section_uri,
+                  'article' => $update,
+                  'section' => $update->localizedSection($sections),
                   'style' => 'compact'
                 ))
               @endforeach
@@ -287,7 +287,7 @@
               @foreach ($popular as $article)
                 @include('components.article-list-item', array(
                   'article' => $article,
-                  'localizedSection' => $sections->where('uri', $article->section_uri)->where('language_code', App::currentLocale())->first()->name ?? $article->section_uri,
+                  'section' => $article->localizedSection($sections),
                   'style' => 'compact'
                 ))
               @endforeach
@@ -310,7 +310,7 @@
                     ])>
                       @include('components.article-card', array(
                         'article' => $articles[$j+($i*4)],
-                        'localizedSection' => $sections->where('uri', $articles[$j+($i*4)]->section_uri)->first()->name ?? $article->section_uri,
+                        'section' => $articles[$j+($i*4)]->localizedSection($sections),
                         'style' => 'expanded'
                       ))
                     </div>
@@ -325,7 +325,7 @@
                     ])>
                       @include('components.article-card', array(
                         'article' => $articles[$j+($i*4)],
-                        'localizedSection' => $sections->where('uri', $articles[$j+($i*4)]->section_uri)->first()->name ?? $article->section_uri,
+                        'section' => $articles[$j+($i*4)]->localizedSection($sections),
                         'style' => 'compact'
                       ))
                     </div>
@@ -349,8 +349,8 @@
                           <ul style="overflow-y: hidden;" class="list-group list-group-flush py-3 col-12 px-lg-3 pe-0">
                             @foreach ($section->slice($i*4, 4) as $article)
                               @include('components.article-list-item', array(
-                                'article' => (object) $article,
-                                'localizedSection' => $sections->where('uri', $article->section_uri)->where('language_code', App::currentLocale())->first()->name ?? $article->section_uri,
+                                'article' => $article,
+                                'section' => $article->localizedSection($sections),
                                 'style' => 'expanded'
                               ))
                             @endforeach
@@ -375,8 +375,8 @@
                   @else
                     @foreach ($section as $article)
                       @include('components.article-list-item', array(
-                        'article' => (object) $article,
-                        'localizedSection' => $sections->where('uri', $article->section_uri)->where('language_code', App::currentLocale())->first()->name ?? $article->section_uri,
+                        'article' => $article,
+                        'section' => $article->localizedSection($sections),
                         'style' => 'compact'
                       ))
                     @endforeach

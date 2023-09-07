@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Section;
+use App\Models\Article;
+use App\Models\Layout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 
@@ -56,28 +58,44 @@ class SectionController extends Controller
   {
     $darkMode = Cookie::get('dark_mode') == 'true';
     $currentWeather = $this->getTodaysForecast("Copenhagen");
-    $topArticles = DB::table('article')
-                          ->where('section_uri', $section)
-                          ->orderBy('published_at', 'desc')
-                          ->offset(0)
-                          ->limit(5)
-                          ->get();
 
-    $articles = DB::table('article')
-                        ->where('section_uri', $section)
+    $topArticles = collect();
+
+    $layout = Layout::orderBy('position', 'asc')
+                    ->where('section_uri', $section)
+                    ->limit(5)
+                    ->get();
+    
+    foreach($layout as $item) {
+      $topArticles->push($item->article);
+    }
+    
+    $n = $topArticles->count() < 5 ? 5 - $topArticles->count() : 0;
+
+    if ($topArticles->count() < 5) {
+      $fillArticles =Article::orderBy('published_at', 'desc')
+                          ->where('section_uri', $section)
+                          ->whereNotIn('id', $topArticles->map(function (Article $article) {
+                            return $article->id;
+                          }))
+                          ->offset(0)
+                          ->limit($n)
+                          ->get();
+      $topArticles = $topArticles->concat($fillArticles);
+    }
+
+    $articles = Article::where('section_uri', $section)
                         ->orderBy('published_at', 'desc')
-                        ->offset(3)
+                        ->whereNotIn('id', $topArticles->map(function (Article $article) {
+                          return $article->id;
+                        }))
+                        ->offset($n)
                         ->limit(42)
                         ->get();
 
-    $individuals = DB::table('individual')
-                    ->orderBy('id', 'asc')
-                    ->offset(0)
-                    ->limit(20)
-                    ->get();
-
     $user = Auth::user();
     $locale = App::currentLocale();
+    
     $sections = Section::where('is_active', true)
                         ->where('language_code', $locale)
                         ->orderBy('position', 'asc')
@@ -91,7 +109,6 @@ class SectionController extends Controller
       'icon' => $currentWeather[3],
       'topArticles' => $topArticles,
       'articles' => $articles,
-      'individuals' => json_decode($individuals, true),
       'user' => $user,
       'sections' => $sections,
       'activeSection' => $section
