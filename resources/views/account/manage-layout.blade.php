@@ -265,7 +265,7 @@
             ))
             <!-- Page content-->
             <div class="col-lg-9 pt-4 pb-2 pb-sm-4">
-                <h1 class="serif fst-italic h2 mb-4">Layout</h1>
+                <h1 class="serif fst-italic h2 mb-4">{{__('messages.layout')}}</h1>
                 <!-- Basic info-->
                 <section class="card border py-1 p-md-2 p-xl-3 p-xxl-4 mb-4">
                   <div class="card-body">
@@ -274,11 +274,11 @@
                         <li class="nav-item">
                           <a href="#frontpage" class="nav-link active" data-bs-toggle="tab" role="tab">
                             <i class="fi-home me-2"></i>
-                            Frontpage
+                            {{__('messages.frontpage')}}
                           </a>
                         </li>
                         <li class="nav-item dropdown">
-                          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">Sections</a>
+                          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button">{{ucfirst(trans_choice('messages.sections', 2))}}</a>
                           <div class="dropdown-menu">
                             @foreach ($sections as $section)
                               <a href="#{{$section->uri}}" class="dropdown-item" data-bs-toggle="tab" role="tab">{{$section->name}}</a>
@@ -305,7 +305,7 @@
                                 <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
                                   @for ($i = 0; $i < 3; $i++)
                                     <div class="col-sm-12">
-                                        <label class="form-label" for="article_{{$i+1}}">Article {{$i + 1}}</label>
+                                        <label class="form-label" for="article_{{$i+1}}">{{__('messages.article')}} {{$i + 1}}</label>
                                         <input placeholder="https://cphgates.com" name="article_{{$i+1}}" class="form-control" type="text" value="{{$layouts['frontpage']->get($i) != null ? route('article', [$layouts['frontpage']->get($i)->article->section_uri, $layouts['frontpage']->get($i)->article->headline_uri]) : ''}}" id="article_{{$i+1}}">
                                     </div>
                                   @endfor
@@ -334,7 +334,7 @@
                                 <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
                                   @for ($i = 0; $i < 5; $i++)
                                     <div class="col-sm-12">
-                                        <label class="form-label" for="article_{{$i+1}}">Article {{$i + 1}}</label>
+                                        <label class="form-label" for="article_{{$i+1}}">{{__('messages.article')}} {{$i + 1}}</label>
                                         <input placeholder="https://cphgates.com" name="article_{{$i+1}}" class="form-control" type="text" value="{{$layouts[$section->uri]->get($i) != null ? route('article', [$layouts[$section->uri]->get($i)->article->section_uri, $layouts[$section->uri]->get($i)->article->headline_uri]) : ''}}" id="article_{{$i+1}}">
                                     </div>
                                   @endfor

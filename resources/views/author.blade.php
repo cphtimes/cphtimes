@@ -292,6 +292,7 @@
                     @foreach($articles as $article)
                       @include('components.article-list-item', array(
                         'article' => $article,
+                        'localizedSection' => $article->localizedSection($sections),
                         'style' => 'expanded',
                         'editable' => $currentUser != null && $currentUser->is($article->author)
                       ))

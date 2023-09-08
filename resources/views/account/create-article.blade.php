@@ -265,7 +265,7 @@
             ))
             <!-- Page content-->
             <div class="col-lg-9 pt-4 pb-2 pb-sm-4">
-                <h1 class="serif fst-italic h2 mb-4">New Article</h1>
+                <h1 class="serif fst-italic h2 mb-4">{{__('messages.new_article')}}</h1>
                 <!-- Basic info-->
                 <section class="card border py-1 p-md-2 p-xl-3 p-xxl-4 mb-4">
                 <div class="card-body">
@@ -283,13 +283,13 @@
                         
                         <div class="row g-3 g-sm-4 mt-0 mt-lg-2">
                           <div class="col-sm-6">
-                              <label class="form-label" for="headline">Headline</label>
+                              <label class="form-label" for="headline">{{__('messages.headline')}}</label>
                               <input name="headline" class="form-control" type="text" value="" id="headline" required>
                           </div>
                           <div class="col-sm-6">
-                            <label class="form-label" for="fn">Section</label>
+                            <label class="form-label" for="fn">{{ucfirst(trans_choice('sections', 1))}}</label>
                             <select name="section_uri" class="form-select" id="section" required>
-                                <option value="" disabled="">Choose...</option>
+                                <option value="" disabled="">{{__('messages.choose')}}</option>
                                 @foreach ($sections as $section)
                                   <option value="{{$section->uri}}">{{$section->name}}</option>
                                 @endforeach
@@ -297,47 +297,47 @@
                           </div>
 
                           <div class="col-sm-6">
-                              <label class="form-label" for="fn">In Language</label>
+                              <label class="form-label" for="fn">{{__('messages.in_language')}}</label>
                               <select name="in_language" class="form-select" id="language" required>
-                                  <option value="" disabled="">Choose...</option>
+                                  <option value="" disabled="">{{__('messages.choose')}}</option>
                                   <option value="en" selected="{{$currentUser->language_code == 'en' ? 'selected' : ''}}">English</option>
                                   <option value="da" selected="{{$currentUser->language_code == 'da' ? 'selected' : ''}}">Dansk (Danish)</option>
                               </select>
                           </div>
                           <div class="col-sm-6">
-                            <label class="form-label" for="fn">Work Status</label>
+                            <label class="form-label" for="fn">{{__('messages.work_status')}}</label>
                             <select name="work_status" class="form-select" id="work_status" required>
-                                <option value="" disabled="">Choose...</option>
-                                <option value="published">Published</option>
-                                <option value="draft">Draft</option>
-                                <option value="Archived">Archived</option>
+                                <option value="" disabled="">{{__('messages.choose')}}</option>
+                                <option value="published">{{__('messages.work_status_published')}}</option>
+                                <option value="draft">{{__('messages.work_status_draft')}}</option>
+                                <!-- <option value="Archived">Archived</option> -->
                             </select>
                           </div>
 
                           <div class="col-12">
-                              <label for="image" class="form-label">Image</label>
+                              <label for="image" class="form-label">{{__('messages.image')}}</label>
                               <input name="image" class="form-control" type="file" id="image" accept="image/*" required>
                           </div>
 
                           <div class="col-12">
-                              <label class="form-label" for="image_caption">Image Caption (optional)</label>
+                              <label class="form-label" for="image_caption">{{__('messages.image_caption')}}</label>
                               <input placeholder="" name="image_caption" class="form-control" type="text" value="" id="image_caption">
                           </div>
 
                           <div class="col-12">
-                              <label class="form-label" for="video_embed">Video Embed (optional)</label>
+                              <label class="form-label" for="video_embed">{{__('messages.video_embed')}}</label>
                               <textarea name="video_embed" class="form-control" rows="5" placeholder="" id="video_embed"></textarea>
                           </div>
 
                           <div class="col-sm-6">
-                              <label class="form-label" for="video_provider">Video Provider (optional)</label>
+                              <label class="form-label" for="video_provider">{{__('messages.video_provider')}}</label>
                               <input placeholder="" name="video_provider" class="form-control" type="text" value="" id="video_provider">
                           </div>
 
                           <div class="col-sm-6">
-                              <label class="form-label" for="image_caption">Video Ratio (optional)</label>
+                              <label class="form-label" for="image_caption">{{__('messages.video_ratio')}}</label>
                               <select name="video_ratio" class="form-select" id="video_ratio">
-                                <option value="" disabled="">Choose...</option>
+                                <option value="" disabled="">{{__('messages.choose')}}</option>
                                 <option value="16x9">16x9</option>
                                 <option value="4x3">4x3</option>
                                 <option value="1x1">1x1</option>
@@ -345,12 +345,12 @@
                           </div>
 
                           <div class="col-12">
-                              <label class="form-label" for="bio">Abstract</label>
+                              <label class="form-label" for="bio">{{__('messages.abstract')}}</label>
                               <textarea name="abstract" class="form-control" rows="5" placeholder="" id="abstract"></textarea>
                           </div>
 
                           <div class="col-12">
-                            <label class="form-label" for="body_html">Body</label>
+                            <label class="form-label" for="body_html">{{__('messages.body')}}</label>
                             <div class="p-3 rounded-3 border" id="editorjs"></div>
                             <textarea readonly name="body_html" class="d-none form-control" rows="5" placeholder="" id="body_html"></textarea>
                             <textarea readonly name="body_blocks" class="d-none form-control" rows="5" placeholder="" id="body_blocks"></textarea>
@@ -359,17 +359,17 @@
                           <div class="col-12">
                             <div class="form-check form-switch">
                               <input name="author_is_anonymous" type="checkbox" class="form-check-input" id="author_is_anonymous">
-                              <label class="form-check-label" for="author_is_anonymous">Author is anonymous</label>
+                              <label class="form-check-label" for="author_is_anonymous">{{__('messages.author_is_anonymous')}}</label>
                             </div>
                           </div>
 
                           <div class="col-sm-6">
-                              <label class="form-label" for="author_display_name">Alternative author</label>
+                              <label class="form-label" for="author_display_name">{{__('messages.alternative_author')}}</label>
                               <input placeholder="Søren Kirkegaard" name="author_display_name" class="form-control" type="text" value="" id="author_display_name">
-                              <div class="form-text">If you're not the author of the article, then you can write the name of the person here.</div>
+                              <div class="form-text">{{__('messages.alternative_author_text')}}</div>
                           </div>
                           <div class="col-sm-6">
-                            <label class="form-label" for="author_username">Alternative username</label>
+                            <label class="form-label" for="author_username">{{__('messages.alternative_username')}}</label>
                             <input placeholder="soren.kirkegaard" name="author_username" class="form-control" type="text" value="" id="author_username">
                           </div>
                         

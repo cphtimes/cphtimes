@@ -258,9 +258,9 @@
           <!-- Breadcrumb-->
           <nav aria-label="breadcrumb">
             <ol class="pt-lg-3 pb-lg-4 pb-2 breadcrumb">
-              <li class="breadcrumb-item"><a href="/">Frontpage</a></li>
+              <li class="breadcrumb-item"><a href="/">{{__('messages.frontpage')}}</a></li>
               <li class="breadcrumb-item"><a href="{{ route('section', ['section' => $section->uri]) }}">{{$section->name}}</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Article</li>
+              <li class="breadcrumb-item active" aria-current="page">{{__('messages.article')}}</li>
             </ol>
           </nav>
           <div class="row">
@@ -409,7 +409,7 @@
 
                   @if ($currentUser != null && ($currentUser->id == $article->author->user_id || $currentUser->id == $article->editor_id))
                     <div class="mb-2 text-end">
-                      <a href="{{route('edit') . '?section_uri=' . $article->section_uri . '&headline_uri=' . $article->headline_uri}}" class="btn btn-outline-secondary mb-3">Edit</a>
+                      <a href="{{route('edit') . '?section_uri=' . $article->section_uri . '&headline_uri=' . $article->headline_uri}}" class="btn btn-outline-secondary mb-3">{{__('messages.edit')}}</a>
                     </div>
                   @endif
 
