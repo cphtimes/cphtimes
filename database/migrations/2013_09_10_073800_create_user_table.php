@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Request;
 
 class CreateUserTable extends Migration
 {
@@ -23,8 +24,7 @@ class CreateUserTable extends Migration
             $table->string('photo_url');
             $table->boolean('is_banned')->default(false);
             $table->string('country_code')->nullable();
-            $table->string('language_code')->default(env('locale'));
-            $table->string('timezone')->default(env('timezone'));
+            $table->jsonb('reads_languages')->default(Request::getHost() == 'kbhporte.dk' ? json_encode(['da', 'en']) : json_encode(['en']));
             $table->text('bio')->nullable();
             $table->rememberToken();
             $table->timestamps();

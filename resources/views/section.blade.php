@@ -201,7 +201,7 @@
     <body class="antialiased">
       @include('components.masthead', array(
           'darkMode' => $darkMode,
-          'user' => $user,
+          'user' => $currentUser,
           'icon' => $icon,
           'temp' => $temp,
           'tempMin' => $tempMin,
@@ -211,7 +211,7 @@
       <main class="main">
         @include('components.navbar', array(
           'class' => 'sticky-top navbar navbar-stuck d-block d-lg-none',
-          'user' => $user,
+          'user' => $currentUser,
           'sections' => $sections,
           'darkMode' => $darkMode
         ))

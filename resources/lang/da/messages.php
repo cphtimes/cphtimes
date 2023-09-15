@@ -138,5 +138,14 @@ return [
     'alternative_author_text' => 'Hvis du ikke er forfatter til artiklen, så kan du skrive navnet på personen her.',
     'edit_article' => 'Edit Artikel',
     'article' => 'Artikel',
-    'edit' => 'Rediger'
+    'edit' => 'Rediger',
+    'reads_languages' => 'Læser på sprog',
+    'english' => 'Engelsk',
+    'danish' => 'Dansk',
+    'danish_and_english' => 'Dansk og engelsk',
+    'work_status_submitted' => 'Indsendt',
+    'are_you_sure_confirmation' => 'Er du sikker på, at du vil slette?',
+    'about' => 'Om',
+    'correction' => 'Rettelse',
+    'credit' => 'Kredit'
 ];

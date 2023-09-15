@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-class CreateLayoutTable extends Migration
+class CreateSectionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +14,15 @@ class CreateLayoutTable extends Migration
      */
     public function up()
     {
-        Schema::create('layout', function (Blueprint $table) {
+        Schema::create('section', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->text('section_uri');
-            $table->foreign('article_id')->references('id')->on('article');
+            $table->text('uri');
+            $table->string('language_code');
+            $table->text('name');
             $table->integer('position');
+            $table->boolean('is_active');
         });
-        DB::statement("ALTER TABLE layout ADD UNIQUE (section_uri, article_id)");
+        DB::statement("ALTER TABLE section ADD UNIQUE (uri, language_code)");
     }
 
     /**
@@ -31,6 +32,6 @@ class CreateLayoutTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('layout');
+        Schema::dropIfExists('section');
     }
 }

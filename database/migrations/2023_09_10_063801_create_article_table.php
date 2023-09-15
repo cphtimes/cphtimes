@@ -27,10 +27,7 @@ class CreateArticleTable extends Migration
             $table->integer('word_count')->default(0);
             $table->text('image_url');
             $table->text('image_caption')->nullable();
-            $table->longText('video_embed')->nullable();
-            $table->text('video_provider')->nullable();
-            $table->string('video_ratio')->nullable();
-            $table->enum('work_status', ['published', 'draft', 'archived'])->default('published');
+            $table->enum('work_status', ['submitted', 'draft', 'rejected', 'published'])->default('published');
             $table->integer('author_id');
             $table->longText('abstract');
             $table->longText('about')->nullable();

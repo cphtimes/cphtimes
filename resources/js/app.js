@@ -1,6 +1,7 @@
 require('./bootstrap');
 window.autocomplete = require('./autocomplete');
 window.darkmode = require('./darkmode');
+window.editor = require('./editor.js');
 
 var el = document.querySelector(".nav-scroller")
 if (el !== null) {

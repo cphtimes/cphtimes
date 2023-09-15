@@ -23,6 +23,7 @@ class Section extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
         'uri',
         'language_code',
         'name',

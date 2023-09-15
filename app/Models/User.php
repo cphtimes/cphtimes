@@ -10,6 +10,7 @@ use App\Models\Comment;
 use App\Models\Article;
 use App\Models\UserNotifications;
 use App\Notifications\ResetPasswordToken;
+use App\Models\UserRole;
 
 class User extends Authenticatable
 {
@@ -48,8 +49,7 @@ class User extends Authenticatable
         'password',
         'photo_url',
         'country_code',
-        'language_code',
-        'timezone',
+        'reads_languages',
         'bio',
     ];
 
@@ -71,6 +71,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'reads_languages' => 'array',
     ];
 
     /*
@@ -102,11 +103,30 @@ class User extends Authenticatable
 
     public function articles()
     {
-        return $this->hasMany(Article::class, 'author_id', 'id');
+        // return $this->hasMany(Article::class, 'author_id', 'user_id');
+        return $this->hasOneThrough(
+            Article::class,
+            Author::class,
+            'user_id',
+            'author_id',
+            'id',
+            'id'
+        );
     }
+
+    public function canEdit($article) {
+        return $this->id == $article->author->user_id || 
+                $this->id == $article->editor_id;
+    }
+
+    // do the same for canDelete as canEdit?
 
     public function notifications()
     {
         return $this->hasOne(UserNotifications::class);
+    }
+
+    public function role() {
+        return $this->hasOne(UserRole::class);
     }
 }

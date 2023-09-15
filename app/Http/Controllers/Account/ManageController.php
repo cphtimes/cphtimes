@@ -17,6 +17,9 @@ use App;
 use Illuminate\Support\Facades\Http;
 use App\Models\Layout;
 use App\Models\Author;
+use App\Services\SafeObjectKeyService;
+use App\Services\EncodeURIComponentService;
+use App\Services\PrettifyURIComponentService;
 
 class ManageController extends Controller
 {
@@ -40,97 +43,6 @@ class ManageController extends Controller
         'sections' => $sections,
         'currentUser' => $currentUser
       ]);
-    }
-
-    public function createArticle(Request $request) {
-      $data = $request->validate([
-        'body_html' => ['required'],
-        'body_blocks' => ['required'],
-        'headline' => ['required'],
-        'section_uri' => ['required'],
-        'in_language' => ['required'],
-        'work_status' => ['required'],
-        'image' => 'image|mimes:jpg,png,jpeg,gif|max:2048',
-        'abstract' => ['required'],
-        'image_caption' => [],
-        'video_embed' => [],
-        'video_provider' => [],
-        'video_ratio' => [],
-        'author_is_anonymous' => [],
-        'author_display_name' => [],
-        'author_username' => []
-      ]);
-
-      $headline_uri = strtolower($data['headline']);
-      $headline_uri = str_replace([' ', '.', ',', '!', ':', ';', '?'], '-', $headline_uri);
-      $headline_uri = str_replace('æ', 'ae', $headline_uri);
-      $headline_uri = str_replace('ø', 'oe', $headline_uri);
-      $headline_uri = str_replace('å', 'aa', $headline_uri);
-
-      $currentUser = Auth::user();
-
-      $token = env('SUPERBASE_API_SECRET_KEY');
-
-      $body_url = sprintf('%s/storage/v1/object/users/%s/articles/%s/%s', env('SUPERBASE_URL'), $currentUser->username, $headline_uri, 'body.html');
-      $response = Http::withToken($token)
-                      ->withBody($data["body_html"], 'text/html')
-                      ->post($body_url);
-
-      $blocks_url = sprintf('%s/storage/v1/object/users/%s/articles/%s/%s', env('SUPERBASE_URL'), $currentUser->username, $headline_uri, 'blocks.json');
-      $response = Http::withToken($token)
-                      ->withBody($data["body_blocks"], 'application/json')
-                      ->post($blocks_url);
-
-      $image = $request->file('image');
-      $image_url = sprintf('%s/storage/v1/object/users/%s/articles/%s/%s', env('SUPERBASE_URL'), $currentUser->username, $headline_uri, 'image');
-      $response = Http::withToken($token)
-                      ->withBody(file_get_contents($image), $image->getClientMimeType())
-                      ->post($image_url);
-
-      $public_image_url = sprintf('%s/storage/v1/object/public/users/%s/articles/%s/%s', env('SUPERBASE_URL'), $currentUser->username, $headline_uri, 'image');
-      $public_body_url = sprintf("%s/storage/v1/object/public/users/%s/articles/%s/%s", env('SUPERBASE_URL'), $currentUser->username, $headline_uri, 'body.html');
-
-      $emptyAbstract = $data["in_language"] == 'da' ? 'Ingen beskrivelse' : 'No description';
-
-      $is_anonymous = $data["author_is_anonymous"] ?? false;
-      $display_name = $data['author_display_name'];
-      $username = $data['author_username'];
-
-      $author = null;
-
-      if ($is_anonymous) {
-        $author = Author::firstOrCreate([
-          'is_anonymous' => true
-        ]);
-      } else {
-        $author = Author::firstOrCreate(['username' => $username]);
-        $author->user_id = $display_name == null ? $currentUser->id : null;
-        $author->display_name = $display_name;
-      }
-
-      $author->save();
-      
-      $article = Article::create([
-        'body_url' => $public_body_url,
-        'section_uri' => $data["section_uri"],
-        'abstract' => $data["abstract"] ?? emptyAbstract,
-        'author_id' => $author->id,
-        'editor_id' => $currentUser->id,
-        'work_status' => $data["work_status"],
-        'published_at' => now(),
-        'headline' => $data["headline"],
-        'headline_uri' => $headline_uri,
-        'in_language' => $data["in_language"],
-        'image_url' => $public_image_url,
-        'image_caption' => $data["image_caption"] ?? null,
-        'video_embed' => $data["video_embed"] ?? null,
-        'video_provider' => $data["video_provider"] ?? null,
-        'video_ratio' => $data["video_ratio"] ?? null,
-        'time_required' => 'PT30M',
-        'keywords' => 'One,Two,Three,Four,Five',
-      ]);
-
-      return redirect()->route('article', [$article->section_uri, $article->headline_uri]);
     }
 
     public function showManageLayout(Request $request) {
@@ -203,7 +115,7 @@ class ManageController extends Controller
           }
 
           $headline_uri = $paths[count($paths) - 1];
-          if ($is_frontpage) {    
+          if ($is_frontpage) {
             $article = Article::where('section_uri', $paths[count($paths) - 2])
                               ->where('headline_uri', $headline_uri)
                               ->first();
@@ -247,11 +159,9 @@ class ManageController extends Controller
 
       $sections = Section::where('position', '>=', (int) $data['position'])->increment('position', 1);
 
-      $uri = strtolower($data['name_en']);
-      $uri = str_replace([' ', '.', ',', '!', ':', ';', '?'], '-', $uri);
-      $uri = str_replace('æ', 'ae', $uri);
-      $uri = str_replace('ø', 'oe', $uri);
-      $uri = str_replace('å', 'aa', $uri); 
+      $uri = EncodeURIComponentService::make(
+        PrettifyURIComponentService::make($data['name_en'])
+      );
 
       $en_section = Section::create([
         'name' => $data['name_en'],
@@ -271,6 +181,8 @@ class ManageController extends Controller
     }
 
     public function showManageSections(Request $request) {
+      // missing some pre and post conditions here.
+      
       $action = $request->query('action', null);
       $section_uri = $request->query('uri', null);
 
@@ -373,7 +285,10 @@ class ManageController extends Controller
                         ->where('headline_uri', $headline_uri)
                         ->firstOrFail();
 
-      $public_blocks_url = sprintf('%s/storage/v1/object/public/users/%s/articles/%s/%s', env('SUPERBASE_URL'), $currentUser->username, $headline_uri, 'blocks.json');
+      $username = SafeObjectKeyService::make($article->author->username ?? $currentUser->username);
+      $headline_uri = SafeObjectKeyService::make($headline_uri);
+
+      $public_blocks_url = sprintf('%s/storage/v1/object/public/users/%s/articles/%s/%s', env('SUPERBASE_URL'), $username, $headline_uri, 'blocks.json');
       $blocks = file_get_contents($public_blocks_url);
       $body_html = file_get_contents($article->body_url);
 
@@ -385,121 +300,5 @@ class ManageController extends Controller
         'body_html' => $body_html,
         'blocks' => $blocks
       ]);
-    }
-
-    public function editArticle(Request $request) {
-      $section_uri = $request->query('section_uri', null);
-      $headline_uri = $request->query('headline_uri', null);
-
-      $data = $request->validate([
-        'body_html' => ['required'],
-        'body_blocks' => ['required'],
-        'headline' => ['required'],
-        'section_uri' => ['required'],
-        'in_language' => ['required'],
-        'work_status' => ['required'],
-        'image' => 'image|mimes:jpg,png,jpeg,gif|max:2048',
-        'abstract' => ['required'],
-        'image_caption' => [],
-        'video_embed' => [],
-        'video_provider' => [],
-        'video_ratio' => [],
-        'author_is_anonymous' => [],
-        'author_display_name' => [],
-        'author_username' => []
-      ]);
-
-      $new_headline_uri = strtolower($data['headline']);
-      $new_headline_uri = str_replace([' ', '.', ',', '!', ':', ';', '?'], '-', $new_headline_uri);
-      $new_headline_uri = str_replace('æ', 'ae', $new_headline_uri);
-      $new_headline_uri = str_replace('ø', 'oe', $new_headline_uri);
-      $new_headline_uri = str_replace('å', 'aa', $new_headline_uri);
-
-      $currentUser = Auth::user();
-
-      $token = env('SUPERBASE_API_SECRET_KEY');
-
-      $body_url = sprintf('%s/storage/v1/object/users/%s/articles/%s/%s', env('SUPERBASE_URL'), $currentUser->username, $new_headline_uri, 'body.html');
-      $response = Http::withToken($token)
-                      ->withBody($data["body_html"], 'text/html')
-                      ->post($body_url);
-
-      if ($response->status() >= 400) {
-        $response = Http::withToken($token)
-                      ->withBody($data["body_html"], 'text/html')
-                      ->put($body_url);
-      }
-
-      $blocks_url = sprintf('%s/storage/v1/object/users/%s/articles/%s/%s', env('SUPERBASE_URL'), $currentUser->username, $new_headline_uri, 'blocks.json');
-      $response = Http::withToken($token)
-                      ->withBody($data["body_blocks"], 'application/json')
-                      ->post($blocks_url);
-
-      if ($response->status() >= 400) {
-        $response = Http::withToken($token)
-                        ->withBody($data["body_blocks"], 'application/json')
-                        ->put($blocks_url);
-      }
-
-      $is_anonymous = $data["author_is_anonymous"] ?? false;
-      $display_name = $data['author_display_name'];
-      $username = $data['author_username'];
-
-      $author = null;
-
-      if ($is_anonymous) {
-        $author = Author::firstOrCreate([
-          'is_anonymous' => true
-        ]);
-      } else {
-        $author = Author::firstOrCreate(['username' => $username]);
-        $author->user_id = $display_name == null ? $currentUser->id : null;
-        $author->display_name = $display_name;
-      }
-
-      $author->save();
-
-      $article = Article::where('section_uri', $section_uri)
-                        ->where('headline_uri', $headline_uri)
-                        ->firstOrFail();
-
-      $image = $request->file('image');
-      $image_url = sprintf('%s/storage/v1/object/users/%s/articles/%s/%s', env('SUPERBASE_URL'), $currentUser->username, $new_headline_uri, 'image');
-      $response = Http::withToken($token)
-                      ->withBody(file_get_contents($image ? $image : $article->image_url), $image ? $image->getClientMimeType() : 'image/png')
-                      ->post($image_url);
-
-      if ($response->status() >= 400) {
-        $response = Http::withToken($token)
-                        ->withBody(file_get_contents($image ? $image : $article->image_url), $image ? $image->getClientMimeType() : 'image/png')
-                        ->put($image_url);
-      }
-
-      $public_image_url = sprintf('%s/storage/v1/object/public/users/%s/articles/%s/%s', env('SUPERBASE_URL'), $currentUser->username, $new_headline_uri, 'image');
-      $public_body_url = sprintf("%s/storage/v1/object/public/users/%s/articles/%s/%s", env('SUPERBASE_URL'), $currentUser->username, $new_headline_uri, 'body.html');
-
-      $emptyAbstract = $data["in_language"] == 'da' ? 'Ingen beskrivelse' : 'No description';
-
-      $article->update([
-        'body_url' => $public_body_url,
-        'section_uri' => $data["section_uri"],
-        'abstract' => $data["abstract"] ?? emptyAbstract,
-        'author_id' => $author->id,
-        'editor_id' => $currentUser->id,
-        'work_status' => $data["work_status"],
-        'published_at' => now(),
-        'headline' => $data["headline"],
-        'headline_uri' => $new_headline_uri,
-        'in_language' => $data["in_language"],
-        'image_url' => $public_image_url,
-        'image_caption' => $data["image_caption"] ?? null,
-        'video_embed' => $data["video_embed"] ?? null,
-        'video_provider' => $data["video_provider"] ?? null,
-        'video_ratio' => $data["video_ratio"] ?? null,
-        'time_required' => 'PT30M',
-        'keywords' => 'One,Two,Three,Four,Five',
-      ]);
-
-      return redirect()->route('article', [$data["section_uri"], $new_headline_uri]);
     }
 }

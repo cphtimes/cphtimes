@@ -269,7 +269,7 @@
                 <!-- Basic info-->
                 <section class="card border py-1 p-md-2 p-xl-3 p-xxl-4 mb-4">
                 <div class="card-body">
-                    <form class="needs-validation" method="POST" action="{{route('manage_edit_article')}}?section_uri={{$article->section_uri}}&headline_uri={{$article->headline_uri}}" enctype="multipart/form-data">
+                    <form class="needs-validation" method="POST" action="{{route('edit_article')}}?section_uri={{$article->section_uri}}&headline_uri={{$article->headline_uri}}" enctype="multipart/form-data">
                         @csrf
                         @if ($errors->any())
                         <div class="alert alert-danger">
@@ -360,6 +360,7 @@
                             <textarea readonly name="body_blocks" class="d-none form-control" rows="5" placeholder="" id="body_blocks">{{$blocks}}</textarea>
                           </div>
 
+                          @if ($currentUser->role->role == 'editor')
                           <div class="col-12">
                             <div class="form-check form-switch">
                               <input name="author_is_anonymous" type="checkbox" class="form-check-input" id="author_is_anonymous" @if ($article->author->is_anonymous) checked @endif>
@@ -376,6 +377,7 @@
                             <label class="form-label" for="author_username">{{__('messages.alternative_username')}}</label>
                             <input placeholder="soren.kirkegaard" name="author_username" class="form-control" type="text" value="{{ $article->author->username ?? '' }}" id="author_username">
                           </div>
+                          @endif
 
                           <div class="d-flex justify-content-end pt-3">
                             <button class="btn btn-secondary" type="button">{{__('messages.cancel')}}</button>
@@ -392,187 +394,14 @@
     @include('components.footer', array(
       'sections' => $sections
     ))
-
+      
       <!-- Optional JavaScript; choose one of the two! -->
       <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
 
       <script src="/js/darkmode.js" defer></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-      
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script><!-- Header -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script><!-- Image -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script><!-- Delimiter -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script><!-- List -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest"></script><!-- Checklist -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script><!-- Quote -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script><!-- Code -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script><!-- Embed -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script><!-- Table -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script><!-- Link -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script><!-- Warning -->
 
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script><!-- Marker -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script><!-- Inline Code -->
-
-      <!-- Load Editor.js's Core -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
-      <script src="https://cdn.jsdelivr.net/npm/editorjs-html@3.4.0/build/edjsHTML.js"></script>
-
-      <!-- Initialization -->
-      <script>
-        /**
-         * To initialize the Editor, create a new instance with configuration object
-         * @see docs/installation.md for mode details
-         */
-        var blocks = JSON.parse(document.getElementById('body_blocks').value);
-
-        var editor = new EditorJS({
-          /**
-           * Enable/Disable the read only mode
-           */
-          readOnly: false,
-
-          /**
-           * Wrapper of Editor
-           */
-          holder: 'editorjs',
-
-          /**
-           * Common Inline Toolbar settings
-           * - if true (or not specified), the order from 'tool' property will be used
-           * - if an array of tool names, this order will be used
-           */
-          // inlineToolbar: ['link', 'marker', 'bold', 'italic'],
-          // inlineToolbar: true,
-
-          /**
-           * Tools list
-           */
-          tools: {
-            /**
-             * Each Tool is a Plugin. Pass them via 'class' option with necessary settings {@link docs/tools.md}
-             */
-            header: {
-              class: Header,
-              inlineToolbar: ['marker', 'link'],
-              config: {
-                placeholder: 'Header'
-              },
-              shortcut: 'CMD+SHIFT+H'
-            },
-
-            /**
-             * Or pass class directly without any configuration
-             */
-            image: SimpleImage,
-
-            list: {
-              class: List,
-              inlineToolbar: true,
-              shortcut: 'CMD+SHIFT+L'
-            },
-
-            checklist: {
-              class: Checklist,
-              inlineToolbar: true,
-            },
-
-            quote: {
-              class: Quote,
-              inlineToolbar: true,
-              config: {
-                quotePlaceholder: 'Enter a quote',
-                captionPlaceholder: 'Quote\'s author',
-              },
-              shortcut: 'CMD+SHIFT+O'
-            },
-
-            warning: Warning,
-
-            marker: {
-              class:  Marker,
-              shortcut: 'CMD+SHIFT+M'
-            },
-
-            code: {
-              class:  CodeTool,
-              shortcut: 'CMD+SHIFT+C'
-            },
-
-            delimiter: Delimiter,
-
-            inlineCode: {
-              class: InlineCode,
-              shortcut: 'CMD+SHIFT+C'
-            },
-
-            linkTool: LinkTool,
-
-            embed: Embed,
-
-            table: {
-              class: Table,
-              inlineToolbar: true,
-              shortcut: 'CMD+ALT+T'
-            },
-
-          },
-
-          /**
-           * This Tool will be used as default
-           */
-          // defaultBlock: 'paragraph',
-
-          /**
-           * Initial Editor data
-           */
-          data: {
-            blocks: blocks
-          },
-          onChange: function(api, event) {
-            console.log('something changed', event);
-            editor.save()
-            .then((savedData) => {
-              const edjsParser = edjsHTML({image: imageParser});
-              let html = edjsParser.parse(savedData);
-              
-              document.getElementById("body_html").value = html.join('')
-              document.getElementById("body_blocks").value = JSON.stringify(savedData.blocks);
-
-            })
-            .catch((error) => {
-              console.error('Saving error', error);
-            });
-          }
-        });
-
-        function imageParser({data}) {
-          return `<figure class="figure"><img class="figure-img img-fluid" src="${data.url}" alt="${data.caption}"/><figcaption class="figure-caption text-end">${data.caption}</figcaption></figure>`
-        }
-
-        /**
-         * Saving button
-         */
-        const saveButton = document.getElementById('saveButton');
-
-        /**
-         * Saving example
-         */
-        /*
-        saveButton.addEventListener('click', function () {
-          editor.save()
-            .then((savedData) => {
-              console.log("savedData =>", savedData)
-              let html = edjsParser.parse(savedData);
-              console.log("html => ", html)
-              debugger;
-            })
-            .catch((error) => {
-              console.error('Saving error', error);
-            });
-        });
-        */
-      </script>
+      <script src="/js/editor.js" defer></script>
     </body>
 </html>

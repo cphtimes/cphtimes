@@ -211,10 +211,23 @@ class HomepageController extends Controller
      */
     public function show(Request $request)
     {
+      $currentUser = Auth::user();
+      $locale = App::currentLocale();
+      
+      $languages = [];
+      if ($currentUser) {
+        $languages = $currentUser->reads_languages;
+      
+      } else if (Request::getHost() == 'kbhporte.dk') {
+        $languages = ['da', 'en'];
+      
+      } else {
+        $languages = ['en'];
+      }
+
       $darkMode = Cookie::get('dark_mode') == 'true';
 
       $currentWeather = $this->getTodaysForecast("Copenhagen");
-      // $latestUpdates = $this->getLatestUpdates();
       
       $topArticles = collect();
 
@@ -224,7 +237,8 @@ class HomepageController extends Controller
                       ->get();
       
       foreach($layout as $item) {
-        $topArticles->push($item->article);
+        $topArticle = $item->article->whereIn('in_language', $languages);
+        $topArticles->push($topArticle);
       }
 
       $n = $topArticles->count() < 3 ? 3 - $topArticles->count() : 0;
@@ -235,6 +249,7 @@ class HomepageController extends Controller
                             ->whereNotIn('id', $topArticles->map(function (Article $article) {
                               return $article->id;
                             }))
+                            ->whereIn('in_language', $languages)
                             ->offset(0)
                             ->limit($n)
                             ->get();
@@ -242,11 +257,13 @@ class HomepageController extends Controller
       }
 
       $latestUpdates = Article::orderBy('published_at', 'desc')
+                              ->whereIn('in_language', $languages)
                               ->offset(0)
                               ->limit(60)
                               ->get();
 
       $popular = Article::where('work_status', 'published')
+                          ->whereIn('in_language', $languages)
                           ->orderBy('comment_count', 'desc')
                           ->offset(0)
                           ->limit(20)
@@ -256,12 +273,10 @@ class HomepageController extends Controller
                           ->whereNotIn('id', $topArticles->map(function (Article $article) {
                             return $article->id;
                           }))
+                          ->whereIn('in_language', $languages)
                           ->offset($n)
                           ->limit(42)
                           ->get();
-
-      $user = Auth::user();
-      $locale = App::currentLocale();
 
       $sections = Section::where('is_active', true)
                         ->where('language_code', $locale)
@@ -286,10 +301,9 @@ class HomepageController extends Controller
         'latestUpdates' => $latestUpdates,
         'popular' => $popular,
         'topArticles' => $topArticles,
-        // 'latestUpdates' => json_decode($latestUpdates, true),
         'articles' => $articles,
         'highlightedSections' => $highligtedSections,
-        'user' => $user,
+        'currentUser' => $currentUser,
         'darkMode' => $darkMode,
         'sections' => $sections
       ]);

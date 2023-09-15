@@ -43,9 +43,6 @@ class Article extends Model
         'word_count',
         'image_url',
         'image_caption',
-        'video_embed',
-        'video_provider',
-        'video_ratio',
         'work_status',
         'author_id',
         'abstract',
@@ -88,7 +85,6 @@ class Article extends Model
      */
     protected $attributes = [
         'word_count' => 0,
-        'video_ratio' => '16x9',
         'work_status' => 'published',
         'comment_count' => 0,
         'country_of_origin' => 'DK',
@@ -99,6 +95,13 @@ class Article extends Model
         'publishing_principles' => 'https://cphgates.com/about/publishing-principles',
         'is_accessible_for_free' => true,
     ];
+
+    public function hasAuthored($user) {
+        if ($user == null) {
+            return false;
+        }
+        return $this->author->user_id == $user->id;
+    }
 
     public function localizedSection($sections) {
         return $sections->where('uri', $this->section_uri)

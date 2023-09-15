@@ -57,6 +57,21 @@ class SectionController extends Controller
   public function show($section)
   {
     $darkMode = Cookie::get('dark_mode') == 'true';
+
+    $currentUser = Auth::user();
+    $locale = App::currentLocale();
+
+    $languages = [];
+    if ($currentUser) {
+      $languages = $currentUser->reads_languages;
+    
+    } else if (Request::getHost() == 'kbhporte.dk') {
+      $languages = ['da', 'en'];
+    
+    } else {
+      $languages = ['en'];
+    }
+
     $currentWeather = $this->getTodaysForecast("Copenhagen");
 
     $topArticles = collect();
@@ -67,7 +82,8 @@ class SectionController extends Controller
                     ->get();
     
     foreach($layout as $item) {
-      $topArticles->push($item->article);
+      $topArticle = $item->article->whereIn('in_language', $languages);
+      $topArticles->push($topArticle);
     }
     
     $n = $topArticles->count() < 5 ? 5 - $topArticles->count() : 0;
@@ -78,6 +94,7 @@ class SectionController extends Controller
                           ->whereNotIn('id', $topArticles->map(function (Article $article) {
                             return $article->id;
                           }))
+                          ->whereIn('in_language', $languages)
                           ->offset(0)
                           ->limit($n)
                           ->get();
@@ -89,12 +106,10 @@ class SectionController extends Controller
                         ->whereNotIn('id', $topArticles->map(function (Article $article) {
                           return $article->id;
                         }))
+                        ->whereIn('in_language', $languages)
                         ->offset($n)
                         ->limit(42)
                         ->get();
-
-    $user = Auth::user();
-    $locale = App::currentLocale();
     
     $sections = Section::where('is_active', true)
                         ->where('language_code', $locale)
@@ -109,7 +124,7 @@ class SectionController extends Controller
       'icon' => $currentWeather[3],
       'topArticles' => $topArticles,
       'articles' => $articles,
-      'user' => $user,
+      'currentUser' => $currentUser,
       'sections' => $sections,
       'activeSection' => $section
     ]);

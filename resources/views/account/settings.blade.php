@@ -313,7 +313,7 @@
                                 <label class="form-label" for="ln">{{__('messages.username')}}</label>
                                 <input name="username" class="form-control" type="text" value="{{$currentUser->username}}" id="ln" required>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <label class="form-label" for="email">{{__('messages.email_address')}}</label>
                                 <input name="email" class="form-control" type="email" value="{{$currentUser->email}}" id="email" required>
                             </div>
@@ -326,24 +326,13 @@
                                 </select>
                             </div>
                             <div class="col-sm-6">
-                                <label class="form-label" for="language">{{__('messages.language')}}</label>
-                                <select selected="{{$currentUser->language_code}}" name="language_code" class="form-select" id="language" required>
-                                    <option value="" disabled="">Select language</option>
-                                    <option value="en">English</option>
-                                    <option value="da">Dansk (Danish)</option>
-                                </select>
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="form-label" for="timezone">{{__('messages.time_zone')}}</label>
-                                <select name="timezone" class="form-select" id="timezone" required>
-                                    <option value="" disabled="">Select time zone</option>
-                                    <option value="AST">Atlantic Standard Time (AST)</option>
-                                    <option selected value="EST">Eastern Standard Time (EST)</option>
-                                    <option value="CST">Central Standard Time (CST)</option>
-                                    <option value="MST">Mountain Standard Time (MST)</option>
-                                    <option value="PST">Pacific Standard Time (PST)</option>
-                                    <option value="AKST">Alaskan Standard Time (AKST)</option>
-                                    <option value="HST">Hawaii-Aleutian Standard Time (HST)</option>
+                                <label class="form-label" for="language">{{__('messages.reads_languages')}}</label>
+                                <!-- $currentUser->reads_languages -->
+                                <select selected="da+en" name="reads_languages" class="form-select" id="reads_languages" required>
+                                    <option value="" disabled="">{{__('messages.choose')}}</option>
+                                    <option value="en">{{__('messages.english')}}</option>
+                                    <option value="da">{{__('messages.danish')}}</option>
+                                    <option value="da+en">{{__('messages.danish_and_english')}}</option>
                                 </select>
                             </div>
                             <div class="col-12">

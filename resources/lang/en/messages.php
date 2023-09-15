@@ -138,5 +138,14 @@ return [
     'alternative_author_text' => 'If you\'re not the author of the article, then you can write the name of the person here.',
     'edit_article' => 'Edit article',
     'article' => 'Article',
-    'edit' => 'Edit'
+    'edit' => 'Edit',
+    'reads_languages' => 'Reads in languages',
+    'english' => 'English',
+    'danish' => 'Danish',
+    'danish_and_english' => 'Danish and English',
+    'work_status_submitted' => 'Submitted',
+    'are_you_sure_confirmation' => 'Are you sure you wish to delete?',
+    'about' => 'About',
+    'correction' => 'Correction',
+    'credit' => 'Credit'
 ];

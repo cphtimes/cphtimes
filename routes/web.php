@@ -54,11 +54,11 @@ Route::localized(function () {
     Route::post(Lang::uri('section/{section}/{article}/comments/{comment?}'), [ArticleController::class, 'storeComment'])->name('store_comment');
 
     Route::get(Lang::uri('account/settings'), [SettingsController::class, 'show'])->name('account_settings');
-    Route::post(Lang::uri('account/settings/basic-info'), [SettingsController::class, 'show'])->name('account_settings_basic_info');
-    Route::post(Lang::uri('account/settings/password-change'), [SettingsController::class, 'show'])->name('account_settings_password_change');
-    Route::post(Lang::uri('account/settings/notifications'), [SettingsController::class, 'show'])->name('account_settings_notifications');
-    Route::post(Lang::uri('account/settings/delete'), [SettingsController::class, 'show'])->name('account_settings_delete');
-    Route::post(Lang::uri('account/settings/articles/{article}/delete'), [SettingsController::class, 'show'])->name('account_settings_articles_delete');
+    Route::post(Lang::uri('account/settings/basic-info'), [SettingsController::class, 'saveBasicInfo'])->name('account_settings_basic_info');
+    Route::post(Lang::uri('account/settings/password-change'), [SettingsController::class, 'savePasswordChange'])->name('account_settings_password_change');
+    Route::post(Lang::uri('account/settings/notifications'), [SettingsController::class, 'saveNotificationChange'])->name('account_settings_notifications');
+    Route::post(Lang::uri('account/settings/delete'), [SettingsController::class, 'deleteAccount'])->name('account_settings_delete');
+    Route::post(Lang::uri('account/settings/articles/{article}/delete'), [ArticleController::class, 'delete'])->name('delete_article');
 
     Route::post(Lang::uri('login'), [LoginController::class, 'authenticate'])->name('login_authenticate');
     Route::get(Lang::uri('login'), [LoginController::class, 'show'])->name('login');
@@ -72,18 +72,21 @@ Route::localized(function () {
     Route::get(Lang::uri('reset-password/{token}'), [PasswordController::class, 'showResetPassword'])->name('reset_password_token');
     Route::post(Lang::uri('reset-password'), [PasswordController::class, 'resetPassword'])->name('reset_password');
 
-    Route::get(Lang::uri('write'), [ManageController::class, 'showCreateArticle'])->name('write');
-    Route::post(Lang::uri('manage/new-article'), [ManageController::class, 'createArticle'])->name('manage_create_article');
+    Route::middleware('author')->group(function () {
+        Route::get(Lang::uri('write'), [ManageController::class, 'showCreateArticle'])->name('write');
+        Route::post(Lang::uri('manage/new-article'), [ArticleController::class, 'store'])->name('store_article');
 
-    Route::get(Lang::uri('edit'), [ManageController::class, 'showEditArticle'])->name('edit');
-    Route::post(Lang::uri('manage/edit-article'), [ManageController::class, 'editArticle'])->name('manage_edit_article');
+        Route::get(Lang::uri('edit'), [ManageController::class, 'showEditArticle'])->name('edit');
+        Route::post(Lang::uri('manage/edit-article'), [ArticleController::class, 'edit'])->name('edit_article');
+    });
 
-    Route::get(Lang::uri('manage/layout'), [ManageController::class, 'showManageLayout'])->name('manage_layout');
-    Route::post(Lang::uri('manage/layout'), [ManageController::class, 'createLayout'])->name('manage_create_layout');
+    Route::middleware('editor')->group(function () {
+        Route::get(Lang::uri('manage/layout'), [ManageController::class, 'showManageLayout'])->name('manage_layout');
+        Route::post(Lang::uri('manage/layout'), [ManageController::class, 'createLayout'])->name('manage_create_layout');
 
-    Route::get(Lang::uri('manage/sections'), [ManageController::class, 'showManageSections'])->name('manage_sections');
-    Route::post(Lang::uri('manage/sections'), [ManageController::class, 'createSection'])->name('manage_update_sections');
-
+        Route::get(Lang::uri('manage/sections'), [ManageController::class, 'showManageSections'])->name('manage_sections');
+        Route::post(Lang::uri('manage/sections'), [ManageController::class, 'createSection'])->name('manage_update_sections');
+    });
 }, [
     'supported_locales' => ['en', 'da']
 ]);

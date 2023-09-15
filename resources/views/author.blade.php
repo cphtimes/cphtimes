@@ -292,9 +292,10 @@
                     @foreach($articles as $article)
                       @include('components.article-list-item', array(
                         'article' => $article,
-                        'localizedSection' => $article->localizedSection($sections),
+                        'section' => $article->localizedSection($sections),
+                        'show_work_status' => true,
                         'style' => 'expanded',
-                        'editable' => $currentUser != null && $currentUser->is($article->author)
+                        'editable' => $article->hasAuthored($currentUser)
                       ))
                     @endforeach
                   @else

@@ -34,10 +34,12 @@ class SettingsController extends Controller
         'username' => ['required'],
         'email' => ['required'],
         'country_code' => ['required'],
-        'language_code' => ['required'],
-        'timezone' => ['required'],
+        'reads_languages' => ['required'],
         'bio' => []
       ]);
+
+      $languages = explode('+', str_replace(' ', '', $basicInfo["reads_languages"]));
+      $basicInfo['reads_languages'] = $languages;
 
       $currentUser = Auth::user();
       
@@ -146,9 +148,11 @@ class SettingsController extends Controller
         // EmptyUserFolder::dispatch()->onQueue('emails');
       }
 
-      Mail::mailer('mailersend')
-          ->to($user->email)
-          ->queue(new Goodbye($currentUser));
+      if (env('APP_ENV', 'local') == 'production') {
+        Mail::mailer('mailersend')
+            ->to($user->email)
+            ->queue(new Goodbye($currentUser));
+      }
 
       $currentUser->delete();
       return redirect()->to('/');
@@ -190,14 +194,5 @@ class SettingsController extends Controller
         // 'articles' => $articles,
         'currentUser' => $currentUser
       ]);
-    }
-
-    public function deleteArticle($headline_uri, Request $request) {
-      $currentUser = Auth::user();
-      $article = $currentUser->articles()
-                             ->where('headline_uri', $headline_uri)
-                             ->firstOrFail();
-      $article->delete();
-      return redirect()->back();
     }
 }

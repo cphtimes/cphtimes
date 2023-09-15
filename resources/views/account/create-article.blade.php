@@ -269,7 +269,7 @@
                 <!-- Basic info-->
                 <section class="card border py-1 p-md-2 p-xl-3 p-xxl-4 mb-4">
                 <div class="card-body">
-                    <form class="needs-validation" method="POST" action="{{ route('manage_create_article') }}" enctype="multipart/form-data">
+                    <form class="needs-validation" method="POST" action="{{ route('store_article') }}" enctype="multipart/form-data">
                         @csrf
                         @if ($errors->any())
                         <div class="alert alert-danger">
@@ -308,9 +308,12 @@
                             <label class="form-label" for="fn">{{__('messages.work_status')}}</label>
                             <select name="work_status" class="form-select" id="work_status" required>
                                 <option value="" disabled="">{{__('messages.choose')}}</option>
-                                <option value="published">{{__('messages.work_status_published')}}</option>
-                                <option value="draft">{{__('messages.work_status_draft')}}</option>
-                                <!-- <option value="Archived">Archived</option> -->
+                                @if ($currentUser->role->role == 'author')
+                                  <option value="Archived">{{__('messages.work_status_submitted')}}</option>
+                                @elseif ($currentUser->role->role == 'editor')
+                                  <option value="published">{{__('messages.work_status_published')}}</option>
+                                  <option value="draft">{{__('messages.work_status_draft')}}</option>
+                                @endif
                             </select>
                           </div>
 
@@ -325,28 +328,8 @@
                           </div>
 
                           <div class="col-12">
-                              <label class="form-label" for="video_embed">{{__('messages.video_embed')}}</label>
-                              <textarea name="video_embed" class="form-control" rows="5" placeholder="" id="video_embed"></textarea>
-                          </div>
-
-                          <div class="col-sm-6">
-                              <label class="form-label" for="video_provider">{{__('messages.video_provider')}}</label>
-                              <input placeholder="" name="video_provider" class="form-control" type="text" value="" id="video_provider">
-                          </div>
-
-                          <div class="col-sm-6">
-                              <label class="form-label" for="image_caption">{{__('messages.video_ratio')}}</label>
-                              <select name="video_ratio" class="form-select" id="video_ratio">
-                                <option value="" disabled="">{{__('messages.choose')}}</option>
-                                <option value="16x9">16x9</option>
-                                <option value="4x3">4x3</option>
-                                <option value="1x1">1x1</option>
-                            </select>
-                          </div>
-
-                          <div class="col-12">
                               <label class="form-label" for="bio">{{__('messages.abstract')}}</label>
-                              <textarea name="abstract" class="form-control" rows="5" placeholder="" id="abstract"></textarea>
+                              <textarea name="abstract" class="form-control" rows="5" placeholder="" id="abstract" required></textarea>
                           </div>
 
                           <div class="col-12">
@@ -356,21 +339,38 @@
                             <textarea readonly name="body_blocks" class="d-none form-control" rows="5" placeholder="" id="body_blocks"></textarea>
                           </div>
 
-                          <div class="col-12">
-                            <div class="form-check form-switch">
-                              <input name="author_is_anonymous" type="checkbox" class="form-check-input" id="author_is_anonymous">
-                              <label class="form-check-label" for="author_is_anonymous">{{__('messages.author_is_anonymous')}}</label>
+                          @if ($currentUser->role->role == 'editor')
+                            <div class="col-12">
+                              <div class="form-check form-switch">
+                                <input name="author_is_anonymous" type="checkbox" class="form-check-input" id="author_is_anonymous">
+                                <label class="form-check-label" for="author_is_anonymous">{{__('messages.author_is_anonymous')}}</label>
+                              </div>
                             </div>
+
+                            <div class="col-sm-6">
+                                <label class="form-label" for="author_display_name">{{__('messages.alternative_author')}}</label>
+                                <input placeholder="Søren Kirkegaard" name="author_display_name" class="form-control" type="text" value="" id="author_display_name">
+                                <div class="form-text">{{__('messages.alternative_author_text')}}</div>
+                            </div>
+                            <div class="col-sm-6">
+                              <label class="form-label" for="author_username">{{__('messages.alternative_username')}}</label>
+                              <input placeholder="soren.kirkegaard" name="author_username" class="form-control" type="text" value="" id="author_username">
+                            </div>
+                          @endif
+
+                          <div class="col-12">
+                              <label class="form-label" for="about">{{__('messages.about')}}</label>
+                              <textarea name="about" class="form-control" rows="5" placeholder="" id="about"></textarea>
                           </div>
 
-                          <div class="col-sm-6">
-                              <label class="form-label" for="author_display_name">{{__('messages.alternative_author')}}</label>
-                              <input placeholder="Søren Kirkegaard" name="author_display_name" class="form-control" type="text" value="" id="author_display_name">
-                              <div class="form-text">{{__('messages.alternative_author_text')}}</div>
+                          <div class="col-12">
+                              <label class="form-label" for="correction">{{__('messages.correction')}}</label>
+                              <textarea name="correction" class="form-control" rows="5" placeholder="" id="correction"></textarea>
                           </div>
-                          <div class="col-sm-6">
-                            <label class="form-label" for="author_username">{{__('messages.alternative_username')}}</label>
-                            <input placeholder="soren.kirkegaard" name="author_username" class="form-control" type="text" value="" id="author_username">
+
+                          <div class="col-12">
+                              <label class="form-label" for="credit_text">{{__('messages.credit')}}</label>
+                              <textarea name="credit_text" class="form-control" rows="5" placeholder="" id="credit_text"></textarea>
                           </div>
                         
                           <div class="d-flex justify-content-end pt-3">
@@ -384,10 +384,10 @@
           </div>
         </div>
     </main>
-    <!-- Footer -->
-    @include('components.footer', array(
-      'sections' => $sections
-    ))
+      <!-- Footer -->
+      @include('components.footer', array(
+        'sections' => $sections
+      ))
 
       <!-- Optional JavaScript; choose one of the two! -->
       <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
@@ -395,274 +395,8 @@
 
       <script src="/js/darkmode.js" defer></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-      
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script><!-- Header -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script><!-- Image -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script><!-- Delimiter -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script><!-- List -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/checklist@latest"></script><!-- Checklist -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script><!-- Quote -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script><!-- Code -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script><!-- Embed -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script><!-- Table -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script><!-- Link -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script><!-- Warning -->
 
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script><!-- Marker -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script><!-- Inline Code -->
+      <script src="/js/editor.js" defer></script>
 
-      <!-- Load Editor.js's Core -->
-      <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
-      <script src="https://cdn.jsdelivr.net/npm/editorjs-html@3.4.0/build/edjsHTML.js"></script>
-
-      <!-- Initialization -->
-      <script>
-        /**
-         * To initialize the Editor, create a new instance with configuration object
-         * @see docs/installation.md for mode details
-         */
-        var editor = new EditorJS({
-          /**
-           * Enable/Disable the read only mode
-           */
-          readOnly: false,
-
-          /**
-           * Wrapper of Editor
-           */
-          holder: 'editorjs',
-
-          /**
-           * Common Inline Toolbar settings
-           * - if true (or not specified), the order from 'tool' property will be used
-           * - if an array of tool names, this order will be used
-           */
-          // inlineToolbar: ['link', 'marker', 'bold', 'italic'],
-          // inlineToolbar: true,
-
-          /**
-           * Tools list
-           */
-          tools: {
-            /**
-             * Each Tool is a Plugin. Pass them via 'class' option with necessary settings {@link docs/tools.md}
-             */
-            header: {
-              class: Header,
-              inlineToolbar: ['marker', 'link'],
-              config: {
-                placeholder: 'Header'
-              },
-              shortcut: 'CMD+SHIFT+H'
-            },
-
-            /**
-             * Or pass class directly without any configuration
-             */
-            image: SimpleImage,
-
-            list: {
-              class: List,
-              inlineToolbar: true,
-              shortcut: 'CMD+SHIFT+L'
-            },
-
-            checklist: {
-              class: Checklist,
-              inlineToolbar: true,
-            },
-
-            quote: {
-              class: Quote,
-              inlineToolbar: true,
-              config: {
-                quotePlaceholder: 'Enter a quote',
-                captionPlaceholder: 'Quote\'s author',
-              },
-              shortcut: 'CMD+SHIFT+O'
-            },
-
-            warning: Warning,
-
-            marker: {
-              class:  Marker,
-              shortcut: 'CMD+SHIFT+M'
-            },
-
-            code: {
-              class:  CodeTool,
-              shortcut: 'CMD+SHIFT+C'
-            },
-
-            delimiter: Delimiter,
-
-            inlineCode: {
-              class: InlineCode,
-              shortcut: 'CMD+SHIFT+C'
-            },
-
-            linkTool: LinkTool,
-
-            embed: Embed,
-
-            table: {
-              class: Table,
-              inlineToolbar: true,
-              shortcut: 'CMD+ALT+T'
-            },
-
-          },
-
-          /**
-           * This Tool will be used as default
-           */
-          // defaultBlock: 'paragraph',
-
-          /**
-           * Initial Editor data
-           */
-          data: {
-            blocks: [
-              {
-                type: "header",
-                data: {
-                  text: "Editor.js",
-                  level: 2
-                }
-              },
-              {
-                type : 'paragraph',
-                data : {
-                  text : 'Hey. Meet the new Editor. On this page you can see it in action — try to edit this text. Source code of the page contains the example of connection and configuration.'
-                }
-              },
-              {
-                type: "header",
-                data: {
-                  text: "Key features",
-                  level: 3
-                }
-              },
-              {
-                type : 'list',
-                data : {
-                  items : [
-                    'It is a block-styled editor',
-                    'It returns clean data output in JSON',
-                    'Designed to be extendable and pluggable with a simple API',
-                  ],
-                  style: 'unordered'
-                }
-              },
-              {
-                type: "header",
-                data: {
-                  text: "What does it mean «block-styled editor»",
-                  level: 3
-                }
-              },
-              {
-                type : 'paragraph',
-                data : {
-                  text : 'Workspace in classic editors is made of a single contenteditable element, used to create different HTML markups. Editor.js <mark class=\"cdx-marker\">workspace consists of separate Blocks: paragraphs, headings, images, lists, quotes, etc</mark>. Each of them is an independent contenteditable element (or more complex structure) provided by Plugin and united by Editor\'s Core.'
-                }
-              },
-              {
-                type : 'paragraph',
-                data : {
-                  text : `There are dozens of <a href="https://github.com/editor-js">ready-to-use Blocks</a> and the <a href="https://editorjs.io/creating-a-block-tool">simple API</a> for creation any Block you need. For example, you can implement Blocks for Tweets, Instagram posts, surveys and polls, CTA-buttons and even games.`
-                }
-              },
-              {
-                type: "header",
-                data: {
-                  text: "What does it mean clean data output",
-                  level: 3
-                }
-              },
-              {
-                type : 'paragraph',
-                data : {
-                  text : 'Classic WYSIWYG-editors produce raw HTML-markup with both content data and content appearance. On the contrary, Editor.js outputs JSON object with data of each Block. You can see an example below'
-                }
-              },
-              {
-                type : 'paragraph',
-                data : {
-                  text : `Given data can be used as you want: render with HTML for <code class="inline-code">Web clients</code>, render natively for <code class="inline-code">mobile apps</code>, create markup for <code class="inline-code">Facebook Instant Articles</code> or <code class="inline-code">Google AMP</code>, generate an <code class="inline-code">audio version</code> and so on.`
-                }
-              },
-              {
-                type : 'paragraph',
-                data : {
-                  text : 'Clean data is useful to sanitize, validate and process on the backend.'
-                }
-              },
-              {
-                type : 'delimiter',
-                data : {}
-              },
-              {
-                type : 'paragraph',
-                data : {
-                  text : 'We have been working on this project more than three years. Several large media projects help us to test and debug the Editor, to make its core more stable. At the same time we significantly improved the API. Now, it can be used to create any plugin for any task. Hope you enjoy. 😏'
-                }
-              },
-              {
-                type: 'image',
-                data: {
-                  url: 'https://i3.ytimg.com/vi/Is1YUQVYkvY/maxresdefault.jpg',
-                  caption: '',
-                  stretched: false,
-                  withBorder: true,
-                  withBackground: false,
-                }
-              },
-            ]
-          },
-          onChange: function(api, event) {
-            console.log('something changed', event);
-            editor.save()
-            .then((savedData) => {
-              const edjsParser = edjsHTML({image: imageParser});
-              let html = edjsParser.parse(savedData);
-              
-              document.getElementById("body_html").value = html.join('')
-              document.getElementById("body_blocks").value = JSON.stringify(savedData.blocks);
-
-            })
-            .catch((error) => {
-              console.error('Saving error', error);
-            });
-          }
-        });
-
-        function imageParser({data}) {
-          return `<figure class="figure"><img class="figure-img img-fluid" src="${data.url}" alt="${data.caption}"/><figcaption class="figure-caption text-end">${data.caption}</figcaption></figure>`
-        }
-
-        /**
-         * Saving button
-         */
-        const saveButton = document.getElementById('saveButton');
-
-        /**
-         * Saving example
-         */
-        /*
-        saveButton.addEventListener('click', function () {
-          editor.save()
-            .then((savedData) => {
-              console.log("savedData =>", savedData)
-              let html = edjsParser.parse(savedData);
-              console.log("html => ", html)
-              debugger;
-            })
-            .catch((error) => {
-              console.error('Saving error', error);
-            });
-        });
-        */
-      </script>
     </body>
 </html>

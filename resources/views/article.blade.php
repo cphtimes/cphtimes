@@ -407,7 +407,7 @@
                 </div>
                 <div class="offcanvas-body">
 
-                  @if ($currentUser != null && ($currentUser->id == $article->author->user_id || $currentUser->id == $article->editor_id))
+                  @if ($currentUser && $currentUser->canEdit($article))
                     <div class="mb-2 text-end">
                       <a href="{{route('edit') . '?section_uri=' . $article->section_uri . '&headline_uri=' . $article->headline_uri}}" class="btn btn-outline-secondary mb-3">{{__('messages.edit')}}</a>
                     </div>

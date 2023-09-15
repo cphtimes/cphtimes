@@ -17,13 +17,19 @@
                     <a class="nav-link fw-semibold py-2 px-0" href="{{ route('account_settings') }}"><i class="ai-settings fs-5 opacity-60 me-2"></i>{{__('messages.settings')}}</a> <!-- active -->
                     <!-- <a class="nav-link fw-semibold py-2 px-0" href="/by/{{$currentUser->username}}/comments">{{__('messages.comments')}}</a> -->
                 </nav>
-
-                <nav class="nav flex-column pb-2 pb-lg-4 mb-1">
-                    <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">{{__('messages.manage')}}</h4>
-                    <a class="nav-link fw-semibold py-2 px-0" href="{{route('write')}}"><i class="ai-pencil fs-5 opacity-60 me-2"></i>{{__('messages.write')}}</a>
-                    <a class="nav-link fw-semibold py-2 px-0" href=" {{route('manage_sections')}}"><i class="ai-list fs-5 opacity-60 me-2"></i>{{ucfirst(trans_choice('messages.sections', 2))}}</a>
-                    <a class="nav-link fw-semibold py-2 px-0" href="{{route('manage_layout')}}"><i class="ai-grid fs-5 opacity-60 me-2"></i>{{__('messages.layout')}}</a>
-                </nav>
+                
+                @if ($currentUser->role->role == 'author' || $currentUser->role->role == 'editor')
+                    <nav class="nav flex-column pb-2 pb-lg-4 mb-1">
+                        <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">{{__('messages.manage')}}</h4>
+                        @if ($currentUser->role->role == 'author' || $currentUser->role->role == 'editor')
+                            <a class="nav-link fw-semibold py-2 px-0" href="{{route('write')}}"><i class="ai-pencil fs-5 opacity-60 me-2"></i>{{__('messages.write')}}</a>
+                        @endif
+                        @if ($currentUser->role->role == 'editor')
+                            <a class="nav-link fw-semibold py-2 px-0" href=" {{route('manage_sections')}}"><i class="ai-list fs-5 opacity-60 me-2"></i>{{ucfirst(trans_choice('messages.sections', 2))}}</a>
+                            <a class="nav-link fw-semibold py-2 px-0" href="{{route('manage_layout')}}"><i class="bi bi-grid-1x2 fs-5 opacity-60 me-2"></i>{{__('messages.layout')}}</a>
+                        @endif
+                    </nav>
+                @endif
 
                 <nav class="nav flex-column">
                     <a class="nav-link fw-semibold py-2 px-0" href="{{route('logout')}}"><i class="ai-logout fs-5 opacity-60 me-2"></i>{{__('messages.sign_out')}}</a>

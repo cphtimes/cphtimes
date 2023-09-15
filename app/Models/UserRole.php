@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Individual extends Model
+class UserRole extends Model
 {
     use HasFactory;
     /**
@@ -14,14 +14,16 @@ class Individual extends Model
      * @var array
      */
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'short_description',
-        'description',
-        'avatar_url'
+        'user_id',
+        'role'
     ];
 
-    protected $table = 'individual';
+    protected $attributes = [
+        'role' => 'reader'
+    ];
+
+    protected $table = 'user_role';
     protected $primaryKey = 'id';
     public $incrementing = true;
+    public $timestamps = false;
 }
