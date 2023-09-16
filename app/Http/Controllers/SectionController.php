@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 
 use App;
+use Illuminate\Support\Facades\Request as RequestStatic;
 
 class SectionController extends Controller
 {
@@ -65,7 +66,7 @@ class SectionController extends Controller
     if ($currentUser) {
       $languages = $currentUser->reads_languages;
     
-    } else if (Request::getHost() == 'kbhporte.dk') {
+    } else if (RequestStatic::getHost() == 'kbhporte.dk') {
       $languages = ['da', 'en'];
     
     } else {

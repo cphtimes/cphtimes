@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 // use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Kreait\Firebase\Auth\CreateSessionCookie\FailedToCreateSessionCookie;
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\User;
@@ -19,7 +19,7 @@ use App;
 use App\Models\Article;
 use App\Models\Layout;
 
-use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Request as RequestStatic;
 
 class HomepageController extends Controller
 {
@@ -218,7 +218,7 @@ class HomepageController extends Controller
       if ($currentUser) {
         $languages = $currentUser->reads_languages;
       
-      } else if (Request::getHost() == 'kbhporte.dk') {
+      } else if (RequestStatic::getHost() == 'kbhporte.dk') {
         $languages = ['da', 'en'];
       
       } else {
