@@ -236,6 +236,9 @@ class HomepageController extends Controller
       
       foreach($layout as $item) {
         $topArticle = $item->article->whereIn('in_language', $languages)->first();
+        if ($topArticle == null) {
+          continue;
+        }
         $topArticles->push($topArticle);
       }
 
