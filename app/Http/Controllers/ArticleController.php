@@ -26,7 +26,6 @@ use App\Services\PrettifyURIComponentService;
 use App\Services\UploadBodyService;
 use App\Services\UploadBlocksService;
 use App\Services\UploadImageService;
-use Illuminate\Support\Facades\Request as RequestStatic;
 
 class ArticleController extends Controller
 {
@@ -83,7 +82,7 @@ class ArticleController extends Controller
       if ($currentUser) {
         $languages = $currentUser->reads_languages;
       
-      } else if (RequestStatic::getHost() == 'kbhporte.dk') {
+      } else if ($locale == 'da') {
         $languages = ['da', 'en'];
       
       } else {

@@ -19,8 +19,6 @@ use App;
 use App\Models\Article;
 use App\Models\Layout;
 
-use Illuminate\Support\Facades\Request as RequestStatic;
-
 class HomepageController extends Controller
 {
 
@@ -218,7 +216,7 @@ class HomepageController extends Controller
       if ($currentUser) {
         $languages = $currentUser->reads_languages;
       
-      } else if (RequestStatic::getHost() == 'kbhporte.dk') {
+      } else if ($locale == 'da') {
         $languages = ['da', 'en'];
       
       } else {
