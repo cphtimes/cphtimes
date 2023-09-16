@@ -12068,8 +12068,7 @@ var editor = new _editorjs_editorjs__WEBPACK_IMPORTED_MODULE_0__.default({
     marker: (_editorjs_marker__WEBPACK_IMPORTED_MODULE_12___default()),
     checklist: (_editorjs_checklist__WEBPACK_IMPORTED_MODULE_3___default()),
     delimiter: (_editorjs_delimiter__WEBPACK_IMPORTED_MODULE_8___default()),
-    inlineCode: (_editorjs_inline_code__WEBPACK_IMPORTED_MODULE_13___default()),
-    simpleImage: (_editorjs_simple_image__WEBPACK_IMPORTED_MODULE_6___default()) // Note: There's an error here why?
+    inlineCode: (_editorjs_inline_code__WEBPACK_IMPORTED_MODULE_13___default()) // image: SimpleImage, // Note: There's an error here why?
 
   },
 

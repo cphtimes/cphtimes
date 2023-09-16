@@ -125,7 +125,7 @@ var editor = new EditorJS({
     checklist: CheckList,
     delimiter: Delimiter,
     inlineCode: InlineCode,
-    simpleImage: SimpleImage, // Note: There's an error here why?
+    // image: SimpleImage, // Note: There's an error here why?
   },
 
   /**

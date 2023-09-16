@@ -75,7 +75,7 @@ Route::post('fetchUrl', function(Request $request) {
       ], 400);
   }
 
-  $base_url = env('SUPABASE_URL');
+  $base_url = env('SUPERBASE_URL');
   $token = env('SUPERBASE_API_SECRET_KEY');
 
   $url = $request["url"];
@@ -90,7 +90,7 @@ Route::post('fetchUrl', function(Request $request) {
   $file_url = sprintf('%s/storage/v1/object/images/%s/%s/%s/%s', $base_url, $year, $month, $day, SafeObjectKeyService::make($filename, false));
   
   $response = Http::withToken($token)
-                ->withBody(file_get_contents($url))
+                ->withBody(file_get_contents($url), 'application/octet-stream')
                 ->post($file_url);
 
   // check the status of the response?

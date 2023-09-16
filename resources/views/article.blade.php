@@ -291,6 +291,11 @@
               <div id="article-body" class="serif">
                 {!! $body !!}
               </div>
+
+              <div>
+                <small>Credit: {{$article->credit_text}}</small>
+              </div>
+
               <!-- Author widget-->
               <div class="border-top border-bottom py-4" id="author">
                 <div class="d-flex align-items-start py-2">
