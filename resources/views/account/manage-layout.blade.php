@@ -306,7 +306,7 @@
                                   @for ($i = 0; $i < 3; $i++)
                                     <div class="col-sm-12">
                                         <label class="form-label" for="article_{{$i+1}}">{{__('messages.article')}} {{$i + 1}}</label>
-                                        <input placeholder="https://cphgates.com" name="article_{{$i+1}}" class="form-control" type="text" value="{{$layouts['frontpage']->get($i) != null ? route('article', [$layouts['frontpage']->get($i)->article->section_uri, $layouts['frontpage']->get($i)->article->headline_uri]) : ''}}" id="article_{{$i+1}}">
+                                        <input placeholder="https://cphgates.com" name="article_{{$i+1}}" class="form-control" type="text" value="{{$layouts['frontpage']->get($i) != null ? route('article', [$layouts['frontpage']->get($i)->article->first()->section_uri, $layouts['frontpage']->get($i)->article->first()->headline_uri]) : ''}}" id="article_{{$i+1}}">
                                     </div>
                                   @endfor
                                 </div>
@@ -335,7 +335,7 @@
                                   @for ($i = 0; $i < 5; $i++)
                                     <div class="col-sm-12">
                                         <label class="form-label" for="article_{{$i+1}}">{{__('messages.article')}} {{$i + 1}}</label>
-                                        <input placeholder="https://cphgates.com" name="article_{{$i+1}}" class="form-control" type="text" value="{{$layouts[$section->uri]->get($i) != null ? route('article', [$layouts[$section->uri]->get($i)->article->section_uri, $layouts[$section->uri]->get($i)->article->headline_uri]) : ''}}" id="article_{{$i+1}}">
+                                        <input placeholder="https://cphgates.com" name="article_{{$i+1}}" class="form-control" type="text" value="{{$layouts[$section->uri]->get($i) != null ? route('article', [$layouts[$section->uri]->get($i)->article->first()->section_uri, $layouts[$section->uri]->get($i)->article->first()->headline_uri]) : ''}}" id="article_{{$i+1}}">
                                     </div>
                                   @endfor
                                 </div>

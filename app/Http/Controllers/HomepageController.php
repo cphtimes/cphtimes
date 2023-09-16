@@ -237,7 +237,7 @@ class HomepageController extends Controller
                       ->get();
       
       foreach($layout as $item) {
-        $topArticle = $item->article->whereIn('in_language', $languages);
+        $topArticle = $item->article->whereIn('in_language', $languages)->first();
         $topArticles->push($topArticle);
       }
 
@@ -246,7 +246,7 @@ class HomepageController extends Controller
       if ($topArticles->count() < 3) {
         
         $fillArticles =Article::orderBy('published_at', 'desc')
-                            ->whereNotIn('id', $topArticles->map(function (Article $article) {
+                            ->whereNotIn('id', $topArticles->map(function ($article) {
                               return $article->id;
                             }))
                             ->whereIn('in_language', $languages)
@@ -270,7 +270,7 @@ class HomepageController extends Controller
                           ->get();
 
       $articles = Article::orderBy('published_at', 'desc')
-                          ->whereNotIn('id', $topArticles->map(function (Article $article) {
+                          ->whereNotIn('id', $topArticles->map(function ($article) {
                             return $article->id;
                           }))
                           ->whereIn('in_language', $languages)

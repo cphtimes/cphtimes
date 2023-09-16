@@ -114,14 +114,15 @@ class ManageController extends Controller
             continue;
           }
 
-          $headline_uri = $paths[count($paths) - 1];
+          $headline_uri = rawurldecode($paths[count($paths) - 1]);
+
           if ($is_frontpage) {
-            $article = Article::where('section_uri', $paths[count($paths) - 2])
+            $article = Article::where('section_uri',  rawurldecode(($paths[count($paths) - 2])))
                               ->where('headline_uri', $headline_uri)
                               ->first();
 
           } else {
-            $article = Article::where('section_uri', $section_uri)
+            $article = Article::where('section_uri',  $section_uri)
                               ->where('headline_uri', $headline_uri)
                               ->first();
           }
@@ -150,6 +151,8 @@ class ManageController extends Controller
       return redirect()->back();
     }
 
+    // Does not support updating at the moment a section name.
+    // use firstOrCreate?
     public function createSection(Request $request) {
       $data = $request->validate([
         'position' => [],
