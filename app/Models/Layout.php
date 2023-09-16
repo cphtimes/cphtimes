@@ -28,7 +28,7 @@ class Layout extends Model
     ];
 
     public function article() {
-        return $this->hasOne(Article::class, 'id', 'article_id');
+        return $this->hasMany(Article::class, 'id', 'article_id');
     }
 
 }

@@ -82,7 +82,11 @@ class SectionController extends Controller
                     ->get();
     
     foreach($layout as $item) {
-      $topArticle = $item->article->whereIn('in_language', $languages);
+      $topArticle = $item->article->whereIn('in_language', $languages)->first();
+      
+      if ($topArticle == null) {
+        continue;
+      }
       $topArticles->push($topArticle);
     }
     
@@ -91,7 +95,7 @@ class SectionController extends Controller
     if ($topArticles->count() < 5) {
       $fillArticles =Article::orderBy('published_at', 'desc')
                           ->where('section_uri', $section)
-                          ->whereNotIn('id', $topArticles->map(function (Article $article) {
+                          ->whereNotIn('id', $topArticles->map(function ($article) {
                             return $article->id;
                           }))
                           ->whereIn('in_language', $languages)
@@ -103,7 +107,7 @@ class SectionController extends Controller
 
     $articles = Article::where('section_uri', $section)
                         ->orderBy('published_at', 'desc')
-                        ->whereNotIn('id', $topArticles->map(function (Article $article) {
+                        ->whereNotIn('id', $topArticles->map(function ($article) {
                           return $article->id;
                         }))
                         ->whereIn('in_language', $languages)
