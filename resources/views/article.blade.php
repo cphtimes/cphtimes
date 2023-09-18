@@ -269,9 +269,9 @@
               <h1 class="pb-2 pb-lg-3 serif fw-bold fst-italic">{{$article->headline}}</h1>
               <div class="d-flex flex-wrap align-items-center justify-content-between border-bottom mb-4">
                 <div class="d-flex align-items-center mb-4 me-4">
-                  <span class="fs-sm me-2">By:</span>
-                  <a class="nav-link position-relative fw-semibold p-0" href="#author" data-scroll="" data-scroll-offset="80">
-                    {{$article->author->is_anonymous == false ? $article->author->user->display_name ?? $article->author->display_name : 'Anonymous'}}
+                  <span class="fs-sm me-2">{{__('messages.by')}}:</span>
+                  <a class="nav-link position-relative fw-semibold p-0" href="{{route('author', ['username' => $article->author->getUsername()])}}" data-scroll="" data-scroll-offset="80">
+                    {{ $article->author->getDisplayName() == null ? __('messages.anonymous') : $article->author->getDisplayName() }}
                     <span class="d-block position-absolute start-0 bottom-0 w-100" style="background-color: currentColor; height: 1px;"></span>
                   </a>
                 </div>
@@ -279,31 +279,31 @@
                   <div class="d-flex"><a class="nav-link p-2 me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Instagram" data-bs-original-title="Instagram"><i class="ai-instagram"></i></a><a class="nav-link p-2 me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Facebook" data-bs-original-title="Facebook"><i class="ai-facebook"></i></a><a class="nav-link p-2 me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Telegram" data-bs-original-title="Telegram"><i class="ai-telegram fs-sm"></i></a><a class="nav-link p-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Twitter" data-bs-original-title="Twitter"><i class="ai-twitter"></i></a></div>
                 </div>
               </div>
-              <!-- Post content-->
-              @if ($article->video_embed)
-              <figure class="figure w-100">
-                <div class="ratio ratio-{{$article->video_ratio}}">
-                  {!! $article->video_embed !!}
-                </div>
-              </figure>
-              @endif
 
-              <div id="article-body" class="serif">
+              <div class="mb-3 serif" id="article-body">
                 {!! $body !!}
               </div>
 
-              <div>
-                <small>Credit: {{$article->credit_text}}</small>
+              <div class="mb-3 serif">
+                <p class="fs-xs">Credit: {{$article->credit_text}}</p>
               </div>
 
               <!-- Author widget-->
               <div class="border-top border-bottom py-4" id="author">
                 <div class="d-flex align-items-start py-2">
-                  <img style="object-fit: cover; width: 56px; height: 56px;" class="d-block rounded-circle mb-3" src="{{$article->author->user->photo_url ?? ''}}" width="56" alt="{{ $article->author->user->display_name ?? $article->author->display_name }}">
+                  @if ($article->author->getPhotoURL())
+                    <img style="object-fit: cover; width: 56px; height: 56px;" class="d-block rounded-circle mb-3" src="{{$article->author->getPhotoURL()}}" width="56" alt="{{ $article->author->getDisplayName() }}">
+                  @else
+                    <div class="d-flex align-items-center justify-content-center position-relative flex-shrink-0 rounded-circle text-primary fs-lg fw-semibold"
+                        style="object-fit: cover; width: 56px; height: 56px; background-color: rgba(var(--ar-primary-rgb), .15);">
+                        {{ \App\Services\GetUserInitialsService::forName($article->author->getDisplayName()) }}
+                    </div>
+                  @endif
+
                   <div class="d-md-flex w-100 ps-4">
                     <div style="max-width: 26rem;">
-                      <h3 class="h5 mb-2">{{$article->author->is_anonymous == false ? $article->author->user->display_name ?? $article->author->display_name : 'Anonymous'}}</h3>
-                      <p class="fs-sm mb-0">{{$article->author->is_anonymous == false ? $article->author->user->bio ?? 'No bio.' : 'No bio.'}}</p>
+                      <h3 class="h5 mb-2">{{ $article->author->getDisplayName() == null ? __('messages.anonymous') : $article->author->getDisplayName() }}</h3>
+                      <p class="fs-sm mb-0">{{ $article->author->getBio() == null ? __('messages.empty_bio') : $article->author->getBio() }}</p>
                     </div>
                     <div class="pt-4 pt-md-0 ps-md-4 ms-md-auto">
                       <h3 class="h5">Share article:</h3>
@@ -312,6 +312,7 @@
                   </div>
                 </div>
               </div>
+
               <!-- Comments-->
               <div class="pt-4 pt-xl-5 mt-4" id="comments">
               @if ($article->comment_count >= 0)

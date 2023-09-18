@@ -5,12 +5,19 @@
             <button class="btn-close position-absolute top-0 end-0 mt-3 me-3 d-lg-none" type="button" data-bs-dismiss="offcanvas" data-bs-target="#sidebarAccount"></button>
             <div class="offcanvas-body">
             <div class="pb-2 pb-lg-0 mb-4 mb-lg-5">
-                <img style="object-fit: cover;" class="d-block rounded-circle mb-2" src="{{$author->photo_url}}" width="80" height="80" alt="{{$author->display_name}}">
-                <h3 class="h5 mb-1">{{$author->display_name}}</h3>
-                <p class="fs-sm text-muted"><span>@</span>{{$author->username}}</p>
-                <p class="fs-sm text-muted mb-0">{{$author->bio ?? __('messages.no_description_bio')}}</p>
+                @if ($author->getPhotoURL())
+                    <img style="object-fit: cover;" class="d-block rounded-circle mb-2" src="{{$author->getPhotoURL()}}" width="80" height="80" alt="{{$author->getDisplayName()}}">
+                @else
+                    <div class="mb-2 d-flex align-items-center justify-content-center position-relative flex-shrink-0 rounded-circle text-primary fs-lg fw-semibold"
+                        style="object-fit: cover; width: 80px; height: 80px; background-color: rgba(var(--ar-primary-rgb), .15);">
+                        {{ \App\Services\GetUserInitialsService::forName($author->getDisplayName()) }}
+                    </div>
+                @endif
+                <h3 class="h5 mb-1">{{ $author->getDisplayName() == null ? __('messages.anonymous') : $author->getDisplayName() }}</h3>
+                <p class="fs-sm text-muted"><span>@</span>{{$author->getUsername()}}</p>
+                <p class="fs-sm text-muted mb-0">{{$author->getBio() ?? __('messages.no_description_bio')}}</p>
             </div>
-            @if ($author->is($currentUser))
+            @if (($author == null && $currentUser) || ($author->user != null && $author->user->is($currentUser)))
                 <nav class="nav flex-column pb-2 pb-lg-4 mb-3">
                     <h4 class="fs-xs fw-medium text-muted text-uppercase pb-1 mb-2">{{__('messages.account')}}</h4>
                     <a class="nav-link fw-semibold py-2 px-0" href="{{ route('author', ['username' => $currentUser->username]) }}"><i class="bi bi-person fs-5 opacity-60 me-2"></i>{{__('messages.overview')}}</a>

@@ -133,6 +133,7 @@ return [
     'abstract' => 'Abstract',
     'body' => 'Body',
     'author_is_anonymous' => 'Author is anonymous',
+    'anonymous' => 'Anonymous',
     'alternative_author' => 'Alternative author',
     'alternative_username' => 'Alternative username',
     'alternative_author_text' => 'If you\'re not the author of the article, then you can write the name of the person here.',
@@ -147,5 +148,6 @@ return [
     'are_you_sure_confirmation' => 'Are you sure you wish to delete?',
     'about' => 'About',
     'correction' => 'Correction',
-    'credit' => 'Credit'
+    'credit' => 'Credit',
+    'empty_bio' => 'No bio.'
 ];

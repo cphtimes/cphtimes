@@ -133,6 +133,7 @@ return [
     'abstract' => 'Abstrakt',
     'body' => 'Krop',
     'author_is_anonymous' => 'Forfatter er anonym',
+    'anonymous' => 'Anonym',
     'alternative_author' => 'Alternativ forfatter',
     'alternative_username' => 'Alternativt brugernavn',
     'alternative_author_text' => 'Hvis du ikke er forfatter til artiklen, så kan du skrive navnet på personen her.',
@@ -147,5 +148,6 @@ return [
     'are_you_sure_confirmation' => 'Er du sikker på, at du vil slette?',
     'about' => 'Om',
     'correction' => 'Rettelse',
-    'credit' => 'Kredit'
+    'credit' => 'Kredit',
+    'empty_bio' => 'Ingen biografi.'
 ];

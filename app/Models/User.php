@@ -101,6 +101,22 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    public function getUsername() {
+        return $this->username;
+    }
+
+    public function getDisplayName() {
+        return $this->display_name;
+    }
+
+    public function getBio() {
+        return $this->bio;
+    }
+
+    public function getPhotoURL() {
+        return $this->photo_url;
+    }
+
     public function articles()
     {
         // return $this->hasMany(Article::class, 'author_id', 'user_id');

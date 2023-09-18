@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\Article;
 use App\Models\User;
+use App\Models\Author;
 use App\Models\Section;
 use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
@@ -39,10 +40,24 @@ class AuthorController extends Controller
                           ->orderBy('position', 'asc')
                           ->get();
       
-      $author = User::where('username', $username)->firstOrFail();      
+      $author = Author::where('username', $username)->first();
       
-      $articles = $author->articles()->orderBy('created_at', $sort == 'newest' ? 'desc' : 'asc')
-                                     ->paginate(20);
+      if ($author == null && $username == 'anonymous') {
+        $author = Author::where('is_anonymous', true)->first();
+      }
+      
+      if ($author == null) {
+        $user = User::where('username', $username)->first();
+        $author = Author::where('user_id', $user->id)->first();
+      }
+
+      if ($author == null) {
+        abort(404);
+      }
+
+      $articles = Article::where('author_id', $author->id)
+                          ->orderBy('created_at', $sort == 'newest' ? 'desc' : 'asc')
+                          ->paginate(20); 
 
       $currentUser = Auth::user();
       

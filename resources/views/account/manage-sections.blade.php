@@ -260,7 +260,7 @@
           <div class="row pt-sm-2 pt-lg-0">
             <!-- Sidebar (offcanvas on sreens < 992px)-->
             @include('components.author-sidebar', array(
-              'author' => $currentUser,
+              'author' => new \App\Models\Author(['user_id' => $currentUser->id]),
               'currentUser' => $currentUser
             ))
             <!-- Page content-->
