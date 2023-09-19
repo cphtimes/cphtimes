@@ -276,7 +276,9 @@
                   </a>
                 </div>
                 <div class="d-flex align-items-center mb-4"><span class="fs-sm me-2">Share article:</span>
-                  <div class="d-flex"><a class="nav-link p-2 me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Instagram" data-bs-original-title="Instagram"><i class="ai-instagram"></i></a><a class="nav-link p-2 me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Facebook" data-bs-original-title="Facebook"><i class="ai-facebook"></i></a><a class="nav-link p-2 me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Telegram" data-bs-original-title="Telegram"><i class="ai-telegram fs-sm"></i></a><a class="nav-link p-2" href="#" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Twitter" data-bs-original-title="Twitter"><i class="ai-twitter"></i></a></div>
+                  <div class="d-flex">
+                    <a class="nav-link p-2" href="mailto:?body={{URL::current()}}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Email" data-bs-original-title="Email"><i class="bi bi-envelope-fill"></i></a> <!-- me-2 -->
+                  </div>
                 </div>
               </div>
 
@@ -307,7 +309,9 @@
                     </div>
                     <div class="pt-4 pt-md-0 ps-md-4 ms-md-auto">
                       <h3 class="h5">Share article:</h3>
-                      <div class="d-flex"><a class="nav-link p-2 me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Instagram" data-bs-original-title="Instagram"><i class="ai-instagram"></i></a><a class="nav-link p-2 me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Facebook" data-bs-original-title="Facebook"><i class="ai-facebook"></i></a><a class="nav-link p-2 me-2" href="#" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Telegram" data-bs-original-title="Telegram"><i class="ai-telegram fs-sm"></i></a><a class="nav-link p-2" href="#" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Twitter" data-bs-original-title="Twitter"><i class="ai-twitter"></i></a></div>
+                      <div class="d-flex">
+                        <a class="nav-link p-2" href="mailto:?body={{URL::current()}}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Instagram" data-bs-original-title="Email"><i class="bi bi-envelope-fill"></i></a>
+                      </div>
                     </div>
                   </div>
                 </div>
