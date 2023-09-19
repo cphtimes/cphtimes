@@ -105,6 +105,13 @@ class ArticleController extends Controller
       }
 
       $relatedArticles = $article->related()->limit(5)->get();
+      if ($relatedArticles->count() == 0) {
+        $relatedArticles = Article::whereIn('in_language', $languages)
+                                  ->where('id', '!=', $article->id)
+                                  ->orderByRaw(sprintf("extensions.SIMILARITY(headline, '%s'::text) DESC", $article->headline))
+                                  ->limit(5)
+                                  ->get();
+      }
       
       $section = $sections->where('uri', $article->section_uri)
                           ->where('language_code', $locale)
