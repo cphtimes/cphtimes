@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Config;
 
+use App\Models\Section;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +38,22 @@ use Illuminate\Support\Facades\Config;
 // Config::set('localized-routes.omit_url_prefix_for_locale', 'en');
 // Config::set('localized-routes.omit_url_prefix_for_locale', 'da');
 
+Route::get(Lang::uri('/'), function() {
+    $currentUser = Auth::user();
+    $darkMode = Cookie::get('dark_mode') == 'true';
+    $locale = App::currentLocale();
+    $sections = Section::where('is_active', true)
+                    ->where('language_code', $locale)
+                    ->orderBy('position', 'asc')
+                    ->get();
+    return view('about', [
+        'darkMode' => $darkMode,
+        'sections' => $sections,
+        'currentUser' => $currentUser
+    ]);
+})->name('the_project');
+
+/*
 Route::get('/', function (Request $request) {
     if (Request::getHost() == 'kbhporte.dk') {
         App::setLocale('da');
@@ -46,6 +65,10 @@ Route::get('/', function (Request $request) {
 });
 
 Route::localized(function () {
+    Route::get('/dashboard', function () {
+        return redirect('/home/dashboard');
+    });
+
     Route::get('/', [HomepageController::class, 'show'])->name('home');
     Route::get(Lang::uri('section/{section}'), [SectionController::class, 'show'])->name('section');
     Route::get(Lang::uri('section/{section}/{article}'), [ArticleController::class, 'show'])->name('article');
@@ -92,5 +115,6 @@ Route::localized(function () {
 ]);
 
 Route::fallback(\CodeZero\LocalizedRoutes\Controllers\FallbackController::class);
+*/
 
 // /policy, /terms, /support

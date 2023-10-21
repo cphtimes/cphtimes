@@ -149,5 +149,6 @@ return [
     'about' => 'Om',
     'correction' => 'Rettelse',
     'credit' => 'Kredit',
-    'empty_bio' => 'Ingen biografi.'
+    'empty_bio' => 'Ingen biografi.',
+    'the_project' => 'Projektet'
 ];

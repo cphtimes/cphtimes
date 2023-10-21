@@ -1,5 +1,5 @@
 <div class="pt-4 mt-md-5 pt-md-4 border-top border-2 container">
-      <footer class="pt-3">
+      <footer class="pt-3 border-1">
         <!-- <a style="font-family: 'UnifrakturMaguntia', cursive; font-size: 1.8rem;" class="navbar-brand" href="#">The Copenhagen Gates</a>-->
         <div class="row px-md-3">
           <div class="col-6 col-md-4 col-lg-2 px-4 px-md-0">
@@ -29,6 +29,7 @@
           <div class="col-6 col-md-4 col-lg-2 px-4 px-md-0">
             <h5 class="serif fst-italic">{{ucfirst(trans_choice('messages.links', 2))}}</h5>
             <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a target="_blank" href="https://artofdestruction.dk" class="nav-link p-0 text-muted">Art of destruction</a></li>
               <li class="nav-item mb-2"><a target="_blank" href="https://marinajacobi.com" class="nav-link p-0 text-muted">Marina Jacobi</a></li>
               <li class="nav-item mb-2"><a target="_blank" href="https://www.bitchute.com/channel/fk3aw7qbnyUs/" class="nav-link p-0 text-muted">AboveIsBelow</a></li>
               <li class="nav-item mb-2"><a target="_blank" href="https://www.youtube.com/@lightatthecentre2691" class="nav-link p-0 text-muted">Light at the Center</a></li>
@@ -45,11 +46,13 @@
             <h5 class="serif fst-italic">{{ ucfirst(__('messages.more')) }}</h5>
             <ul class="nav flex-column">
               <li class="nav-item mb-2"><a href="/about" class="nav-link p-0 text-muted">About</a></li>
-              <li class="nav-item mb-2"><a href="https://app.aria5.co" class="nav-link p-0 text-muted">Aria5.co</a></li>
-              <li class="nav-item mb-2"><a href="https://resonantlinks.com" class="nav-link p-0 text-muted">Resonantlinks.com</a></li>
+              <li class="nav-item mb-2"><a target="_blank" href="https://app.aria5.co" class="nav-link p-0 text-muted">Aria5</a></li>
+              <li class="nav-item mb-2"><a target="_blank" href="https://moodylinks.com" class="nav-link p-0 text-muted">Moody Links</a></li>
+              <!--
               <li class="nav-item mb-2"><a href="/donate" class="nav-link p-0 text-muted">Donate</a></li>
               <li class="nav-item mb-2"><a href="/privacy" class="nav-link p-0 text-muted">Privacy</a></li>
               <li class="nav-item mb-2"><a href="/policy" class="nav-link p-0 text-muted">Policy</a></li>
+              -->
             </ul>
           </div>
 

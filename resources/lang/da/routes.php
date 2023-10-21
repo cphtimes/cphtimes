@@ -24,5 +24,6 @@ return [
     'edit' => 'rediger',
     'manage/edit-article' => 'admin/rediger-artikel',
     'manage/layout' => 'admin/layout',
-    'manage/sections' => 'admin/sektioner'
+    'manage/sections' => 'admin/sektioner',
+    'the-project' => 'projektet'
 ];

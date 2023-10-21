@@ -149,5 +149,6 @@ return [
     'about' => 'About',
     'correction' => 'Correction',
     'credit' => 'Credit',
-    'empty_bio' => 'No bio.'
+    'empty_bio' => 'No bio.',
+    'the_project' => 'The Project'
 ];
