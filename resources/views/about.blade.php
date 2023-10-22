@@ -228,7 +228,7 @@
                 <div class="position-relative">
                     <img src="https://iafvhzqnbhomdrhaayob.supabase.co/storage/v1/object/public/images/2023/10/21/5.png" class="d-block rounded-5" alt="Video cover">
                     <div class="d-nline-flex position-absolute top-50 start-50 translate-middle zindex-2 p-4">
-                        <a target="_blank" href="https://rumble.com/v3qr5wm-en-ny-vision-for-lyset.html" class="btn btn-icon btn-xl btn-primary rounded-circle stretched-link" data-bs-toggle="video">
+                        <a target="_blank" href="https://rumble.com/v3qxu4j-en-ny-vision-for-lyset.html" class="btn btn-icon btn-xl btn-primary rounded-circle stretched-link" data-bs-toggle="video">
                             <i class="bi bi-play-fill"></i>
                         </a>
                     </div>
