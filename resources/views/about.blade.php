@@ -222,20 +222,34 @@
       <section class="container pt-5 mt-md-2 mt-lg-3 mt-xl-4 pb-5 mb-md-2 mb-lg-4 mb-xl-5">
         <div class="row justify-content-center pt-xxl-2">
           <div class="col-lg-9 col-xl-8">
-            <p class="fs-lg mb-3">Jeg vil gerne starte et projekt op, jeg først fik kendskab til da jeg læste bogen, <i>Handbook for the New Paradigm</i>. Den er nedskrevet, <u>men ikke forfattet</u>, af George Green, hvilket man kan høre mere om i disse interview, <a target="_blank" href="https://www.bitchute.com/video/gKJiRxRtg6PK/">del 1</a> og <a target="_blank" href="https://www.bitchute.com/search/?query=george%20green&kind=video">del 2</a>. Selve bogen gjorde et enormt indtryk på mig og jeg har brugt den som en inspirationskilde lige siden.</p>
+            <p class="fs-lg mb-3">Jeg vil gerne starte et projekt op, jeg først fik kendskab til da jeg læste bogen, <i>Handbook for the New Paradigm</i>. Den er nedskrevet, <u>men ikke forfattet</u>, af George Green, hvilket man kan høre mere om i disse interview, <a target="_blank" href="https://www.bitchute.com/video/gKJiRxRtg6PK/">del 1</a> og <a target="_blank" href="https://www.bitchute.com/video/DGAaJDd15a8M/">del 2</a>. Selve bogen gjorde et enormt indtryk på mig og jeg har brugt den som en inspirationskilde lige siden.</p>
             <p class="fs-lg pb-4 pb-xl-5">I starten af bogen bliver der beskrevet en ide til hvordan man kan hjælpe det vi som planet, som menneskehed, lige nu står overfor. Vi er alle sammen på forskellige bevidstheds såvel som erkendelses niveauer. Nogen ved at der er noget galt og at vi har behov for at komme sammen og finde løsninger og skabe visioner for fremtiden, mens andre stadigvæk “sover” for at bruge et velkendt begreb i manges øre. Nedstående video forklarer nærmere hvad det hele drejer sig om:</p>
             <figure class="figure">
                 <div class="position-relative">
                     <img src="https://iafvhzqnbhomdrhaayob.supabase.co/storage/v1/object/public/images/2023/10/21/5.png" class="d-block rounded-5" alt="Video cover">
                     <div class="d-nline-flex position-absolute top-50 start-50 translate-middle zindex-2 p-4">
-                        <a href="https://rumble.com/v3qr5wm-en-ny-vision-for-lyset.html" class="btn btn-icon btn-xl btn-primary rounded-circle stretched-link" data-bs-toggle="video">
+                        <a target="_blank" href="https://rumble.com/v3qr5wm-en-ny-vision-for-lyset.html" class="btn btn-icon btn-xl btn-primary rounded-circle stretched-link" data-bs-toggle="video">
                             <i class="bi bi-play-fill"></i>
                         </a>
                     </div>
                 </div>
             </figure>
+
+            <h2 class="h4 mb-lg-4 pt-3 pt-md-4 pt-xl-5">Projektet</h2>
+            <p class="fs-lg pb-2 pb-lg-0 mb-4 mb-lg-5">Projektet er bedst forstået ved at læse beskederne fra bogen, <i>Handbook for the New Paradigm</i>, men overstående video giver en dybdegående introduktion. Det går ud på at danne grupper, der vil arbejde med den beskrevede opgave, og til det bliver der fortalt hvordan det skal forløbe sig:</p>
+            <div class="mb-lg-4 pt-3 pt-md-4 pt-xl-5 card border-0 bg-secondary">
+              <div class="card-body">
+                <figure>
+                  <blockquote class="blockquote">
+                    <p>Projektopgaven er, at hver ny celle fortsætter med at dele sig. Hvordan skal det helt præcist fungere? Den første mødes med to. Så mødes hver igen med to andre, så mødes hver igen igen med to andre, indtil der er 7. (3 plus 2 er lig med 5 plus 2 er lig med 7.) Så mødes den gruppe, og de 4 tilføjelser opdeles og skaber deres egne 7. Nu kan originalerne på det tidspunkt igen begynde en ny cyklus eller droppe ud. Jo flere gange hver enkelt gentager processen, jo mere accelererer vækstcyklussen.</p>
+                  </blockquote>
+                  <figcaption class="blockquote-footer">Handbook for the New Paradigm</figcaption>
+                </figure>
+              </div>
+            </div>
+
             <h2 class="h4 mb-lg-4 pt-3 pt-md-4 pt-xl-5">Har du lyst til at være med?</h2>
-            <p class="fs-lg pb-2 pb-lg-0 mb-4 mb-lg-5">Jeg bor i hovedstadsområdet og du er mere en velkommen til at deltage i projektet (beskrevet i overstående video) her hos mig. Jeg leder derfor ummidelbart efter to mennesker som kunne have lyst til at danne en gruppe, men tænker også at flere kan træde til. Ved nærmere interesse kan du skrive til mig på: <a href="mailto:danielran11@gmail.com">danielran11@gmail.com</a>.</p>
+            <p class="fs-lg pb-2 pb-lg-0 mb-4 mb-lg-5">Jeg bor i hovedstadsområdet og du er mere en velkommen til at deltage i projektet (beskrevet i overstående video) her hos mig. Jeg leder derfor efter to mennesker som kunne have lyst til at danne en gruppe, men tænker også at flere kan træde til. Ved nærmere interesse kan du skrive til mig på: <a href="mailto:danielran11@gmail.com">danielran11@gmail.com</a>.</p>
             <p class="fs-lg pb-2 pb-lg-0 mb-4 mb-lg-5">Du kan læse dansk oversættelsen af de 4 første beskeder fra bogen <a target="_blank" href="https://iafvhzqnbhomdrhaayob.supabase.co/storage/v1/object/public/the-project/en-ny-vision-for-lyset.pdf">her</a>.</p>
           </div>
         </div>
