@@ -3,7 +3,7 @@
 // based on https://github.com/flatpickr/flatpickr
 // --------------------------------------------------
 
-
+/* stylelint-disable selector-class-pattern, selector-no-qualifying-type, declaration-no-important */
 .date-picker {
   &[readonly] {
     background-color: $input-bg;
@@ -18,7 +18,8 @@
   border: $dropdown-border-width solid $dropdown-border-color;
   @include border-radius($dropdown-border-radius);
   box-shadow: $dropdown-box-shadow;
-  &::before, &::after { display: none; }
+  &::before,
+  &::after { display: none; }
 }
 .flatpickr-innerContainer {
   padding-bottom: 1.125rem;
@@ -55,23 +56,23 @@ span.flatpickr-weekday,
 }
 .flatpickr-day {
   height: 38px;
+  line-height: 37px;
+  color: var(--#{$prefix}gray-900);
   border-radius: 0;
   @include border-radius(var(--#{$prefix}border-radius));
-  color: var(--#{$prefix}gray-900);
-  line-height: 37px;
   &:hover:not(.flatpickr-disabled):not(.today):not(.selected) {
-    border-color: var(--#{$prefix}gray-200);
     background-color: var(--#{$prefix}gray-200);
+    border-color: var(--#{$prefix}gray-200);
   }
   &.today {
-    border-color: rgba(var(--#{$prefix}primary-rgb), .5) !important;
     color: var(--#{$prefix}primary) !important;
+    border-color: rgba(var(--#{$prefix}primary-rgb), .5) !important;
     &.selected { color: $white !important; }
     &:hover { background-color: transparent; }
   }
   &.selected {
-    border-color: var(--#{$prefix}primary) !important;
     background-color: var(--#{$prefix}primary) !important;
+    border-color: var(--#{$prefix}primary) !important;
   }
   &.flatpickr-disabled {
     color: var(--#{$prefix}gray-500) !important;
@@ -81,16 +82,16 @@ span.flatpickr-weekday,
     color: var(--#{$prefix}gray-600);
   }
   &.inRange {
-    border-color: var(--#{$prefix}gray-200) !important;
     background-color: var(--#{$prefix}gray-200) !important;
+    border-color: var(--#{$prefix}gray-200) !important;
     box-shadow: -5px 0 0 var(--#{$prefix}gray-200), 5px 0 0 var(--#{$prefix}gray-200);
   }
   &.startRange,
   &.endRange,
   &.endRange.seleced,
   &.endRange:hover {
-    border-color: var(--#{$prefix}primary) !important;
     background-color: var(--#{$prefix}primary) !important;
+    border-color: var(--#{$prefix}primary) !important;
   }
 }
 .flatpickr-day.selected.endRange,
@@ -127,4 +128,22 @@ span.flatpickr-weekday,
 }
 .flatpickr-calendar.hasTime .flatpickr-time {
   border-color: var(--#{$prefix}border-color);
+}
+/* stylelint-enable selector-class-pattern, selector-no-qualifying-type, declaration-no-important */
+
+
+// Dark color mode
+
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    .flatpickr-calendar {
+      background: $dropdown-dark-bg;
+      border-color: $dropdown-dark-border-color;
+      box-shadow: $dropdown-dark-box-shadow;
+    }
+    .flatpickr-day.inRange { // stylelint-disable-line selector-class-pattern
+      border-color: transparent !important; // stylelint-disable-line declaration-no-important
+      box-shadow: -5px 0 0 rgba($white, .025), 5px 0 0 rgba($white, .025);
+    }
+  }
 }

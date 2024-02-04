@@ -17,3 +17,16 @@
   }
   border-bottom-color: var(--#{$prefix}border-color);
 }
+
+
+// Dark color mode
+
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    .popover {
+      --#{$prefix}popover-border-color: #{$popover-border-color-dark};
+
+      box-shadow: $popover-box-shadow-dark;
+    }
+  }
+}

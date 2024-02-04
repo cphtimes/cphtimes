@@ -12,5 +12,7 @@
   }
 }
 .lg-on { overflow: hidden; }
-.lg-item:focus, .lg:focus, .lg-outer:focus,
+.lg-item:focus,
+.lg:focus,
+.lg-outer:focus,
 .lg-inner:focus { outline: none; }

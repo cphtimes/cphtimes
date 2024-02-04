@@ -20,10 +20,11 @@ class Article extends Model
      * @var array
      */
 
-    public static function boot() {
+    public static function boot()
+    {
         parent::boot();
-        self::deleting(function($article) {
-            $article->comments()->each(function($comment) {
+        self::deleting(function ($article) {
+            $article->comments()->each(function ($comment) {
                 $comment->delete();
             });
         });
@@ -96,21 +97,25 @@ class Article extends Model
         'is_accessible_for_free' => true,
     ];
 
-    public function hasAuthored($user) {
+    // rename to isAuthor?
+    public function hasAuthored($user)
+    {
         if ($user == null) {
             return false;
         }
         return $this->author->user_id == $user->id;
     }
 
-    public function localizedSection($sections) {
+    public function localizedSection($sections)
+    {
         return $sections->where('uri', $this->section_uri)
-                        ->where('language_code', \App::currentLocale())
-                        ->first()->name ??
-                        $this->section_uri;
+            ->where('language_code', \App::currentLocale())
+            ->first()->name ??
+            $this->section_uri;
     }
 
-    public function related() {
+    public function related()
+    {
         return $this->belongsToMany(Article::class, 'related_article', 'article_id', 'related_id');
     }
 

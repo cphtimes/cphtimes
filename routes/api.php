@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NewsletterController;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use App\Services\SafeObjectKeyService;
+use Facades\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,90 +26,84 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  * Health status.
  *
  */
-Route::get('/healthz', function(Request $request) {
+Route::get('/healthz', function (Request $request) {
     return Response::json([
-      'status' => 'uptime'
+        'status' => 'uptime'
     ], 200);
-  });
+});
 
 Route::post('/subscribe', [NewsletterController::class, 'subscribe']);
 
-Route::post('uploadFile', function(Request $request) {
-  $base_url = env('SUPERBASE_URL');
-  $token = env('SUPERBASE_API_SECRET_KEY');
+Route::post('uploadFile', function (Request $request) {
+    $base_url = env('SUPERBASE_URL');
+    $token = env('SUPERBASE_API_SECRET_KEY');
 
-  $file = $request->file('image');
+    $file = $request->file('image');
 
-  $now = Carbon::now();
-  $year = $now->format('Y');
-  $month = $now->format('m');
-  $day = $now->format('d');
+    $now = Carbon::now();
+    $year = $now->format('Y');
+    $month = $now->format('m');
+    $day = $now->format('d');
 
-  $filename = $file->getClientOriginalName();
+    $filename = $file->getClientOriginalName();
 
-  $file_url = sprintf('%s/storage/v1/object/images/%s/%s/%s/%s', $base_url, $year, $month, $day, SafeObjectKeyService::make($filename, false));
-  
-  $response = Http::withToken($token)
-                ->withBody(file_get_contents($file), $file->getClientMimeType())
-                ->post($file_url);
+    $file_url = sprintf('%s/storage/v1/object/images/%s/%s/%s/%s', $base_url, $year, $month, $day, Str::slug($filename));
 
-  // check the status of the response?
-  if ($response->status() >= 400) {
-    return Response::json($response->json(), $response->status());
-  }
+    $response = Http::withToken($token)
+        ->withBody(file_get_contents($file), $file->getClientMimeType())
+        ->post($file_url);
 
-  $public_file_url = sprintf('%s/storage/v1/object/public/images/%s/%s/%s/%s', $base_url, $year, $month, $day, SafeObjectKeyService::make($filename, false));
+    // check the status of the response?
+    if ($response->status() >= 400) {
+        return Response::json($response->json(), $response->status());
+    }
 
-  return Response::json([
-    "success" => 1,
-    "file" => [
-      "url" => $public_file_url
-    ]
-  ], 200);
+    $public_file_url = sprintf('%s/storage/v1/object/public/images/%s/%s/%s/%s', $base_url, $year, $month, $day, Str::slug($filename));
+
+    return Response::json([
+        "success" => 1,
+        "file" => [
+            "url" => $public_file_url
+        ]
+    ], 200);
 }); // ->middleware(['author']);
 
-Route::post('fetchUrl', function(Request $request) {
-  if ($request->missing('url')) {
-      return Response::json([
-        'error' => 'Missing the url to be fetched.'
-      ], 400);
-  }
+Route::post('fetchUrl', function (Request $request) {
+    if ($request->missing('url')) {
+        return Response::json([
+            'error' => 'Missing the url to be fetched.'
+        ], 400);
+    }
 
-  $base_url = env('SUPERBASE_URL');
-  $token = env('SUPERBASE_API_SECRET_KEY');
+    $base_url = env('SUPERBASE_URL');
+    $token = env('SUPERBASE_API_SECRET_KEY');
 
-  $url = $request["url"];
+    $url = $request["url"];
 
-  $now = Carbon::now();
-  $year = $now->format('Y');
-  $month = $now->format('m');
-  $day = $now->format('d');
+    $now = Carbon::now();
+    $year = $now->format('Y');
+    $month = $now->format('m');
+    $day = $now->format('d');
 
-  $filename = $url;
+    $filename = $url;
 
-  $file_url = sprintf('%s/storage/v1/object/images/%s/%s/%s/%s', $base_url, $year, $month, $day, SafeObjectKeyService::make($filename, false));
-  
-  $response = Http::withToken($token)
-                ->withBody(file_get_contents($url), 'application/octet-stream')
-                ->post($file_url);
+    $file_url = sprintf('%s/storage/v1/object/images/%s/%s/%s/%s', $base_url, $year, $month, $day, Str::slug($filename));
 
-  // check the status of the response?
-  if ($response->status() >= 400) {
-    return Response::json($response->json(), $response->status());
-  }
+    $response = Http::withToken($token)
+        ->withBody(file_get_contents($url), 'application/octet-stream')
+        ->post($file_url);
 
-  $public_file_url = sprintf('%s/storage/v1/object/public/images/%s/%s/%s/%s', $base_url, $year, $month, $day, SafeObjectKeyService::make($filename, false));
+    // check the status of the response?
+    if ($response->status() >= 400) {
+        return Response::json($response->json(), $response->status());
+    }
 
-  return Response::json([
-    "success" => 1,
-    "file" => [
-      "url" => $public_file_url
-    ]
-  ], 200);
+    $public_file_url = sprintf('%s/storage/v1/object/public/images/%s/%s/%s/%s', $base_url, $year, $month, $day, Str::slug($filename));
+
+    return Response::json([
+        "success" => 1,
+        "file" => [
+            "url" => $public_file_url
+        ]
+    ], 200);
 }); // ->middleware(['author']);
-
-Route::get('hello-world', function(Request $request) {
-  return [
-    'safekey' => SafeObjectKeyService::make("ii--handbook-for-the-new-paradigm.jpg", false)
-  ];
-});

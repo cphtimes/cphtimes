@@ -23,7 +23,7 @@ return [
     'more' => 'more',
     'subscribe_newsletter_header' => 'Subscribe to our newsletter',
     'subscribe_newsletter_text' => 'Weekly digest of what\'s new and exciting from us.',
-    'all_rights_reserved' => '© :year :app. All rights reserved.',
+    'all_rights_reserved' => '© :year :app. A part of bedredanmark.dk.',
     'email_address' => 'Email address',
     'password' => 'Password',
     'subscribe' => 'Subscribe',
@@ -108,7 +108,7 @@ return [
     'comment' => 'Comment',
     'comment_placeholder' => 'Type your comment here...',
     'listen_to_article' => 'Listen to the article',
-    'slogan' => 'Truth is stranger than fiction.',
+    'slogan' => 'Your guide through this transition for humanity',
     'latest_updates' => 'Latest updates',
     'noteworthy_individuals' => 'Noteworthy Individuals',
     'most_popular' => 'Most popular:',
@@ -150,5 +150,9 @@ return [
     'correction' => 'Correction',
     'credit' => 'Credit',
     'empty_bio' => 'No bio.',
-    'the_project' => 'The Project'
+    'the_project' => 'The Project',
+    'no_articles_yet_headline' => 'No articles here yet.',
+    'no_articles_yet_text' => "We're in the process of writing articles for this section.",
+    'go_frontpage_btn' => 'Go to frontpage',
+    'sidebar' => 'Sidebar'
 ];

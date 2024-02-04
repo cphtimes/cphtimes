@@ -11,21 +11,21 @@
 
   .hotspot {
     position: absolute;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: border-color .25s ease-in-out, background-color .25s ease-in-out;
-    border-radius: 50%;
     cursor: pointer;
-    z-index: 2;
+    border-radius: 50%;
+    transition: border-color .25s ease-in-out, background-color .25s ease-in-out;
   }
 
   .hotspot-inner {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: color .25s ease-in-out, background-color .25s ease-in-out;
     border-radius: 50%;
+    transition: color .25s ease-in-out, background-color .25s ease-in-out;
   }
 }
 
@@ -51,12 +51,13 @@
   .hotspot-inner {
     width: calc(var(--#{$prefix}hotspots-size) - 1rem);
     height: calc(var(--#{$prefix}hotspots-size) - 1rem);
-    background-color: var(--#{$prefix}hotspots-inner-bg);
-    color: var(--#{$prefix}hotspots-color);
     font-weight: $font-weight-semibold;
+    color: var(--#{$prefix}hotspots-color);
+    background-color: var(--#{$prefix}hotspots-inner-bg);
   }
 
-  [class^='ai-'], [class*=' ai-'] {
+  [class^="ai-"],
+  [class*=" ai-"] {
     font-size: 1.2em;
   }
 
@@ -65,8 +66,8 @@
     border-color: var(--#{$prefix}hotspots-hover-border-color);
 
     .hotspot-inner {
-      background-color: var(--#{$prefix}hotspots-hover-inner-bg);
       color: var(--#{$prefix}hotspots-hover-color);
+      background-color: var(--#{$prefix}hotspots-hover-inner-bg);
     }
   }
 }
@@ -88,7 +89,8 @@
     background-color: var(--#{$prefix}hotspots-bg);
     backdrop-filter: blur(.25rem);
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background-color: var(--#{$prefix}hotspots-hover-bg);
     }
   }

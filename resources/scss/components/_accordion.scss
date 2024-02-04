@@ -14,14 +14,14 @@
 }
 
 .accordion-item {
-  @include border-radius(var(--#{$prefix}accordion-border-radius) !important);
+  @include border-radius(var(--#{$prefix}accordion-border-radius) !important); // stylelint-disable-line declaration-no-important
   &:not(:last-child) {
     margin-bottom: var(--#{$prefix}accordion-spacer);
   }
 }
 
 .accordion-button {
-  @include border-radius(var(--#{$prefix}accordion-border-radius) !important);
+  @include border-radius(var(--#{$prefix}accordion-border-radius) !important); // stylelint-disable-line declaration-no-important
   @include font-size(var(--#{$prefix}accordion-btn-font-size));
   font-weight: var(--#{$prefix}accordion-btn-font-weight);
   line-height: $line-height-base;
@@ -38,14 +38,14 @@
   --#{$prefix}accordion-btn-font-size: #{$h3-font-size};
 
   .accordion-item {
-    border-radius: 0 !important;
-    background: none !important;
+    background: none !important; // stylelint-disable-line declaration-no-important
+    border-radius: 0 !important; // stylelint-disable-line declaration-no-important
     &:not(:last-child) {
       margin-bottom: 0;
       @include media-breakpoint-up(sm) {
         margin-bottom: calc(var(--#{$prefix}accordion-spacer) * .25);
       }
-    }  
+    }
   }
   .accordion-button {
     padding: {
@@ -80,8 +80,8 @@
   }
 
   .accordion-button-img {
-    transition: opacity .15s ease-in-out;
     opacity: 0;
+    transition: opacity .15s ease-in-out;
   }
   &.collapsed .accordion-button-img {
     opacity: 1;

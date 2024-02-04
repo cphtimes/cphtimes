@@ -6,10 +6,11 @@
 
 // Navigation (Prev / Next) buttons
 
-.btn-prev, .btn-next {
+.btn-prev,
+.btn-next {
   transition: all .25s ease-in-out;
-  > [class^='ai-'],
-  > [class*=' ai-'] {
+  > [class^="#{$icon-prefix}"],
+  > [class*=" #{$icon-prefix}"] {
     font-size: 1.4em;
   }
 }
@@ -24,8 +25,8 @@
   .btn-next:not(.position-static) {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
     z-index: 5;
+    transform: translateY(-50%);
   }
   .btn-prev {
     left: $spacer * 1.25;
@@ -38,14 +39,14 @@
 .swiper-nav-onhover {
   .btn-prev,
   .btn-next {
-    opacity: 0 !important;
+    opacity: 0 !important; // stylelint-disable-line declaration-no-important
   }
   &:hover .btn-prev,
   &:hover .btn-next {
-    opacity: 1 !important;
+    opacity: 1 !important; // stylelint-disable-line declaration-no-important
     &.swiper-button-disabled,
     &.swiper-button-disabled:disabled {
-      opacity: .55 !important;
+      opacity: .55 !important; // stylelint-disable-line declaration-no-important
     }
   }
 }
@@ -68,21 +69,21 @@
   --#{$prefix}carousel-pagination-progressbar-bg: #{$carousel-progressbar-bg};
   --#{$prefix}carousel-pagination-progressbar-fill-bg: #{$carousel-progressbar-fill-bg};
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
   bottom: $spacer * 1.25;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .swiper-pagination-bullet {
   position: relative;
   width: var(--#{$prefix}carousel-pagination-bullet-size);
   height: var(--#{$prefix}carousel-pagination-bullet-size);
-  transition: $carousel-bullet-transition;
+  background-color: var(--#{$prefix}carousel-pagination-bullet-bg);
   border: var(--#{$prefix}carousel-pagination-bullet-border-width) solid var(--#{$prefix}carousel-pagination-bullet-border-color);
   @include border-radius(var(--#{$prefix}carousel-pagination-bullet-border-radius));
-  background-color: var(--#{$prefix}carousel-pagination-bullet-bg);
   opacity: 1;
+  transition: $carousel-bullet-transition;
 
   &:focus {
     outline: none;
@@ -90,8 +91,8 @@
 }
 
 .swiper-pagination-bullet-active {
-  border-color: var( --#{$prefix}carousel-pagination-bullet-active-border-color);
-  background-color: var( --#{$prefix}carousel-pagination-bullet-active-bg);
+  background-color: var(--#{$prefix}carousel-pagination-bullet-active-bg);
+  border-color: var(--#{$prefix}carousel-pagination-bullet-active-border-color);
 }
 
 .swiper-horizontal > .swiper-pagination-bullets,
@@ -107,8 +108,8 @@
 
 .swiper-vertical > .swiper-pagination-bullets,
 .swiper-pagination-bullets.swiper-pagination-vertical {
-  flex-direction: column;
   right: $spacer * 1.25;
+  flex-direction: column;
   .swiper-pagination-bullet {
     margin: {
       top: calc(var(--#{$prefix}carousel-pagination-bullet-spacer) * .5);
@@ -130,14 +131,14 @@
   --#{$prefix}carousel-thumbnail-active-border-color: #{$carousel-thumbnail-active-border-color};
   --#{$prefix}carousel-thumbnail-active-opacity: #{$carousel-thumbnail-active-opacity};
   --#{$prefix}carousel-thumbnail-spacer: #{$carousel-thumbnail-spacer};
-  
+
   position: static;
   display: flex;
   flex-wrap: wrap;
 
   &:not(.justify-content-center) {
-    margin-left: calc(var(--#{$prefix}carousel-thumbnail-spacer) * .5 * -1);
     padding-top: var(--#{$prefix}carousel-thumbnail-spacer);
+    margin-left: calc(var(--#{$prefix}carousel-thumbnail-spacer) * .5 * -1);
   }
 
   &.justify-content-end {
@@ -150,19 +151,19 @@
 
 .swiper-thumbnail {
   width: var(--#{$prefix}carousel-thumbnail-width);
-  margin: calc(var(--#{$prefix}carousel-thumbnail-spacer) * .5) !important;
   padding: .5rem;
+  margin: calc(var(--#{$prefix}carousel-thumbnail-spacer) * .5) !important; // stylelint-disable-line declaration-no-important
   border: var(--#{$prefix}carousel-thumbnail-border-width) solid var(--#{$prefix}carousel-thumbnail-border-color);
   @include border-radius(var(--#{$prefix}carousel-thumbnail-border-radius));
 
   &:last-child {
-    margin-right: 0 !important;
+    margin-right: 0 !important; // stylelint-disable-line declaration-no-important
   }
 
   > img {
-    transition: opacity .25s ease-in-out;
     @include border-radius(calc(var(--#{$prefix}carousel-thumbnail-border-radius) - .25rem));
     opacity: var(--#{$prefix}carousel-thumbnail-opacity);
+    transition: opacity .25s ease-in-out;
   }
 
   &:hover > img {
@@ -245,12 +246,15 @@
 
 // Layer animations
 
-.from-top, .from-bottom,
-.from-start, .from-end,
-.scale-up, .scale-down {
-  transition: all .4s .4s ease-in-out;
+.from-top,
+.from-bottom,
+.from-start,
+.from-end,
+.scale-up,
+.scale-down {
   opacity: 0;
   backface-visibility: hidden;
+  transition: all .4s .4s ease-in-out;
 }
 .from-top {
   transform: translateY(-2.25rem);
@@ -265,22 +269,25 @@
   transform: translateX(2.25rem);
 }
 .scale-up {
-  transform: scale(0.85);
+  transform: scale(.85);
 }
 
 .swiper-slide-active,
 .active {
-  .from-top, .from-bottom {
+  .from-top,
+  .from-bottom {
+    opacity: 1;
     transform: translateY(0);
-    opacity: 1;
   }
-  .from-start, .from-end {
+  .from-start,
+  .from-end {
+    opacity: 1;
     transform: translateX(0);
-    opacity: 1;
   }
-  .scale-up, .scale-down {
-    transform: scale(1);
+  .scale-up,
+  .scale-down {
     opacity: 1;
+    transform: scale(1);
   }
 }
 

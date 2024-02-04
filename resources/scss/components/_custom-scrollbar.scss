@@ -16,19 +16,19 @@
   &::before {
     right: 0;
     left: 0;
-    transition: none;
     background-color: var(--#{$prefix}scrollbar-bg);
     @include border-radius(var(--#{$prefix}scrollbar-border-radius));
-    opacity: 1 !important;
+    opacity: 1 !important; // stylelint-disable-line declaration-no-important
+    transition: none;
   }
 }
 
 .simplebar-track {
-  transition: opacity .15s ease-in-out;
-  @include border-radius(var(--#{$prefix}scrollbar-border-radius));
-  background-color: var(--#{$prefix}scrollbar-track-bg);
   overflow: initial;
+  background-color: var(--#{$prefix}scrollbar-track-bg);
+  @include border-radius(var(--#{$prefix}scrollbar-border-radius));
   opacity: 0;
+  transition: opacity .15s ease-in-out;
 
   &.simplebar-vertical {
     right: calc(var(--#{$prefix}scrollbar-width) * .5);
@@ -37,7 +37,7 @@
       left: 50%;
       width: var(--#{$prefix}scrollbar-width);
       margin-left: calc(var(--#{$prefix}scrollbar-width) * -.5);
-      &:before {
+      &::before {
         top: 0;
         bottom: 0;
       }
@@ -48,12 +48,14 @@
     bottom: calc(var(--#{$prefix}scrollbar-width) * .5);
     height: var(--#{$prefix}scrollbar-track-width);
     .simplebar-scrollbar {
-      height: var(--#{$prefix}scrollbar-width);
       top: 50%;
-      margin-top: calc(var(--#{$prefix}scrollbar-width) * -.5);
       bottom: 0;
+      height: var(--#{$prefix}scrollbar-width);
+      margin-top: calc(var(--#{$prefix}scrollbar-width) * -.5);
       &::before {
+        top: 0;
         right: 0;
+        bottom: 0;
         left: 0;
       }
     }
@@ -61,6 +63,18 @@
 }
 
 .simplebar-wrapper:hover ~ .simplebar-track,
-[data-simplebar-auto-hide='false'] .simplebar-track {
+[data-simplebar-auto-hide="false"] .simplebar-track {
   opacity: 1;
+}
+
+
+// Dark color mode
+
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    [data-simplebar] {
+      --#{$prefix}scrollbar-bg: #{$scrollbar-bg-dark};
+      --#{$prefix}scrollbar-track-bg: #{$scrollbar-track-bg-dark};
+    }
+  }
 }

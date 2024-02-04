@@ -13,13 +13,13 @@
 }
 
 .fc-col-header-cell {
-  padding: .75rem 0 !important;
-  border-bottom: $border-width dashed var(--#{$prefix}gray-400) !important;
+  padding: .75rem 0 !important; // stylelint-disable-line declaration-no-important
+  border-bottom: $border-width dashed var(--#{$prefix}gray-400) !important; // stylelint-disable-line declaration-no-important
 }
 
 .fc-col-header-cell-cushion,
 .fc-list-day-cushion {
-  color: var(--#{$prefix}gray-800) !important;
+  color: var(--#{$prefix}gray-800) !important; // stylelint-disable-line declaration-no-important
 }
 
 .fc .fc-list-sticky .fc-list-day > * {
@@ -56,8 +56,7 @@
   height: var(--#{$prefix}btn-size);
   padding: 0;
 
-  > [class^='bi-'],
-  > [class*=' bi-'] {
+  > .bi {
     font-size: 1.625em;
   }
 }
@@ -67,24 +66,24 @@
 }
 
 .calendar .btn-group .btn-primary {
-  background-color: transparent;
   color: var(--#{$prefix}primary);
+  background-color: transparent;
 
   &.active {
-    background-color: var(--#{$prefix}primary);
     color: $white;
+    background-color: var(--#{$prefix}primary);
   }
 }
 
 .fc .fc-toolbar {
-  overflow: auto;
-  margin-bottom: .75rem !important;
   padding-bottom: .875rem;
+  margin-bottom: .75rem !important; // stylelint-disable-line declaration-no-important
+  overflow: auto;
 }
 
 .fc-toolbar-title {
-  margin: 0 1rem !important;
-  @include font-size($h4-font-size !important);
+  margin: 0 1rem !important; // stylelint-disable-line declaration-no-important
+  @include font-size($h4-font-size !important); // stylelint-disable-line declaration-no-important
   font-weight: $font-weight-medium;
 }
 
@@ -93,7 +92,7 @@
 }
 
 .fc-list-empty {
-  background-color: transparent !important;
+  background-color: transparent !important; // stylelint-disable-line declaration-no-important
 }
 
 .fc-h-event,
@@ -101,14 +100,15 @@
   --fc-event-border-color: var(--#{$prefix}primary);
   --fc-event-bg-color: var(--#{$prefix}primary);
 
-  &.text-nav, &.text-dark {
+  &.text-nav,
+  &.text-dark {
     .fc-event-main {
-      color: currentColor;
+      color: currentcolor;
     }
   }
 
   .fc-event-title {
-    font-weight: $font-weight-semibold !important;
+    font-weight: $font-weight-semibold !important; // stylelint-disable-line declaration-no-important
   }
 }
 
@@ -119,7 +119,7 @@
 
 .fc-daygrid-event-dot,
 .fc-list-event-dot {
-  --fc-event-border-color:  var(--#{$prefix}primary);
+  --fc-event-border-color: var(--#{$prefix}primary);
 }
 
 .event-custom-style {
@@ -135,12 +135,12 @@
   }
 }
 
-tr.event-custom-style {
-  background-color: transparent !important;
+tr.event-custom-style {  // stylelint-disable-line selector-no-qualifying-type
+  background-color: transparent !important; // stylelint-disable-line declaration-no-important
 }
 
 .border-purple {
-  border-color: #7950ed !important;
+  border-color: #7950ed !important; // stylelint-disable-line declaration-no-important
 }
 
 .fc-daygrid-event-harness {
@@ -148,6 +148,27 @@ tr.event-custom-style {
 }
 
 .fc-timegrid-event-harness-inset .fc-timegrid-event,
-.fc-timegrid-event.fc-event-mirror, .fc-timegrid-more-link {
+.fc-timegrid-event.fc-event-mirror,
+.fc-timegrid-more-link {
   box-shadow: 0 0 0 1px rgba($white, .3);
+}
+
+
+// Dark color mode
+
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    .fc-col-header-cell {
+      border-bottom-color: var(--#{$prefix}gray-300) !important; // stylelint-disable-line declaration-no-important
+    }
+    .fc-scrollgrid td {
+      border: {
+        top-color: var(--#{$prefix}gray-300);
+        left-color: var(--#{$prefix}gray-300);
+      }
+    }
+    .fc-list-day-cushion {
+      background-color: $dark;
+    }
+  }
 }

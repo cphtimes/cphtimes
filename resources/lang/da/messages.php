@@ -23,7 +23,7 @@ return [
     'more' => 'mere',
     'subscribe_newsletter_header' => 'Abonner til vores nyhedsbrev',
     'subscribe_newsletter_text' => ' Ugentlig opsummering af, hvad der er nyt og spændende fra os.',
-    'all_rights_reserved' => '© :year :app. Alle rettigheder forbeholdes.',
+    'all_rights_reserved' => '© :year :app. En del af bedredanmark.dk.',
     'email_address' => 'Email addresse',
     'password' => 'Adgangskode',
     'subscribe' => 'Abonner',
@@ -108,7 +108,7 @@ return [
     'comment' => 'Kommenter',
     'comment_placeholder' => 'Indtast din kommentar her...',
     'listen_to_article' => 'Lyt til artiklen',
-    'slogan' => 'Frihed er et verbum',
+    'slogan' => 'Din hjælp igennem denne overgang for menneskeheden',
     'latest_updates' => 'Seneste',
     'noteworthy_individuals' => 'Nævneværdige individer',
     'most_popular' => 'Mest populære:',
@@ -150,5 +150,9 @@ return [
     'correction' => 'Rettelse',
     'credit' => 'Kredit',
     'empty_bio' => 'Ingen biografi.',
-    'the_project' => 'Projektet'
+    'the_project' => 'Projektet',
+    'no_articles_yet_headline' => 'Ingen artikler her endnu.',
+    'no_articles_yet_text' => 'Vi er i fuld gang med at skrive artikler til denne sektion.',
+    'go_frontpage_btn' => 'Gå til forsiden',
+    'sidebar' => 'Sidebjælke'
 ];

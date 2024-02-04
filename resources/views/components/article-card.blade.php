@@ -6,21 +6,18 @@
             </div>
         </div>
         <div class="d-none d-md-block">
-            <div @class([
-                'ratio ratio-1x1' => $style == 'compact',
+            <div @class([ 'ratio ratio-1x1'=> $style == 'compact',
                 'ratio ratio-16x9' => $style == 'expanded',
-            ])>
+                ])>
                 <img style="object-fit: cover;" src="{{$article->image_url}}" alt="{{$article->image_caption}}" class="rounded-0">
             </div>
         </div>
         <div class="article-body card-body px-0 pb-0">
             <p><small class="text-uppercase text-dark"><b>{{ $section ?? $article->section_uri }}</b></small></p>
             <h5 class="article-title card-title fw-light crop-text-2">{{ $article->headline }}</h5>
-            <div @class([
-                'd-block',
-                'd-md-none' => $style == 'expanded'
-            ])>
-            <p class="opacity-50 crop-text-4">{{ $article->abstract }}</p>
+            <div @class([ 'd-block' , 'd-md-none'=> $style == 'expanded'
+                ])>
+                <p class="opacity-50 crop-text-4">{{ $article->abstract }}</p>
             </div>
         </div>
     </article>

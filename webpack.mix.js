@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,17 +11,18 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/auth.js', 'public/js')
-
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css')
-    .sass('resources/scss/style.scss', 'public/css/style.css')
+mix
+  .js("resources/js/app.js", "public/js")
+  .postCss("resources/css/app.css", "public/css")
+  .sass("resources/scss/theme.scss", "public/css")
+  .js("resources/js/theme.js", "public/js")
+  .css("resources/icons/around-icons.min.css", "public/icons");
 
 mix.webpackConfig({
   output: {
-    library: 'libraryName',
-    libraryTarget: 'umd',
+    library: "libraryName",
+    libraryTarget: "umd",
     umdNamedDefine: true, // optional
-    globalObject: 'this' // optional
-  }
-})
+    globalObject: "this", // optional
+  },
+});

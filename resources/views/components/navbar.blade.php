@@ -1,144 +1,125 @@
-<nav @class(!empty($class) ? $class : [
-    'sticky-top navbar navbar-stuck',
-    'shadow-sm' => $darkMode == false
-])>
+<header @class(!empty($class) ? $class : [ 'navbar navbar-expand-lg navbar-stuck fixed-top bg-dark' ])>
     <div class="d-flex justify-content-between container-fluid">
-        <!-- Mobile left hand side -->
-        <div class="d-block d-lg-none">
-            <button class="btn btn-link text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <div class="d-flex align-items-center justify-content-center" style="font-size: 1.2em">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-list text-black" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                    </svg>
-                </div>
-            </button>
-        </div>
-        <!-- Desktop left hand side -->
-        <div class="d-none d-lg-block">
-            <div class="d-flex justify-content-start">
-                <div class="nav-item dropdown pe-2">
-                    <button type="button" class="btn btn-link text-dark" id="dropdownShareMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                        <div class="d-flex align-items-center justify-content-center" style="font-size: 1.2em">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                            </svg>
-                        </div>
-                    </button>
-                    <ul class="dropdown-menu mx-0 shadow" aria-labelledby="dropdownShareMenu">
-                        <li>
-                            <a class="dropdown-item" aria-current="page" href="/">{{__('messages.frontpage')}}</a>
-                        </li>
-                        @foreach($sections->slice(0,9) as $section)
+        <div>
+            <div class="d-none d-lg-block navbar-dark">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                            <div class="d-flex align-items-center justify-content-center" style="font-size: 1.2em">
+                                <i class="ai ai-menu"></i>
+                            </div>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" aria-current="page" href="{{route('home')}}">{{__('messages.frontpage')}}</a>
+                            </li>
+                            @foreach($sections->slice(0,9) as $section)
                             <li>
                                 <a class="dropdown-item" aria-current="page" href="{{ route('section', ['section' => $section->uri]) }}">{{$section->name}}</a>
                             </li>
-                        @endforeach
-                        
-                        @if ($sections->slice(9)->count() > 0)
-                        <li class="dropdown"><a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">{{ ucfirst(__('messages.more')) }}</a>
-                            <ul class="dropdown-menu">
-                            @foreach ($sections->slice(9) as $section)
-                                <li><a class="dropdown-item" href="{{ route('section', ['section' => $section->uri]) }}">{{$section->name}}</a></li>
                             @endforeach
-                            </ul>
-                        </li>
-                        @endif
-                    </ul>
-                </div>
-                <div class="d-none" id="autocomplete"></div>
-                <button onclick="window.autocomplete.openAutoComplete()" type="button" @class([
-                    'btn',
-                    'btn-link',
-                    'text-dark',
-                    'btn-sm'
-                    ])>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                    </svg>
+
+                            @if ($sections->slice(9)->count() > 0)
+                            <li class="dropdown">
+                                <a class="dropdown-item dropdown-toggle" data-bs-auto-close="outside" aria-expanded="true" href="#" data-bs-toggle="dropdown">{{ ucfirst(__('messages.more')) }}</a>
+                                <ul class="dropdown-menu">
+                                    @foreach ($sections->slice(9) as $section)
+                                    <li><a class="dropdown-item" href="{{ route('section', ['section' => $section->uri]) }}">{{$section->name}}</a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                            @endif
+                        </ul>
+                    </li>
+                    <li class="d-none d-lg-block nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
+                            <div class="d-flex align-items-center justify-content-center" style="font-size: 1.2em">
+                                <i class="ai ai-search"></i>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- off canvas mobile -->
+            <div class="d-lg-none">
+                <button type="button" class="navbar-toggler navbar-dark me-2" data-bs-toggle="offcanvas" data-bs-target="#primaryMenu" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
+                <div class="offcanvas offcanvas-start" id="primaryMenu">
+                    <div class="offcanvas-header">
+                        <h5 class="mt-1 mb-0">Menu</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body pt-0">
+                        <ul class="navbar-nav p-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('home')}}">{{__('messages.frontpage')}}</a>
+                            </li>
+                            @foreach ($sections->slice(0,9) as $section)
+                            <li class="nav-item">
+                                <a href="{{ route('section', ['section' => $section->uri]) }}" class="nav-link">{{$section->name}}</a>
+                            </li>
+                            @endforeach
+
+                            @if ($sections->slice(9)->count() > 0)
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside">{{ ucfirst(__('messages.more')) }}</a>
+                                <ul class="dropdown-menu">
+                                    @foreach ($sections->slice(9) as $section)
+                                    <li><a href="{{ route('section', ['section' => $section->uri]) }}" class="dropdown-item">{{$section->name}}</a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                            @endif
+                        </ul>
+                    </div>
+
+                    <div class="offcanvas-header d-flex border-top">
+                        @auth
+                        @include('components.auth-dropdown', ['user' => $user])
+                        @endauth
+
+                        @guest
+                        <a href="{{route('home')}}" class="btn btn-outline-primary w-100">
+                            <i class="ai-login me-1"></i>
+                            {{__('messages.log_in')}}
+                        </a>
+                        @endguest
+                    </div>
+
+                </div>
             </div>
         </div>
 
-        <!-- Logo -->
-        <div class="text-center">
+        <div class="text-center navbar-dark">
             <a class="navbar-brand fw-normal chomsky" href="/">
-                <span class="d-md-none" style="font-size: 1.5rem;">{{__('messages.brand_name_letter')}}</span>
+                <span class="d-md-none" style="font-size: 1.5rem;">{{__('messages.brand_name')}}</span>
                 <span class="d-none d-md-block" style="font-size: 1.5rem;">{{__('messages.brand_name')}}</span>
             </a>
         </div>
 
-        <!-- Right hand side -->
-        <div class="d-flex justify-content-end align-items-center">
-            <div class="px-2">
-                <div class="d-none d-lg-block">
-                    <button id="header__moon" onclick="window.darkmode.toLightMode()" type="button" @class([
-                        'd-none' => $darkMode == false,
-                        'btn',
-                        'btn-link',
-                        'text-dark',
-                        'btn-sm'
-                    ])>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon" viewBox="0 0 16 16">
-                            <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z"/>
-                        </svg>
-                    </button>
-
-                    <button id="header__sun" onclick="window.darkmode.toDarkMode()" type="button" @class([
-                        'd-none' => $darkMode == true,
-                        'btn',
-                        'btn-link',
-                        'text-dark',
-                        'btn-sm'
-                    ])>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brightness-high" viewBox="0 0 16 16">
-                            <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
-                        </svg>
-                    </button>
-                </div>
+        <div class="navbar-dark">
+            <div class="d-lg-none">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
+                    <div class="d-flex align-items-center justify-content-center" style="font-size: 1.2em">
+                        <i class="ai ai-search"></i>
+                    </div>
+                </a>
             </div>
-            <div>
-                <!-- Desktop -->
-                <div class="d-none d-lg-block">
-                    @auth
-                        @include('components.auth-dropdown', ['user' => $user])
-                    @endauth
-                    @guest
-                        <a type="button btn-primary" role="button" href="{{route('login')}}" class="btn btn-primary btn-sm">{{__('messages.log_in')}}</a>
-                    @endguest
-                </div>
+            <div class="d-none d-lg-block">
+                @auth
+                @include('components.auth-dropdown', ['user' => $user])
+                @endauth
 
-                <!-- Mobile and tablet -->
-                <div class="d-block d-lg-none">
-                    <div class="d-none" id="autocomplete"></div>
-                    <button class="btn btn-link text-dark" onclick="window.autocomplete.openAutoComplete()" type="button" @class([
-                        'btn',
-                        'btn-link',
-                        'text-dark',
-                        'btn-sm'
-                        ])>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                        </svg>
-                    </button>
-                </div>
+                @guest
+                <a type="button btn-primary" role="button" href="{{route('login')}}" class="btn btn-primary btn-sm">
+                    <i class="ai-login me-2 ms-n1"></i>
+                    {{__('messages.log_in')}}
+                </a>
+                @endguest
             </div>
         </div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Frontpage</a>
-                </li>
-                @foreach($sections as $section)
-                    <li class="nav-item">
-                        <a class="dropdown-item" aria-current="page" href="{{ route('section', ['section' => $section->uri]) }}">{{$section->name}}</a>
-                    </li>
-                @endforeach
-            </ul>
-            <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-            <div class="btn-group me-2" role="group" aria-label="Second group">
-                <a type="button btn-primary" role="button" href="{{route('login')}}" class="btn btn-primary">{{__('messages.log_in')}}</a>
-            </div>
-            </div>
-        </div>
+
     </div>
-</nav>
+</header>

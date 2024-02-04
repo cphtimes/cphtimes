@@ -10,12 +10,12 @@
   align-items: center;
   justify-content: center;
 
-  &:not([class^='btn-outline-']):not([class*=' btn-outline-']):not(.btn-secondary):not(.btn-light):not(.btn-link) {
+  &:not([class^="btn-outline-"]):not([class*=" btn-outline-"]):not(.btn-secondary):not(.btn-light):not(.btn-link) {
     --#{$prefix}btn-color: #{$btn-color};
   }
 
-  > [class^='ai-'],
-  > [class*=' ai-'] {
+  > [class^="#{$icon-prefix}"],
+  > [class*=" #{$icon-prefix}"] {
     font-size: 1.25em;
   }
 }
@@ -37,17 +37,17 @@
 
 .btn-secondary,
 .btn-light {
-  --#{$prefix}btn-color: #{$gray-800}  !important;
-  --#{$prefix}btn-hover-color: #{$gray-900} !important;
-  --#{$prefix}btn-active-color: #{$gray-900} !important;
+  --#{$prefix}btn-color: #{$gray-800} !important; // stylelint-disable-line declaration-no-important
+  --#{$prefix}btn-hover-color: #{$gray-900} !important; // stylelint-disable-line declaration-no-important
+  --#{$prefix}btn-active-color: #{$gray-900} !important; // stylelint-disable-line declaration-no-important
   --#{$prefix}btn-disabled-color: #{$gray-700};
 }
 
 
 // Outline buttons
 
-[class^='btn-outline-'],
-[class*=' btn-outline-'] {
+[class^="btn-outline-"],
+[class*=" btn-outline-"] {
   --#{$prefix}btn-hover-color: #{$btn-color};
   --#{$prefix}btn-active-color: #{$btn-color};
 }
@@ -171,26 +171,26 @@
   }
   &::after {
     display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
     margin-left: .25rem;
+    content: "";
+    background-color: currentcolor;
+    -webkit-mask: escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M8.667 12.667c.4-.4 1.067-.4 1.467 0l6 6 6-6c.4-.4 1.067-.4 1.467 0s.4 1.067 0 1.467l-6.667 6.667c-.4.4-1.067.4-1.467 0L8.8 14.134c-.533-.533-.533-1.067-.133-1.467z'/></svg>")) no-repeat 50% 50%; // stylelint-disable-line property-no-vendor-prefix
+    mask: escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M8.667 12.667c.4-.4 1.067-.4 1.467 0l6 6 6-6c.4-.4 1.067-.4 1.467 0s.4 1.067 0 1.467l-6.667 6.667c-.4.4-1.067.4-1.467 0L8.8 14.134c-.533-.533-.533-1.067-.133-1.467z'/></svg>")) no-repeat 50% 50%;
+    -webkit-mask-size: cover; // stylelint-disable-line property-no-vendor-prefix
+    mask-size: cover;
     will-change: transform;
     transition: transform .2s ease-in-out;
     transform: rotate(180deg);
-    font: {
-      family: $icons-font-family;
-      size: 1.5em;
-    }
-    content: '';
   }
-  &.fs-2, &.fs-3,
-  &.fs-4, &.fs-5 {
+  &.fs-2,
+  &.fs-3,
+  &.fs-4,
+  &.fs-5 {
     &::after {
-      font-size: 1em;
-    }
-  }
-  &.h2, &.h3, &.h4,
-  &.h5, &.h6 {
-    &::after {
-      font-weight: $font-weight-medium;
+      width: 1em;
+      height: 1em;
     }
   }
   &.collapsed {
@@ -215,45 +215,80 @@
   --#{$prefix}btn-scroll-top-box-shadow: #{$btn-scroll-top-box-shadow};
 
   position: fixed;
+  right: $spacer;
+  bottom: $spacer;
+  z-index: $zindex-fixed;
   display: flex;
   align-items: center;
   justify-content: center;
-  right: $spacer;
-  bottom: $spacer;
   width: var(--#{$prefix}btn-scroll-top-size);
   height: var(--#{$prefix}btn-scroll-top-size);
+  font-size: var(--#{$prefix}btn-scroll-top-font-size);
+  color: var(--#{$prefix}btn-scroll-top-color) !important; // stylelint-disable-line declaration-no-important
+  text-decoration: none;
+  box-shadow: var(--#{$prefix}btn-scroll-top-box-shadow);
+  opacity: 0;
   transition: $btn-scroll-top-transition;
   transform: scale(0);
   @include border-radius(50%);
-  color: var(--#{$prefix}btn-scroll-top-color) !important;
-  font-size: var(--#{$prefix}btn-scroll-top-font-size);
-  box-shadow: var(--#{$prefix}btn-scroll-top-box-shadow);
-  text-decoration: none;
-  opacity: 0;
-  z-index: $zindex-fixed;
 
   &::before {
     position: absolute;
     top: .0625rem;
     left: .0625rem;
+    z-index: -1;
     width: calc(var(--#{$prefix}btn-scroll-top-size) - .125rem);
     height: calc(var(--#{$prefix}btn-scroll-top-size) - .125rem);
+    content: "";
     background-color: var(--#{$prefix}btn-scroll-top-bg);
     @include border-radius(50%);
-    z-index: -1;
-    content: '';
   }
 
   > svg {
-    display: block;
     position: absolute;
     top: 0;
     left: 0;
+    display: block;
     transform: rotate(90deg);
   }
 
   &.show {
-    transform: scale(1);
     opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+// Dark color mode
+
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    .btn-secondary:not([data-bs-theme="light"]) {
+      --#{$prefix}btn-color: var(--#{$prefix}gray-800) !important; // stylelint-disable-line declaration-no-important
+      --#{$prefix}btn-hover-color: #{$light} !important; // stylelint-disable-line declaration-no-important
+      --#{$prefix}btn-active-color: #{$light} !important; // stylelint-disable-line declaration-no-important
+      --#{$prefix}btn-border-color: transparent;
+      --#{$prefix}btn-hover-border-color: transparent;
+      --#{$prefix}btn-active-border-color: transparent;
+      --#{$prefix}btn-bg: var(--#{$prefix}gray-200);
+      --#{$prefix}btn-hover-bg: rgba(#{to-rgb($light)}, .1);
+      --#{$prefix}btn-active-bg: rgba(#{to-rgb($light)}, .1);
+    }
+    .btn-outline-secondary:not([data-bs-theme="light"]) {
+      --#{$prefix}btn-color: var(--#{$prefix}gray-800);
+      --#{$prefix}btn-hover-color: var(--#{$prefix}gray-800);
+      --#{$prefix}btn-active-color: var(--#{$prefix}gray-800);
+      --#{$prefix}btn-border-color: rgba(#{to-rgb($light)}, .18);
+      --#{$prefix}btn-hover-border-color: rgba(#{to-rgb($light)}, .18);
+      --#{$prefix}btn-active-border-color: rgba(#{to-rgb($light)}, .18);
+      --#{$prefix}btn-hover-bg: var(--#{$prefix}gray-200);
+      --#{$prefix}btn-active-bg: var(--#{$prefix}gray-200);
+    }
+    .btn-dark:not([data-bs-theme="light"]) {
+      @extend .btn-light;
+    }
+    .btn-outline-dark:not([data-bs-theme="light"]) {
+      @extend .btn-outline-light;
+    }
   }
 }

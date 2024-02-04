@@ -48,8 +48,8 @@
   .nav-item { margin-bottom: 0; }
 }
 .card-header-tabs .nav-link.active {
-  border-bottom-color: var(--#{$prefix}nav-tabs-link-active-border-color);
   background-color: transparent;
+  border-bottom-color: var(--#{$prefix}nav-tabs-link-active-border-color);
 }
 
 
@@ -60,14 +60,6 @@
     top: var(--#{$prefix}list-group-border-width) solid var(--#{$prefix}list-group-border-color);
     bottom: var(--#{$prefix}list-group-border-width) solid var(--#{$prefix}list-group-border-color);
   }
-}
-
-
-// Overflow hidden with rounded corners fix for Safari
-
-[class^='rounded-'].overflow-hidden,
-[class*=' rounded-'].overflow-hidden {
-  transform: translateZ(0);
 }
 
 
@@ -88,10 +80,10 @@
 
   &:hover {
     .opacity-0 {
-      opacity: 1 !important;
+      opacity: 1 !important; // stylelint-disable-line declaration-no-important
     }
     .opacity-100 {
-      opacity: 0 !important;
+      opacity: 0 !important; // stylelint-disable-line declaration-no-important
     }
 
     .card-lifted,
@@ -113,8 +105,8 @@
     --#{$prefix}heading-color: #{$white};
     --#{$prefix}body-color: rgba(#{to-rgb($white)}, .7);
 
-    border-color: var(--#{$prefix}primary) !important;
-    background-color: var(--#{$prefix}primary) !important;
+    background-color: var(--#{$prefix}primary) !important; // stylelint-disable-line declaration-no-important
+    border-color: var(--#{$prefix}primary) !important; // stylelint-disable-line declaration-no-important
 
     .card-title {
       color: var(--#{$prefix}heading-color);
@@ -135,11 +127,11 @@
 .card-flip {
   display: block;
   height: 100%;
+  text-decoration: none;
+  background-color: transparent;
   border: 0;
   border-radius: 0;
-  background-color: transparent;
   perspective: 1000px;
-  text-decoration: none;
 }
 
 .card-flip-inner {
@@ -171,8 +163,8 @@
 
 .card-flip-back {
   position: relative;
-  transform: rotateY(180deg);
   background-color: $card-bg;
+  transform: rotateY(180deg);
 }
 
 .card-flip:hover {
@@ -204,5 +196,17 @@
     top-left-radius: var(--#{$prefix}border-radius-lg);
     top-right-radius: var(--#{$prefix}border-radius-lg);
     bottom-left-radius: var(--#{$prefix}border-radius-lg);
+  }
+}
+
+
+// Dark color mode
+
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    .card-hover-primary:hover {
+      background-color: var(--#{$prefix}primary) !important; // stylelint-disable-line declaration-no-important
+      border-color: var(--#{$prefix}primary) !important; // stylelint-disable-line declaration-no-important
+    }
   }
 }

@@ -39,5 +39,16 @@
       right: calc(var(--#{$prefix}modal-padding) * -.75);
       left: calc(var(--#{$prefix}modal-padding) * -.75);
     }
-  }  
+  }
+}
+
+
+// Dark color mode
+
+@if $enable-dark-mode {
+  @include color-mode(dark) {
+    .modal {
+      --#{$prefix}modal-bg: var(--#{$prefix}dark);
+    }
+  }
 }

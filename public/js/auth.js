@@ -15672,9 +15672,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/scss/style.scss":
+/***/ "./resources/scss/theme.scss":
 /*!***********************************!*\
-  !*** ./resources/scss/style.scss ***!
+  !*** ./resources/scss/theme.scss ***!
   \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -15689,6 +15689,19 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************!*\
   !*** ./resources/css/app.css ***!
   \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/icons/around-icons.min.css":
+/*!**********************************************!*\
+  !*** ./resources/icons/around-icons.min.css ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -16086,7 +16099,8 @@ function __classPrivateFieldSet(receiver, state, value, kind, f) {
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/auth": 0,
-/******/ 			"css/style": 0,
+/******/ 			"theme": 0,
+/******/ 			"around-icons-min": 0,
 /******/ 			"css/app": 0
 /******/ 		};
 /******/ 		
@@ -16135,9 +16149,10 @@ function __classPrivateFieldSet(receiver, state, value, kind, f) {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/style","css/app"], () => (__webpack_require__("./resources/js/auth.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/style","css/app"], () => (__webpack_require__("./resources/scss/style.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/style","css/app"], () => (__webpack_require__("./resources/css/app.css")))
+/******/ 	__webpack_require__.O(undefined, ["theme","around-icons-min","css/app"], () => (__webpack_require__("./resources/js/auth.js")))
+/******/ 	__webpack_require__.O(undefined, ["theme","around-icons-min","css/app"], () => (__webpack_require__("./resources/scss/theme.scss")))
+/******/ 	__webpack_require__.O(undefined, ["theme","around-icons-min","css/app"], () => (__webpack_require__("./resources/css/app.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["theme","around-icons-min","css/app"], () => (__webpack_require__("./resources/icons/around-icons.min.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ 	return __webpack_exports__;

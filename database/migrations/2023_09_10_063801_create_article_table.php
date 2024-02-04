@@ -13,7 +13,7 @@ class CreateArticleTable extends Migration
      */
     public function up()
     {
-        Schema::create('article', function(Blueprint $table) {
+        Schema::create('article', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->longText('body_url');
@@ -21,7 +21,6 @@ class CreateArticleTable extends Migration
             $table->timestamp('expires_at')->nullable();
             $table->timestamp('recorded_at')->nullable();
             $table->timestamp('archived_at')->nullable();
-            // $table->integer('section_id');
             $table->text('section_uri');
             $table->longText('backstory')->nullable();
             $table->integer('word_count')->default(0);

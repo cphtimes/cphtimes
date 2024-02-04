@@ -1,6 +1,7 @@
 {
-    "/js/auth.js": "/js/auth.js",
     "/js/app.js": "/js/app.js",
-    "/css/style.css": "/css/style.css",
+    "/js/theme.js": "/js/theme.js",
+    "/css/theme.css": "/css/theme.css",
+    "/icons/around-icons.min.css": "/icons/around-icons.min.css",
     "/css/app.css": "/css/app.css"
 }
