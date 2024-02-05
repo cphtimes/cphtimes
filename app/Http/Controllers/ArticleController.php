@@ -111,7 +111,7 @@ class ArticleController extends Controller
         if ($relatedArticles->count() == 0) {
             $relatedArticles = Article::whereIn('in_language', $languages)
                 ->where('id', '!=', $article->id)
-                ->orderByRaw(sprintf("extensions.SIMILARITY(headline, '%s'::text) DESC", $article->headline))
+                ->orderByRaw(sprintf("extensions.SIMILARITY(headline, '%s'::text) DESC", htmlspecialchars($article->headline, ENT_QUOTES)))
                 ->limit(5)
                 ->get();
         }
