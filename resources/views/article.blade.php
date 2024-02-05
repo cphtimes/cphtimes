@@ -365,7 +365,7 @@
                             ))
                         </div>
                         @else
-                        <p class="pb-3 mb-3 mb-lg-4">{{__('messages.sign_in_to_comment')}}&nbsp;&nbsp;<a href="/login">{{__('messages.sign_in_here')}}</a></p>
+                        <p class="pb-3 mb-3 mb-lg-4">{{__('messages.sign_in_to_comment')}}&nbsp;&nbsp;<a href="{{route('login')}}">{{__('messages.sign_in_here')}}</a></p>
                         @endif
                         @foreach ($comments as $comment)
                         <!-- Comment-->

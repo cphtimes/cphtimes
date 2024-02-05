@@ -107,8 +107,3 @@ Route::post('fetchUrl', function (Request $request) {
         ]
     ], 200);
 }); // ->middleware(['author']);
-
-Route::get('/test', function (Request $request) {
-    $name = route('article', ['section' => 'targeted-individuals', 'article' => 'hello-world']);
-    return $name;
-});

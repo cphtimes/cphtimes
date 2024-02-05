@@ -109,7 +109,7 @@
             </div>
             <div class="d-none d-lg-block">
 
-                <div class="d-flex justify-content-end">
+                <div class="d-flex justify-content-end align-items-center">
                     <div class="px-2">
                         <div class="mt-1 me-3 me-lg-4 ms-auto">
                             <div class="form-check form-switch mode-switch" data-bs-toggle="mode">
