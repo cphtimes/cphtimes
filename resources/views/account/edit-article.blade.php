@@ -310,7 +310,7 @@
                                         <input name="headline" class="form-control" type="text" value="{{$article->headline}}" id="headline" required>
                                     </div>
                                     <div class="col-sm-6">
-                                        <label class="form-label" for="fn">{{ucfirst(trans_choice('sections', 1))}}</label>
+                                        <label class="form-label" for="fn">{{ucfirst(trans_choice('messages.sections', 1))}}</label>
                                         <select name="section_uri" class="form-select" id="section" required>
                                             <option value="" disabled="">{{__('messages.choose')}}</option>
                                             @foreach ($sections as $section)

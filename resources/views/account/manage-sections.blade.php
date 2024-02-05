@@ -290,7 +290,7 @@
                 ))
                 <!-- Page content-->
                 <div class="col-lg-9 pt-4 pb-2 pb-sm-4">
-                    <h1 class="serif fst-italic h2 mb-4">Sections</h1>
+                    <h1 class="serif fst-italic h2 mb-4">{{ucfirst(trans_choice('messages.sections', 2))}}</h1>
                     <!-- Basic info-->
                     <section class="card border py-1 p-md-2 p-xl-3 p-xxl-4 mb-4">
                         <div class="card-body">

@@ -159,21 +159,33 @@ class ManageController extends Controller
             'name_da' => []
         ]);
 
-        $sections = Section::where('position', '>=', (int) $data['position'])->increment('position', 1);
+        $all_sections = Section::where('language_code', 'en')
+            ->orderBy('position', 'asc')
+            ->get();
+
+        $index = (int) $data['position'];
+        $is_new_last_element = $all_sections->count() == $index;
+        if ($is_new_last_element) {
+            $position = $all_sections->last()->position + 1;
+        } else {
+            $position = $all_sections[$index]->position;
+        }
+
+        $sections = Section::where('position', '>=', $position)->increment('position', 1);
 
         $uri = Str::slug($data['name_en']);
 
         $en_section = Section::create([
             'name' => $data['name_en'],
             'uri' => $uri,
-            'position' => (int) $data['position'],
+            'position' => $position,
             'language_code' => 'en'
         ]);
 
         $da_section = Section::create([
             'name' => $data['name_da'],
             'uri' => $uri,
-            'position' => (int) $data['position'],
+            'position' => $position,
             'language_code' => 'da'
         ]);
 
