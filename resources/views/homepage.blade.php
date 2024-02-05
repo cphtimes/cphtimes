@@ -134,6 +134,8 @@
             border-right: none !important;
         }
         */
+
+
         @media (min-width: 768px) {
             #above-fold-list {
                 border-right: none !important;
@@ -157,6 +159,10 @@
         }
 
         @media (min-width: 992px) {
+            .articles-grid {
+                margin: auto;
+            }
+
             #above-fold-list {
                 border-right: 1px solid #dee2e6 !important;
             }
@@ -238,10 +244,10 @@
         'sections' => $sections,
         'darkMode' => $darkMode
         ))
-        <div class="container pt-5 pb-4 pt-lg-4">
-            <div class="row pb-3 pb-md-5 px-md-3 px-lg-0 pt-5 pt-md-4 pt-lg-0">
+        <div class="container pt-5 pb-4 pt-lg-4 px-md-0 px-lg-0">
+            <div style="margin: auto" class="row pt-4 pt-lg-0 pb-3 pb-md-5 px-md-3 px-lg-0">
                 <!-- Above the fold -->
-                <ul class="d-block d-md-none list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-lg-4 border-end-0 border-end-lg">
+                <ul class="d-block d-md-none list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-lg-4 border-end-0 border-end-lg pb-4">
                     @if (count($topArticles) > 0)
                     <li class="list-group-item border-bottom">
                         @include('components.article-card', array(
@@ -257,7 +263,7 @@
                         ))
                         @endfor
                 </ul>
-                <ul class="d-none d-md-block list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-lg-4 border-end-0 border-end-lg">
+                <ul class="d-none d-md-block list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-lg-4 border-end-0 border-end-lg pb-4">
                     @for ($i = 0; $i < min(count($topArticles), 3); $i++) @include('components.article-list-item', array( 'article'=> $topArticles[$i],
                         'section' => $topArticles[$i]->localizedSection($sections),
                         'style' => $i == 0 ? 'large' : 'expanded',
@@ -267,26 +273,19 @@
                 </ul>
 
                 <!-- Latest updates -->
-                <div class="d-block d-lg-none">
-                    <h5 class="w-100 pt-3 serif fw-bolder fst-italic px-4 px-md-0">{{__('messages.latest_updates')}}</h5>
-                    <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-                            @for ($i = 0; $i < ceil($latestUpdates->count() / 4); $i++)
-                                <div class="swiper-slide">
-                                    <ul style="overflow-y: hidden;" class="list-group list-group-flush py-3 col-12 px-lg-3 pe-0">
-                                        @foreach ($latestUpdates->slice($i*4, 4) as $article)
-                                        @include('components.article-list-item', array(
-                                        'article' => $article,
-                                        'section' => $article->localizedSection($sections),
-                                        'style' => 'expanded'
-                                        ))
-                                        @endforeach
-                                    </ul>
-                                </div>
-                                @endfor
-                        </div>
+                <div class="d-block d-lg-none pb-4 pb-md-0 px-0">
+                    <h5 class="w-100 pt-3 serif fw-bolder fst-italic px-0 px-md-0">{{__('messages.latest_updates')}}</h5>
+                    <div>
+                        <ul style="overflow-y: hidden;" class="list-group list-group-flush py-3 col-12 px-lg-3 pe-0">
+                            @foreach ($latestUpdates->slice(0, 4) as $article)
+                            @include('components.article-list-item', array(
+                            'article' => $article,
+                            'section' => $article->localizedSection($sections),
+                            'style' => 'expanded'
+                            ))
+                            @endforeach
+                        </ul>
                     </div>
-                    <div class="pt-4 swiper-pagination"></div>
                 </div>
 
                 <ul style="overflow-y: scroll; height:566px;" class="d-none d-lg-block col-xl-3 col-lg-4 col-md-12 col-12 border-end-xl px-4">
@@ -300,7 +299,7 @@
                     @endforeach
                 </ul>
 
-                <ul style="overflow-y: scroll; height:566px;" class="d-none d-lg-block list-group list-group-flush col-xl-3 col-lg-12 col-md-12 col-12 px-4">
+                <ul style="overflow-y: scroll; height:566px;" class="d-none d-xl-block list-group list-group-flush col-xl-3 col-lg-12 col-md-12 col-12 px-4">
                     <h5 class="w-100 serif fw-bolder fst-italic">{{__('messages.popular_articles')}}</h5>
                     @foreach ($popular as $article)
                     @include('components.article-list-item', array(
@@ -313,9 +312,9 @@
             </div>
 
             <!-- Grid of articles -->
-            @for ($i = 0; $i < floor(count($articles)/4); $i++) <div>
-                <div class="d-flex flex-wrap pb-5">
-                    @for ($j = 0; $j < 4; $j++) @if (array(2, 0, 3, 1)[$i % 4]==$j) <div @class([ 'py-2 py-lg-0 px-2' , sprintf('order-sm-%d', $j), sprintf('order-md-3', $j), sprintf('order-lg-%d', $j), 'border-end-0 border-end-lg'=> $j < 3, 'cell-flexible' ])>
+            @for ($i = 0; $i < floor(count($articles)/4); $i++) <div class="articles-grid row pb-lg-0 px-0 py-0 py-md-2 py-lg-5">
+                <div class="d-flex flex-wrap px-lg-2">
+                    @for ($j = 0; $j < 4; $j++) @if (array(2, 0, 3, 1)[$i % 4]==$j) <div @class([ 'px-0 px-md-2 pb-3 py-md-4 py-lg-0' , sprintf('order-sm-%d', $j), sprintf('order-md-3', $j), sprintf('order-lg-%d', $j), 'border-end-0 border-end-lg'=> $j < 3, 'cell-flexible' ])>
                             @include('components.article-card', array(
                             'article' => $articles[$j+($i*4)],
                             'section' => $articles[$j+($i*4)]->localizedSection($sections),
@@ -323,7 +322,7 @@
                             ))
                 </div>
                 @else
-                <div @class([ 'px-2' , sprintf('order-sm-%d', $j), sprintf('order-md-%d', $j==3 ? 2 : $j), sprintf('order-lg-%d', $j), 'border-end-0 border-end-md'=> $j < 3, 'cell-compact' ])>
+                <div @class([ 'pb-3 pb-lg-0 px-0' , 'px-md-2' , sprintf('order-sm-%d', $j), sprintf('order-md-%d', $j==3 ? 2 : $j), sprintf('order-lg-%d', $j), 'border-end-0 border-end-md'=> $j < 3, 'cell-compact' ])>
                         @include('components.article-card', array(
                         'article' => $articles[$j+($i*4)],
                         'section' => $articles[$j+($i*4)]->localizedSection($sections),
@@ -339,49 +338,42 @@
         <div class="row d-block d-lg-none px-0 px-md-3">
             @foreach ($highlightedSections as $section_uri => $section)
             <div>
-                <h5 class="w-100 pt-3 serif fw-bolder fst-italic px-4 px-md-0">{{ $section_uri }}</h5>
+                <h5 class="w-100 pt-3 serif fw-bolder fst-italic px-0">{{ $sections->where('uri', $section_uri)->where('language_code', App::currentLocale())->first()->name }}</h5>
                 @if ($section->count() == 0)
-                <p>No articles here yet.</p>
+                <p class="pb-5">{{__('messages.no_articles_yet_text')}}</p>
                 @else
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper">
-                        @for ($i = 0; $i < ceil($section->count()/4); $i++)
-                            <div class="swiper-slide">
-                                <ul style="overflow-y: hidden;" class="list-group list-group-flush py-3 col-12 px-lg-3 pe-0">
-                                    @foreach ($section->slice($i*4, 4) as $article)
-                                    @include('components.article-list-item', array(
-                                    'article' => $article,
-                                    'section' => $article->localizedSection($sections),
-                                    'style' => 'expanded'
-                                    ))
-                                    @endforeach
-                                </ul>
-                            </div>
-                            @endfor
-                    </div>
+                <div>
+                    <ul style="overflow-y: hidden;" class="list-group list-group-flush py-3 col-12 px-lg-3 pe-0">
+                        @foreach ($section->slice(0, 4) as $article)
+                        @include('components.article-list-item', array(
+                        'article' => $article,
+                        'section' => $article->localizedSection($sections),
+                        'style' => 'expanded'
+                        ))
+                        @endforeach
+                    </ul>
                 </div>
-                <div class="pt-4 swiper-pagination"></div>
                 @endif
             </div>
             @endforeach
         </div>
 
-        <div class="d-none d-lg-block">
-            <div class="row">
+        <div class="d-none d-lg-block py-lg-5">
+            <div style="margin: auto" class="row">
                 @foreach ($highlightedSections as $section_uri => $section)
-                <ul style="overflow-y: scroll; height:566px;" class="list-group list-group-flush col-xl-3 col-lg-4 col-md-12 col-12 border-end px-4">
-                    <h5 class="serif fw-bolder fst-italic">{{ $sections->where('uri', $section_uri)->where('language_code', App::currentLocale())->first()->name }}</h5>
-                    @if (count($section) == 0)
-                    <p>No articles here yet.</p>
-                    @else
-                    @foreach ($section as $article)
-                    @include('components.article-list-item', array(
-                    'article' => $article,
-                    'section' => $article->localizedSection($sections),
-                    'style' => 'compact'
-                    ))
-                    @endforeach
-                    @endif
+                <ul style="overflow-y: scroll; height:566px;" @class(['list-group list-group-flush col-xl-3 col-lg-4 col-md-12 col-12 px-4', 'border-end'=> $loop->iteration < count($highlightedSections)])>
+                        <h5 class="serif fw-bolder fst-italic">{{ $sections->where('uri', $section_uri)->where('language_code', App::currentLocale())->first()->name }}</h5>
+                        @if (count($section) == 0)
+                        <p>{{__('messages.no_articles_yet_text')}}</p>
+                        @else
+                        @foreach ($section as $article)
+                        @include('components.article-list-item', array(
+                        'article' => $article,
+                        'section' => $article->localizedSection($sections),
+                        'style' => 'compact'
+                        ))
+                        @endforeach
+                        @endif
                 </ul>
                 @endforeach
             </div>

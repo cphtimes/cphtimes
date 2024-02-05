@@ -316,7 +316,7 @@
                                 ))
                     </div>
                     @else
-                    <div @class([ 'pb-3 pb-lg-0  px-0' , 'px-md-2' , sprintf('order-sm-%d', $j), sprintf('order-md-%d', $j==3 ? 2 : $j), sprintf('order-lg-%d', $j), 'border-end-0 border-end-md'=> $j < 3, 'cell-compact' ])>
+                    <div @class([ 'pb-3 pb-lg-0 px-0' , 'px-md-2' , sprintf('order-sm-%d', $j), sprintf('order-md-%d', $j==3 ? 2 : $j), sprintf('order-lg-%d', $j), 'border-end-0 border-end-md'=> $j < 3, 'cell-compact' ])>
                             @include('components.article-card', array(
                             'article' => $articles[$j+($i*4)],
                             'section' => $articles[$j+($i*4)]->localizedSection($sections),
