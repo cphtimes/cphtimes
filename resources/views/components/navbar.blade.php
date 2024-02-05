@@ -108,16 +108,35 @@
                 </a>
             </div>
             <div class="d-none d-lg-block">
-                @auth
-                @include('components.auth-dropdown', ['user' => $user, 'text_white' => true])
-                @endauth
 
-                @guest
-                <a type="button btn-primary" role="button" href="{{route('login', ['redirect' => \Request::getRequestUri()])}}" class="btn btn-primary btn-sm">
-                    <i class="ai-login me-2 ms-n1"></i>
-                    {{__('messages.log_in')}}
-                </a>
-                @endguest
+                <div class="d-flex justify-content-end">
+                    <div class="px-2">
+                        <div class="mt-1 me-3 me-lg-4 ms-auto">
+                            <div class="form-check form-switch mode-switch" data-bs-toggle="mode">
+                                <input class="form-check-input" type="checkbox" id="theme-mode">
+                                <label class="form-check-label" for="theme-mode">
+                                    <i class="ai-sun fs-lg"></i>
+                                </label>
+                                <label class="form-check-label" for="theme-mode">
+                                    <i class="ai-moon fs-lg"></i>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        @auth
+                        @include('components.auth-dropdown', ['user' => $user, 'text_white' => true])
+                        @endauth
+
+                        @guest
+                        <a type="button btn-primary" role="button" href="{{route('login', ['redirect' => \Request::getRequestUri()])}}" class="btn btn-primary btn-sm">
+                            <i class="ai-login me-2 ms-n1"></i>
+                            {{__('messages.log_in')}}
+                        </a>
+                        @endguest
+                    </div>
+                </div>
+
             </div>
         </div>
 

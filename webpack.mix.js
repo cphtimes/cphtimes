@@ -15,7 +15,7 @@ mix
   .js("resources/js/app.js", "public/js")
   .postCss("resources/css/app.css", "public/css")
   .sass("resources/scss/theme.scss", "public/css")
-  .js("resources/js/theme.js", "public/js")
+  .js("resources/js/theme-switcher.js", "public/js")
   .css("resources/icons/around-icons.min.css", "public/icons");
 
 mix.webpackConfig({

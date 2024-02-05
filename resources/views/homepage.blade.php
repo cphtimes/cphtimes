@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html @class(['dark-mode'=> $darkMode]) lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="light">
 
 <head>
     <meta charset="utf-8">
@@ -33,8 +33,8 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
 
-    <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/theme-switcher.js') }}" defer></script>
 
     <style>
         a {
@@ -400,10 +400,6 @@
 
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/theme.js') }}" defer></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
-    <script src="{{ asset('js/darkmode.js') }}" defer></script>
-
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>

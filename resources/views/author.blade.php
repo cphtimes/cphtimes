@@ -32,7 +32,7 @@
     </style>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/theme-switcher.js') }}" defer></script>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-W155VBDMQH"></script>
@@ -371,8 +371,6 @@
     <!-- Optional JavaScript; choose one of the two! -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
-
-    <script src="/js/darkmode.js" defer></script>
 
     <script>
         const swiper = new Swiper('.swiper', {

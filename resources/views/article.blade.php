@@ -243,6 +243,8 @@
     </style>
     <link rel="stylesheet" href="/css/app.css">
 
+    <script src="{{ asset('js/theme-switcher.js') }}" defer></script>
+
     <title>{{ $article->headline }} - {{ $section->name }} - {{env('APP_NAME')}}</title>
     <meta name="title" content="{{$article->headline}}">
     <meta name="description" content="{{$article->abstract}}">
@@ -518,8 +520,6 @@
     <!-- Optional JavaScript; choose one of the two! -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
-
-    <script src="/js/darkmode.js" defer></script>
 
     <script>
         const swiper = new Swiper('.swiper', {

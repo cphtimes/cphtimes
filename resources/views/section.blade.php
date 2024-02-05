@@ -37,6 +37,8 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <script src="{{ asset('js/theme-switcher.js') }}" defer></script>
+
     <style>
         a {
             color: #000000;
