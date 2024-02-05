@@ -295,7 +295,18 @@
                         </div>
                         <div class="d-flex align-items-center mb-4"><span class="fs-sm me-2">Share article:</span>
                             <div class="d-flex">
-                                <a class="nav-link p-2" href="mailto:?body={{URL::current()}}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Email" data-bs-original-title="Email"><i class="ai ai-mail"></i></a> <!-- me-2 -->
+                                <a class="nav-link p-2 me-2" href="mailto:?body={{URL::current()}}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Instagram" data-bs-original-title="Email">
+                                    <i class="ai-mail"></i>
+                                </a>
+                                <a class="nav-link p-2 me-2" target="_blank" href="https://www.facebook.com/share.php?u={{url()->full()}}" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Facebook" data-bs-original-title="Facebook">
+                                    <i class="ai-facebook"></i>
+                                </a>
+                                <a class="nav-link p-2 me-2" target="_blank" href="https://telegram.me/share/url?url={{url()->full()}}" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Telegram" data-bs-original-title="Telegram">
+                                    <i class="ai-telegram"></i>
+                                </a>
+                                <a class="nav-link p-2" target="_blank" href="https://twitter.com/intent/tweet?text={{url()->full()}}" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="X" data-bs-original-title="X">
+                                    <i class="ai-x"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -323,8 +334,17 @@
                                 <div class="pt-4 pt-md-0 ps-md-4 ms-md-auto">
                                     <h3 class="h5">Share article:</h3>
                                     <div class="d-flex">
-                                        <a class="nav-link p-2" href="mailto:?body={{URL::current()}}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Instagram" data-bs-original-title="Email">
-                                            <i class="ai ai-mail"></i>
+                                        <a class="nav-link p-2 me-2" href="mailto:?body={{URL::current()}}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip" data-bs-placement="bottom" aria-label="Instagram" data-bs-original-title="Email">
+                                            <i class="ai-mail"></i>
+                                        </a>
+                                        <a class="nav-link p-2 me-2" target="_blank" href="https://www.facebook.com/share.php?u={{url()->full()}}" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Facebook" data-bs-original-title="Facebook">
+                                            <i class="ai-facebook"></i>
+                                        </a>
+                                        <a class="nav-link p-2 me-2" target="_blank" href="https://telegram.me/share/url?url={{url()->full()}}" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Telegram" data-bs-original-title="Telegram">
+                                            <i class="ai-telegram"></i>
+                                        </a>
+                                        <a class="nav-link p-2" target="_blank" href="https://twitter.com/intent/tweet?text={{url()->full()}}" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="X" data-bs-original-title="X">
+                                            <i class="ai-x"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -363,9 +383,7 @@
                                 </button>
                                 <button data-bs-toggle="collapse" href="#replyCommentForm{{$comment->id}}" class="nav-link fs-sm fw-semibold px-0 py-2" type="button">
                                     {{__('messages.reply')}}
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="ms-2 ai ai-undo" viewBox="0 0 16 16">
-                                        <path d="M6.598 5.013a.144.144 0 0 1 .202.134V6.3a.5.5 0 0 0 .5.5c.667 0 2.013.005 3.3.822.984.624 1.99 1.76 2.595 3.876-1.02-.983-2.185-1.516-3.205-1.799a8.74 8.74 0 0 0-1.921-.306 7.404 7.404 0 0 0-.798.008h-.013l-.005.001h-.001L7.3 9.9l-.05-.498a.5.5 0 0 0-.45.498v1.153c0 .108-.11.176-.202.134L2.614 8.254a.503.503 0 0 0-.042-.028.147.147 0 0 1 0-.252.499.499 0 0 0 .042-.028l3.984-2.933zM7.8 10.386c.068 0 .143.003.223.006.434.02 1.034.086 1.7.271 1.326.368 2.896 1.202 3.94 3.08a.5.5 0 0 0 .933-.305c-.464-3.71-1.886-5.662-3.46-6.66-1.245-.79-2.527-.942-3.336-.971v-.66a1.144 1.144 0 0 0-1.767-.96l-3.994 2.94a1.147 1.147 0 0 0 0 1.946l3.994 2.94a1.144 1.144 0 0 0 1.767-.96v-.667z" />
-                                    </svg>
+                                    <i class="ai-redo fs-xl ms-2"></i>
                                 </button>
                             </div>
 
@@ -389,7 +407,7 @@
                                             <h6 class="mb-0">{{$reply->user->display_name}}</h6><span class="fs-sm text-muted">{{$reply->user->created_at}}</span>
                                         </div>
                                     </div>
-                                    <p class="mb-0"><a class="fw-bold text-decoration-none" href="{{ route('author', ['username' => $reply->user->username]) }}">@ {{$comment->user->username}}</a> {{$reply->text}}</p>
+                                    <p class="mb-0"><a class="fw-bold text-decoration-none" href="{{ route('author', ['username' => $reply->user->username]) }}">{{"@" . $comment->user->username}}</a> {{$reply->text}}</p>
                                 </div>
                                 @endforeach
                             </div>
