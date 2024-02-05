@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Account\Auth;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -29,10 +30,12 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
+        $redirect_url = $request->query('redirect');
+
         $remember = $request->remember;
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-            return redirect()->intended('/');
+            return $redirect_url ? redirect()->to($redirect_url) : redirect()->route('home');
         }
 
         return back()->withErrors([
@@ -44,22 +47,33 @@ class LoginController extends Controller
      * Logout and redirect to homepage.
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\View\View
-    */
-    public function logout(Request $request) 
+     */
+    public function logout(Request $request)
     {
         Auth::logout();
-        return redirect()->to('/'); // ->back(); -> edge case with /logout at account scenes.
+
+        $url = url()->previous();
+        $route = app('router')->getRoutes($url)->match(app('request')->create($url))->getName();
+
+        $fragments = explode('.', $route);
+        $route = $fragments[1];
+
+        if (in_array($route, ['account_settings', 'write', 'manage_sections', 'manage_layout'])) {
+            return redirect()->route('home');
+        }
+
+        return redirect()->back();
     }
 
     /**
      * Show the Homepage
      * @return \Illuminate\View\View
-    */
+     */
     public function show()
     {
-      $darkMode = Cookie::get('dark_mode') == 'true';
-      return view('account.auth.login', [
-        'darkMode' => $darkMode
-      ]);
+        $darkMode = Cookie::get('dark_mode') == 'true';
+        return view('account.auth.login', [
+            'darkMode' => $darkMode
+        ]);
     }
 }

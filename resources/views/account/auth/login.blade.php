@@ -269,7 +269,7 @@
                 <div class="w-100 mt-auto" style="max-width: 526px;">
                     <h1 class="serif fw-bolder fst-italic">{{__('messages.sign_in_header')}}</h1>
                     <p class="pb-3 mb-3 mb-lg-4">{{__('messages.sign_in_text')}}&nbsp;&nbsp;<a href="{{ route('register') }}">{{__('messages.register_here')}}</a></p>
-                    <form class="needs-validation" method="POST" action="{{ route('login_authenticate') }}">
+                    <form class="needs-validation" method="POST" action="{{ route('login_authenticate', ['redirect' => \Request::query('redirect', '')]) }}">
                         @csrf
                         @if ($errors->any())
                         <div class="alert alert-danger">

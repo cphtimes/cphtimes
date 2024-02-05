@@ -498,7 +498,10 @@
             @endif
         </section>
         <!-- Sidebar toggle button-->
-        <button class="d-lg-none btn btn-sm fs-sm btn-primary w-100 rounded-0 fixed-bottom" data-bs-toggle="offcanvas" data-bs-target="#sidebar"><i class="ai-layout-column me-2"></i>Sidebar</button>
+        <button style="z-index: 1" class="d-lg-none btn btn-sm fs-sm btn-primary w-100 rounded-0 fixed-bottom" data-bs-toggle="offcanvas" data-bs-target="#sidebar">
+            <i class="ai-layout-column me-2"></i>
+            {{__('messages.sidebar')}}
+        </button>
     </main>
     <!-- Footer -->
     @include('components.footer', array(
