@@ -1,7 +1,7 @@
 <?php
- 
+
 namespace App\Mail;
- 
+
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -11,11 +11,11 @@ use MailerSend\Helpers\Builder\Variable;
 use MailerSend\Helpers\Builder\Personalization;
 use MailerSend\LaravelDriver\MailerSendTrait;
 use Carbon\Carbon;
- 
+
 class ResetPassword extends Mailable
 {
     use Queueable, SerializesModels, MailerSendTrait;
-    
+
     /**
      * The order instance.
      *
@@ -23,7 +23,7 @@ class ResetPassword extends Mailable
      */
     protected $user;
     protected $token;
- 
+
     /**
      * Create a new message instance.
      *
@@ -35,7 +35,7 @@ class ResetPassword extends Mailable
         $this->token = $token;
         $this->user = $user;
     }
-    
+
     /**
      * Build the message.
      *
@@ -43,13 +43,14 @@ class ResetPassword extends Mailable
      */
     public function build()
     {
-        $confirmationURL = url('/reset-password/' . $this->token);
+        $confirmationURL = route('reset_password_token', ['token' => $this->token]);
+
         return $this->view('emails.reset-password')
-                    ->with([
-                        'DISPLAY_NAME' => $this->user->display_name,
-                        'APP_NAME' => env('APP_NAME', 'The Copenhagen Gates'),
-                        'EMAIL' => $this->user->email,
-                        'CONFIRMATION_URL' => $confirmationURL,
-                    ]);
+            ->with([
+                'DISPLAY_NAME' => $this->user->display_name,
+                'APP_NAME' => env('APP_NAME', 'The Copenhagen Gates'),
+                'EMAIL' => $this->user->email,
+                'CONFIRMATION_URL' => $confirmationURL,
+            ]);
     }
 }

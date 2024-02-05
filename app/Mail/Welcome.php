@@ -1,7 +1,7 @@
 <?php
- 
+
 namespace App\Mail;
- 
+
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -11,18 +11,18 @@ use MailerSend\Helpers\Builder\Variable;
 use MailerSend\Helpers\Builder\Personalization;
 use MailerSend\LaravelDriver\MailerSendTrait;
 use Carbon\Carbon;
- 
+
 class Welcome extends Mailable
 {
     use Queueable, SerializesModels, MailerSendTrait;
-    
+
     /**
      * The order instance.
      *
      * @var \App\Models\User
      */
     protected $user;
- 
+
     /**
      * Create a new message instance.
      *
@@ -34,7 +34,7 @@ class Welcome extends Mailable
         $this->user = $user;
         $this->subject = 'Welcome to ' . env('APP_NAME', 'The Copenhagen Gates');
     }
-    
+
     /**
      * Build the message.
      *
@@ -43,10 +43,9 @@ class Welcome extends Mailable
     public function build()
     {
         return $this->view('emails.welcome')
-                    ->with([
-                        'DISPLAY_NAME' => $this->user->display_name,
-                        'APP_NAME' => env('APP_NAME', 'The Copenhagen Gates'),
-                    ]);
-                    
+            ->with([
+                'DISPLAY_NAME' => $this->user->display_name,
+                'APP_NAME' => env('APP_NAME', 'The Copenhagen Gates'),
+            ]);
     }
 }
