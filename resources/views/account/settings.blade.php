@@ -333,7 +333,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <label class="form-label" for="username">{{__('messages.username')}}</label>
-                                        <input pattern="^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$" name="username" class="form-control" type="text" value="{{$currentUser->username}}" id="username" required>
+                                        <input pattern="^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$" name="username" class="form-control" type="text" value="{{$currentUser->username}}" id="username" disabled>
                                     </div>
                                     <div class="col-sm-12">
                                         <label class="form-label" for="email">{{__('messages.email_address')}}</label>
@@ -342,20 +342,36 @@
                                     <div class="col-sm-6">
                                         <label class="form-label" for="country">{{__('messages.country')}}</label>
                                         <select selected="{{$currentUser->country_code}}" name="country_code" class="form-select" id="country">
-                                            <option value="" disabled="">Select country</option>
-                                            <option value="DK">Denmark</option>
-                                            <option value="US">USA</option>
+                                            <option value="" disabled="">{{__('messages.choose')}}</option>
+                                            @foreach ($countries as $country)
+                                            @if ($country['alpha-2'] == $currentUser->country_code)
+                                            <option value="{{$country['alpha-2']}}" selected>{{$country["name"]}}</option>
+                                            @else
+                                            <option value="{{$country['alpha-2']}}">{{$country["name"]}}</option>
+                                            @endif
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="col-sm-6">
                                         <label class="form-label" for="language">{{__('messages.reads_languages')}}</label>
-                                        <!-- $currentUser->reads_languages -->
-                                        <select selected="da+en" name="reads_languages" class="form-select" id="reads_languages" required>
+                                        <select name="reads_languages" class="form-select" id="reads_languages" required>
                                             <option value="" disabled="">{{__('messages.choose')}}</option>
-                                            <option value="en">{{__('messages.english')}}</option>
-                                            <option value="da">{{__('messages.danish')}}</option>
-                                            <option value="da+en">{{__('messages.danish_and_english')}}</option>
+                                            @foreach([
+                                            "en" => __('messages.english'),
+                                            "da" => __('messages.danish'),
+                                            "da+en" => __('messages.danish_and_english')
+                                            ] as $value=>$text)
+
+                                            @if ($value == $currentUser->getReadsLanguagesStr())
+                                            <option value="{{$value}}" selected>{{$text}}</option>
+                                            @else
+                                            <option value="{{$value}}">{{$text}}</option>
+                                            @endif
+
+                                            @endforeach
                                         </select>
+
+
                                     </div>
                                     <div class="col-12">
                                         <label class="form-label" for="bio">{{__('messages.bio')}}</label>

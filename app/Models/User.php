@@ -16,15 +16,16 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    public static function boot() {
+    public static function boot()
+    {
         parent::boot();
-        self::deleting(function($user) {
+        self::deleting(function ($user) {
             $user->notifications()->delete();
-            $user->comments()->each(function($comment) {
+            $user->comments()->each(function ($comment) {
                 $comment->article()->decrement('comment_count');
                 $comment->delete();
             });
-            $user->articles()->each(function($article) {
+            $user->articles()->each(function ($article) {
                 $article->delete();
             });
         });
@@ -101,19 +102,23 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
-    public function getUsername() {
+    public function getUsername()
+    {
         return $this->username;
     }
 
-    public function getDisplayName() {
+    public function getDisplayName()
+    {
         return $this->display_name;
     }
 
-    public function getBio() {
+    public function getBio()
+    {
         return $this->bio;
     }
 
-    public function getPhotoURL() {
+    public function getPhotoURL()
+    {
         return $this->photo_url;
     }
 
@@ -130,9 +135,10 @@ class User extends Authenticatable
         );
     }
 
-    public function canEdit($article) {
-        return $this->id == $article->author->user_id || 
-                $this->id == $article->editor_id;
+    public function canEdit($article)
+    {
+        return $this->id == $article->author->user_id ||
+            $this->id == $article->editor_id;
     }
 
     // do the same for canDelete as canEdit?
@@ -142,7 +148,30 @@ class User extends Authenticatable
         return $this->hasOne(UserNotifications::class);
     }
 
-    public function role() {
+    public function role()
+    {
         return $this->hasOne(UserRole::class);
     }
+
+    public function getReadsLanguagesStr()
+    {
+        $str = join('+', $this->reads_languages);
+        return $str;
+    }
+
+    /*
+    @foreach([
+    "en" => __('messages.english'),
+    "da" => __('messages.danish'),
+    "da+en" => __('messages.danish_and_english')
+    )] as $value=>$text)
+
+    @if ($value == $currentUser->getReadsLanguageStr())
+    <option value="{{$value}}" selected>{{$text}}</option>
+    @else
+    <option value="{{$value}}">{{$text}}</option>
+    @endif
+
+    @endforeach
+    */
 }
