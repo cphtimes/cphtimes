@@ -45,10 +45,10 @@ class ArticleComment extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('New Comment on your article: ' . $this->article->headline)
-                    ->line($this->comment->user->display_name . " commented on your article " . $this->article->headline)
-                    ->action('See Comments', url('/section/' . $this->article->section_uri . '/' . $this->article->headline_uri . '#comments'))
-                    ->line('Thank you for using our application!');
+            ->subject('New Comment on your article: ' . $this->article->headline)
+            ->line($this->comment->user->display_name . " commented on your article " . $this->article->headline)
+            ->action('See Comments', route('article', ['section' => $this->article->section_uri, 'article' => $this->article->headline_uri]))
+            ->line('Thank you for using our application!');
     }
 
     /**

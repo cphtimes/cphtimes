@@ -47,10 +47,10 @@ class ReplyComment extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('New Reply to your comment')
-                    ->line($this->reply->user->display_name . " replied to your comment on article " . $this->article->headline)
-                    ->action('See Comments', url('/section/' . $this->article->section_uri . '/' . $this->article->headline_uri . '#comments'))
-                    ->line('Thank you for using our application!');
+            ->subject('New Reply to your comment')
+            ->line($this->reply->user->display_name . " replied to your comment on article " . $this->article->headline)
+            ->action('See Comments', route('article', ['section' => $this->article->section_uri, 'article' => $this->article->headline_uri]))
+            ->line('Thank you for using our application!');
     }
 
     /**
