@@ -125,7 +125,7 @@ class ArticleController extends Controller
             ->limit(3)
             ->get();
 
-        $recentArticles = Article::orderBy('published_at', 'desc')
+        $recentArticles = Article::orderBy('created_at', 'desc')
             ->whereIn('in_language', $languages)
             ->limit(4)
             ->get();
@@ -191,7 +191,8 @@ class ArticleController extends Controller
         $author->save();
 
         try {
-            $articlePath = $username ? $author->username : $currentUser->username . '/articles/' . $headline_uri;
+            $user = $username ? $author->username : $currentUser->username;
+            $articlePath = $user . '/articles/' . $headline_uri;
 
             $public_body_url = UploadBodyService::withData($data["body_html"], $articlePath);
             UploadBlocksService::withData($data["body_blocks"], $articlePath);
@@ -277,7 +278,8 @@ class ArticleController extends Controller
         $author->save();
 
         try {
-            $articlePath = $username ? $author->username : $currentUser->username . '/articles/' . $headline_uri;
+            $user = $username ? $author->username : $currentUser->username;
+            $articlePath = $user . '/articles/' . $new_headline_uri;
 
             $public_body_url = UploadBodyService::withData($data["body_html"], $articlePath, $replace = true);
             UploadBlocksService::withData($data["body_blocks"], $articlePath, $replace = true);
@@ -285,43 +287,63 @@ class ArticleController extends Controller
             $image = $request->file('image');
             if ($image) {
                 $public_image_url = UploadImageService::withFile($image, $articlePath, $replace = true);
+            } else if ($new_headline_uri != $headline_uri) {
+                // copy existing image from one article folder to the new. (based on the new_headline_uri)
+                $base_url = env('SUPERBASE_URL');
+                $token = env('SUPERBASE_API_SECRET_KEY');
+
+                $fragments = explode('/', $article->image_url);
+                $image_name = $fragments[count($fragments) - 1];
+
+                $response = Http::withToken($token)
+                    ->withBody(file_get_contents($article->image_url), 'application/octet-stream')
+                    ->post($base_url .  '/storage/v1/object/users/' . $articlePath . '/' . $image_name);
+                if ($response->status() >= 400) {
+                    abort(500);
+                }
+                $public_image_url = $base_url . '/storage/v1/object/public/users/' . $articlePath . '/' . $image_name;
+            } else {
+                $public_image_url = $article->image_url;
             }
         } catch (Exception $e) {
             abort(500);
         }
 
-        $emptyAbstract = $data["in_language"] == 'da' ? 'Ingen beskrivelse' : 'No description';
+        $emptyAbstract = $data["in_language"] == 'da' ? 'Ing en beskrivelse' : 'No description';
 
         $article->update([
             'body_url' => $public_body_url,
             'section_uri' => $data["section_uri"],
-            'abstract' => $data["abstract"] ?? $emptyAbstract,
+            'abstract' => $data["abstract"]  ?? $emptyAbstract,
             'author_id' => $author->id,
             'editor_id' => $currentUser->id,
-            'work_status' => $data["work_status"],
-            'published_at' => $data["work_status"] ? now() : null,
+            'work_status'  => $data["work_status"],
+            'published_at' => $data["work_status"] ?  now() : null,
             'headline' => $data["headline"],
             'headline_uri' => $new_headline_uri,
             'in_language' => $data["in_language"],
-            'image_url' => $image ? $public_image_url : $article->image_url,
-            'image_caption' => $data["image_caption"] ?? null,
+            'image_url' => $public_image_url,
+            'image_caption'  => $data["image_caption"]  ??  null,
             'correction' => $data["correction"] ?? null,
-            'about' => $data["about"] ?? null,
+            'about' => $data["about"]  ??  null,
             'credit' => $data["credit"] ?? null,
             'time_required' => 'PT30M',
             'keywords' => '',
         ]);
 
+        // NOTE: cleanup / remove old storage folder with article files.
+        // DeleteArticlesFolder.forUser(username, "old"headline_uri)
+
         return redirect()->route('article', [$data["section_uri"], $new_headline_uri]);
     }
 
+    // NO TE: Also  delete storage entry in the future.
     public function delete($headline_uri, Request $request)
     {
         $currentUser = Auth::user();
         $article = $currentUser->articles()
             ->where('headline_uri', $headline_uri)
             ->firstOrFail();
-        // NOTE: Also delete storage entry in the future.
         $article->delete();
         return redirect()->back();
     }

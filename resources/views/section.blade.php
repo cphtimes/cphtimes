@@ -278,7 +278,7 @@
                 @if (count($topArticles) > 0)
                 <div class="d-none d-md-block col-xl-6 border-end-0 border-end-lg border-bottom-md border-bottom-lg-0 pb-3 pt-3 pt-lg-0">
                     <a class="nav-link" href="{{ route('article', ['section' => $topArticles[0]->section_uri, 'article' => $topArticles[0]->headline_uri]) }}">
-                        <article class="card border-0 px-0">
+                        <article class="card border-0 px-3">
                             <div class="row d-flex align-items-center">
                                 <div class="col-6 article-body card-body px-3">
                                     <p><small class="text-uppercase text-dark"><b>{{ $topArticles->first()->localizedSection($sections) }}</b></small></p>

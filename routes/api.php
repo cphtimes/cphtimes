@@ -85,7 +85,7 @@ Route::post('fetchUrl', function (Request $request) {
     $month = $now->format('m');
     $day = $now->format('d');
 
-    $filename = $url;
+    $filename = Str::slug($url);
 
     $file_url = sprintf('%s/storage/v1/object/images/%s/%s/%s/%s', $base_url, $year, $month, $day, Str::slug($filename));
 
