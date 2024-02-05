@@ -1,5 +1,5 @@
 <a class="nav-link" href="{{ route('article', ['section' => $article->section_uri, 'article' => $article->headline_uri]) }}">
-    <article class="w-100 card border-0 px-2">
+    <article class="w-100 card border-0 px-0 px-md-2 px-lg-2 pb-0 pb-md-0 pb-lg-0">
         <div class="d-block d-md-none">
             <div class="ratio ratio-4x3">
                 <img class="rounded-0" style="object-fit: cover;" src="{{$article->image_url}}" alt="{{$article->image_caption}}">

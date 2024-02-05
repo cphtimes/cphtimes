@@ -311,7 +311,7 @@
                             <img style="object-fit: cover; width: 56px; height: 56px;" class="d-block rounded-circle mb-3" src="{{$article->author->getPhotoURL()}}" width="56" alt="{{ $article->author->getDisplayName() }}">
                             @else
                             <div class="d-flex align-items-center justify-content-center position-relative flex-shrink-0 rounded-circle text-primary fs-lg fw-semibold" style="object-fit: cover; width: 56px; height: 56px; background-color: rgba(var(--ar-primary-rgb), .15);">
-                                {{ \App\Services\GetUserInitialsService::forName($article->author->getDisplayName()) }}
+                                {{ \App\Services\GetUserInitialsService::forName($article->author->getDisplayName() ?? 'Anon') }}
                             </div>
                             @endif
 

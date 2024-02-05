@@ -1,4 +1,4 @@
-<li class="{{ !empty($class) ? $class : 'list-group-item px-0 py-3 border-bottom' }}">
+<li class="{{ !empty($class) ? $class : 'list-group-item px-0 px-md-0 px-lg-0 py-3 border-bottom' }}">
     <article>
         <a class="nav-link" href="{{ route('article', ['section' => $article->section_uri, 'article' => $article->headline_uri]) }}">
             <div class="article-body w-50 flex-grow-1 ms-0 pe-3">

@@ -29,11 +29,13 @@ class Author extends Model
     public $incrementing = true;
     public $timestamps = false;
 
-    public function user() {
+    public function user()
+    {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 
-    public function getUsername() {
+    public function getUsername()
+    {
         if ($this->is_anonymous) {
             return 'anonymous';
         }
@@ -43,7 +45,8 @@ class Author extends Model
         return $this->username;
     }
 
-    public function getDisplayName() {
+    public function getDisplayName()
+    {
         if ($this->is_anonymous) {
             return null;
         }
@@ -53,7 +56,8 @@ class Author extends Model
         return $this->display_name;
     }
 
-    public function getBio() {
+    public function getBio()
+    {
         if ($this->is_anonymous) {
             return null;
         }
@@ -63,10 +67,8 @@ class Author extends Model
         return $this->user->bio;
     }
 
-    public function getPhotoURL() {
-        if ($this->is_anonymous) {
-            return "https://static.vecteezy.com/system/resources/previews/014/554/760/original/man-profile-negative-photo-anonymous-silhouette-human-head-businessman-worker-support-illustration-vector.jpg";
-        }
+    public function getPhotoURL()
+    {
         if ($this->user == null) {
             return null;
         }

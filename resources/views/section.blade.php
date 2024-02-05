@@ -245,7 +245,7 @@
         'sections' => $sections,
         'darkMode' => $darkMode
         ))
-        <div class="container pt-5 pb-4 pt-lg-4">
+        <div class="container pt-5 pb-4 pt-lg-4 px-md-0 px-lg-0">
             @if ($topArticles->count() == 0)
             <div class="py-5">
                 <div class="container d-flex flex-column justify-content-center align-items-center h-100 text-center pb-2 py-sm-3 py-md-4 py-lg-5">
@@ -256,9 +256,9 @@
             </div>
             @endif
 
-            <div class="row pb-3 pb-md-5 px-md-3 px-lg-0">
+            <div style="margin: auto" class="row pb-3 pb-md-5 px-md-0 px-lg-0">
                 <!-- Above the fold -->
-                <ul class="d-block d-md-none list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 pt-4 pt-lg-0 px-lg-4 border-end-0 border-end-lg">
+                <ul class="d-block d-md-none list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-md-0 pt-4 pb-4 pb-md-0 pt-lg-0 px-0 px-lg-4 border-end-0 border-end-lg">
                     @if (count($topArticles) > 0)
                     <li class="list-group-item border-bottom">
                         @include('components.article-card', array(
@@ -276,9 +276,9 @@
                 </ul>
 
                 @if (count($topArticles) > 0)
-                <div class="d-none d-md-block col-xl-6 border-end-0 border-end-lg border-bottom-md border-bottom-lg-0 pb-3 pt-3 pt-lg-0">
+                <div class="d-none d-md-block col-xl-6 border-end-0 border-end-lg ps-0 pb-3 pt-3 pt-lg-0 pe-md-0 pe-lg-2">
                     <a class="nav-link" href="{{ route('article', ['section' => $topArticles[0]->section_uri, 'article' => $topArticles[0]->headline_uri]) }}">
-                        <article class="card border-0 px-3">
+                        <article class="card border-0 px-3 px-md-3 px-lg-3">
                             <div class="row d-flex align-items-center">
                                 <div class="col-6 article-body card-body px-3">
                                     <p><small class="text-uppercase text-dark"><b>{{ $topArticles->first()->localizedSection($sections) }}</b></small></p>
@@ -296,7 +296,7 @@
                 </div>
                 @endif
 
-                <ul class="d-none d-md-block list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-lg-4">
+                <ul class="d-none d-md-block list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-md-3 ps-lg-4 pe-lg-3 pb-md-4">
                     @for ($i = 1; $i < min(count($topArticles), 5); $i++) @include('components.article-list-item', array( 'article'=> $topArticles[$i],
                         'section' => $topArticles[$i]->localizedSection($sections),
                         'style' => 'expanded',
@@ -306,9 +306,9 @@
                 </ul>
 
                 <!-- Grid of articles -->
-                @for ($i = 0; $i < floor(count($articles)/4); $i++) <div>
-                    <div class="d-flex flex-wrap py-5">
-                        @for ($j = 0; $j < 4; $j++) @if (array(2, 0, 3, 1)[$i % 4]==$j) <div @class([ 'py-2 py-lg-0 px-2' , sprintf('order-sm-%d', $j), sprintf('order-md-3', $j), sprintf('order-lg-%d', $j), 'border-end-0 border-end-lg'=> $j < 3, 'cell-flexible' ])>
+                @for ($i = 0; $i < floor(count($articles)/4); $i++) <div class="pb-lg-0 px-0 py-0 py-md-2 py-lg-5">
+                    <div class="d-flex flex-wrap">
+                        @for ($j = 0; $j < 4; $j++) @if (array(2, 0, 3, 1)[$i % 4]==$j) <div @class([ 'px-0 px-md-2 pb-3 py-md-4 py-lg-0' , sprintf('order-sm-%d', $j), sprintf('order-md-3', $j), sprintf('order-lg-%d', $j), 'border-end-0 border-end-lg'=> $j < 3, 'cell-flexible' ])>
                                 @include('components.article-card', array(
                                 'article' => $articles[$j+($i*4)],
                                 'section' => $articles[$j+($i*4)]->localizedSection($sections),
@@ -316,7 +316,7 @@
                                 ))
                     </div>
                     @else
-                    <div @class([ 'px-2' , sprintf('order-sm-%d', $j), sprintf('order-md-%d', $j==3 ? 2 : $j), sprintf('order-lg-%d', $j), 'border-end-0 border-end-md'=> $j < 3, 'cell-compact' ])>
+                    <div @class([ 'pb-3 pb-lg-0  px-0' , 'px-md-2' , sprintf('order-sm-%d', $j), sprintf('order-md-%d', $j==3 ? 2 : $j), sprintf('order-lg-%d', $j), 'border-end-0 border-end-md'=> $j < 3, 'cell-compact' ])>
                             @include('components.article-card', array(
                             'article' => $articles[$j+($i*4)],
                             'section' => $articles[$j+($i*4)]->localizedSection($sections),

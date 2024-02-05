@@ -253,7 +253,7 @@ class HomepageController extends Controller
 
         if ($topArticles->count() < 3) {
 
-            $fillArticles = Article::orderBy('published_at', 'desc')
+            $fillArticles = Article::orderBy('created_at', 'desc')
                 ->whereNotIn('id', $topArticles->map(function ($article) {
                     return $article->id;
                 }))
@@ -277,7 +277,7 @@ class HomepageController extends Controller
             ->limit(20)
             ->get();
 
-        $articles = Article::orderBy('published_at', 'desc')
+        $articles = Article::orderBy('created_at', 'desc')
             ->whereNotIn('id', $topArticles->map(function ($article) {
                 return $article->id;
             }))
