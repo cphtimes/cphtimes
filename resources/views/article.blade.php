@@ -352,8 +352,7 @@
                         </div>
                     </div>
 
-                    <!-- Comments-->
-                    <div class="pt-4 pt-xl-5 mt-4" id="comments">
+                    <div class="pt-4 pt-xl-5 mt-4">
                         @if ($article->comment_count >= 0)
                         <h2 class="fst-italic fw-bolder serif h1 py-lg-1 py-xl-3">{{trans_choice('messages.comments_format', $article->comment_count, ['n' => $article->comment_count])}}</h2>
                         @endif
@@ -367,77 +366,17 @@
                         @else
                         <p class="pb-3 mb-3 mb-lg-4">{{__('messages.sign_in_to_comment')}}&nbsp;&nbsp;<a href="{{route('login')}}">{{__('messages.sign_in_here')}}</a></p>
                         @endif
-                        @foreach ($comments as $comment)
-                        <!-- Comment-->
-                        <div class="border-bottom mt-4 pt-2 pb-4">
-                            <div class="d-flex align-items-center pb-1 mb-3">
-                                <img style="object-fit: cover;" class="rounded-circle" src="{{$comment->user->photo_url}}" width="48" height="48" alt="{{$comment->user->display_name}}">
-                                <div class="ps-3">
-                                    <h6 class="mb-0">{{$comment->user->display_name}}</h6><span class="fs-sm text-muted">{{$comment->created_at}}</span>
-                                </div>
-                            </div>
-                            <p class="pb-2 mb-0">{{$comment->text}}</p>
-                            <div class="d-flex justify-content-start">
-                                <button data-bs-toggle="collapse" href="#showReplies{{$comment->id}}" class="nav-link fs-sm fw-semibold pe-3 py-2" type="button">
-                                    {{trans_choice('messages.replies_format', count($comment->replies), ['n' => count($comment->replies)])}}
-                                </button>
-                                <button data-bs-toggle="collapse" href="#replyCommentForm{{$comment->id}}" class="nav-link fs-sm fw-semibold px-0 py-2" type="button">
-                                    {{__('messages.reply')}}
-                                    <i class="ai-redo fs-xl ms-2"></i>
-                                </button>
-                            </div>
+                    </div>
 
-                            <div class="collapse" id="replyCommentForm{{$comment->id}}">
-                                @if ($currentUser != null)
-                                <div class="card card-body border-0 bg-secondary mt-4">
-                                    @include('components.comment-form', array(
-                                    'reply_comment_id' => $comment->id,
-                                    'user' => $currentUser
-                                    ))
-                                </div>
-                                @endif
+                    <!-- Comments-->
+                    <div hx-get="{{route('comments.show', ['articleId' => $article->id])}}" hx-swap="outerHTML" hx-trigger="load" id="comments">
+                        <div class="d-flex justify-content-center py-5">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
                             </div>
-
-                            <div class="collapse" id="showReplies{{$comment->id}}">
-                                @foreach ($comment->replies as $reply)
-                                <!-- Comment reply-->
-                                <div class="card card-body border-0 bg-secondary mt-4">
-                                    <div class="d-flex align-items-center pb-1 mb-3"><img class="rounded-circle" src="{{$comment->user->photo_url}}" width="48" alt="Comment author">
-                                        <div class="ps-3">
-                                            <h6 class="mb-0">{{$reply->user->display_name}}</h6><span class="fs-sm text-muted">{{$reply->user->created_at}}</span>
-                                        </div>
-                                    </div>
-                                    <p class="mb-0"><a class="fw-bold text-decoration-none" href="{{ route('author', ['username' => $reply->user->username]) }}">{{"@" . $comment->user->username}}</a> {{$reply->text}}</p>
-                                </div>
-                                @endforeach
-                            </div>
-
-                        </div>
-                        @endforeach
-
-                        <!-- All comments button-->
-                        <div @class([ "pb-5 mb-lg-1 mb-xl-3" , "d-flex justify-content-between"=> $comments->previousPageUrl() != null && $comments->nextPageUrl() != null,
-                            "d-flex justify-content-start" => $comments->previousPageUrl() != null && $comments->nextPageUrl() == null,
-                            "d-flex justify-content-end" => $comments->previousPageUrl() == null && $comments->nextPageUrl() != null
-                            ])>
-                            @if($comments->previousPageUrl() != null)
-                            <a class="btn btn-link px-0" href="{{$comments->previousPageUrl()}}">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="fs-lg me-1 bi bi-chevron-left" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-                                </svg>
-                                Show newer comments
-                            </a>
-                            @endif
-                            @if($comments->nextPageUrl() != null)
-                            <a class="btn btn-link px-0" href="{{$comments->nextPageUrl()}}">
-                                Show older comments
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="fs-lg ms-1 bi bi-chevron-right" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-                                </svg>
-                            </a>
-                            @endif
                         </div>
                     </div>
+
                 </div>
                 <!-- Sidebar (offcanvas on sreens < 992px)-->
                 <aside class="col-lg-3 offset-xl-1">
@@ -534,6 +473,8 @@
 
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/theme.js') }}" defer></script>
+
+    <script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
 
     <!-- Optional JavaScript; choose one of the two! -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>

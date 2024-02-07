@@ -14,6 +14,7 @@ use App\Http\Controllers\Account\SettingsController;
 use App\Http\Controllers\Account\Auth\LoginController;
 use App\Http\Controllers\Account\Auth\RegisterController;
 use App\Http\Controllers\Account\Auth\PasswordController;
+use App\Http\Controllers\CommentController;
 
 use App\Http\Controllers\Account\ManageController;
 use Illuminate\Support\Facades\Request;
@@ -93,6 +94,9 @@ Route::localized(function () {
 }, [
     'supported_locales' => ['en', 'da']
 ]);
+
+Route::post('/comments', [CommentController::class, 'show'])->name('comments.show');
+Route::get('/comments', [CommentController::class, 'show'])->name('comments.show');
 
 Route::fallback(\CodeZero\LocalizedRoutes\Controllers\FallbackController::class);
 
