@@ -337,6 +337,46 @@ class ArticleController extends Controller
         return redirect()->route('article', [$data["section_uri"], $new_headline_uri]);
     }
 
+    public function showArticleGrid(Request $request)
+    {
+        $section_uri = $request->query('section_uri', null);
+
+        $currentUser = Auth::user();
+        $locale = App::currentLocale();
+
+        $languages = [];
+        if ($currentUser) {
+            $languages = $currentUser->reads_languages;
+        } else  if ($locale == 'da') {
+            $languages = ['da', 'en'];
+        } else {
+            $languages = ['en'];
+        }
+
+        $show_more = $section_uri != null;
+
+        $nColumns = 4;
+        $nRows = 5;
+
+        $articles = Article::orderBy('published_at', 'desc')
+            ->whereIn('in_language', $languages);
+        if ($section_uri) {
+            $articles = $articles->where('section_uri', $section_uri);
+        }
+        $articles = $articles->paginate($nColumns * $nRows);
+
+        $sections = Section::where('is_active', true)
+            ->where('language_code', $locale)
+            ->orderBy('position', 'asc')
+            ->get();
+
+        return view('components.article-grid', [
+            'show_more' => $show_more,
+            'articles' => $articles,
+            'sections' => $sections
+        ]);
+    }
+
     // NO TE: Also  delete storage entry in the future.
     public function delete($headline_uri, Request $request)
     {

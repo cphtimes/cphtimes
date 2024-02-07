@@ -51,46 +51,6 @@ class SectionController extends Controller
         }
     }
 
-    public function showArticleGrid(Request $request)
-    {
-        $section_uri = $request->query('section_uri', null);
-
-        $currentUser = Auth::user();
-        $locale = App::currentLocale();
-
-        $languages = [];
-        if ($currentUser) {
-            $languages = $currentUser->reads_languages;
-        } else  if ($locale == 'da') {
-            $languages = ['da', 'en'];
-        } else {
-            $languages = ['en'];
-        }
-
-        $show_more = $section_uri != null;
-
-        $nColumns = 4;
-        $nRows = 5;
-
-        $articles = Article::orderBy('published_at', 'desc')
-            ->whereIn('in_language', $languages);
-        if ($section_uri) {
-            $articles = $articles->where('section_uri', $section_uri);
-        }
-        $articles = $articles->paginate($nColumns * $nRows);
-
-        $sections = Section::where('is_active', true)
-            ->where('language_code', $locale)
-            ->orderBy('position', 'asc')
-            ->get();
-
-        return view('components.article-grid', [
-            'show_more' => $show_more,
-            'articles' => $articles,
-            'sections' => $sections
-        ]);
-    }
-
     /**
      * Show the Homepage
      * @return \Illuminate\View\View
@@ -144,6 +104,7 @@ class SectionController extends Controller
             $topArticles = $topArticles->concat($fillArticles);
         }
 
+        /*
         $articles = Article::where('section_uri', $section)
             ->orderBy('published_at', 'desc')
             ->whereNotIn('id', $topArticles->map(function ($article) {
@@ -153,6 +114,7 @@ class SectionController extends Controller
             ->offset($n)
             ->limit(42)
             ->get();
+        */
 
         $sections = Section::where('is_active', true)
             ->where('language_code', $locale)
@@ -166,7 +128,7 @@ class SectionController extends Controller
             'tempMax' => $currentWeather[2],
             'icon' => $currentWeather[3],
             'topArticles' => $topArticles,
-            'articles' => $articles,
+            // 'articles' => $articles,
             'currentUser' => $currentUser,
             'sections' => $sections,
             'activeSection' => $section

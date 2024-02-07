@@ -304,16 +304,18 @@
                         ))
                         @endfor
                 </ul>
-
             </div>
 
             <!-- Grid of articles -->
-            <div class="px-0" hx-get="{{route('article_grid.show', ['section_uri' => $activeSection])}}" hx-swap="outerHTML" hx-trigger="load" id="article-grid">
+            @if (count($topArticles) >= 5)
+            <div class="px-0" hx-get="{{route('article_grid.show', ['section_uri' => $activeSection])}}" hx-swap="outerHTML" hx-trigger="load"> <!--   -->
                 @include('components.article-grid', [
+                'articles' => collect([]),
                 'placeholder' => true,
                 'n' => 20
                 ])
             </div>
+            @endif
 
         </div>
 

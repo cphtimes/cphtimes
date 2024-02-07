@@ -99,8 +99,8 @@ Route::localized(function () {
 Route::post('/comments', [CommentController::class, 'show'])->name('comments.show');
 Route::get('/comments', [CommentController::class, 'show'])->name('comments.show');
 
-Route::post('/article-grid', [SectionController::class, 'showArticleGrid'])->name('article_grid.show');
-Route::get('/article-grid', [SectionController::class, 'showArticleGrid'])->name('article_grid.show');
+Route::post('/article-grid', [ArticleController::class, 'showArticleGrid'])->name('article_grid.show');
+Route::get('/article-grid', [ArticleController::class, 'showArticleGrid'])->name('article_grid.show');
 
 Route::fallback(\CodeZero\LocalizedRoutes\Controllers\FallbackController::class);
 
