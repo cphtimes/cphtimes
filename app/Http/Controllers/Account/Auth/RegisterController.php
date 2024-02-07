@@ -76,9 +76,6 @@ class RegisterController extends Controller
      */
     public function show()
     {
-        $darkMode = Cookie::get('dark_mode') == 'true';
-        return view('account.auth.register', [
-            'darkMode' => $darkMode
-        ]);
+        return view('account.auth.register');
     }
 }

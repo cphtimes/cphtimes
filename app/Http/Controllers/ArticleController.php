@@ -12,6 +12,7 @@ use App\Models\Section;
 use App\Models\Comment;
 use App\Models\Author;
 use App\Models\UserRole;
+use App\Models\Layout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -24,6 +25,7 @@ use App\Services\UploadBodyService;
 use App\Services\UploadBlocksService;
 use App\Services\UploadImageService;
 use Facades\Str;
+use App\Services\AboveFoldArticlesService;
 
 class ArticleController extends Controller
 {
@@ -78,8 +80,6 @@ class ArticleController extends Controller
      */
     public function show($section_uri, $headline_uri)
     {
-
-        $darkMode = Cookie::get('dark_mode') == 'true';
         $currentUser = Auth::user();
         $locale = App::currentLocale();
 
@@ -141,7 +141,6 @@ class ArticleController extends Controller
             'recentArticles' => $recentArticles,
             'article' => $article,
             'body' => $body,
-            'darkMode' => $darkMode,
             'sections' => $sections,
             'comments' => $comments,
             'currentUser' => $currentUser,
@@ -339,6 +338,9 @@ class ArticleController extends Controller
 
     public function showArticleGrid(Request $request)
     {
+        $nColumns = 4;
+        $nRows = 5;
+
         $section_uri = $request->query('section_uri', null);
 
         $currentUser = Auth::user();
@@ -353,13 +355,14 @@ class ArticleController extends Controller
             $languages = ['en'];
         }
 
-        $show_more = $section_uri != null;
+        $aboveFoldArticles = AboveFoldArticlesService::forSectionAndLanguages($section_uri, $languages);
 
-        $nColumns = 4;
-        $nRows = 5;
-
-        $articles = Article::orderBy('published_at', 'desc')
+        $articles = Article::orderBy('created_at', 'desc')
+            ->whereNotIn('id', $aboveFoldArticles->map(function ($article) {
+                return $article->id;
+            }))
             ->whereIn('in_language', $languages);
+
         if ($section_uri) {
             $articles = $articles->where('section_uri', $section_uri);
         }
@@ -371,7 +374,6 @@ class ArticleController extends Controller
             ->get();
 
         return view('components.article-grid', [
-            'show_more' => $show_more,
             'articles' => $articles,
             'sections' => $sections
         ]);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html @class(['dark-mode'=> $darkMode]) lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -278,7 +278,6 @@
     <main class="page-wrapper">
         @include('components.navbar', array(
         'user' => $currentUser,
-        'darkMode' => $darkMode,
         'sections' => $sections
         ))
         <div class="container py-5 mt-4 mt-lg-5 mb-lg-4 my-xl-5">

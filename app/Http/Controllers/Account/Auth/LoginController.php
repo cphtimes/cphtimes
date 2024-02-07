@@ -71,9 +71,6 @@ class LoginController extends Controller
      */
     public function show()
     {
-        $darkMode = Cookie::get('dark_mode') == 'true';
-        return view('account.auth.login', [
-            'darkMode' => $darkMode
-        ]);
+        return view('account.auth.login');
     }
 }

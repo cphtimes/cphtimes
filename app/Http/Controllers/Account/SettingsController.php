@@ -178,8 +178,6 @@ class SettingsController extends Controller
             return redirect()->to($url);
         }
 
-        $darkMode = Cookie::get('dark_mode') == 'true';
-
         $locale = App::currentLocale();
 
         $sections = Section::where('is_active', true)
@@ -193,7 +191,6 @@ class SettingsController extends Controller
 
         return view('account.settings', [
             'countries' => $countries,
-            'darkMode' => $darkMode,
             'sections' => $sections,
             'currentUser' => $currentUser
         ]);

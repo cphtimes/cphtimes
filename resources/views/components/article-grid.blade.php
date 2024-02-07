@@ -1,4 +1,5 @@
 @if ((isset($placeholder) && $placeholder==true) || (isset($articles) && $articles->count() > 0))
+
 @for ($i = 0; $i < floor(isset($placeholder) && $placeholder==true ? $n/4 : count($articles)/4); $i++) <div style="margin: auto;" class="articles-grid row px-0 py-0 py-md-2 py-lg-5">
     <div class="d-flex flex-wrap px-0 px-lg-2">
         @for ($j = 0; $j < 4; $j++) @if (array(2, 0, 3, 1)[$i % 4]==$j) <div @class([ 'px-0 px-md-2 pb-3 py-md-4 py-lg-0' , sprintf('order-sm-%d', $j), sprintf('order-md-3', $j), sprintf('order-lg-%d', $j), 'border-end-0 border-end-lg'=> $j < 3, 'cell-flexible' ])>

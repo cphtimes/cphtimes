@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Account\Auth;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -18,23 +19,25 @@ use Illuminate\Support\Str;
 class PasswordController extends Controller
 {
 
-    public function sendResetLink(Request $request) {
+    public function sendResetLink(Request $request)
+    {
         $request->validate(['email' => 'required|email']);
         $status = Password::sendResetLink(
             $request->only('email')
         );
         return $status === Password::RESET_LINK_SENT
-                    ? redirect()->back()->with(['status' => __($status)])
-                    : redirect()->back()->withErrors(['email' => __($status)]);
+            ? redirect()->back()->with(['status' => __($status)])
+            : redirect()->back()->withErrors(['email' => __($status)]);
     }
 
-    public function resetPassword(Request $request) {
+    public function resetPassword(Request $request)
+    {
         $request->validate([
             'token' => 'required',
             'email' => 'required|email',
             'password' => 'required|min:8|confirmed',
         ]);
-    
+
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user, $password) {
@@ -42,38 +45,35 @@ class PasswordController extends Controller
                 $user->forceFill([
                     'password' => Hash::make($password)
                 ])->setRememberToken(Str::random(60));
-     
+
                 $user->save();
-     
+
                 event(new PasswordReset($user));
             }
         );
-     
+
         return $status === Password::PASSWORD_RESET
-                    ? redirect()->route('login')->with('status', __($status))
-                    : redirect()->back()->withErrors(['email' => [__($status)]]);
+            ? redirect()->route('login')->with('status', __($status))
+            : redirect()->back()->withErrors(['email' => [__($status)]]);
     }
 
     /**
      * Show Reset Password
      * @return \Illuminate\View\View
-    */
-    public function showResetPassword($token) {
-        $darkMode = Cookie::get('dark_mode') == 'true';
+     */
+    public function showResetPassword($token)
+    {
         return view('account.auth.reset-password', [
-            'token' => $token,
-            'darkMode' => $darkMode
+            'token' => $token
         ]);
     }
 
     /**
      * Show Forgot
      * @return \Illuminate\View\View
-    */
-    public function showForgot() {
-        $darkMode = Cookie::get('dark_mode') == 'true';
-        return view('account.auth.forgot-password', [
-            'darkMode' => $darkMode
-        ]);
+     */
+    public function showForgot()
+    {
+        return view('account.auth.forgot-password');
     }
 }

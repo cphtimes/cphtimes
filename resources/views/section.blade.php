@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html @class(['dark-mode'=> $darkMode]) lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -225,7 +225,6 @@
 
 <body class="antialiased">
     @include('components.masthead', array(
-    'darkMode' => $darkMode,
     'user' => $currentUser,
     'icon' => $icon,
     'temp' => $temp,
@@ -237,16 +236,14 @@
         <div class="d-block d-lg-none">
             @include('components.navbar', array(
             'user' => $currentUser,
-            'sections' => $sections,
-            'darkMode' => $darkMode
+            'sections' => $sections
             ))
         </div>
         @include('components.masthead-mini-nav', array(
-        'sections' => $sections,
-        'darkMode' => $darkMode
+        'sections' => $sections
         ))
         <div class="container pt-5 pb-4 pt-lg-4 px-md-0 px-lg-0">
-            @if ($topArticles->count() == 0)
+            @if ($aboveFoldArticles->count() == 0)
             <div class="py-5">
                 <div class="container d-flex flex-column justify-content-center align-items-center h-100 text-center pb-2 py-sm-3 py-md-4 py-lg-5">
                     <h3 class="serif fst-italic fw-bolder text-dark">{{__('messages.no_articles_yet_headline')}}</h3>
@@ -259,37 +256,37 @@
             <div style="margin: auto" class="row pb-3 pb-md-5 px-md-0 px-lg-0">
                 <!-- Above the fold -->
                 <ul class="d-block d-md-none list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-md-0 pt-4 pb-4 pb-md-0 pt-lg-0 px-0 px-lg-4 border-end-0 border-end-lg">
-                    @if (count($topArticles) > 0)
+                    @if (count($aboveFoldArticles) > 0)
                     <li class="list-group-item border-bottom">
                         @include('components.article-card', array(
-                        'article' => $topArticles->first(),
-                        'section' => $topArticles->first()->localizedSection($sections),
+                        'article' => $aboveFoldArticles->first(),
+                        'section' => $aboveFoldArticles->first()->localizedSection($sections),
                         'style' => 'compact'
                         ))
                     </li>
                     @endif
-                    @for ($i = 1; $i < min(count($topArticles), 3); $i++) @include('components.article-list-item', array( 'article'=> $topArticles[$i],
-                        'section' => $topArticles[$i]->localizedSection($sections),
+                    @for ($i = 1; $i < min(count($aboveFoldArticles), 3); $i++) @include('components.article-list-item', array( 'article'=> $aboveFoldArticles[$i],
+                        'section' => $aboveFoldArticles[$i]->localizedSection($sections),
                         'style' => 'compact'
                         ))
                         @endfor
                 </ul>
 
-                @if (count($topArticles) > 0)
+                @if (count($aboveFoldArticles) > 0)
                 <div class="d-none d-md-block col-xl-6 border-end-0 border-end-lg ps-0 pb-3 pt-3 pt-lg-0 pe-md-0 px-lg-2">
-                    <a class="nav-link" href="{{ route('article', ['section' => $topArticles[0]->section_uri, 'article' => $topArticles[0]->headline_uri]) }}">
+                    <a class="nav-link" href="{{ route('article', ['section' => $aboveFoldArticles[0]->section_uri, 'article' => $aboveFoldArticles[0]->headline_uri]) }}">
                         <article class="card border-0 px-3 px-md-3 px-lg-3">
                             <div class="row d-flex align-items-center">
                                 <div class="col-6 article-body card-body px-3">
-                                    <p><small class="text-uppercase text-dark"><b>{{ $topArticles->first()->localizedSection($sections) }}</b></small></p>
-                                    <h3 class="article-title card-title fw-light crop-text-2">{{ $topArticles->first()->headline }}</h3>
+                                    <p><small class="text-uppercase text-dark"><b>{{ $aboveFoldArticles->first()->localizedSection($sections) }}</b></small></p>
+                                    <h3 class="article-title card-title fw-light crop-text-2">{{ $aboveFoldArticles->first()->headline }}</h3>
                                 </div>
                                 <div class="col-6">
-                                    <p class="card-text crop-text-4 text-dark opacity-50">{{ $topArticles->first()->abstract }}</p>
+                                    <p class="card-text crop-text-4 text-dark opacity-50">{{ $aboveFoldArticles->first()->abstract }}</p>
                                 </div>
                             </div>
                             <div class="ratio ratio-4x3">
-                                <img style="object-fit: cover;" src="{{$topArticles[0]->image_url}}" alt="..." />
+                                <img style="object-fit: cover;" src="{{$aboveFoldArticles[0]->image_url}}" alt="..." />
                             </div>
                         </article>
                     </a>
@@ -297,8 +294,8 @@
                 @endif
 
                 <ul class="d-none d-md-block list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-md-3 px-lg-4 pb-md-4">
-                    @for ($i = 1; $i < min(count($topArticles), 5); $i++) @include('components.article-list-item', array( 'article'=> $topArticles[$i],
-                        'section' => $topArticles[$i]->localizedSection($sections),
+                    @for ($i = 1; $i < min(count($aboveFoldArticles), 5); $i++) @include('components.article-list-item', array( 'article'=> $aboveFoldArticles[$i],
+                        'section' => $aboveFoldArticles[$i]->localizedSection($sections),
                         'style' => 'expanded',
                         'class' => $i == 0 ? 'list-group-item py-3 pt-lg-0 pb-lg-3 border-bottom' : 'list-group-item py-3 border-bottom'
                         ))
@@ -307,7 +304,7 @@
             </div>
 
             <!-- Grid of articles -->
-            @if (count($topArticles) >= 5)
+            @if (count($aboveFoldArticles) >= 5)
             <div class="px-0" hx-get="{{route('article_grid.show', ['section_uri' => $activeSection])}}" hx-swap="outerHTML" hx-trigger="load"> <!--   -->
                 @include('components.article-grid', [
                 'articles' => collect([]),

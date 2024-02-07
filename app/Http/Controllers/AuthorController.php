@@ -20,53 +20,51 @@ class AuthorController extends Controller
     /**
      * Show the Homepage
      * @return \Illuminate\View\View
-    */
+     */
     public function show($username, Request $request)
     {
 
-      $sort = $request->query('sort', 'newest');
-      if ($request->isMethod('post')) {
-        $sort = $request->sort;
-        $url = $request->fullUrlWithQuery([
-            'sort' => $sort
+        $sort = $request->query('sort', 'newest');
+        if ($request->isMethod('post')) {
+            $sort = $request->sort;
+            $url = $request->fullUrlWithQuery([
+                'sort' => $sort
+            ]);
+            return redirect()->to($url);
+        }
+
+        $locale = App::currentLocale();
+        $sections = Section::where('is_active', true)
+            ->where('language_code', $locale)
+            ->orderBy('position', 'asc')
+            ->get();
+
+        $author = Author::where('username', $username)->first();
+
+        if ($author == null && $username == 'anonymous') {
+            $author = Author::where('is_anonymous', true)->first();
+        }
+
+        if ($author == null) {
+            $user = User::where('username', $username)->first();
+            $author = Author::where('user_id', $user->id)->first();
+        }
+
+        if ($author == null) {
+            abort(404);
+        }
+
+        $articles = Article::where('author_id', $author->id)
+            ->orderBy('created_at', $sort == 'newest' ? 'desc' : 'asc')
+            ->paginate(20);
+
+        $currentUser = Auth::user();
+
+        return view('author', [
+            'sections' => $sections,
+            'articles' => $articles,
+            'author' => $author,
+            'currentUser' => $currentUser
         ]);
-        return redirect()->to($url);
-      }
-
-      $darkMode = Cookie::get('dark_mode') == 'true';
-      $locale = App::currentLocale();
-      $sections = Section::where('is_active', true)
-                          ->where('language_code', $locale)
-                          ->orderBy('position', 'asc')
-                          ->get();
-      
-      $author = Author::where('username', $username)->first();
-      
-      if ($author == null && $username == 'anonymous') {
-        $author = Author::where('is_anonymous', true)->first();
-      }
-      
-      if ($author == null) {
-        $user = User::where('username', $username)->first();
-        $author = Author::where('user_id', $user->id)->first();
-      }
-
-      if ($author == null) {
-        abort(404);
-      }
-
-      $articles = Article::where('author_id', $author->id)
-                          ->orderBy('created_at', $sort == 'newest' ? 'desc' : 'asc')
-                          ->paginate(20); 
-
-      $currentUser = Auth::user();
-      
-      return view('author', [
-        'darkMode' => $darkMode,
-        'sections' => $sections,
-        'articles' => $articles,
-        'author' => $author,
-        'currentUser' => $currentUser
-      ]);
     }
 }

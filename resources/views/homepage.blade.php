@@ -224,7 +224,6 @@
 
 <body class="antialiased">
     @include('components.masthead', array(
-    'darkMode' => $darkMode,
     'user' => $currentUser,
     'icon' => $icon,
     'temp' => $temp,
@@ -236,36 +235,34 @@
         <div class="d-block d-lg-none">
             @include('components.navbar', array(
             'user' => $currentUser,
-            'sections' => $sections,
-            'darkMode' => $darkMode
+            'sections' => $sections
             ))
         </div>
         @include('components.masthead-mini-nav', array(
         'sections' => $sections,
-        'darkMode' => $darkMode
         ))
         <div class="container pt-5 pb-4 pt-lg-4 px-md-0 px-lg-0">
             <div style="margin: auto" class="row pt-4 pt-lg-0 pb-3 pb-md-5 px-md-3 px-lg-0">
                 <!-- Above the fold -->
                 <ul class="d-block d-md-none list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-lg-4 border-end-0 border-end-lg pb-4">
-                    @if (count($topArticles) > 0)
+                    @if (count($aboveFoldArticles) > 0)
                     <li class="list-group-item border-bottom">
                         @include('components.article-card', array(
-                        'article' => $topArticles->first(),
-                        'section' => $topArticles->first()->localizedSection($sections),
+                        'article' => $aboveFoldArticles->first(),
+                        'section' => $aboveFoldArticles->first()->localizedSection($sections),
                         'style' => 'compact'
                         ))
                     </li>
                     @endif
-                    @for ($i = 1; $i < min(count($topArticles), 3); $i++) @include('components.article-list-item', array( 'article'=> $topArticles[$i],
-                        'section' => $topArticles[$i]->localizedSection($sections),
+                    @for ($i = 1; $i < min(count($aboveFoldArticles), 3); $i++) @include('components.article-list-item', array( 'article'=> $aboveFoldArticles[$i],
+                        'section' => $aboveFoldArticles[$i]->localizedSection($sections),
                         'style' => 'compact'
                         ))
                         @endfor
                 </ul>
                 <ul class="d-none d-md-block list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-lg-4 border-end-0 border-end-lg pb-4">
-                    @for ($i = 0; $i < min(count($topArticles), 3); $i++) @include('components.article-list-item', array( 'article'=> $topArticles[$i],
-                        'section' => $topArticles[$i]->localizedSection($sections),
+                    @for ($i = 0; $i < min(count($aboveFoldArticles), 3); $i++) @include('components.article-list-item', array( 'article'=> $aboveFoldArticles[$i],
+                        'section' => $aboveFoldArticles[$i]->localizedSection($sections),
                         'style' => $i == 0 ? 'large' : 'expanded',
                         'class' => $i == 0 ? 'list-group-item py-3 pt-lg-0 pb-lg-3 border-bottom' : 'list-group-item py-3 border-bottom'
                         ))

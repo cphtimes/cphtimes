@@ -1,5 +1,4 @@
-<div style="height: 39px; top: -1px;" @class([ 'd-none d-lg-block nav-scroller py-2 mb-2 border-bottom border-dark border-2 container sticky-top bg-body' , 'shadow-sm'=> $darkMode == false
-    ])>
+<div style="height: 39px; top: -1px;" @class([ 'd-none d-lg-block nav-scroller py-2 mb-2 border-bottom border-dark border-2 container sticky-top bg-body' ])>
     <nav id="nav-scroller-sections" class="nav d-flex justify-content-between align-items-top">
         <a id="homepage-link" class="nav-link d-flex align-items-center p-0 chomsky" href="{{route('home')}}">
             <i class="ai-home"></i>

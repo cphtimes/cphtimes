@@ -27,7 +27,6 @@ class ManageController extends Controller
      */
     public function showCreateArticle(Request $request)
     {
-        $darkMode = Cookie::get('dark_mode') == 'true';
         $locale = App::currentLocale();
         $sections = Section::where('is_active', true)
             ->where('language_code', $locale)
@@ -37,7 +36,6 @@ class ManageController extends Controller
         $currentUser = Auth::user();
 
         return view('account.create-article', [
-            'darkMode' => $darkMode,
             'sections' => $sections,
             'currentUser' => $currentUser
         ]);
@@ -45,7 +43,6 @@ class ManageController extends Controller
 
     public function showManageLayout(Request $request)
     {
-        $darkMode = Cookie::get('dark_mode') == 'true';
         $locale = App::currentLocale();
         $sections = Section::where('is_active', true)
             ->where('language_code', $locale)
@@ -71,7 +68,6 @@ class ManageController extends Controller
         $currentUser = Auth::user();
 
         return view('account.manage-layout', [
-            'darkMode' => $darkMode,
             'sections' => $sections,
             'currentUser' => $currentUser,
             'layouts' => $layouts
@@ -255,7 +251,6 @@ class ManageController extends Controller
             return redirect()->back();
         }
 
-        $darkMode = Cookie::get('dark_mode') == 'true';
         $locale = App::currentLocale();
 
         $sections = Section::where('is_active', true)
@@ -269,7 +264,6 @@ class ManageController extends Controller
         $currentUser = Auth::user();
 
         return view('account.manage-sections', [
-            'darkMode' => $darkMode,
             'sections' => $sections,
             'all_sections' => $all_sections,
             'currentUser' => $currentUser
@@ -285,7 +279,6 @@ class ManageController extends Controller
             return redirect()->to('/write');
         }
 
-        $darkMode = Cookie::get('dark_mode') == 'true';
         $locale = App::currentLocale();
         $sections = Section::where('is_active', true)
             ->where('language_code', $locale)
@@ -305,7 +298,6 @@ class ManageController extends Controller
         $body_html = file_get_contents($article->body_url);
 
         return view('account.edit-article', [
-            'darkMode' => $darkMode,
             'sections' => $sections,
             'currentUser' => $currentUser,
             'article' => $article,
