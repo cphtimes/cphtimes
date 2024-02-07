@@ -276,7 +276,7 @@
                 </ul>
 
                 @if (count($topArticles) > 0)
-                <div class="d-none d-md-block col-xl-6 border-end-0 border-end-lg ps-0 pb-3 pt-3 pt-lg-0 pe-md-0 pe-lg-2">
+                <div class="d-none d-md-block col-xl-6 border-end-0 border-end-lg ps-0 pb-3 pt-3 pt-lg-0 pe-md-0 px-lg-2">
                     <a class="nav-link" href="{{ route('article', ['section' => $topArticles[0]->section_uri, 'article' => $topArticles[0]->headline_uri]) }}">
                         <article class="card border-0 px-3 px-md-3 px-lg-3">
                             <div class="row d-flex align-items-center">
@@ -296,7 +296,7 @@
                 </div>
                 @endif
 
-                <ul class="d-none d-md-block list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-md-3 ps-lg-4 pe-lg-3 pb-md-4">
+                <ul class="d-none d-md-block list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-md-3 px-lg-4 pb-md-4">
                     @for ($i = 1; $i < min(count($topArticles), 5); $i++) @include('components.article-list-item', array( 'article'=> $topArticles[$i],
                         'section' => $topArticles[$i]->localizedSection($sections),
                         'style' => 'expanded',
@@ -305,29 +305,18 @@
                         @endfor
                 </ul>
 
-                <!-- Grid of articles -->
-                @for ($i = 0; $i < floor(count($articles)/4); $i++) <div class="pb-lg-0 px-0 py-0 py-md-2 py-lg-5">
-                    <div class="d-flex flex-wrap">
-                        @for ($j = 0; $j < 4; $j++) @if (array(2, 0, 3, 1)[$i % 4]==$j) <div @class([ 'px-0 px-md-2 pb-3 py-md-4 py-lg-0' , sprintf('order-sm-%d', $j), sprintf('order-md-3', $j), sprintf('order-lg-%d', $j), 'border-end-0 border-end-lg'=> $j < 3, 'cell-flexible' ])>
-                                @include('components.article-card', array(
-                                'article' => $articles[$j+($i*4)],
-                                'section' => $articles[$j+($i*4)]->localizedSection($sections),
-                                'style' => 'expanded'
-                                ))
-                    </div>
-                    @else
-                    <div @class([ 'pb-3 pb-lg-0 px-0' , 'px-md-2' , sprintf('order-sm-%d', $j), sprintf('order-md-%d', $j==3 ? 2 : $j), sprintf('order-lg-%d', $j), 'border-end-0 border-end-md'=> $j < 3, 'cell-compact' ])>
-                            @include('components.article-card', array(
-                            'article' => $articles[$j+($i*4)],
-                            'section' => $articles[$j+($i*4)]->localizedSection($sections),
-                            'style' => 'compact'
-                            ))
-                    </div>
-                    @endif
-                    @endfor
             </div>
+
+            <!-- Grid of articles -->
+            <div class="px-0" hx-get="{{route('article_grid.show', ['section_uri' => $activeSection])}}" hx-swap="outerHTML" hx-trigger="load" id="article-grid">
+                @include('components.article-grid', [
+                'placeholder' => true,
+                'n' => 20
+                ])
+            </div>
+
         </div>
-        @endfor
+
         </div>
         </div>
     </main>
@@ -343,9 +332,8 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/theme.js') }}" defer></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-js"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
 
-    <script src="{{ asset('js/darkmode.js') }}" defer></script>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <!-- Initialize Swiper -->

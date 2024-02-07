@@ -155,5 +155,6 @@ return [
     'no_articles_yet_text' => 'Vi er i fuld gang med at skrive artikler til denne sektion.',
     'go_frontpage_btn' => 'Gå til forsiden',
     'sidebar' => 'Sidebjælke',
-    'show_more_comments_btn' => 'Vis flere kommentarer'
+    'show_more_comments_btn' => 'Vis flere kommentarer',
+    'show_more_btn' => 'Vis mere'
 ];

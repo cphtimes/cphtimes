@@ -155,5 +155,6 @@ return [
     'no_articles_yet_text' => "We're in the process of writing articles for this section.",
     'go_frontpage_btn' => 'Go to frontpage',
     'sidebar' => 'Sidebar',
-    'show_more_comments_btn' => 'Show more comments'
+    'show_more_comments_btn' => 'Show more comments',
+    'show_more_btn' => 'Show more'
 ];
