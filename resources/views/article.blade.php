@@ -5,6 +5,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <title>{{ $article->headline }} - {{ $section->name }} - {{ __('messages.brand_name') }}</title>
+    <meta name="description" content="{{$article->abstract}}">
+
+    <!-- Google / Search Engine Tags -->
+    <meta itemprop="name" content="{{ $article->headline }} - {{ $section->name }} - {{ __('messages.brand_name') }}">
+    <meta itemprop="description" content="{{$article->abstract}}">
+    <meta itemprop="image" content="{{$article->image_url}}">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="{{url()->full()}}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $article->headline }} - {{ $section->name }} - {{ __('messages.brand_name') }}">
+    <meta property="og:description" content="{{$article->abstract}}">
+    <meta property="og:image" content="{{$article->image_url}}">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $article->headline }} - {{ $section->name }} - {{ __('messages.brand_name') }}">
+    <meta name="twitter:description" content="{{$article->abstract}}">
+    <meta name="twitter:image" content="{{$article->image_url}}">
+
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -19,17 +40,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-
-    <style>
-        @font-face {
-            font-family: "Chomsky";
-            src: url("{{url('Chomsky.otf')}}");
-        }
-
-        .chomsky {
-            font-family: "Chomsky";
-        }
-    </style>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 
@@ -46,222 +56,9 @@
         gtag('config', 'G-W155VBDMQH');
     </script>
 
-    <style>
-        .serif {
-            font-family: 'Merriweather', serif;
-        }
-
-        .start::first-letter {
-            -webkit-initial-letter: 3 3;
-            initial-letter: 3 3;
-            color: #6610f2;
-            font-weight: bold;
-            margin-right: .25em;
-
-
-            font-size: 6rem;
-            float: left;
-            line-height: 1;
-        }
-
-        a {
-            color: #000000;
-            text-decoration: none;
-        }
-
-        .full-width {
-            width: 100vw;
-            position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
-        }
-
-        .rounded {
-            border-radius: 0.0rem !important; // 1.25rem!important;
-        }
-
-        .card-header {
-            border-bottom: none;
-        }
-
-        @media (min-width: 768px) {
-            .article-container {
-                max-width: 600px;
-                min-width: 600px;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .article-container {
-                max-width: 100%;
-                min-width: 100%;
-                padding: 1.5rem;
-            }
-        }
-
-        a {
-            color: #000000;
-            text-decoration: none;
-        }
-
-        .rounded {
-            border-radius: 0.0rem !important; // 1.25rem!important;
-        }
-
-        .card-header {
-            border-bottom: none;
-        }
-
-        .list-group-item {
-            border-bottom: 1px dotted rgba(0, 0, 0, .125) !important;
-        }
-
-        .solid-last-line {
-            border-bottom: 1px solid rgba(0, 0, 0, 1.0) !important;
-        }
-
-        article {
-            cursor: -webkit-pointer;
-            cursor: pointer;
-        }
-
-        article:hover {
-            color: #000;
-        }
-
-        article:hover>.article-body>.article-title {
-            text-decoration: underline !important;
-        }
-
-        .crop-text-1 {
-            -webkit-line-clamp: 1;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-        }
-
-        .crop-text-2 {
-            -webkit-line-clamp: 2;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-        }
-
-        .crop-text-3 {
-            -webkit-line-clamp: 3;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-        }
-
-        .crop-text-4 {
-            -webkit-line-clamp: 4;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-        }
-
-        .nav-scroller-mobile {
-            position: relative;
-            z-index: 2;
-            height: 2.75rem;
-            overflow-y: hidden;
-        }
-
-        .nav-scroller-mobile .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        #latest-update-thumbnail {
-            width: 75px;
-            height: 75px;
-        }
-
-        .border-md-end {
-            border-right: none !important;
-        }
-
-        @media (min-width: 768px) {
-            #above-fold-list {
-                border-right: none !important;
-            }
-
-            #top-image {
-                width: 199px;
-                height: 199px;
-            }
-
-            #latest-update-thumbnail {
-                width: 125px;
-                height: 125px;
-            }
-
-            .border-md-end {
-                border-right: 1px solid #dee2e6 !important;
-            }
-        }
-
-        @media (min-width: 992px) {
-            #above-fold-list {
-                border-right: 1px solid #dee2e6 !important;
-            }
-
-            #top-image {
-                width: 250px;
-                height: 250px;
-            }
-        }
-
-        @media (min-width: 1200px) {}
-
-        @media (min-width: 1400px) {}
-
-        .aa-DetachedSearchButton {
-            border: 0 !important;
-        }
-
-        .aa-DetachedSearchButtonIcon {
-            color: rgba(0, 0, 0, 1.0) !important;
-        }
-
-        .aa-DetachedSearchButtonPlaceholder {
-            display: none !important;
-        }
-    </style>
     <link rel="stylesheet" href="/css/app.css">
 
     <script src="{{ asset('js/theme-switcher.js') }}" defer></script>
-
-    <title>{{ $article->headline }} - {{ $section->name }} - {{env('APP_NAME')}}</title>
-    <meta name="title" content="{{$article->headline}}">
-    <meta name="description" content="{{$article->abstract}}">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="{{url()->current()}}">
-    <meta property="og:title" content="{{$article->headline}}">
-    <meta property="og:description" content="{{$article->abstract}}">
-    <meta property="og:image" content="{{$article->image_url}}">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="{{$article->image_url}}">
-    <meta property="twitter:url" content="{{url()->current()}}">
-    <meta property="twitter:title" content="{{$article->headline}}">
-    <meta property="twitter:description" content="{{$article->abstract}}">
-    <meta property="twitter:image" content="{{$article->image_url}}">
 </head>
 
 <body class="antialiased">
@@ -276,7 +73,7 @@
             <!-- Breadcrumb-->
             <nav class="pt-5" aria-label="breadcrumb">
                 <ol class="pt-lg-3 pb-lg-4 pb-2 breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('messages.frontpage')}}</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('frontpage')}}">{{__('messages.frontpage')}}</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('section', ['section' => $section->uri]) }}">{{$section->name}}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{__('messages.article')}}</li>
                 </ol>
@@ -426,14 +223,10 @@
                 <h1 class="serif fw-bolder fst-italic mb-0 me-4 fw-bold">{{__('messages.related_articles_header')}}</h1>
                 <div class="d-flex ms-auto">
                     <button class="btn btn-prev btn-icon btn-sm btn-outline-primary rounded-circle me-3" type="button" id="prev-post" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-ef03bba4ed6c9674">
-                        <svg style="vertical-align: text-bottom" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
-                        </svg>
+                        <i class="ai-arrow-left"></i>
                     </button>
                     <button class="btn btn-next btn-icon btn-sm btn-outline-primary rounded-circle" type="button" id="next-post" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-ef03bba4ed6c9674">
-                        <svg style="vertical-align: text-bottom" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
-                        </svg>
+                        <i class="ai-arrow-right"></i>
                     </button>
                 </div>
             </div>

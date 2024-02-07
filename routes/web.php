@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Account;
 use App\Http\Controllers\Account\Auth;
 */
-use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\FrontpageController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthorController;
@@ -50,7 +50,7 @@ Route::get('/', function (Request $request) {
 });
 
 Route::localized(function () {
-    Route::get('/', [HomepageController::class, 'show'])->name('home');
+    Route::get('/', [FrontpageController::class, 'show'])->name('frontpage');
     Route::get(Lang::uri('section/{section}'), [SectionController::class, 'show'])->name('section');
     Route::get(Lang::uri('section/{section}/{article}'), [ArticleController::class, 'show'])->name('article');
     Route::match(['get', 'post'], Lang::uri('by/{username}'), [AuthorController::class, 'show'])->name('author');

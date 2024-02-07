@@ -5,6 +5,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <title>{{__('messages.settings')}} - {{ __('messages.brand_name') }}</title>
+    <meta name="description" content="">
+
+    <!-- Google / Search Engine Tags -->
+    <meta itemprop="name" content="{{__('messages.settings')}} - {{ __('messages.brand_name') }}">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="{{app()->getLocale() == 'en' ? asset('CPHGates Open Graph Logo.png') : asset('KBHPorte Open Graph Logo.png')}}">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="{{url()->full()}}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{__('messages.settings')}} - {{ __('messages.brand_name') }}">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="{{app()->getLocale() == 'en' ? asset('CPHGates Open Graph Logo.png') : asset('KBHPorte Open Graph Logo.png')}}">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{__('messages.settings')}} - {{ __('messages.brand_name') }}">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="{{app()->getLocale() == 'en' ? asset('CPHGates Open Graph Logo.png') : asset('KBHPorte Open Graph Logo.png')}}">
+
     <link href="{{ asset('icons/around-icons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
 
@@ -17,256 +38,14 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Vollkorn&display=swap" rel="stylesheet">-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,900&display=swap" rel="stylesheet">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <style>
-        @font-face {
-            font-family: "Chomsky";
-            src: url("{{url('Chomsky.otf')}}");
-        }
-
-        .chomsky {
-            font-family: "Chomsky";
-        }
-    </style>
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
-
-    <style>
-        .serif {
-            font-family: 'Merriweather', serif;
-        }
-
-        p: {
-            font-size: 17px;
-        }
-
-        .start::first-letter {
-            -webkit-initial-letter: 3 3;
-            initial-letter: 3 3;
-            color: #6610f2;
-            font-weight: bold;
-            margin-right: .25em;
-
-
-            font-size: 6rem;
-            float: left;
-            line-height: 1;
-        }
-
-        a {
-            color: #000000;
-            text-decoration: none;
-        }
-
-        .full-width {
-            width: 100vw;
-            position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
-        }
-
-        .rounded {
-            border-radius: 0.0rem !important; // 1.25rem!important;
-        }
-
-        .card-header {
-            border-bottom: none;
-        }
-
-        @media (min-width: 768px) {
-            .article-container {
-                max-width: 600px;
-                min-width: 600px;
-            }
-        }
-
-        @media (max-width: 767px) {
-            .article-container {
-                max-width: 100%;
-                min-width: 100%;
-                padding: 1.5rem;
-            }
-        }
-
-        a {
-            color: #000000;
-            text-decoration: none;
-        }
-
-        .rounded {
-            border-radius: 0.0rem !important; // 1.25rem!important;
-        }
-
-        .card-header {
-            border-bottom: none;
-        }
-
-        .list-group-item {
-            border-bottom: 1px dotted rgba(0, 0, 0, .125) !important;
-        }
-
-        .solid-last-line {
-            border-bottom: 1px solid rgba(0, 0, 0, 1.0) !important;
-        }
-
-        article {
-            cursor: -webkit-pointer;
-            cursor: pointer;
-        }
-
-        article:hover {
-            color: #000;
-        }
-
-        article:hover>.article-body>.article-title {
-            text-decoration: underline !important;
-        }
-
-        .crop-text-1 {
-            -webkit-line-clamp: 1;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-        }
-
-        .crop-text-2 {
-            -webkit-line-clamp: 2;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-        }
-
-        .crop-text-3 {
-            -webkit-line-clamp: 3;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-        }
-
-        .crop-text-4 {
-            -webkit-line-clamp: 4;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-        }
-
-        .nav-scroller-mobile {
-            position: relative;
-            z-index: 2;
-            height: 2.75rem;
-            overflow-y: hidden;
-        }
-
-        .nav-scroller-mobile .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        #latest-update-thumbnail {
-            width: 75px;
-            height: 75px;
-        }
-
-        .border-md-end {
-            border-right: none !important;
-        }
-
-        @media (min-width: 768px) {
-            #above-fold-list {
-                border-right: none !important;
-            }
-
-            #top-image {
-                width: 199px;
-                height: 199px;
-            }
-
-            #latest-update-thumbnail {
-                width: 125px;
-                height: 125px;
-            }
-
-            .border-md-end {
-                border-right: 1px solid #dee2e6 !important;
-            }
-        }
-
-        @media (min-width: 992px) {
-            #above-fold-list {
-                border-right: 1px solid #dee2e6 !important;
-            }
-
-            #top-image {
-                width: 250px;
-                height: 250px;
-            }
-        }
-
-        @media (min-width: 1200px) {}
-
-        @media (min-width: 1400px) {}
-
-        .aa-DetachedSearchButton {
-            border: 0 !important;
-        }
-
-        .aa-DetachedSearchButtonIcon {
-            color: rgba(0, 0, 0, 1.0) !important;
-        }
-
-        .aa-DetachedSearchButtonPlaceholder {
-            display: none !important;
-        }
-
-        @media screen {
-            @media (min-width: 992px) {
-                .offcanvas-lg .offcanvas-body {
-                    display: flex;
-                    flex-grow: 0;
-                    padding: 0;
-                    overflow-y: visible;
-                    background-color: rgba(0, 0, 0, 0) !important;
-                }
-            }
-        }
-
-        @media screen {
-            @media (min-width: 992px) {
-                .position-lg-sticky {
-                    position: -webkit-sticky !important;
-                    position: sticky !important;
-                }
-            }
-        }
-
-        @media screen {
-            .offcanvas-body {
-                display: block !important;
-            }
-        }
-    </style>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/theme-switcher.js') }}" defer></script>
-
-    <title>{{$currentUser->display_name}} - The Copenhagen Gates</title>
 
 </head>
 
@@ -494,6 +273,9 @@
     @include('components.footer', array(
     'sections' => $sections
     ))
+
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/theme.js') }}" defer></script>
 
 </body>
 

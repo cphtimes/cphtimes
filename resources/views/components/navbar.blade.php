@@ -11,7 +11,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" aria-current="page" href="{{route('home')}}">{{__('messages.frontpage')}}</a>
+                                <a class="dropdown-item" aria-current="page" href="{{route('frontpage')}}">{{__('messages.frontpage')}}</a>
                             </li>
                             @foreach($sections->slice(0,9) as $section)
                             <li>
@@ -54,7 +54,7 @@
                     <div class="offcanvas-body pt-0">
                         <ul class="navbar-nav p-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{route('home')}}">{{__('messages.frontpage')}}</a>
+                                <a class="nav-link" href="{{route('frontpage')}}">{{__('messages.frontpage')}}</a>
                             </li>
                             @foreach ($sections->slice(0,9) as $section)
                             <li class="nav-item">
@@ -93,7 +93,7 @@
         </div>
 
         <div class="text-center navbar-dark">
-            <a class="navbar-brand fw-normal chomsky" href="/">
+            <a class="navbar-brand fw-normal chomsky" href="{{route('frontpage')}}">
                 <span class="d-md-none" style="font-size: 1.5rem;">{{__('messages.brand_name')}}</span>
                 <span class="d-none d-md-block" style="font-size: 1.5rem;">{{__('messages.brand_name')}}</span>
             </a>

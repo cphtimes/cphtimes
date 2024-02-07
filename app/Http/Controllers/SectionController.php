@@ -44,6 +44,10 @@ class SectionController extends Controller
             ->orderBy('position', 'asc')
             ->get();
 
+        $activeSection = $sections->filter(function ($candidate) use ($section) {
+            return $section == $candidate->uri;
+        })->first();
+
         return view('section', [
             'temp' => $forecast['current'],
             'tempMin' => $forecast['min'],
@@ -52,7 +56,7 @@ class SectionController extends Controller
             'aboveFoldArticles' => $aboveFoldArticles,
             'currentUser' => $currentUser,
             'sections' => $sections,
-            'activeSection' => $section
+            'activeSection' => $activeSection
         ]);
     }
 }

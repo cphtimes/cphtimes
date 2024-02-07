@@ -35,7 +35,7 @@ class LoginController extends Controller
         $remember = $request->remember;
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-            return $redirect_url ? redirect()->to($redirect_url) : redirect()->route('home');
+            return $redirect_url ? redirect()->to($redirect_url) : redirect()->route('frontpage');
         }
 
         return back()->withErrors([
@@ -59,7 +59,7 @@ class LoginController extends Controller
         $route = $fragments[1];
 
         if (in_array($route, ['account_settings', 'write', 'manage_sections', 'manage_layout'])) {
-            return redirect()->route('home');
+            return redirect()->route('frontpage');
         }
 
         return redirect()->back();

@@ -20,7 +20,7 @@ use App\Models\Layout;
 use App\Services\AboveFoldArticlesService;
 use App\Services\GetTodaysForecastService;
 
-class HomepageController extends Controller
+class FrontpageController extends Controller
 {
 
     /**
@@ -73,7 +73,7 @@ class HomepageController extends Controller
             $highligtedSections[$section->uri] = $sectionArticles;
         }
 
-        return view('homepage', [
+        return view('frontpage', [
             'temp' => $forecast["current"],
             'tempMin' => $forecast["min"],
             'tempMax' => $forecast["max"],

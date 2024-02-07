@@ -6,3 +6,180 @@
 // Example of a variable override to change body background color
 // Remove the "//" to comment it in and see it in action!
 // $body-bg: #f6f9fc;
+
+@font-face {
+    font-family: "Chomsky";
+    src: url("../../public/Chomsky.otf");
+}
+
+.chomsky {
+    font-family: "Chomsky";
+}
+
+a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.rounded {
+    border-radius: 0.0rem !important; // 1.25rem!important;
+}
+
+.card-header {
+    border-bottom: none;
+}
+
+.serif {
+    font-family: 'Merriweather', serif;
+}
+
+.list-group-item {
+    border-bottom: 1px dotted rgba(0, 0, 0, .125) !important;
+}
+
+.solid-last-line {
+    border-bottom: 1px solid rgba(0, 0, 0, 1.0) !important;
+}
+
+article:hover>.article-body>.article-title {
+    text-decoration: underline !important;
+}
+
+article:hover>a>.article-body>.article-title {
+    text-decoration: underline !important;
+}
+
+article:hover>a>.article-body>div>.article-title {
+    text-decoration: underline !important;
+}
+
+.crop-text-1 {
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.crop-text-2 {
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.crop-text-3 {
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.crop-text-4 {
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.nav-scroller-mobile {
+    position: relative;
+    z-index: 2;
+    height: 2.75rem;
+    overflow-y: hidden;
+}
+
+.nav-scroller-mobile .nav {
+    display: flex;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    margin-top: -1px;
+    overflow-x: auto;
+    text-align: center;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+#latest-update-thumbnail {
+    width: 75px;
+    height: 75px;
+}
+
+/*
+.border-md-end {
+    border-right: none !important;
+}
+*/
+
+
+@media (min-width: 768px) {
+    #above-fold-list {
+        border-right: none !important;
+    }
+
+    #top-image {
+        width: 199px;
+        height: 199px;
+    }
+
+    #latest-update-thumbnail {
+        width: 125px;
+        height: 125px;
+    }
+
+    /*
+    .border-md-end {
+        border-right: 1px solid #dee2e6 !important;
+    }
+    */
+}
+
+@media (min-width: 992px) {
+    .articles-grid {
+        margin: auto;
+    }
+
+    #above-fold-list {
+        border-right: 1px solid #dee2e6 !important;
+    }
+
+    #top-image {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+@media (min-width: 1200px) {}
+
+@media (min-width: 1400px) {}
+
+.cell-compact {
+    width: 100%;
+}
+
+.cell-flexible {
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .cell-compact {
+        width: 33.33%;
+    }
+}
+
+@media (min-width: 992px) {
+    .cell-compact {
+        width: 16.66%;
+    }
+
+    .cell-flexible {
+        width: 50%;
+    }
+}
+
+.swiper-pagination {
+    position: relative;
+}

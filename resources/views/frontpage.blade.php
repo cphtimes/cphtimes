@@ -5,6 +5,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <title>{{ __('messages.brand_name') }} - {{ __('messages.slogan') }}</title>
+    <meta name="description" content="">
+
+    <!-- Google / Search Engine Tags -->
+    <meta itemprop="name" content="{{ __('messages.brand_name') }} - {{ __('messages.slogan')}}">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="{{app()->getLocale() == 'en' ? asset('CPHGates Open Graph Logo.png') : asset('KBHPorte Open Graph Logo.png')}}">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="{{url()->full()}}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ __('messages.brand_name') }} - {{ __('messages.slogan')}}">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="{{app()->getLocale() == 'en' ? asset('CPHGates Open Graph Logo.png') : asset('KBHPorte Open Graph Logo.png')}}">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ __('messages.brand_name') }} - {{ __('messages.slogan') }}">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="{{app()->getLocale() == 'en' ? asset('CPHGates Open Graph Logo.png') : asset('KBHPorte Open Graph Logo.png')}}">
+
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -20,191 +41,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 
-    <style>
-        @font-face {
-            font-family: "Chomsky";
-            src: url("{{url('Chomsky.otf')}}");
-        }
-
-        .chomsky {
-            font-family: "Chomsky";
-        }
-    </style>
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/theme-switcher.js') }}" defer></script>
-
-    <style>
-        a {
-            color: #000000;
-            text-decoration: none;
-        }
-
-        .rounded {
-            border-radius: 0.0rem !important; // 1.25rem!important;
-        }
-
-        .card-header {
-            border-bottom: none;
-        }
-
-        .serif {
-            font-family: 'Merriweather', serif;
-        }
-
-        .list-group-item {
-            border-bottom: 1px dotted rgba(0, 0, 0, .125) !important;
-        }
-
-        .solid-last-line {
-            border-bottom: 1px solid rgba(0, 0, 0, 1.0) !important;
-        }
-
-        article:hover>.article-body>.article-title {
-            text-decoration: underline !important;
-        }
-
-        article:hover>a>.article-body>.article-title {
-            text-decoration: underline !important;
-        }
-
-        article:hover>a>.article-body>div>.article-title {
-            text-decoration: underline !important;
-        }
-
-        .crop-text-1 {
-            -webkit-line-clamp: 1;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-        }
-
-        .crop-text-2 {
-            -webkit-line-clamp: 2;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-        }
-
-        .crop-text-3 {
-            -webkit-line-clamp: 3;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-        }
-
-        .crop-text-4 {
-            -webkit-line-clamp: 4;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-        }
-
-        .nav-scroller-mobile {
-            position: relative;
-            z-index: 2;
-            height: 2.75rem;
-            overflow-y: hidden;
-        }
-
-        .nav-scroller-mobile .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        #latest-update-thumbnail {
-            width: 75px;
-            height: 75px;
-        }
-
-        /*
-        .border-md-end {
-            border-right: none !important;
-        }
-        */
-
-
-        @media (min-width: 768px) {
-            #above-fold-list {
-                border-right: none !important;
-            }
-
-            #top-image {
-                width: 199px;
-                height: 199px;
-            }
-
-            #latest-update-thumbnail {
-                width: 125px;
-                height: 125px;
-            }
-
-            /*
-          .border-md-end {
-              border-right: 1px solid #dee2e6 !important;
-          }
-          */
-        }
-
-        @media (min-width: 992px) {
-            .articles-grid {
-                margin: auto;
-            }
-
-            #above-fold-list {
-                border-right: 1px solid #dee2e6 !important;
-            }
-
-            #top-image {
-                width: 250px;
-                height: 250px;
-            }
-        }
-
-        @media (min-width: 1200px) {}
-
-        @media (min-width: 1400px) {}
-
-        .cell-compact {
-            width: 100%;
-        }
-
-        .cell-flexible {
-            width: 100%;
-        }
-
-        @media (min-width: 768px) {
-            .cell-compact {
-                width: 33.33%;
-            }
-        }
-
-        @media (min-width: 992px) {
-            .cell-compact {
-                width: 16.66%;
-            }
-
-            .cell-flexible {
-                width: 50%;
-            }
-        }
-
-        .swiper-pagination {
-            position: relative;
-        }
-    </style>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-W155VBDMQH"></script>
@@ -218,8 +58,6 @@
 
         gtag('config', 'G-W155VBDMQH');
     </script>
-
-    <title>{{ env('APP_NAME') }} - {{ __('messages.slogan') }}</title>
 </head>
 
 <body class="antialiased">

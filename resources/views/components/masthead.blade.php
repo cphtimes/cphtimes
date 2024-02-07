@@ -54,7 +54,7 @@
                 </ul>
             </div>
             <div class="text-center">
-                <a style="font-size: 4.0rem;" class="text-dark chomsky" href="/">{{__('messages.brand_name')}}</a>
+                <a style="font-size: 4.0rem;" class="text-dark chomsky" href="{{route('frontpage')}}">{{__('messages.brand_name')}}</a>
             </div>
             <div>
                 <ul class="navbar-nav">
