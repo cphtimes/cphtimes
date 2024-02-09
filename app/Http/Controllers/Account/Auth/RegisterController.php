@@ -67,7 +67,7 @@ class RegisterController extends Controller
 
         $remember = true;
         Auth::login($user, $remember);
-        return redirect()->route('home');
+        return redirect()->route('frontpage');
     }
 
     /**
