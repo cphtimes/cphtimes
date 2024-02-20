@@ -2,8 +2,13 @@
 
 namespace App\Services;
 
-class GetUserInitialsService {
-    static public function forName($name) {
+class GetUserInitialsService
+{
+    static public function forName($name)
+    {
+        if ($name == null) {
+            return "A";
+        }
         $fragments = explode(' ', $name);
         if (count($fragments) == 0) {
             return null;
