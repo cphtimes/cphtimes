@@ -1,7 +1,20 @@
-<header @class(!empty($class) ? $class : [ 'navbar navbar-expand-lg navbar-stuck fixed-top bg-dark' ])>
+<style>
+    [data-bs-theme=dark] .navbar-blur {
+        background-color: rgba(var(--ar-dark-rgb), 0.8) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    [data-bs-theme=light] .navbar-blur {
+        background-color: rgba(var(--ar-light-rgb), 0.8) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+</style>
+
+<header @class(!empty($class) ? $class : [ 'navbar navbar-expand-lg navbar-stuck fixed-top border-bottom navbar-blur' ])>
     <div class="d-flex justify-content-between container-fluid">
         <div>
-            <div class="d-none d-lg-block navbar-dark">
+            <div class="d-none d-lg-block navbar-light">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
@@ -43,7 +56,7 @@
 
             <!-- off canvas mobile -->
             <div class="d-lg-none">
-                <button type="button" class="navbar-toggler navbar-dark me-2" data-bs-toggle="offcanvas" data-bs-target="#primaryMenu" aria-label="Toggle navigation">
+                <button type="button" class="navbar-toggler navbar-light me-2" data-bs-toggle="offcanvas" data-bs-target="#primaryMenu" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="offcanvas offcanvas-start" id="primaryMenu">
@@ -92,14 +105,14 @@
             </div>
         </div>
 
-        <div class="text-center navbar-dark">
+        <div class="text-center navbar-light">
             <a class="navbar-brand fw-normal chomsky" href="{{route('frontpage')}}">
                 <span class="d-md-none" style="font-size: 1.5rem;">{{__('messages.brand_name')}}</span>
                 <span class="d-none d-md-block" style="font-size: 1.5rem;">{{__('messages.brand_name')}}</span>
             </a>
         </div>
 
-        <div class="navbar-dark">
+        <div class="navbar-light">
             <div class="d-lg-none">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
                     <div class="d-flex align-items-center justify-content-center" style="font-size: 1.2em">

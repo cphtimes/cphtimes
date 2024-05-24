@@ -114,7 +114,7 @@
                 </ul>
 
                 @if (count($aboveFoldArticles) > 0)
-                <div class="d-none d-md-block col-xl-6 border-end-0 border-end-lg ps-0 pb-3 pt-3 pt-lg-0 pe-md-0 px-lg-2">
+                <div class="d-none d-md-block col-xl-6 border-end-0 border-end-lg ps-0 pb-0 pt-3 pt-lg-0 pe-md-0 px-lg-2">
                     <a class="nav-link" href="{{ route('article', ['section' => $aboveFoldArticles[0]->section_uri, 'article' => $aboveFoldArticles[0]->headline_uri]) }}">
                         <article class="card border-0 px-3 px-md-3 px-lg-3">
                             <div class="row d-flex align-items-center">
@@ -134,7 +134,7 @@
                 </div>
                 @endif
 
-                <ul class="d-none d-md-block list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-md-3 px-lg-4 pb-md-4">
+                <ul class="d-none d-md-block list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-md-3 px-lg-4 pb-md-4 pb-lg-0">
                     @for ($i = 1; $i < min(count($aboveFoldArticles), 5); $i++) @include('components.article-list-item', array( 'article'=> $aboveFoldArticles[$i],
                         'section' => $aboveFoldArticles[$i]->localizedSection($sections),
                         'style' => 'expanded',
