@@ -79,10 +79,10 @@
         @include('components.masthead-mini-nav', array(
         'sections' => $sections,
         ))
-        <div class="container pt-5 pb-4 pt-lg-4 px-md-0 px-lg-0">
+        <div class="container pt-5 pb-0 pt-lg-4 px-md-0 px-lg-0">
             <div style="margin: auto" class="row pt-4 pt-lg-0 pb-3 pb-md-5 px-md-3 px-lg-0">
                 <!-- Above the fold -->
-                <ul class="d-block d-md-none list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-lg-4 border-end-0 border-end-lg pb-4">
+                <ul class="d-block d-md-none list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-lg-4 border-end-0 border-end-lg">
                     @if (count($aboveFoldArticles) > 0)
                     <li class="list-group-item border-bottom">
                         @include('components.article-card', array(
@@ -98,7 +98,7 @@
                         ))
                         @endfor
                 </ul>
-                <ul class="d-none d-md-block list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-lg-4 border-end-0 border-end-lg pb-4">
+                <ul class="d-none d-md-block list-group list-group-flush col-xl-6 col-lg-8 col-md-12 col-12 pe-0 px-lg-4 border-end-0 border-end-lg">
                     @for ($i = 0; $i < min(count($aboveFoldArticles), 3); $i++) @include('components.article-list-item', array( 'article'=> $aboveFoldArticles[$i],
                         'section' => $aboveFoldArticles[$i]->localizedSection($sections),
                         'style' => $i == 0 ? 'large' : 'expanded',
@@ -123,7 +123,7 @@
                     </div>
                 </div>
 
-                <ul style="overflow-y: scroll; height:566px;" class="d-none d-lg-block col-xl-3 col-lg-4 col-md-12 col-12 border-end-xl px-4">
+                <ul style="overflow-y: scroll; height:566px;" class="d-none d-lg-block col-xl-3 col-lg-4 col-md-12 col-12 border-end-xl px-4 mb-0">
                     <h5 class="w-100 serif fw-bolder fst-italic">{{__('messages.latest_updates')}}</h5>
                     @foreach ($latestUpdates as $update)
                     @include('components.article-list-item', array(
@@ -134,7 +134,7 @@
                     @endforeach
                 </ul>
 
-                <ul style="overflow-y: scroll; height:566px;" class="d-none d-xl-block list-group list-group-flush col-xl-3 col-lg-12 col-md-12 col-12 px-4">
+                <ul style="overflow-y: scroll; height:566px;" class="d-none d-xl-block list-group list-group-flush col-xl-3 col-lg-12 col-md-12 col-12 px-4 mb-0">
                     <h5 class="w-100 serif fw-bolder fst-italic">{{__('messages.popular_articles')}}</h5>
                     @foreach ($popular as $article)
                     @include('components.article-list-item', array(
@@ -146,13 +146,158 @@
                 </ul>
             </div>
 
+            <div class="container py-5 mt-sm-2 my-md-4 my-xl-0">
+                @include('components.newsletter')
+            </div>
+
+            <!-- In 5 mins. or less -->
+            <section class="container py-5 mt-sm-2 my-md-4 my-xl-1">
+                <div class="d-flex align-items-center pb-3 mb-3 mb-lg-4">
+                    <h1 class="serif fw-bolder fst-italic mb-0 me-4 fw-bold">In 5 mins.</h1>
+                    <div class="d-flex ms-auto">
+                        <button class="btn btn-prev btn-icon btn-sm btn-outline-primary rounded-circle me-3" type="button" id="prev-post" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-ef03bba4ed6c9674">
+                            <i class="ai-arrow-left"></i>
+                        </button>
+                        <button class="btn btn-next btn-icon btn-sm btn-outline-primary rounded-circle" type="button" id="next-post" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-ef03bba4ed6c9674">
+                            <i class="ai-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="swiper 5-min-swiper">
+                    <div class="swiper-wrapper">
+
+                        <div style="width: 393.75px !important; height: 700px !important;" class="swiper-slide">
+                            <article class="card rounded-0 h-100 border-0 position-relative overflow-hidden bg-size-cover bg-position-center" style="background-image: url(https://nqoqqqqwmhdrphlbuhql.supabase.co/storage/v1/object/public/articles/6/image.jpg); width: 393.75px !important; height: 700px !important;">
+                                <div class="bg-dark position-absolute top-0 start-0 w-100 h-100 opacity-60"></div>
+                                <div class="card-body d-flex flex-column position-relative z-2 mt-sm-5">
+                                <h5 class="pt-5 mt-4 mt-sm-5 mt-lg-auto">
+                                    <a class="stretched-link text-light" href="https://bedredanmark.dk/nyheder/6"><i class="ai-play-filled me-2"></i>Hvor ligger vi vores fokus?</a>
+                                </h5>
+                                <p class="fs-sm card-text text-light opacity-70 number-lines-3">Obs. Denne præsentation indeholder spoilers om Disney filmen Tomorrowland fra 2015.</p>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div style="width: 393.75px !important; height: 700px !important;" class="swiper-slide">
+                            <article class="card rounded-0 h-100 border-0 position-relative overflow-hidden bg-size-cover bg-position-center" style="background-image: url(https://nqoqqqqwmhdrphlbuhql.supabase.co/storage/v1/object/public/articles/6/image.jpg); width: 393.75px !important; height: 700px !important;">
+                                <div class="bg-dark position-absolute top-0 start-0 w-100 h-100 opacity-60"></div>
+                                <div class="card-body d-flex flex-column position-relative z-2 mt-sm-5">
+                                <h5 class="pt-5 mt-4 mt-sm-5 mt-lg-auto">
+                                    <a class="stretched-link text-light" href="https://bedredanmark.dk/nyheder/6"><i class="ai-play-filled me-2"></i>Hvor ligger vi vores fokus?</a>
+                                </h5>
+                                <p class="fs-sm card-text text-light opacity-70 number-lines-3">Obs. Denne præsentation indeholder spoilers om Disney filmen Tomorrowland fra 2015.</p>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div style="width: 393.75px !important; height: 700px !important;" class="swiper-slide">
+                            <article class="card rounded-0 h-100 border-0 position-relative overflow-hidden bg-size-cover bg-position-center" style="background-image: url(https://nqoqqqqwmhdrphlbuhql.supabase.co/storage/v1/object/public/articles/6/image.jpg); width: 393.75px !important; height: 700px !important;">
+                                <div class="bg-dark position-absolute top-0 start-0 w-100 h-100 opacity-60"></div>
+                                <div class="card-body d-flex flex-column position-relative z-2 mt-sm-5">
+                                <h5 class="pt-5 mt-4 mt-sm-5 mt-lg-auto">
+                                    <a class="stretched-link text-light" href="https://bedredanmark.dk/nyheder/6"><i class="ai-play-filled me-2"></i>Hvor ligger vi vores fokus?</a>
+                                </h5>
+                                <p class="fs-sm card-text text-light opacity-70 number-lines-3">Obs. Denne præsentation indeholder spoilers om Disney filmen Tomorrowland fra 2015.</p>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div style="width: 393.75px !important; height: 700px !important;" class="swiper-slide">
+                            <article class="card rounded-0 h-100 border-0 position-relative overflow-hidden bg-size-cover bg-position-center" style="background-image: url(https://nqoqqqqwmhdrphlbuhql.supabase.co/storage/v1/object/public/articles/6/image.jpg); width: 393.75px !important; height: 700px !important;">
+                                <div class="bg-dark position-absolute top-0 start-0 w-100 h-100 opacity-60"></div>
+                                <div class="card-body d-flex flex-column position-relative z-2 mt-sm-5">
+                                <h5 class="pt-5 mt-4 mt-sm-5 mt-lg-auto">
+                                    <a class="stretched-link text-light" href="https://bedredanmark.dk/nyheder/6"><i class="ai-play-filled me-2"></i>Hvor ligger vi vores fokus?</a>
+                                </h5>
+                                <p class="fs-sm card-text text-light opacity-70 number-lines-3">Obs. Denne præsentation indeholder spoilers om Disney filmen Tomorrowland fra 2015.</p>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div style="width: 393.75px !important; height: 700px !important;" class="swiper-slide">
+                            <article class="card rounded-0 h-100 border-0 position-relative overflow-hidden bg-size-cover bg-position-center" style="background-image: url(https://nqoqqqqwmhdrphlbuhql.supabase.co/storage/v1/object/public/articles/6/image.jpg); width: 393.75px !important; height: 700px !important;">
+                                <div class="bg-dark position-absolute top-0 start-0 w-100 h-100 opacity-60"></div>
+                                <div class="card-body d-flex flex-column position-relative z-2 mt-sm-5">
+                                <h5 class="pt-5 mt-4 mt-sm-5 mt-lg-auto">
+                                    <a class="stretched-link text-light" href="https://bedredanmark.dk/nyheder/6"><i class="ai-play-filled me-2"></i>Hvor ligger vi vores fokus?</a>
+                                </h5>
+                                <p class="fs-sm card-text text-light opacity-70 number-lines-3">Obs. Denne præsentation indeholder spoilers om Disney filmen Tomorrowland fra 2015.</p>
+                                </div>
+                            </article>
+                        </div>
+
+                        <div style="width: 393.75px !important; height: 700px !important;" class="swiper-slide">
+                            <article class="card rounded-0 h-100 border-0 position-relative overflow-hidden bg-size-cover bg-position-center" style="background-image: url(https://nqoqqqqwmhdrphlbuhql.supabase.co/storage/v1/object/public/articles/6/image.jpg); width: 393.75px !important; height: 700px !important;">
+                                <div class="bg-dark position-absolute top-0 start-0 w-100 h-100 opacity-60"></div>
+                                <div class="card-body d-flex flex-column position-relative z-2 mt-sm-5">
+                                <h5 class="pt-5 mt-4 mt-sm-5 mt-lg-auto serif">
+                                    <a class="stretched-link text-light" href="https://bedredanmark.dk/nyheder/6"><i class="ai-play-filled me-2"></i>Hvor ligger vi vores fokus?</a>
+                                </h5>
+                                <p class="fs-sm card-text text-light opacity-70 number-lines-3 serif">Obs. Denne præsentation indeholder spoilers om Disney filmen Tomorrowland fra 2015.</p>
+                                </div>
+                            </article>
+                        </div>
+
+                    </div>
+                </div>
+
+                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+            </section>
+
             <!-- Grid of articles -->
+            <section class="container">
+                <div class="d-flex flex-column align-items-center pb-3 mb-3 mb-lg-4 justify-content-between">
+                    <h1 class="serif fw-bolder fst-italic mb-0 fw-bold">Above the fold</h1>
+                    <p class="fst-italic fs-lg mb-0">Essential reading.</p>
+                </div>
+            </section>
+
             <div class="px-0" hx-get="{{route('article_grid.show')}}" hx-swap="outerHTML" hx-trigger="load" id="article-grid">
                 @include('components.article-grid', [
                 'placeholder' => true,
                 'n' => 20
                 ])
             </div>
+
+            <section class="container py-5 mt-sm-2 my-md-4 my-xl-1">
+                <div style="height: 600px;" class="card zoom-effect border-0 rounded-0 overflow-hidden">
+                    <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-10 z-2"></span>
+                    <div class="h-100 bg-dark zoom-effect-wrapper rounded-0">
+                        <img style="object-fit: cover;" class="w-100 h-100 opacity-60 zoom-effect-img" src="https://lasdisidentes.com/wp-content/uploads/2013/03/diana-napolis1.jpg?w=584" alt="Category image">
+                    </div>
+                    <a class="card-body d-flex flex-column justify-content-center text-center align-items-center position-absolute top-0 start-0 w-100 w-lg-50 h-100 text-decoration-none z-3" href="shop-catalog.html">
+                        <p class="text-uppercase text-danger fs-sm serif">Mind Control</p>
+                        <h3 class="article-title card-title fw-light text-light crop-text-4 serif">DECLARATION OF DIANA NAPOLIS IN RESPONSE TO THE RECOMMENDATIONS OF THE BOARD OF BEHAVIORAL SCIENCE</h2>
+                        <div class="d-block">
+                            <p class="text-light fw-light opacity-50 crop-text-3 serif">I am the defendant in these proceedings. I make this declaration in response to the RECOMMENDATIONS OF THE BOARD OF BEHAVIORAL SCIENCE filed in these proceedings and presented to the court at the hearing of February 19, 2003, 9:00 a.m. My attorney did not file a response to the Board's recommendations. The Court did not follow the Board's recommendations.</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <section class="container py-5 mt-sm-2 my-md-4 my-xl-1">
+                <div class="d-flex flex-column align-items-center pb-3 mb-3 mb-lg-4 justify-content-between">
+                    <h1 class="serif fw-bolder fst-italic mb-0 fw-bold">Ugens memes</h1>
+                    <p class="fst-italic fs-lg mb-0">Det er vigtigt at grine og højne frekvensen, sit humør.</p>
+                </div>
+                <div class="swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <figure class="figure">
+                              <img src="https://scontent-cph2-1.xx.fbcdn.net/v/t39.30808-6/436120540_2767920180039092_5744539943817400246_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=TNC6z2aqd74Q7kNvgFmgxc9&_nc_ht=scontent-cph2-1.xx&oh=00_AYCPeKBuH2EULMKfZ8UTtfIxihXhb2KMCAlhIdjOV3G1fg&oe=665CCBAB" class="figure-img" alt="...">
+                              <figcaption class="figure-caption serif">Den 'nødvendige' krig mod bad guy Putin.</figcaption>
+                            </figure>
+                        </div>
+                        <div class="swiper-slide">
+                            <figure class="figure">
+                              <img src="https://scontent-cph2-1.xx.fbcdn.net/v/t39.30808-6/445175411_2779888098842300_7895429969575221702_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=o3jx0gPqEZgQ7kNvgFenIYv&_nc_ht=scontent-cph2-1.xx&oh=00_AYA4l7jGrXiRdvZrnQxwKdU_GBfSwE1ab_BmA0SbGA9J0g&oe=665CE4AF" class="figure-img" alt="...">
+                              <figcaption class="figure-caption serif">Den Sorte Svane på TV2 play. Af alle navne de kunne have brugt!</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <div class="row d-block d-lg-none px-0 px-md-3">
                 @foreach ($highlightedSections as $section_uri => $section)
@@ -197,12 +342,13 @@
                     @endforeach
                 </div>
             </div>
+
         </div>
         </div>
     </main>
 
     <!-- Footer -->
-    @include('components.footer', array(
+    @include('components.footer-alt', array(
     'sections' => $sections
     ))
 
@@ -224,6 +370,27 @@
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
+            }
+        });
+    </script>
+
+    <script>
+        const swiper2 = new Swiper('.swiper', {
+            direction: 'horizontal',
+            spaceBetween: 4,
+            loop: false,
+            autoHeight: true,
+            navigation: {
+                "prevEl": "#prev-post",
+                "nextEl": "#next-post"
+            },
+            breakpoints: {
+                "576": {
+                    "slidesPerView": 2
+                },
+                "1000": {
+                    "slidesPerView": 3
+                }
             }
         });
     </script>

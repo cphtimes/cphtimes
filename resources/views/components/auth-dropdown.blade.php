@@ -1,7 +1,7 @@
 <div @class(['dropdown', 'nav' , 'd-sm-block' , 'order-lg-3' , $direction ?? '' ])>
     <a class="nav-link d-flex align-items-center p-0" href="#" data-bs-toggle="dropdown" aria-expanded="false">
         <img style="object-fit: cover;" class="border rounded-circle" src="{{$user->photo_url}}" width="36" height="36" alt="{{$user->display_name}}">
-        <div @class([ 'ps-2' , 'text-white'=> isset($text_white) ? $text_white : false ])>
+        <div @class([ 'ps-2' , 'text-dark' ])>
             <div class="fs-xs lh-1 opacity-60">{{__('messages.greeting')}},</div>
             <div class="fs-sm dropdown-toggle">{{explode(" ", $user->display_name)[0]}}</div>
         </div>

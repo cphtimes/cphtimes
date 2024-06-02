@@ -108,7 +108,7 @@
                         </div>
                     </div>
 
-                    <div class="mb-3 serif" id="article-body">
+                    <div style="word-break: break-word; word-wrap: balance;" class="mb-3 serif" id="article-body">
                         {!! $body !!}
                     </div>
 
@@ -256,7 +256,7 @@
         </button>
     </main>
     <!-- Footer -->
-    @include('components.footer', array(
+    @include('components.footer-alt', array(
     'sections' => $sections
     ))
 

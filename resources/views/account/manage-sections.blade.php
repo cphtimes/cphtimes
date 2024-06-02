@@ -134,7 +134,7 @@
         </div>
     </main>
     <!-- Footer -->
-    @include('components.footer', array(
+    @include('components.footer-alt', array(
     'sections' => $sections
     ))
 

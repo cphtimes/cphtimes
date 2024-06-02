@@ -155,10 +155,10 @@ article:hover > a > .article-body > div > .article-title {
 }
 @media (min-width: 992px) {
   .cell-compact {
-    width: 16.66%;
+    width: 25%;
   }
   .cell-flexible {
-    width: 50%;
+    width: 25%;
   }
 }
 .swiper-pagination {

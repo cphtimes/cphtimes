@@ -16,33 +16,19 @@
         <div>
             <div class="d-none d-lg-block navbar-light">
                 <ul class="navbar-nav">
+                    <li class="nav-item dropdown d-none">
+                        <a class="nav-link" href="{{route('frontpage')}}">
+                            <div class="d-flex align-items-center justify-content-center" style="font-size: 1.2em">
+                                <i class="ai ai-home"></i>
+                            </div>
+                        </a>
+                    </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                        <a class="nav-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#primaryMenu">
                             <div class="d-flex align-items-center justify-content-center" style="font-size: 1.2em">
                                 <i class="ai ai-menu"></i>
                             </div>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" aria-current="page" href="{{route('frontpage')}}">{{__('messages.frontpage')}}</a>
-                            </li>
-                            @foreach($sections->slice(0,9) as $section)
-                            <li>
-                                <a class="dropdown-item" aria-current="page" href="{{ route('section', ['section' => $section->uri]) }}">{{$section->name}}</a>
-                            </li>
-                            @endforeach
-
-                            @if ($sections->slice(9)->count() > 0)
-                            <li class="dropdown">
-                                <a class="dropdown-item dropdown-toggle" data-bs-auto-close="outside" aria-expanded="true" href="#" data-bs-toggle="dropdown">{{ ucfirst(__('messages.more')) }}</a>
-                                <ul class="dropdown-menu">
-                                    @foreach ($sections->slice(9) as $section)
-                                    <li><a class="dropdown-item" href="{{ route('section', ['section' => $section->uri]) }}">{{$section->name}}</a></li>
-                                    @endforeach
-                                </ul>
-                            </li>
-                            @endif
-                        </ul>
                     </li>
                     <li class="d-none d-lg-block nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
@@ -59,49 +45,6 @@
                 <button type="button" class="navbar-toggler navbar-light me-2" data-bs-toggle="offcanvas" data-bs-target="#primaryMenu" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="offcanvas offcanvas-start" id="primaryMenu">
-                    <div class="offcanvas-header">
-                        <h5 class="mt-1 mb-0">Menu</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body pt-0">
-                        <ul class="navbar-nav p-0">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('frontpage')}}">{{__('messages.frontpage')}}</a>
-                            </li>
-                            @foreach ($sections->slice(0,9) as $section)
-                            <li class="nav-item">
-                                <a href="{{ route('section', ['section' => $section->uri]) }}" class="nav-link">{{$section->name}}</a>
-                            </li>
-                            @endforeach
-
-                            @if ($sections->slice(9)->count() > 0)
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside">{{ ucfirst(__('messages.more')) }}</a>
-                                <ul class="dropdown-menu">
-                                    @foreach ($sections->slice(9) as $section)
-                                    <li><a href="{{ route('section', ['section' => $section->uri]) }}" class="dropdown-item">{{$section->name}}</a></li>
-                                    @endforeach
-                                </ul>
-                            </li>
-                            @endif
-                        </ul>
-                    </div>
-
-                    <div class="offcanvas-header d-flex border-top">
-                        @auth
-                        @include('components.auth-dropdown', ['user' => $user, 'direction' => 'dropup', 'menu_alignment' => 'dropdown-menu-start'])
-                        @endauth
-
-                        @guest
-                        <a href="{{route('login', ['redirect' => \Request::getRequestUri()])}}" class="btn btn-outline-primary w-100">
-                            <i class="ai-login me-1"></i>
-                            {{__('messages.log_in')}}
-                        </a>
-                        @endguest
-                    </div>
-
-                </div>
             </div>
         </div>
 
@@ -142,7 +85,7 @@
                         @endauth
 
                         @guest
-                        <a type="button btn-primary" role="button" href="{{route('login', ['redirect' => \Request::getRequestUri()])}}" class="btn btn-primary btn-sm">
+                        <a type="button btn-primary" role="button" href="{{route('login', ['redirect' => \Request::getRequestUri()])}}" class="btn btn-link">
                             <i class="ai-login me-2 ms-n1"></i>
                             {{__('messages.log_in')}}
                         </a>
@@ -155,3 +98,47 @@
 
     </div>
 </header>
+
+<div class="offcanvas offcanvas-start" id="primaryMenu" tabindex="-1">
+    <div class="offcanvas-header">
+        <h5 class="mt-1 mb-0">Menu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body pt-0">
+        <ul class="navbar-nav p-0">
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('frontpage')}}">{{__('messages.frontpage')}}</a>
+            </li>
+            @foreach ($sections->slice(0,9) as $section)
+            <li class="nav-item">
+                <a href="{{ route('section', ['section' => $section->uri]) }}" class="nav-link">{{$section->name}}</a>
+            </li>
+            @endforeach
+
+            @if ($sections->slice(9)->count() > 0)
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside">{{ ucfirst(__('messages.more')) }}</a>
+                <ul class="dropdown-menu">
+                    @foreach ($sections->slice(9) as $section)
+                    <li><a href="{{ route('section', ['section' => $section->uri]) }}" class="dropdown-item">{{$section->name}}</a></li>
+                    @endforeach
+                </ul>
+            </li>
+            @endif
+        </ul>
+    </div>
+
+    <div class="d-block d-lg-none offcanvas-header d-flex border-top">
+        @auth
+        @include('components.auth-dropdown', ['user' => $user, 'direction' => 'dropup', 'menu_alignment' => 'dropdown-menu-start'])
+        @endauth
+
+        @guest
+        <a href="{{route('login', ['redirect' => \Request::getRequestUri()])}}" class="btn btn-outline-primary w-100">
+            <i class="ai-login me-1"></i>
+            {{__('messages.log_in')}}
+        </a>
+        @endguest
+    </div>
+
+</div>

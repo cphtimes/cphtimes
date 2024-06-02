@@ -30,7 +30,7 @@
                     @include('components.auth-dropdown', ['user' => $user])
                     @endauth
                     @guest
-                    <a role="button" href="{{route('login', ['redirect' => \Request::getRequestUri()])}}" class="btn btn-primary btn-sm">
+                    <a role="button" href="{{route('login', ['redirect' => \Request::getRequestUri()])}}" class="btn btn-link btn-sm">
                         <i class="ai-login me-2"></i>
                         {{__('messages.log_in')}}
                     </a>

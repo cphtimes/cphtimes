@@ -3,26 +3,26 @@
         <a class="nav-link" href="{{ route('article', ['section' => $article->section_uri, 'article' => $article->headline_uri]) }}">
             <div class="article-body w-50 flex-grow-1 ms-0 pe-3">
                 <div class="d-flex justify-content-between w-100 mb-2">
-                    <small class="text-uppercase crop-text-1">
-                        <b>{{ $section ?? $article->section_uri }}</b>
-                    </small>
+                    <p class="text-uppercase crop-text-1 mb-0 fs-sm text-danger serif">
+                        {{ $section ?? $article->section_uri }}
+                    </p>
                     @if ($style == 'compact')
                     <small class="text-uppercase opacity-50">{{ str_replace(' ', '', \Carbon\Carbon::parse($article->published_at)->isoFormat('M/D/YY')) }}</small>
                     @endif
                 </div>
                 @if ($style == 'compact')
-                <h6 class="article-title w-100 fw-light mb-0 crop-text-2 mb-2">{{$article->headline}}</h6>
+                <h6 class="article-title w-100 fw-light mb-0 crop-text-2 mb-2 serif">{{$article->headline}}</h6>
                 @else
                 <div class="d-block d-md-none">
-                    <h6 class="article-title w-100 fw-light mb-0 crop-text-1 mb-2">{{$article->headline}}</h6>
+                    <h6 class="article-title w-100 fw-light mb-0 crop-text-1 mb-2 serif">{{$article->headline}}</h6>
                 </div>
                 <div class="d-none d-md-block">
                     @if ($style == 'large')
-                    <h3 class="article-title fw-light crop-text-2 mb-2">{{ $article->headline }}</h3>
-                    <p class="opacity-50 crop-text-3 mb-2">{{$article->abstract}}</p>
+                    <h3 class="article-title fw-light crop-text-2 mb-2 serif">{{ $article->headline }}</h3>
+                    <p class="opacity-50 crop-text-3 mb-2 serif">{{$article->abstract}}</p>
                     @else
-                    <h5 class="article-title fw-light crop-text-1 mb-2">{{$article->headline}}</h5>
-                    <p class="opacity-50 crop-text-2 mb-2">{{$article->abstract}}</p>
+                    <h5 class="article-title fw-light crop-text-1 mb-2 serif">{{$article->headline}}</h5>
+                    <p class="opacity-50 crop-text-2 mb-2 serif">{{$article->abstract}}</p>
                     @endif
                 </div>
                 @endif
