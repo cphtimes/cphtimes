@@ -248,8 +248,8 @@
             <!-- Grid of articles -->
             <section class="container">
                 <div class="d-flex flex-column align-items-center pb-3 mb-3 mb-lg-4 justify-content-between">
-                    <h1 class="serif fw-bolder fst-italic mb-0 fw-bold">Above the fold</h1>
-                    <p class="fst-italic fs-lg mb-0">Essential reading.</p>
+                    <h1 class="serif fw-bolder fst-italic mb-0 fw-bold">Daily Digest</h1>
+                    <p class="fst-italic fs-lg mb-0">Get an overview this morning.</p>
                 </div>
             </section>
 
@@ -260,21 +260,18 @@
                 ])
             </div>
 
-            <section class="container py-5 mt-sm-2 my-md-4 my-xl-1">
-                <div style="height: 600px;" class="card zoom-effect border-0 rounded-0 overflow-hidden">
-                    <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-10 z-2"></span>
-                    <div class="h-100 bg-dark zoom-effect-wrapper rounded-0">
-                        <img style="object-fit: cover;" class="w-100 h-100 opacity-60 zoom-effect-img" src="https://lasdisidentes.com/wp-content/uploads/2013/03/diana-napolis1.jpg?w=584" alt="Category image">
-                    </div>
-                    <a class="card-body d-flex flex-column justify-content-center text-center align-items-center position-absolute top-0 start-0 w-100 w-lg-50 h-100 text-decoration-none z-3" href="shop-catalog.html">
-                        <p class="text-uppercase text-danger fs-sm serif">Mind Control</p>
-                        <h3 class="article-title card-title fw-light text-light crop-text-4 serif">DECLARATION OF DIANA NAPOLIS IN RESPONSE TO THE RECOMMENDATIONS OF THE BOARD OF BEHAVIORAL SCIENCE</h2>
-                        <div class="d-block">
-                            <p class="text-light fw-light opacity-50 crop-text-3 serif">I am the defendant in these proceedings. I make this declaration in response to the RECOMMENDATIONS OF THE BOARD OF BEHAVIORAL SCIENCE filed in these proceedings and presented to the court at the hearing of February 19, 2003, 9:00 a.m. My attorney did not file a response to the Board's recommendations. The Court did not follow the Board's recommendations.</p>
-                        </div>
-                    </a>
-                </div>
-            </section>
+            @include('components.card', [
+                'has_img_overlay' => false,
+                'text_position' => 'end',
+                'sections' => $sections,
+                'article' => App\Models\Article::where('section_uri', 'mind-control')->first(),
+            ])
+
+            @include('components.section', [
+                'text_position' => 'start',
+                'sections' => $sections,
+                'article' => App\Models\Article::where('section_uri', 'mind-control')->first(),
+            ])
 
             <section class="container py-5 mt-sm-2 my-md-4 my-xl-1">
                 <div class="d-flex flex-column align-items-center pb-3 mb-3 mb-lg-4 justify-content-between">
