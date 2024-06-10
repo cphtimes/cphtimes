@@ -36,14 +36,15 @@
 
     <link href="{{ asset('icons/around-icons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lightgallery-bundle.min.css" integrity="sha512-nUqPe0+ak577sKSMThGcKJauRI7ENhKC2FQAOOmdyCYSrUh0GnwLsZNYqwilpMmplN+3nO3zso8CWUgu33BDag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/theme-switcher.js') }}" defer></script>
 
     <!-- Google tag (gtag.js) -->
@@ -151,99 +152,41 @@
             </div>
 
             <!-- In 5 mins. or less -->
-            <section class="container py-5 mt-sm-2 my-md-4 my-xl-1">
-                <div class="d-flex align-items-center pb-3 mb-3 mb-lg-4">
-                    <h1 class="serif fw-bolder fst-italic mb-0 me-4 fw-bold">In 5 mins.</h1>
-                    <div class="d-flex ms-auto">
-                        <button class="btn btn-prev btn-icon btn-sm btn-outline-primary rounded-circle me-3" type="button" id="prev-post" tabindex="0" aria-label="Previous slide" aria-controls="swiper-wrapper-ef03bba4ed6c9674">
-                            <i class="ai-arrow-left"></i>
-                        </button>
-                        <button class="btn btn-next btn-icon btn-sm btn-outline-primary rounded-circle" type="button" id="next-post" tabindex="0" aria-label="Next slide" aria-controls="swiper-wrapper-ef03bba4ed6c9674">
-                            <i class="ai-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="swiper 5-min-swiper">
-                    <div class="swiper-wrapper">
-
-                        <div style="width: 393.75px !important; height: 700px !important;" class="swiper-slide">
-                            <article class="card rounded-0 h-100 border-0 position-relative overflow-hidden bg-size-cover bg-position-center" style="background-image: url(https://nqoqqqqwmhdrphlbuhql.supabase.co/storage/v1/object/public/articles/6/image.jpg); width: 393.75px !important; height: 700px !important;">
-                                <div class="bg-dark position-absolute top-0 start-0 w-100 h-100 opacity-60"></div>
-                                <div class="card-body d-flex flex-column position-relative z-2 mt-sm-5">
-                                <h5 class="pt-5 mt-4 mt-sm-5 mt-lg-auto">
-                                    <a class="stretched-link text-light" href="https://bedredanmark.dk/nyheder/6"><i class="ai-play-filled me-2"></i>Hvor ligger vi vores fokus?</a>
-                                </h5>
-                                <p class="fs-sm card-text text-light opacity-70 number-lines-3">Obs. Denne præsentation indeholder spoilers om Disney filmen Tomorrowland fra 2015.</p>
-                                </div>
-                            </article>
-                        </div>
-
-                        <div style="width: 393.75px !important; height: 700px !important;" class="swiper-slide">
-                            <article class="card rounded-0 h-100 border-0 position-relative overflow-hidden bg-size-cover bg-position-center" style="background-image: url(https://nqoqqqqwmhdrphlbuhql.supabase.co/storage/v1/object/public/articles/6/image.jpg); width: 393.75px !important; height: 700px !important;">
-                                <div class="bg-dark position-absolute top-0 start-0 w-100 h-100 opacity-60"></div>
-                                <div class="card-body d-flex flex-column position-relative z-2 mt-sm-5">
-                                <h5 class="pt-5 mt-4 mt-sm-5 mt-lg-auto">
-                                    <a class="stretched-link text-light" href="https://bedredanmark.dk/nyheder/6"><i class="ai-play-filled me-2"></i>Hvor ligger vi vores fokus?</a>
-                                </h5>
-                                <p class="fs-sm card-text text-light opacity-70 number-lines-3">Obs. Denne præsentation indeholder spoilers om Disney filmen Tomorrowland fra 2015.</p>
-                                </div>
-                            </article>
-                        </div>
-
-                        <div style="width: 393.75px !important; height: 700px !important;" class="swiper-slide">
-                            <article class="card rounded-0 h-100 border-0 position-relative overflow-hidden bg-size-cover bg-position-center" style="background-image: url(https://nqoqqqqwmhdrphlbuhql.supabase.co/storage/v1/object/public/articles/6/image.jpg); width: 393.75px !important; height: 700px !important;">
-                                <div class="bg-dark position-absolute top-0 start-0 w-100 h-100 opacity-60"></div>
-                                <div class="card-body d-flex flex-column position-relative z-2 mt-sm-5">
-                                <h5 class="pt-5 mt-4 mt-sm-5 mt-lg-auto">
-                                    <a class="stretched-link text-light" href="https://bedredanmark.dk/nyheder/6"><i class="ai-play-filled me-2"></i>Hvor ligger vi vores fokus?</a>
-                                </h5>
-                                <p class="fs-sm card-text text-light opacity-70 number-lines-3">Obs. Denne præsentation indeholder spoilers om Disney filmen Tomorrowland fra 2015.</p>
-                                </div>
-                            </article>
-                        </div>
-
-                        <div style="width: 393.75px !important; height: 700px !important;" class="swiper-slide">
-                            <article class="card rounded-0 h-100 border-0 position-relative overflow-hidden bg-size-cover bg-position-center" style="background-image: url(https://nqoqqqqwmhdrphlbuhql.supabase.co/storage/v1/object/public/articles/6/image.jpg); width: 393.75px !important; height: 700px !important;">
-                                <div class="bg-dark position-absolute top-0 start-0 w-100 h-100 opacity-60"></div>
-                                <div class="card-body d-flex flex-column position-relative z-2 mt-sm-5">
-                                <h5 class="pt-5 mt-4 mt-sm-5 mt-lg-auto">
-                                    <a class="stretched-link text-light" href="https://bedredanmark.dk/nyheder/6"><i class="ai-play-filled me-2"></i>Hvor ligger vi vores fokus?</a>
-                                </h5>
-                                <p class="fs-sm card-text text-light opacity-70 number-lines-3">Obs. Denne præsentation indeholder spoilers om Disney filmen Tomorrowland fra 2015.</p>
-                                </div>
-                            </article>
-                        </div>
-
-                        <div style="width: 393.75px !important; height: 700px !important;" class="swiper-slide">
-                            <article class="card rounded-0 h-100 border-0 position-relative overflow-hidden bg-size-cover bg-position-center" style="background-image: url(https://nqoqqqqwmhdrphlbuhql.supabase.co/storage/v1/object/public/articles/6/image.jpg); width: 393.75px !important; height: 700px !important;">
-                                <div class="bg-dark position-absolute top-0 start-0 w-100 h-100 opacity-60"></div>
-                                <div class="card-body d-flex flex-column position-relative z-2 mt-sm-5">
-                                <h5 class="pt-5 mt-4 mt-sm-5 mt-lg-auto">
-                                    <a class="stretched-link text-light" href="https://bedredanmark.dk/nyheder/6"><i class="ai-play-filled me-2"></i>Hvor ligger vi vores fokus?</a>
-                                </h5>
-                                <p class="fs-sm card-text text-light opacity-70 number-lines-3">Obs. Denne præsentation indeholder spoilers om Disney filmen Tomorrowland fra 2015.</p>
-                                </div>
-                            </article>
-                        </div>
-
-                        <div style="width: 393.75px !important; height: 700px !important;" class="swiper-slide">
-                            <article class="card rounded-0 h-100 border-0 position-relative overflow-hidden bg-size-cover bg-position-center" style="background-image: url(https://nqoqqqqwmhdrphlbuhql.supabase.co/storage/v1/object/public/articles/6/image.jpg); width: 393.75px !important; height: 700px !important;">
-                                <div class="bg-dark position-absolute top-0 start-0 w-100 h-100 opacity-60"></div>
-                                <div class="card-body d-flex flex-column position-relative z-2 mt-sm-5">
-                                <h5 class="pt-5 mt-4 mt-sm-5 mt-lg-auto serif">
-                                    <a class="stretched-link text-light" href="https://bedredanmark.dk/nyheder/6"><i class="ai-play-filled me-2"></i>Hvor ligger vi vores fokus?</a>
-                                </h5>
-                                <p class="fs-sm card-text text-light opacity-70 number-lines-3 serif">Obs. Denne præsentation indeholder spoilers om Disney filmen Tomorrowland fra 2015.</p>
-                                </div>
-                            </article>
-                        </div>
-
-                    </div>
-                </div>
-
-                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-            </section>
+            @include('components.shorts', [
+                "title" => "In 5 mins.",
+                "items" => [
+                    [
+                        "image_url" => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXg0KJa8NlJ-l26d12hNmZR4AQc67DiFOacg&s",
+                        "title" => "15 minute cities",
+                        "text" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                        "embed_url" => "https://rumble.com/embed/v4r275o/?pub=4&autoplay=2"
+                    ],
+                    [
+                        "image_url" => "https://www.europarl.europa.eu/resources/library/images/20230131PHT70403/20230131PHT70403-ml.jpeg",
+                        "title" => "Agenda 2030",
+                        "text" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                        "embed_url" => "https://rumble.com/embed/v4r275o/?pub=4&autoplay=2"
+                    ],
+                    [
+                        "image_url" => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5-B-Hyrcw5bUyEW4ISYFQSoc16euf9eLHiA&s",
+                        "title" => "Neobiological revolution",
+                        "text" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                        "embed_url" => "https://rumble.com/embed/v4r275o/?pub=4&autoplay=2"
+                    ],
+                    [
+                        "image_url" => "https://paytmblogcdn.paytm.com/wp-content/uploads/2022/12/Blog_Paytm_What-is-Central-Bank-Digital-Currency-CBDC-800x500.jpg",
+                        "title" => "CBDC",
+                        "text" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                        "embed_url" => "https://rumble.com/embed/v4r275o/?pub=4&autoplay=2"
+                    ],
+                    [
+                        "image_url" => "https://assets.ltkcontent.com/images/102789/french-revolution-battle_85b8069bc6.jpg",
+                        "title" => "Revolutions and secret societies",
+                        "text" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                        "embed_url" => "https://rumble.com/embed/v4r275o/?pub=4&autoplay=2"
+                    ],
+                ]
+            ])
 
             <!-- Grid of articles -->
             <section class="container">
@@ -261,8 +204,8 @@
             </div>
 
             @include('components.card', [
-                'has_img_overlay' => false,
-                'text_position' => 'end',
+                'has_img_overlay' => true,
+                'text_position' => 'start',
                 'sections' => $sections,
                 'article' => App\Models\Article::where('section_uri', 'mind-control')->first(),
             ])
@@ -278,7 +221,27 @@
                     <h1 class="serif fw-bolder fst-italic mb-0 fw-bold">Ugens memes</h1>
                     <p class="fst-italic fs-lg mb-0">Det er vigtigt at grine og højne frekvensen, sit humør.</p>
                 </div>
-                <div class="swiper">
+                <div class="swiper" data-swiper-options='{
+                    "slidesPerView": 1,
+                    "spaceBetween": 16,
+                    "loop": true,
+                    "pagination": {
+                      "el": ".swiper-pagination",
+                      "clickable": true
+                    },
+                    "navigation": {
+                      "prevEl": "#prev",
+                      "nextEl": "#next"
+                    },
+                    "breakpoints": {
+                      "600": {
+                        "slidesPerView": 2
+                      },
+                      "1000": {
+                        "slidesPerView": 3
+                      }
+                    }
+                  }'>
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <figure class="figure">
@@ -352,45 +315,19 @@
     <!-- Back to top button -->
     @include('components.back-top-btn')
 
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/theme.js') }}" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js" integrity="sha512-jEJ0OA9fwz5wUn6rVfGhAXiiCSGrjYCwtQRUwI/wRGEuWRZxrnxoeDoNc+Pnhx8qwKVHs2BRQrVR9RE6T4UHBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/fullscreen/lg-fullscreen.min.js" integrity="sha512-11B0rPDzvnSOYzAT37QdnYgt0z9Xg+wX5tckB1QKl5Znl8RPvrB5npo38K2jCt+Ad44udCfBiKt9D4jRdkSE1A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/zoom/lg-zoom.min.js" integrity="sha512-BLW2Jrofiqm6m7JhkQDIh2olT0EBI58+hIL/AXWvo8gOXKmsNlU6myJyEkTy6rOAAZjn0032FRk8sl9RgXPYIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/video/lg-video.min.js" integrity="sha512-Eo7d/1I/2Yywxw/unjfX06Q+owD82+3ign70yHtNTajId+C3CcHeqb+XP/a+uq/Fhrrkf8MeBcBiZqoMASFiiw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/thumbnail/lg-thumbnail.min.js" integrity="sha512-VBbe8aA3uiK90EUKJnZ4iEs0lKXRhzaAXL8CIHWYReUwULzxkOSxlNixn41OLdX0R1KNP23/s76YPyeRhE6P+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <!-- Initialize Swiper -->
-    <script>
-        var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 1,
-            spaceBetween: 10,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            }
-        });
-    </script>
-
-    <script>
-        const swiper2 = new Swiper('.swiper', {
-            direction: 'horizontal',
-            spaceBetween: 4,
-            loop: false,
-            autoHeight: true,
-            navigation: {
-                "prevEl": "#prev-post",
-                "nextEl": "#next-post"
-            },
-            breakpoints: {
-                "576": {
-                    "slidesPerView": 2
-                },
-                "1000": {
-                    "slidesPerView": 3
-                }
-            }
-        });
-    </script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/theme.js') }}"></script>
 </body>
 
 </html>

@@ -29,141 +29,144 @@ if (bodyBlocks) {
   blocks = JSON.parse(data);
 }
 
-var editor = new EditorJS({
-  /**
-   * Enable/Disable the read only mode
-   */
-  readOnly: false,
+var editorjs = document.getElementById("editorjs");
+if (editorjs) {
+  var editor = new EditorJS({
+    /**
+     * Enable/Disable the read only mode
+     */
+    readOnly: false,
 
-  /**
-   * Wrapper of Editor
-   */
-  holder: "editorjs",
+    /**
+     * Wrapper of Editor
+     */
+    holder: "editorjs",
 
-  /**
-   * Common Inline Toolbar settings
-   * - if true (or not specified), the order from 'tool' property will be used
-   * - if an array of tool names, this order will be used
-   */
-  // inlineToolbar: ['link', 'marker', 'bold', 'italic'],
-  // inlineToolbar: true,
+    /**
+     * Common Inline Toolbar settings
+     * - if true (or not specified), the order from 'tool' property will be used
+     * - if an array of tool names, this order will be used
+     */
+    // inlineToolbar: ['link', 'marker', 'bold', 'italic'],
+    // inlineToolbar: true,
 
-  /**
-   * Tools list
-   */
-  tools: {
-    embed: {
-      class: Embed,
-      inlineTool: true,
-      config: {
-        services: {
-          facebook: true,
-          instagram: true,
-          youtube: true,
-          twitch: true,
-          miro: true,
-          vimeo: true,
-          gfycat: true,
-          aparat: true,
-          "Yandex.Music": true,
-          coub: true,
-          codepen: true,
-          pinterest: true,
-          rumble: {
-            regex: /https?:\/\/rumble\.com\/embed\/([^\/\?\&]+)\/\?pub=4/,
-            embedUrl: "https://rumble.com/embed/<%= remote_id %>/",
-            html: "<iframe class='rumble' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true'></iframe>",
-            height: 300,
-            width: 600,
-            id: (groups) => groups.join("/"),
-          },
-          bitchute: {
-            regex: /https?:\/\/www\.bitchute\.com\/video\/([^\/\?\&]*)\//,
-            embedUrl: "https://bitchute.com/embed/<%= remote_id %>",
-            html: "<iframe scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true'></iframe>",
-            height: 300,
-            width: 600,
-            id: (groups) => groups.join("/"),
-          },
-          odysee: {
-            regex: /https?:\/\/odysee\.com\/([^\/\?\&]*)\/([^\/\?\&]*)/,
-            embedUrl:
-              "https://odysee.com/$/embed/<%= remote_id %>?r=BhpAtxerT22M7gkDwKb5F6GpksoKYgq5",
-            html: "<iframe scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true'></iframe>",
-            height: 300,
-            width: 600,
-            id: (groups) => groups.join("/"),
-          },
-          spotify: {
-            regex: /https?:\/\/open\.spotify\.com\/track\/([^\/\?\&]*)\/?.*/,
-            embedUrl:
-              "https://open.spotify.com/embed/track/<%= remote_id %>?utm_source=generator",
-            html: "<iframe scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true'></iframe>",
-            height: 300,
-            width: 600,
-            id: (groups) => groups.join("/"),
+    /**
+     * Tools list
+     */
+    tools: {
+      embed: {
+        class: Embed,
+        inlineTool: true,
+        config: {
+          services: {
+            facebook: true,
+            instagram: true,
+            youtube: true,
+            twitch: true,
+            miro: true,
+            vimeo: true,
+            gfycat: true,
+            aparat: true,
+            "Yandex.Music": true,
+            coub: true,
+            codepen: true,
+            pinterest: true,
+            rumble: {
+              regex: /https?:\/\/rumble\.com\/embed\/([^\/\?\&]+)\/\?pub=4/,
+              embedUrl: "https://rumble.com/embed/<%= remote_id %>/",
+              html: "<iframe class='rumble' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true'></iframe>",
+              height: 300,
+              width: 600,
+              id: (groups) => groups.join("/"),
+            },
+            bitchute: {
+              regex: /https?:\/\/www\.bitchute\.com\/video\/([^\/\?\&]*)\//,
+              embedUrl: "https://bitchute.com/embed/<%= remote_id %>",
+              html: "<iframe scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true'></iframe>",
+              height: 300,
+              width: 600,
+              id: (groups) => groups.join("/"),
+            },
+            odysee: {
+              regex: /https?:\/\/odysee\.com\/([^\/\?\&]*)\/([^\/\?\&]*)/,
+              embedUrl:
+                "https://odysee.com/$/embed/<%= remote_id %>?r=BhpAtxerT22M7gkDwKb5F6GpksoKYgq5",
+              html: "<iframe scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true'></iframe>",
+              height: 300,
+              width: 600,
+              id: (groups) => groups.join("/"),
+            },
+            spotify: {
+              regex: /https?:\/\/open\.spotify\.com\/track\/([^\/\?\&]*)\/?.*/,
+              embedUrl:
+                "https://open.spotify.com/embed/track/<%= remote_id %>?utm_source=generator",
+              html: "<iframe scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true'></iframe>",
+              height: 300,
+              width: 600,
+              id: (groups) => groups.join("/"),
+            },
           },
         },
       },
-    },
-    underline: Underline,
-    table: Table,
-    list: List,
-    // warning: Warning,
-    // code: Code,
-    linkTool: LinkTool,
-    image: {
-      class: ImageTool,
-      config: {
-        endpoints: {
-          byFile: `${window.location.protocol}//${window.location.host}/api/uploadFile`,
-          byUrl: `${window.location.protocol}//${window.location.host}/api/fetchUrl`,
+      underline: Underline,
+      table: Table,
+      list: List,
+      // warning: Warning,
+      // code: Code,
+      linkTool: LinkTool,
+      image: {
+        class: ImageTool,
+        config: {
+          endpoints: {
+            byFile: `${window.location.protocol}//${window.location.host}/api/uploadFile`,
+            byUrl: `${window.location.protocol}//${window.location.host}/api/fetchUrl`,
+          },
         },
       },
+      // raw: Raw,
+      header: Header,
+      quote: Quote,
+      marker: Marker,
+      checklist: CheckList,
+      delimiter: Delimiter,
+      inlineCode: InlineCode,
+      // image: SimpleImage, // Note: There's an error here why?
     },
-    // raw: Raw,
-    header: Header,
-    quote: Quote,
-    marker: Marker,
-    checklist: CheckList,
-    delimiter: Delimiter,
-    inlineCode: InlineCode,
-    // image: SimpleImage, // Note: There's an error here why?
-  },
 
-  /**
-   * This Tool will be used as default
-   */
-  // defaultBlock: 'paragraph',
+    /**
+     * This Tool will be used as default
+     */
+    // defaultBlock: 'paragraph',
 
-  /**
-   * Initial Editor data
-   */
-  data: {
-    blocks,
-  },
-  onChange: function (api, event) {
-    editor
-      .save()
-      .then((savedData) => {
-        const edjsParser = edjsHTML({
-          table: tableParser,
-          image: imageParser,
-          embed: embedParser,
-          checklist: checklistParser,
+    /**
+     * Initial Editor data
+     */
+    data: {
+      blocks,
+    },
+    onChange: function (api, event) {
+      editor
+        .save()
+        .then((savedData) => {
+          const edjsParser = edjsHTML({
+            table: tableParser,
+            image: imageParser,
+            embed: embedParser,
+            checklist: checklistParser,
+          });
+          let html = edjsParser.parse(savedData);
+
+          document.getElementById("body_html").value = html.join("");
+          document.getElementById("body_blocks").value = JSON.stringify(
+            savedData.blocks,
+          );
+        })
+        .catch((error) => {
+          console.error("Saving error", error);
         });
-        let html = edjsParser.parse(savedData);
-
-        document.getElementById("body_html").value = html.join("");
-        document.getElementById("body_blocks").value = JSON.stringify(
-          savedData.blocks,
-        );
-      })
-      .catch((error) => {
-        console.error("Saving error", error);
-      });
-  },
-});
+    },
+  });
+}
 
 function imageParser({ data }) {
   return `<figure class="figure"><img class="figure-img img-fluid" src="${data.file.url}" alt="${data.caption}"/><figcaption class="figure-caption text-start">${data.caption}</figcaption></figure>`;

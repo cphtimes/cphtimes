@@ -1,5 +1,5 @@
 <section class="container py-5 mt-sm-2 my-md-4 my-xl-1">
-    <div style="height: 600px;" class="card zoom-effect border-0 rounded-0 overflow-hidden">
+    <div style="height: 550px;" class="card zoom-effect border-0 rounded-0 overflow-hidden">
         @if (isset($has_img_overlay) && $has_img_overlay == true)
         <span class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-10 z-2"></span>
         <div class="h-100 bg-dark zoom-effect-wrapper rounded-0">
