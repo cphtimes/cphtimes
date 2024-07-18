@@ -119,11 +119,11 @@
                         <article class="card border-0 px-3 px-md-3 px-lg-3">
                             <div class="row d-flex align-items-center">
                                 <div class="col-6 article-body card-body px-3">
-                                    <p><small class="text-uppercase text-dark"><b>{{ $aboveFoldArticles->first()->localizedSection($sections) }}</b></small></p>
-                                    <h3 class="article-title card-title fw-light crop-text-2">{{ $aboveFoldArticles->first()->headline }}</h3>
+                                    <p class="text-uppercase crop-text-1 mb-2 fs-sm text-danger serif">{{ $aboveFoldArticles->first()->localizedSection($sections) }}</p>
+                                    <h3 class="article-title fw-light mb-0 crop-text-2 mb-2 serif">{{ $aboveFoldArticles->first()->headline }}</h3>
                                 </div>
                                 <div class="col-6">
-                                    <p class="card-text crop-text-4 text-dark opacity-50">{{ $aboveFoldArticles->first()->abstract }}</p>
+                                    <p class="opacity-50 crop-text-4 mb-2 serif">{{ $aboveFoldArticles->first()->abstract }}</p>
                                 </div>
                             </div>
                             <div class="ratio ratio-4x3">

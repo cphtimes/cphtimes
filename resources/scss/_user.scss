@@ -3,185 +3,117 @@
 // Use this to write your custom SCSS
 //
 
-@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&display=swap');
-
-.text-serif {
-  font-family: "Spectral", serif;
-}
+@import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&display=swap");
 
 :root {
-  --base:              rgb(137, 58, 248);
-  --bg-blend:          multiply;
-  --blur:              0px;
-  --fg-blend:          lighten;
-  --foreground:        #16006f;
-  --opacity:           0.6;
-  --spacing:           0%;
+    --base: rgb(137, 58, 248);
+    --bg-blend: multiply;
+    --blur: 0px;
+    --fg-blend: lighten;
+    --foreground: #16006f;
+    --opacity: 0.6;
+    --spacing: 0%;
 }
+
 .img-wrapper {
-  background-color:    var(--base);
-  display:             flex;
-  flex:                1 1 100%;
-  height:              100%;
-  overflow:            hidden;
-  padding:             var(--spacing);
-  position:            relative;
+    background-color: var(--base);
+    display: flex;
+    flex: 1 1 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: var(--spacing);
+    position: relative;
 }
 
 .img-wrapper img {
-  filter:              grayscale(100%) contrast(1) blur(var(--blur));
-  flex:                1 0 100%;
-  height:              100%;
-  max-width:           100%;
-  mix-blend-mode:      var(--bg-blend);
-  object-fit:          cover;
-  opacity:             var(--opacity);
-  position:            relative;
-  width:               100%;
+    filter: grayscale(100%) contrast(1) blur(var(--blur));
+    flex: 1 0 100%;
+    height: 100%;
+    max-width: 100%;
+    mix-blend-mode: var(--bg-blend);
+    object-fit: cover;
+    opacity: var(--opacity);
+    position: relative;
+    width: 100%;
 }
 
 .img-wrapper::before {
-  background-color:    var(--foreground);
-  bottom:              0;
-  content:             '';
-  height:              100%;
-  left:                0;
-  mix-blend-mode:      var(--fg-blend);
-  position:            absolute;
-  right:               0;
-  top:                 0;
-  width:               100%;
-  z-index:             1;
+    background-color: var(--foreground);
+    bottom: 0;
+    content: "";
+    height: 100%;
+    left: 0;
+    mix-blend-mode: var(--fg-blend);
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
 }
 
-.bg-level-20 {
-background-color: rgb(244, 92, 66);
-}
-
-.bg-level-30 {
-background-color: rgb(245, 47, 24);
-}
-
-.bg-level-50 {
-background-color: rgb(244, 47, 24);
-}
-
-.bg-level-75 {
-background-color: rgb(245, 73, 33);
-}
-
-.bg-level-100 {
-background-color: rgb(246, 150, 45);
-}
-
-.bg-level-125 {
-background-color: rgb(251, 212, 133);
-}
-
-.bg-level-150 {
-background-color: rgb(252, 250, 196);
-}
-
-.bg-level-175 {
-background-color: rgb(254, 247, 165);
-}
-
-.bg-level-200 {
-background-color: rgb(130, 187, 56);
-}
-
-.bg-level-250 {
-background-color: rgb(112, 251, 253);
-}
-
-.bg-level-310 {
-background-color: rgb(47, 140, 251);
-}
-
-.bg-level-350 {
-background-color: rgb(47, 69, 249);
-}
-
-.bg-level-400 {
-background-color: rgb(19, 47, 92);
-}
-
-.bg-level-500 {
-background-color: rgb(137, 58, 248);
-}
-
-.bg-level-540 {
-background-color: rgb(247, 70, 247);
-}
-
-.bg-level-600 {
-background-color: rgb(246, 55, 138);
-}
-
-.bg-level-700 {
-background-color: rgb(248, 130, 207);
-}
-
-
-a {
-color: #000000;
-text-decoration: none;
-}
-.rounded {
-border-radius: 0.0rem !important;  // 1.25rem!important;
-}
 .card-header {
-border-bottom: none;
+    border-bottom: none;
 }
+
 .serif {
-font-family: 'Merriweather', serif;
+    font-family: "Merriweather", serif;
 }
+
 .list-group-item {
-border-bottom: 1px dotted rgba(0,0,0,.125) !important;
+    border-bottom: 1px dotted var(--ar-border-color) !important;
 }
+
 .solid-last-line {
-border-bottom: 1px solid rgba(0,0,0,1.0) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 1) !important;
 }
 
-article:hover>.article-body>.article-title {
-text-decoration: underline !important;
+article:hover > .article-body > .article-title {
+    text-decoration: underline !important;
 }
 
-article:hover>a>.article-body>.article-title {
-text-decoration: underline !important;
+article:hover > a > .article-body > .article-title {
+    text-decoration: underline !important;
 }
-article:hover>a>.article-body>div>.article-title {
-text-decoration: underline !important;
+article:hover > a > .article-body > div > .article-title {
+    text-decoration: underline !important;
+}
+
+.article-body:hover > a > .article-title {
+    text-decoration: underline !important;
+}
+
+.article-body:hover > div > div > .article-title {
+    text-decoration: underline !important;
 }
 
 .number-lines-1 {
--webkit-line-clamp: 1;
-overflow : hidden;
-text-overflow: ellipsis;
-display: -webkit-box;
--webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }
 
 .number-lines-2 {
--webkit-line-clamp: 2;
-overflow : hidden;
-text-overflow: ellipsis;
-display: -webkit-box;
--webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }
 
 .number-lines-3 {
--webkit-line-clamp: 3;
-overflow : hidden;
-text-overflow: ellipsis;
-display: -webkit-box;
--webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }
 
 .number-lines-4 {
--webkit-line-clamp: 4;
-overflow : hidden;
-text-overflow: ellipsis;
-display: -webkit-box;
--webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }

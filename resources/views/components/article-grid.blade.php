@@ -26,15 +26,15 @@
     @endfor
 
     @if (isset($placeholder) == false || isset($placeholder) && $placeholder == false)
-    @if ($articles->hasMorePages())
-    <div id="replaceMe" class="d-flex justify-content-center py-5">
-        <form hx-post="{{$articles->appends(['section_uri' => Request::get('section_uri', null)])->nextPageUrl()}}" hx-target="#replaceMe" hx-swap="outerHTML" hx-trigger="submit">
-            @csrf
-            <button class='btn btn-primary' type="submit">
-                {{__('messages.show_more_btn')}}
-            </button>
-        </form>
-    </div>
-    @endif
+        @if ($articles->hasMorePages())
+        <div id="replaceMe" class="d-flex justify-content-center py-5">
+            <form hx-post="{{$articles->appends(['sql' => $sql, 'section_uri' => Request::get('section_uri', null)])->nextPageUrl()}}" hx-target="#replaceMe" hx-swap="outerHTML" hx-trigger="submit">
+                @csrf
+                <button class='btn btn-primary' type="submit">
+                    {{__('messages.show_more_btn')}}
+                </button>
+            </form>
+        </div>
+        @endif
     @endif
     @endif

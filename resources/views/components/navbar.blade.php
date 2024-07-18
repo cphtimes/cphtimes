@@ -85,7 +85,7 @@
                         @endauth
 
                         @guest
-                        <a type="button btn-primary" role="button" href="{{route('login', ['redirect' => \Request::getRequestUri()])}}" class="btn btn-link">
+                        <a type="button btn-primary rounded-pill" role="button" href="{{route('login', ['redirect' => \Request::getRequestUri()])}}" class="btn btn-primary btn-sm rounded-pill">
                             <i class="ai-login me-2 ms-n1"></i>
                             {{__('messages.log_in')}}
                         </a>
@@ -134,7 +134,7 @@
         @endauth
 
         @guest
-        <a href="{{route('login', ['redirect' => \Request::getRequestUri()])}}" class="btn btn-outline-primary w-100">
+        <a href="{{route('login', ['redirect' => \Request::getRequestUri()])}}" class="btn btn-outline-primary rounded-pill w-100">
             <i class="ai-login me-1"></i>
             {{__('messages.log_in')}}
         </a>

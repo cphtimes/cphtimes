@@ -254,6 +254,11 @@
             <i class="ai-layout-column me-2"></i>
             {{__('messages.sidebar')}}
         </button>
+
+        <div class="py-5 mt-sm-2 my-md-4 my-xl-0">
+            @include('components.newsletter-card')
+        </div>
+
     </main>
     <!-- Footer -->
     @include('components.footer-alt', array(

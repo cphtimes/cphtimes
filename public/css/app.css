@@ -1,1 +1,6 @@
-.dropdown-menu-macos{border-radius:.5rem;display:grid!important;display:none!important;gap:.25rem;padding:.5rem}.dropdown-menu-macos.show,.dropdown-menu.show{display:block!important}.dropdown-item-danger{color:var(--bs-red)}.dropdown-menu-macos .dropdown-item{border-radius:.25rem}.text-overflow{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.text-overflow {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+

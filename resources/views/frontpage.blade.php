@@ -147,11 +147,7 @@
                 </ul>
             </div>
 
-            <div class="container py-5 mt-sm-2 my-md-4 my-xl-0">
-                @include('components.newsletter')
-            </div>
-
-            <!-- In 5 mins. or less -->
+            <!-- Shorts -->
             @include('components.shorts', [
                 "title" => "In 5 mins.",
                 "items" => [
@@ -183,43 +179,40 @@
                         "image_url" => "https://assets.ltkcontent.com/images/102789/french-revolution-battle_85b8069bc6.jpg",
                         "title" => "Revolutions and secret societies",
                         "text" => "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-                        "embed_url" => "https://rumble.com/embed/v4r275o/?pub=4&autoplay=2"
+                        "embed_url" => "https://rumble.com/embed/v4yg3h2/?pub=jic71&autoplay=2"
                     ],
                 ]
             ])
 
-            <!-- Grid of articles -->
-            <section class="container">
-                <div class="d-flex flex-column align-items-center pb-3 mb-3 mb-lg-4 justify-content-between">
-                    <h1 class="serif fw-bolder fst-italic mb-0 fw-bold">Daily Digest</h1>
-                    <p class="fst-italic fs-lg mb-0">Get an overview this morning.</p>
-                </div>
-            </section>
+            @foreach ($layout as $item)
+                @if ($item["type"] == "section")
+                    @include('components.article-section', [
+                        "title" => $item["data"]["title"] ?? null,
+                        "text" => $item["data"]["text"] ?? null,
+                        "sql" => $item["data"]["sql"]
+                    ])
 
-            <div class="px-0" hx-get="{{route('article_grid.show')}}" hx-swap="outerHTML" hx-trigger="load" id="article-grid">
-                @include('components.article-grid', [
-                'placeholder' => true,
-                'n' => 20
-                ])
-            </div>
+                @elseif ($item["type"] == "fullbleed" && \App\Specs\ArticleRawSQLSpec::isSatisfiedBy($item["data"]["sql"]))
+                    @include('components.article-fullbleed', [
+                        'has_img_overlay' => $item["data"]["has_img_overlay"] ?? false,
+                        'text_position' => $item["data"]["text_position"] ?? 'start',
+                        'sections' => $sections,
+                        'article' =>  \App\Models\Article::whereRaw(\App\Services\ArticleRawSQLService::whereRaw($item["data"]["sql"]))->whereIn('in_language', \App\Services\SupportedLangsService::get())->first(),
+                    ])
 
-            @include('components.card', [
-                'has_img_overlay' => true,
-                'text_position' => 'start',
-                'sections' => $sections,
-                'article' => App\Models\Article::where('section_uri', 'mind-control')->first(),
-            ])
-
-            @include('components.section', [
-                'text_position' => 'start',
-                'sections' => $sections,
-                'article' => App\Models\Article::where('section_uri', 'mind-control')->first(),
-            ])
+                @elseif ($item["type"] == "block" && \App\Specs\ArticleRawSQLSpec::isSatisfiedBy($item["data"]["sql"]))
+                    @include('components.article-block', [
+                        'text_position' => $item["data"]["text_position"] ?? 'start',
+                        'sections' => $sections,
+                        'article' => \App\Models\Article::whereRaw(\App\Services\ArticleRawSQLService::whereRaw($item["data"]["sql"]))->whereIn('in_language', \App\Services\SupportedLangsService::get())->first(),
+                    ])
+                @endif
+            @endforeach
 
             <section class="container py-5 mt-sm-2 my-md-4 my-xl-1">
                 <div class="d-flex flex-column align-items-center pb-3 mb-3 mb-lg-4 justify-content-between">
-                    <h1 class="serif fw-bolder fst-italic mb-0 fw-bold">Ugens memes</h1>
-                    <p class="fst-italic fs-lg mb-0">Det er vigtigt at grine og højne frekvensen, sit humør.</p>
+                    <h1 class="serif fw-bolder fst-italic mb-0 fw-bold">Memes</h1>
+                    <p class="fst-italic fs-lg mb-0">It's important to have a laugh during difficult times.</p>
                 </div>
                 <div class="swiper" data-swiper-options='{
                     "slidesPerView": 1,
@@ -244,17 +237,159 @@
                   }'>
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <figure class="figure">
-                              <img src="https://scontent-cph2-1.xx.fbcdn.net/v/t39.30808-6/436120540_2767920180039092_5744539943817400246_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=TNC6z2aqd74Q7kNvgFmgxc9&_nc_ht=scontent-cph2-1.xx&oh=00_AYCPeKBuH2EULMKfZ8UTtfIxihXhb2KMCAlhIdjOV3G1fg&oe=665CCBAB" class="figure-img" alt="...">
-                              <figcaption class="figure-caption serif">Den 'nødvendige' krig mod bad guy Putin.</figcaption>
-                            </figure>
+                            <!-- Image gallery with zooming hover effect -->
+                            <div class="gallery">
+                              <a href="https://scontent-cph2-1.xx.fbcdn.net/v/t39.30808-6/445175411_2779888098842300_7895429969575221702_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=o3jx0gPqEZgQ7kNvgFenIYv&_nc_ht=scontent-cph2-1.xx&oh=00_AYA4l7jGrXiRdvZrnQxwKdU_GBfSwE1ab_BmA0SbGA9J0g&oe=665CE4AF" class="gallery-item d-block card-hover zoom-effect">
+                                <div class="d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 rounded-0 overflow-hidden z-2 opacity-0">
+                                  <i class="ai-zoom-in fs-2 text-white position-relative z-2"></i>
+                                  <div class="position-absolute bottom-0 start-0 w-100 text-center text-white fs-sm fw-medium z-2 pb-3">
+                                    Den Sort Svane
+                                  </div>
+                                  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-40"></div>
+                                </div>
+                                <div class="zoom-effect-wrapper rounded-0">
+                                  <img src="https://scontent-cph2-1.xx.fbcdn.net/v/t39.30808-6/445175411_2779888098842300_7895429969575221702_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=o3jx0gPqEZgQ7kNvgFenIYv&_nc_ht=scontent-cph2-1.xx&oh=00_AYA4l7jGrXiRdvZrnQxwKdU_GBfSwE1ab_BmA0SbGA9J0g&oe=665CE4AF" class="zoom-effect-img" alt="Den Sorte Svane">
+                                </div>
+                              </a>
+                            </div>
                         </div>
+
                         <div class="swiper-slide">
-                            <figure class="figure">
-                              <img src="https://scontent-cph2-1.xx.fbcdn.net/v/t39.30808-6/445175411_2779888098842300_7895429969575221702_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=o3jx0gPqEZgQ7kNvgFenIYv&_nc_ht=scontent-cph2-1.xx&oh=00_AYA4l7jGrXiRdvZrnQxwKdU_GBfSwE1ab_BmA0SbGA9J0g&oe=665CE4AF" class="figure-img" alt="...">
-                              <figcaption class="figure-caption serif">Den Sorte Svane på TV2 play. Af alle navne de kunne have brugt!</figcaption>
-                            </figure>
+                            <div class="gallery">
+                              <a href="https://scontent-cph2-1.xx.fbcdn.net/v/t39.30808-6/436120540_2767920180039092_5744539943817400246_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=TNC6z2aqd74Q7kNvgFmgxc9&_nc_ht=scontent-cph2-1.xx&oh=00_AYCPeKBuH2EULMKfZ8UTtfIxihXhb2KMCAlhIdjOV3G1fg&oe=665CCBAB" class="gallery-item d-block card-hover zoom-effect">
+                                <div class="d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 rounded-0 overflow-hidden z-2 opacity-0">
+                                  <i class="ai-zoom-in fs-2 text-white position-relative z-2"></i>
+                                  <div class="position-absolute bottom-0 start-0 w-100 text-center text-white fs-sm fw-medium z-2 pb-3">
+                                    Bad guy 'Putin'
+                                  </div>
+                                  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-40"></div>
+                                </div>
+                                <div class="zoom-effect-wrapper rounded-0">
+                                  <img src="https://scontent-cph2-1.xx.fbcdn.net/v/t39.30808-6/436120540_2767920180039092_5744539943817400246_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=TNC6z2aqd74Q7kNvgFmgxc9&_nc_ht=scontent-cph2-1.xx&oh=00_AYCPeKBuH2EULMKfZ8UTtfIxihXhb2KMCAlhIdjOV3G1fg&oe=665CCBAB" class="zoom-effect-img" alt="Bad guy 'Putin'">
+                                </div>
+                              </a>
+                            </div>
                         </div>
+
+                        <div class="swiper-slide">
+                            <div class="gallery">
+                              <a href="https://pbs.twimg.com/media/GPsbTdjXMAAqVme?format=jpg&name=small" class="gallery-item d-block card-hover zoom-effect">
+                                <div class="d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 rounded-0 overflow-hidden z-2 opacity-0">
+                                  <i class="ai-zoom-in fs-2 text-white position-relative z-2"></i>
+                                  <div class="position-absolute bottom-0 start-0 w-100 text-center text-white fs-sm fw-medium z-2 pb-3">
+                                    The neobiological revolution
+                                  </div>
+                                  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-40"></div>
+                                </div>
+                                <div class="zoom-effect-wrapper rounded-0">
+                                  <img src="https://pbs.twimg.com/media/GPsbTdjXMAAqVme?format=jpg&name=small" class="zoom-effect-img" alt="The neobiological revolution">
+                                </div>
+                              </a>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="gallery">
+                              <a href="https://pbs.twimg.com/media/GPsZI8BWoAAp8rb?format=jpg&name=small" class="gallery-item d-block card-hover zoom-effect">
+                                <div class="d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 rounded-0 overflow-hidden z-2 opacity-0">
+                                  <i class="ai-zoom-in fs-2 text-white position-relative z-2"></i>
+                                  <div class="position-absolute bottom-0 start-0 w-100 text-center text-white fs-sm fw-medium z-2 pb-3">
+                                    "I'm the Captain now!"
+                                  </div>
+                                  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-40"></div>
+                                </div>
+                                <div class="zoom-effect-wrapper rounded-0">
+                                  <img src="https://pbs.twimg.com/media/GPsZI8BWoAAp8rb?format=jpg&name=small" class="zoom-effect-img" alt="I'm the Captain now!">
+                                </div>
+                              </a>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="gallery">
+                              <a href="https://pbs.twimg.com/media/GPseGcNW4AAHOT5?format=jpg&name=small" class="gallery-item d-block card-hover zoom-effect">
+                                <div class="d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 rounded-0 overflow-hidden z-2 opacity-0">
+                                  <i class="ai-zoom-in fs-2 text-white position-relative z-2"></i>
+                                  <div class="position-absolute bottom-0 start-0 w-100 text-center text-white fs-sm fw-medium z-2 pb-3">
+                                    The next generation
+                                  </div>
+                                  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-40"></div>
+                                </div>
+                                <div class="zoom-effect-wrapper rounded-0">
+                                  <img src="https://pbs.twimg.com/media/GPseGcNW4AAHOT5?format=jpg&name=small" class="zoom-effect-img" alt="The next generation">
+                                </div>
+                              </a>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="gallery">
+                              <a href="https://pbs.twimg.com/media/GPsd4toXAAEHsNW?format=jpg&name=small" class="gallery-item d-block card-hover zoom-effect">
+                                <div class="d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 rounded-0 overflow-hidden z-2 opacity-0">
+                                  <i class="ai-zoom-in fs-2 text-white position-relative z-2"></i>
+                                  <div class="position-absolute bottom-0 start-0 w-100 text-center text-white fs-sm fw-medium z-2 pb-3">
+                                    Breaking news
+                                  </div>
+                                  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-40"></div>
+                                </div>
+                                <div class="zoom-effect-wrapper rounded-0">
+                                  <img src="https://pbs.twimg.com/media/GPsd4toXAAEHsNW?format=jpg&name=small" class="zoom-effect-img" alt="Breaking news">
+                                </div>
+                              </a>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="gallery">
+                              <a href="https://pbs.twimg.com/media/GPscs8BWAAAAnW9?format=jpg&name=small" class="gallery-item d-block card-hover zoom-effect">
+                                <div class="d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 rounded-0 overflow-hidden z-2 opacity-0">
+                                  <i class="ai-zoom-in fs-2 text-white position-relative z-2"></i>
+                                  <div class="position-absolute bottom-0 start-0 w-100 text-center text-white fs-sm fw-medium z-2 pb-3">
+                                    Me trying to explain...
+                                  </div>
+                                  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-40"></div>
+                                </div>
+                                <div class="zoom-effect-wrapper rounded-0">
+                                  <img src="https://pbs.twimg.com/media/GPscs8BWAAAAnW9?format=jpg&name=small" class="zoom-effect-img" alt="Me trying to explain...">
+                                </div>
+                              </a>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="gallery">
+                              <a href="https://pbs.twimg.com/media/GPsZMzYXoAA8vfY?format=jpg&name=small" class="gallery-item d-block card-hover zoom-effect">
+                                <div class="d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 rounded-0 overflow-hidden z-2 opacity-0">
+                                  <i class="ai-zoom-in fs-2 text-white position-relative z-2"></i>
+                                  <div class="position-absolute bottom-0 start-0 w-100 text-center text-white fs-sm fw-medium z-2 pb-3">
+                                    New virus no problem
+                                  </div>
+                                  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-40"></div>
+                                </div>
+                                <div class="zoom-effect-wrapper rounded-0">
+                                  <img src="https://pbs.twimg.com/media/GPsZMzYXoAA8vfY?format=jpg&name=small" class="zoom-effect-img" alt="New virus no problem">
+                                </div>
+                              </a>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="gallery">
+                              <a href="https://pbs.twimg.com/media/GPsZGSVX0AAJET4?format=jpg&name=small" class="gallery-item d-block card-hover zoom-effect">
+                                <div class="d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 h-100 rounded-0 overflow-hidden z-2 opacity-0">
+                                  <i class="ai-zoom-in fs-2 text-white position-relative z-2"></i>
+                                  <div class="position-absolute bottom-0 start-0 w-100 text-center text-white fs-sm fw-medium z-2 pb-3">
+                                    Why?
+                                  </div>
+                                  <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-40"></div>
+                                </div>
+                                <div class="zoom-effect-wrapper rounded-0">
+                                  <img src="https://pbs.twimg.com/media/GPsZGSVX0AAJET4?format=jpg&name=small" class="zoom-effect-img" alt="Why?">
+                                </div>
+                              </a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>
@@ -301,6 +436,10 @@
                     </ul>
                     @endforeach
                 </div>
+            </div>
+
+            <div class="py-5 mt-sm-2 my-md-4 my-xl-0">
+                @include('components.newsletter-card')
             </div>
 
         </div>

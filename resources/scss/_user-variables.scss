@@ -16,11 +16,6 @@
     font-family: "Chomsky";
 }
 
-a {
-    color: #000000;
-    text-decoration: none;
-}
-
 .rounded {
     border-radius: 0.0rem !important; // 1.25rem!important;
 }
@@ -34,7 +29,7 @@ a {
 }
 
 .list-group-item {
-    border-bottom: 1px dotted rgba(0, 0, 0, .125) !important;
+    border-bottom: 1px dotted var(--ar-border-color) !important;
 }
 
 .solid-last-line {
